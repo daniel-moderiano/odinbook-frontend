@@ -10,13 +10,27 @@ const Signup = () => {
     confirmPassword: '',
   });
 
+  // Use the name attributes to set the state (ensure names correspond to keys in state object)
+  const handleChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  // Capture all form data using the current value of the formData state object
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  }
+
   return (
     <div className="Signup">
       <div className="Signup-header">
         <h2 className="Signup-title">Sign up</h2>
       </div>  
 
-      <form className="Signup-form">
+      <form className="Signup-form" onSubmit={handleSubmit}>
         <label htmlFor="firstName" className="form-label">
           First name
           <input 
@@ -25,6 +39,7 @@ const Signup = () => {
             name="firstName" 
             value={formData.firstName}
             onChange={handleChange}
+            required
           />
         </label>
 
@@ -36,6 +51,7 @@ const Signup = () => {
             name="lastName" 
             value={formData.lastName}
             onChange={handleChange}
+            required
           />  
         </label>
 
@@ -47,6 +63,7 @@ const Signup = () => {
             name="email" 
             value={formData.email}
             onChange={handleChange}
+            required
           />
         </label>
 
@@ -58,21 +75,26 @@ const Signup = () => {
             name="password" 
             value={formData.password}
             onChange={handleChange}
+            required
           />
         </label>
 
-        <label htmlFor="confirmPassword" className="form-label">
-          Confirm password
-          <input 
-            type="password" 
-            id="confirmPassword" 
-            name="confirmPassword" 
-            value={formData.confirmPassword}
-            onChange={handleChange}
-          />
-        </label>
+        {/* Conditionally render the confirm password field once user enters a value in the password field */}
+        {formData.password.length !== 0 && (
+          <label htmlFor="confirmPassword" className="form-label">
+            Confirm password
+            <input 
+              type="password" 
+              id="confirmPassword" 
+              name="confirmPassword" 
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+            />
+          </label>
+        )}
 
-        <button type="submit" />
+        <button type="submit">Create account</button>
       </form>
     </div>
   )
