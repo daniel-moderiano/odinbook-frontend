@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
 
@@ -96,6 +97,7 @@ const Signup = () => {
 
         <button type="submit">Create account</button>
       </form>
+      <Link to="/login">Log in</Link>
     </div>
   )
 }

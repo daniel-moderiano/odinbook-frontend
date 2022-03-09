@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
+import Signup from "./Signup";
 
 const Login = () => {
 
@@ -24,7 +26,7 @@ const Login = () => {
   return (
     <div className="Login">
       <div className="Login-header">
-        <h2 className="Login-title">Sign up</h2>
+        <h2 className="Login-title">Log in</h2>
       </div>  
 
       <form className="Login-form" onSubmit={handleSubmit}>
@@ -53,8 +55,9 @@ const Login = () => {
           />
         </label>
 
-        <button type="submit">Create account</button>
+        <button type="submit">Log in</button>
       </form>
+      <Link to="/signup">Create New Account</Link>
     </div>
   )
 }
