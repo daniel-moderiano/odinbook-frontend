@@ -6,6 +6,7 @@ export const useCurrentUser = () => {
 
   const getCurrentUser = useCallback(async () => {
     setLoading(true);
+    setError(null);
     try {
       const response = await fetch('http://localhost:3000/api/users/current', {
         method: 'GET',
@@ -14,17 +15,17 @@ export const useCurrentUser = () => {
       })
       const responseJSON = await response.json();
 
-      if (!responseJSON.errorMsg) {   // no error on backend, current user exists
-        return responseJSON;
-      } else {    // error with request, no current user. Return null rather than setting error object
-        setError(responseJSON)
+      if (responseJSON.errorMsg) {   // error on backend, current user does not exist. Return null for user.
+        setError(responseJSON);
         return null;
-      }
-
+      } 
+      // No error occurred. Return response containing user object
+      setLoading(false);
+      setError(null);
+      return responseJSON;
+      
     } catch (err) {
       setError(err);
-    } finally {
-      // Regardless of success or error, the loading state is complete
       setLoading(false);
     }
   }, []);

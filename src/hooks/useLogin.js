@@ -8,6 +8,7 @@ export const useLogin = () => {
 
   const login = async (email, password) => {
     setLoading(true);
+    setError(null);
     try {
       const response = await fetch('http://localhost:3000/api/users/login', {
         method: 'POST', 
@@ -21,15 +22,15 @@ export const useLogin = () => {
 
       const responseJSON = await response.json();
 
-      if (!responseJSON.errorMsg) {   // no error on backend, credentials valid
-        // const user = await response.json();
-        dispatch({ type: 'LOGIN', payload: responseJSON })
-      } else {    // error with request
+      if (responseJSON.errorMsg) {   // error with login request
         setError(responseJSON);
       }
+      // No errors occured. Dispatch appropriate LOGIN action after adjusting state 
+      setLoading(false);
+      setError(null);
+      dispatch({ type: 'LOGIN', payload: responseJSON })
     } catch (err) {
       setError(err);
-    } finally {
       setLoading(false);
     }
   };
