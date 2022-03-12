@@ -15,14 +15,14 @@ export const useCurrentUser = () => {
       })
       const responseJSON = await response.json();
 
-      if (responseJSON.errorMsg) {   // error on backend, current user does not exist. Return null for user.
+      if (!responseJSON.user) {   // error on backend, current user does not exist. Return null for user.
         setError(responseJSON);
         return null;
       } 
       // No error occurred. Return response containing user object
       setLoading(false);
       setError(null);
-      return responseJSON;
+      return responseJSON.user;
       
     } catch (err) {
       setError(err);

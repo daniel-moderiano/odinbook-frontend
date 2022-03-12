@@ -21,8 +21,14 @@ const Login = () => {
   // Capture all form data using the current value of the formData state object
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(formData.email, formData.password);
+    login(formData);
   }
+
+  useEffect(() => {
+    if (error) {
+      console.log(error);
+    }
+  }, [error])
 
   return (
     <div className="Login">
