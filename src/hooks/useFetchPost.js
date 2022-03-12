@@ -12,6 +12,7 @@ export const useFetchPost = (url, data) => {
       try {
         // Beginning fetch logic here so set loading state
         setLoading(true);
+        setError(null);
         // Make fetch call using supplied URL
         const response = await fetch(url, {
           method: 'POST', 
