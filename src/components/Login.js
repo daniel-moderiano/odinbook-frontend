@@ -63,14 +63,14 @@ const Login = () => {
               value={formData.password}
               onChange={handleChange}
               required
-              className="mt-2 border rounded-sm border-slate-300 py-2 px-3 focus:outline-none focus:ring-2 ring-transparent ring-offset-4 ring-offset-yellow-500/40 focus:border-yellow-500/80"
+              className="mt-2 border rounded-sm border-slate-300 py-2 px-3 focus:outline-none focus:ring-2 ring-transparent ring-offset-4 ring-offset-yellow-500/40 focus:border-yellow-500/80 "
             />
           </label>
         </div>
 
-        <button type="submit" className="w-full mt-5 px-4 py-2 font-bold rounded bg-yellow-700 text-white">Log in</button>
+        <button type="submit" className="w-full mt-5 px-4 py-2 font-bold rounded bg-yellow-700 text-white hover:bg-yellow-600">Log in</button>
       </form>
-      <Link to="/signup" className="w-48 text-center mt-5 px-4 py-2 text-sm font-bold rounded bg-yellow-700 text-white">Create New Account</Link>
+      <Link to="/signup" className="w-48 text-center mt-5 px-4 py-2 text-sm font-bold rounded bg-yellow-700 text-white hover:bg-yellow-600">Create New Account</Link>
     </div>
   )
 }
