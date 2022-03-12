@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useFetch } from "../hooks/useFetch";
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Signup = () => {
+  const { user } =  useAuthContext();
   // This destructuring syntax with key:value pairing allows 'custom' naming of the generic loading and error properties provided by the fetch hook
-  const { data: user, loading: userLoading, error: userError } = useFetch('http://localhost:3000/api/users/current');
+  // const { data: user, loading: userLoading, error: userError } = useFetch('http://localhost:3000/api/users/current');
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -13,10 +14,6 @@ const Signup = () => {
     password: '',
     confirmPassword: '',
   });
-
-  useEffect(() => {
-    console.log(user, userLoading, userError);
-  }, [user, userError, userLoading])
 
   // Use the name attributes to set the state (ensure names correspond to keys in state object)
   const handleChange = (e) => {
@@ -31,6 +28,10 @@ const Signup = () => {
     e.preventDefault();
     console.log(formData);
   }
+
+  useEffect(() => {
+    console.log(user);
+  }, [user])
 
   return (
     <div className="Signup">

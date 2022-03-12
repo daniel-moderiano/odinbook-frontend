@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import Signup from "./Signup";
+import { useLogin } from "../hooks/useLogin";
 
 const Login = () => {
+  const { login, error, loading } = useLogin();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -20,7 +21,7 @@ const Login = () => {
   // Capture all form data using the current value of the formData state object
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    login(formData.email, formData.password);
   }
 
   return (

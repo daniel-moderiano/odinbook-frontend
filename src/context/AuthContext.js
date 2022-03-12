@@ -1,4 +1,5 @@
 import { createContext, useEffect, useReducer } from 'react';
+import { useFetchGet } from '../hooks/useFetchGet';
 
 export const AuthContext = createContext();
 
@@ -22,6 +23,7 @@ export const authReducer = (state, action) => {
 }
 
 export const AuthContextProvider = ({ children }) => {
+  const { data: user } = useFetchGet('http://localhost:3000/api/users/current');
   // Initialise the state to be controlled by the authReducer function above. The dispatch function is made available to components via the AuthContextProvider below, which wraps the app
   const [state, dispatch] = useReducer(authReducer, {
     user: null,
@@ -31,7 +33,20 @@ export const AuthContextProvider = ({ children }) => {
   // Ensure an empty dependency array is maintained. This hook should only be evaluated once on initial component render
   useEffect(() => {
     // Check auth state here and dispatch AUTH_IS_READY action (use getCurrentUser API call)
-  }, []);
+    if (user) {
+      if (typeof user._id === 'undefined') {   // no currently logged in user
+        dispatch({
+          type: 'AUTH_IS_READY',
+          payload: null,
+        })
+      } else {
+        dispatch({
+          type: 'AUTH_IS_READY',
+          payload: user,
+        })
+      }
+    }
+  }, [user]);
 
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>
