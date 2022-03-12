@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useLogin } from "../hooks/useLogin";
+import TextInput from "./TextInput";
 
 const Login = () => {
   const { login, error, loading } = useLogin();
@@ -41,29 +42,25 @@ const Login = () => {
         <div className="mb-4">
           <label htmlFor="email" className="flex flex-col">
             Email address
-            <input 
-              type="email" 
+            <TextInput 
               id="email" 
               name="email" 
               value={formData.email}
               onChange={handleChange}
-              required
-              className="mt-2 border rounded-sm border-slate-300 py-2 px-3 focus:outline-none focus:ring-2 ring-transparent ring-offset-4 ring-offset-yellow-500/40 focus:border-yellow-500/80"
+              required={true}
             />
           </label>
         </div>
 
-        <div className="">
+        <div>
           <label htmlFor="password" className="flex flex-col">
             Password
-            <input 
-              type="password" 
+            <TextInput 
               id="password" 
               name="password" 
               value={formData.password}
               onChange={handleChange}
               required
-              className="mt-2 border rounded-sm border-slate-300 py-2 px-3 focus:outline-none focus:ring-2 ring-transparent ring-offset-4 ring-offset-yellow-500/40 focus:border-yellow-500/80 "
             />
           </label>
         </div>
