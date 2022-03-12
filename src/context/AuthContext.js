@@ -31,14 +31,11 @@ export const AuthContextProvider = ({ children }) => {
     authIsReady: false,
   });
 
-  console.log('AuthContext state: ', state);
-
   // This hook should only be evaluated once on initial component render. Ensure no extra dependencies are added to the deps array
   useEffect(() => {
-    console.log('Running auth context effect');
-    // Check auth state here and dispatch AUTH_IS_READY action (use getCurrentUser API call)
     // This is an async function, so use .then/.catch syntax when calling dispatch action
     getCurrentUser()
+      // getCurrentUser returns null where there is no user logged in
       .then((user) => {
         dispatch({
           type: 'AUTH_IS_READY',
