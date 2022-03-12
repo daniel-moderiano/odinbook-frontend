@@ -15,15 +15,15 @@ export const useLogin = () => {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
+        credentials: 'include',
         body: new URLSearchParams([['email', email], ['password', password]]).toString()
       });
 
       const responseJSON = await response.json();
 
       if (!responseJSON.errorMsg) {   // no error on backend, credentials valid
-        const user = await response.json();
-        dispatch({ type: 'LOGIN', payload: user })
-        console.log(user);
+        // const user = await response.json();
+        dispatch({ type: 'LOGIN', payload: responseJSON })
       } else {    // error with request
         setError(responseJSON);
       }
