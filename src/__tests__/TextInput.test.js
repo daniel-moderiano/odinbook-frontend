@@ -18,14 +18,4 @@ describe("Input handling", () => {
     const input = screen.getByRole("textbox");
     expect(input).not.toHaveAttribute('required');
   });
-
-  it("input has correct values", () => {
-    const onChangeMock = jest.fn();
-    render(<TextInput onChange={onChangeMock} />);
-    const input = screen.getByRole("textbox");
-
-    userEvent.type(input, "Whale");
-
-    expect(input).toHaveValue("Whale");
-  });
 });

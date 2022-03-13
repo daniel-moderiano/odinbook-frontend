@@ -16,9 +16,11 @@ const Signup = () => {
 
   // Use the name attributes to set the state (ensure names correspond to keys in state object)
   const handleChange = (e) => {
+    // For some crazy reason, not destructuring this or explicity setting the value variable here causes all tests to fail! What on Earth?!
+    const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
   };
 
@@ -100,12 +102,12 @@ const Signup = () => {
             <label htmlFor="confirmPassword" className="flex flex-col">
               Confirm password
               <TextInput 
-              id="confirmPassword" 
-              name="confirmPassword" 
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              required
-            />
+                id="confirmPassword" 
+                name="confirmPassword" 
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+              />
             </label>      
           </div>
         )}
