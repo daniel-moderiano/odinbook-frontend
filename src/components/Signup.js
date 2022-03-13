@@ -112,9 +112,9 @@ const Signup = () => {
           </div>
         )}
 
-        <button type="submit" className="w-full mt-5 px-4 py-2 font-bold rounded bg-yellow-700 text-white hover:bg-yellow-600">Create account</button>
+        <button type="submit" className="w-full mt-5 px-4 py-2 font-bold bg-yellow-700 text-white hover:bg-yellow-600">Create account</button>
       </form>
-      <Link to="/login" className="w-36 text-center mt-5 px-4 py-2 text-sm font-bold rounded bg-yellow-700 text-white hover:bg-yellow-600">Log in</Link>
+      <Link to="/login" className="w-36 text-center mt-5 px-4 py-2 text-sm font-bold bg-yellow-700 text-white hover:bg-yellow-600">Log in</Link>
     </div>
   )
 }

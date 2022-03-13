@@ -15,7 +15,7 @@ const TextInput = (props) => {
 }
 
 TextInput.defaultProps = {
-  classCSS: "mt-2 border rounded-sm border-slate-300 py-2 px-3 focus:outline-none focus:ring-2 ring-transparent ring-offset-4 ring-offset-yellow-500/40 focus:border-yellow-500/80",
+  classCSS: "mt-2 border rounded-sm border-slate-300 py-2 px-3 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-plum-300/30 focus:border-plum-400",
   required: false,
 }
 

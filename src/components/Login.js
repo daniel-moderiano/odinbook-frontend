@@ -32,15 +32,15 @@ const Login = () => {
   }, [error])
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="mt-6 flex flex-col items-center justify-center">
       <div className="w-full text-center">
-        <h2 className="font-bold text-2xl text-yellow-700 py-4">Log in</h2>
+        <h2 className="font-bold text-2xl md:text-3xl text-plum-500 py-4">Log in</h2>
       </div>  
 
       <form className="w-full center px-4 mb-5 md:max-w-md" onSubmit={handleSubmit}>
 
         <div className="mb-4">
-          <label htmlFor="email" className="flex flex-col">
+          <label htmlFor="email" className="flex flex-col text-sm md:text-base">
             Email address
             <TextInput 
               id="email" 
@@ -53,7 +53,7 @@ const Login = () => {
         </div>
 
         <div>
-          <label htmlFor="password" className="flex flex-col">
+          <label htmlFor="password" className="flex flex-col text-sm md:text-base">
             Password
             <TextInput 
               id="password" 
@@ -65,9 +65,9 @@ const Login = () => {
           </label>
         </div>
 
-        <button type="submit" className="w-full mt-5 px-4 py-2 font-bold rounded bg-yellow-700 text-white hover:bg-yellow-600">Log in</button>
+        <button type="submit" className="w-full mt-5 px-4 py-2 font-semibold bg-plum-400 text-white text-md md:text-lg shadow-md hover:bg-plum-300">Log in</button>
       </form>
-      <Link to="/signup" className="w-48 text-center mt-5 px-4 py-2 text-sm font-bold rounded bg-yellow-700 text-white hover:bg-yellow-600">Create New Account</Link>
+        <Link to="/signup" className="w-48 text-center mt-8 px-2 py-2 text-sm font-medium bg-teal-650 shadow-md text-white hover:bg-teal-550 md:text-base md:w-56">Create New Account</Link>
     </div>
   )
 }
