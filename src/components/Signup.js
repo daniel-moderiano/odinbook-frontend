@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSignup } from "../hooks/useSignup";
 import TextInput from "./TextInput";
+import Button from './Button';
+import StyledLink from "./StyledLink";
 
 const Signup = () => {
   const { signup, error, loading } = useSignup();
@@ -112,9 +114,9 @@ const Signup = () => {
           </div>
         )}
 
-        <button type="submit" className="w-full mt-5 px-4 py-2 font-bold bg-yellow-700 text-white hover:bg-yellow-600">Create account</button>
+        <Button type="submit" customStyles="font-semibold">Create account</Button>
       </form>
-      <Link to="/login" className="w-36 text-center mt-5 px-4 py-2 text-sm font-bold bg-yellow-700 text-white hover:bg-yellow-600">Log in</Link>
+      <StyledLink to="/login" customStyles="w-40">Log in</StyledLink>
     </div>
   )
 }
