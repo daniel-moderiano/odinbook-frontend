@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useLogin } from "../hooks/useLogin";
 import TextInput from "./TextInput";
+import Button from "./Button";
 
 const Login = () => {
   const { login, error, loading } = useLogin();
@@ -32,9 +33,9 @@ const Login = () => {
   }, [error])
 
   return (
-    <div className="mt-6 flex flex-col items-center justify-center">
+    <div className="mt-4 flex flex-col items-center justify-center">
       <div className="w-full text-center">
-        <h2 className="font-bold text-2xl md:text-3xl text-plum-500 py-4">Log in</h2>
+        <h2 className="font-bold text-2xl md:text-3xl text-plum-500 pt-4 pb-5">Log in</h2>
       </div>  
 
       <form className="w-full center px-4 mb-5 md:max-w-md" onSubmit={handleSubmit}>
@@ -65,9 +66,10 @@ const Login = () => {
           </label>
         </div>
 
-        <button type="submit" className="w-full mt-5 px-4 py-2 font-semibold bg-plum-400 text-white text-md md:text-lg shadow-md hover:bg-plum-300">Log in</button>
+        <Button type="submit" design="primary" customStyles="font-semibold">Log in</Button>
       </form>
-        <Link to="/signup" className="w-48 text-center mt-8 px-2 py-2 text-sm font-medium bg-teal-650 shadow-md text-white hover:bg-teal-550 md:text-base md:w-56">Create New Account</Link>
+      
+        <Link to="/signup" className="w-48 text-center mt-8 px-2 py-2 text-sm font-medium bg-teal-650 shadow-md text-white hover:bg-teal-550 md:text-base md:w-56 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-teal-650/30">Create New Account</Link>
     </div>
   )
 }
