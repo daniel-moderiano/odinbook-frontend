@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSignup } from "../hooks/useSignup";
-import TextInput from "./TextInput";
+import Input from "./Input";
 import Button from './Button';
 import StyledLink from "./StyledLink";
 
@@ -49,7 +49,7 @@ const Signup = () => {
         <div className="mb-4">
           <label htmlFor="firstName" className="flex flex-col text-sm md:text-base">
             First name
-            <TextInput 
+            <Input 
               id="firstName" 
               name="firstName" 
               value={formData.firstName}
@@ -62,7 +62,7 @@ const Signup = () => {
         <div className="mb-4">
           <label htmlFor="lastName" className="flex flex-col text-sm md:text-base">
             Last name
-            <TextInput 
+            <Input 
               id="lastName" 
               name="lastName" 
               value={formData.lastName}
@@ -75,7 +75,7 @@ const Signup = () => {
         <div className="mb-4">
           <label htmlFor="email" className="flex flex-col text-sm md:text-base">
             Email address
-            <TextInput 
+            <Input 
               id="email" 
               name="email" 
               value={formData.email}
@@ -88,7 +88,8 @@ const Signup = () => {
         <div className="mb-4">
           <label htmlFor="password" className="flex flex-col text-sm md:text-base">
             Password
-            <TextInput 
+            <Input 
+              type="password"
               id="password" 
               name="password" 
               value={formData.password}
@@ -103,7 +104,8 @@ const Signup = () => {
           <div className="mb-4">
             <label htmlFor="confirmPassword" className="flex flex-col text-sm md:text-base">
               Confirm password
-              <TextInput 
+              <Input 
+                type="password"
                 id="confirmPassword" 
                 name="confirmPassword" 
                 value={formData.confirmPassword}

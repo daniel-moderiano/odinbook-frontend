@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLogin } from "../hooks/useLogin";
-import TextInput from "./TextInput";
+import Input from "./Input";
 import Button from "./Button";
 import StyledLink from "./StyledLink";
 
@@ -43,7 +43,7 @@ const Login = () => {
         <div className="mb-4">
           <label htmlFor="email" className="flex flex-col text-sm md:text-base">
             Email address
-            <TextInput 
+            <Input 
               id="email" 
               name="email" 
               value={formData.email}
@@ -56,7 +56,8 @@ const Login = () => {
         <div className="mb-4">
           <label htmlFor="password" className="flex flex-col text-sm md:text-base">
             Password
-            <TextInput 
+            <Input 
+              type="password"
               id="password" 
               name="password" 
               value={formData.password}

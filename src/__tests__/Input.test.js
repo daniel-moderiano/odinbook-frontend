@@ -1,11 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import TextInput from '../components/TextInput'
+import Input from '../components/Input'
 
 describe("Input handling", () => {
   it("calls onChange correct number of times", () => {
     const onChangeMock = jest.fn();
-    render(<TextInput onChange={onChangeMock} />);
+    render(<Input onChange={onChangeMock} />);
     const input = screen.getByRole('textbox');
 
     userEvent.type(input, "Hello");
@@ -14,7 +14,7 @@ describe("Input handling", () => {
   });
 
   it("is not a required field by default", () => {
-    render(<TextInput />);
+    render(<Input />);
     const input = screen.getByRole("textbox");
     expect(input).not.toHaveAttribute('required');
   });
