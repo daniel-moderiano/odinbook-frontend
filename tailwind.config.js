@@ -16,8 +16,12 @@ module.exports = {
           550: '#29A3A1',
           650: '#259391'
         }
-      }
+      },
+      screens: {
+        'sm': '475px',
+      },
     }, 
+    
     fontFamily: {
       'sans': ['Inter']
     }

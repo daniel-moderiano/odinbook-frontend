@@ -9,7 +9,7 @@ function App() {
   const { user, authIsReady } = useAuthContext();
 
   return (
-    <div className="App">
+    <div className="bg-plum-50 w-full m-0 p-0 h-screen">
       {authIsReady && (<>
         <Routes>
           <Route path="/" element={
