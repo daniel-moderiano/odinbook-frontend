@@ -39,15 +39,15 @@ const Signup = () => {
   }, [error])
 
   return (
-    <div className="flex flex-col items-center justify-center">
-    <div className="w-full text-center">
-      <h2 className="font-bold text-2xl text-yellow-700 py-4">Sign up</h2>
-    </div>  
+    <div className="mt-4 flex flex-col items-center justify-center">
+      <div className="w-full text-center">
+        <h2 className="font-bold text-2xl md:text-3xl text-plum-500 pt-4 pb-5">Sign up</h2>
+      </div>  
 
       <form className="w-full center px-4 mb-5 md:max-w-md" onSubmit={handleSubmit}>
 
         <div className="mb-4">
-          <label htmlFor="firstName" className="flex flex-col">
+          <label htmlFor="firstName" className="flex flex-col text-sm md:text-base">
             First name
             <TextInput 
               id="firstName" 
@@ -60,7 +60,7 @@ const Signup = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="lastName" className="flex flex-col">
+          <label htmlFor="lastName" className="flex flex-col text-sm md:text-base">
             Last name
             <TextInput 
               id="lastName" 
@@ -73,7 +73,7 @@ const Signup = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="email" className="flex flex-col">
+          <label htmlFor="email" className="flex flex-col text-sm md:text-base">
             Email address
             <TextInput 
               id="email" 
@@ -86,7 +86,7 @@ const Signup = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="password" className="flex flex-col">
+          <label htmlFor="password" className="flex flex-col text-sm md:text-base">
             Password
             <TextInput 
               id="password" 
@@ -101,7 +101,7 @@ const Signup = () => {
         {/* Conditionally render the confirm password field once user enters a value in the password field */}
         {formData.password.length !== 0 && (
           <div className="mb-4">
-            <label htmlFor="confirmPassword" className="flex flex-col">
+            <label htmlFor="confirmPassword" className="flex flex-col text-sm md:text-base">
               Confirm password
               <TextInput 
                 id="confirmPassword" 
@@ -116,7 +116,7 @@ const Signup = () => {
 
         <Button type="submit" customStyles="font-semibold">Create account</Button>
       </form>
-      <StyledLink to="/login" customStyles="w-40">Log in</StyledLink>
+      <StyledLink to="/login" design="btn-secondary" customStyles="w-40">Log in</StyledLink>
     </div>
   )
 }

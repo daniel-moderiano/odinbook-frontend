@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
 import { useLogin } from "../hooks/useLogin";
 import TextInput from "./TextInput";
 import Button from "./Button";
+import StyledLink from "./StyledLink";
 
 const Login = () => {
   const { login, error, loading } = useLogin();
@@ -53,7 +53,7 @@ const Login = () => {
           </label>
         </div>
 
-        <div>
+        <div className="mb-4">
           <label htmlFor="password" className="flex flex-col text-sm md:text-base">
             Password
             <TextInput 
@@ -69,7 +69,7 @@ const Login = () => {
         <Button type="submit" design="primary" customStyles="font-semibold">Log in</Button>
       </form>
       
-        <Link to="/signup" className="w-48 text-center mt-8 px-2 py-2 text-sm font-medium bg-teal-650 shadow-md text-white hover:bg-teal-550 md:text-base md:w-56 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-teal-650/30">Create New Account</Link>
+        <StyledLink to="/signup" design="btn-secondary" customStyles="w-56">Create new account</StyledLink>
     </div>
   )
 }
