@@ -17,8 +17,6 @@ const Home = () => {
         <h2>Welcome {user.email}</h2>
       )}
 
-      <Post />
-
       <main className="lg:grid grid-cols-3">
         <div className="sidebar hidden">
           SideMenu

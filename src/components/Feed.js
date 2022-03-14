@@ -1,6 +1,7 @@
 import {useFetchGet} from '../hooks/useFetchGet';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useEffect } from 'react';
+import Post from './Post';
 
 const Feed = () => {
   const { user } = useAuthContext();
@@ -17,23 +18,7 @@ const Feed = () => {
       {posts && (
         <div>
           {posts.map((post) => (
-            <div key={post._id}>
-              <div>
-              {post.text}
-            </div>
-              <div>
-                Likes {post.likes.length}
-              </div>
-              <div>
-                Comments {post.comments.length}
-              </div>
-              <div>
-              {post.user.fullName}
-              </div>
-            {post.image && (
-              <img src={post.image.imageUrl} alt="" />
-            )}
-            </div>
+            <Post post={post}/>
           ))}
         </div>
       )}
