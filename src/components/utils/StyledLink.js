@@ -41,7 +41,6 @@ const StyledLink = ({ children, to, design, onClick, customStyles }) => {
 };
 
 StyledLink.defaultProps = {
-  design: 'text-link',
   customStyles: '',
 }
 

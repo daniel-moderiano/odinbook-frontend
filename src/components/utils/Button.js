@@ -33,7 +33,6 @@ const Button = ({ children, type, design, onClick, customStyles }) => {
 };
 
 Button.defaultProps = {
-  design: 'primary',
   type: 'button',
   customStyles: '',
 }

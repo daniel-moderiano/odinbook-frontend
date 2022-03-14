@@ -134,7 +134,7 @@ const Signup = () => {
                   </div>
                 )}
 
-                <Button type="submit" customStyles="font-semibold mt-6">Create account</Button>
+                <Button type="submit" design="primary" customStyles="font-semibold mt-6">Create account</Button>
               </form>
 
               <StyledLink to="/login" design="btn-secondary-sm" customStyles="w-60 mt-12">Already have an account?</StyledLink>
