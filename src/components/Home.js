@@ -1,5 +1,6 @@
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
+import Header from "./Header";
 
 const Home = () => {
   const { logout } = useLogout();
@@ -7,9 +8,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">
-        Home page
-      </h1>
+      <Header />
 
       {/* Although this page is inaccessible to non-users, check for user regardless */}
       {user && (

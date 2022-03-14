@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import StyledLink from '../components/StyledLink';
+import StyledLink from '../components/utils/StyledLink';
 import { BrowserRouter } from "react-router-dom";
 
 describe("link features", () => {

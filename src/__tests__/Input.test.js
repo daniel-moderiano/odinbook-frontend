@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Input from '../components/Input'
+import Input from '../components/utils/Input'
 
 describe("Input handling", () => {
   it("calls onChange correct number of times", () => {
