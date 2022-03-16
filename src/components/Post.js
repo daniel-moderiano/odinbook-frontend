@@ -18,27 +18,17 @@ const Post = ({ post }) => {
     return `${numComments} comments`
   };
 
-  const customiseLikeText = (numLikes) => {
-    if (numLikes === 0) {
-      return 'No likes';
-    }
-
-    if (numLikes === 1) {    // remove plural
-      return '1 like';
-    }
-
-    // No adjustment necessary, return typical 'x likes' format
-    return `${numLikes} likes`
-  };
-
   return (
     <article className="rounded shadow-md bg-white mb-6 pt-3 pb-1">
       <div className='flex items-center justify-start px-4'>
-        {post.user.profilePic ? (
-          <img src={post.user.profilePic.imageUrl} alt="Profile picture" className='w-10 mr-4 rounded-full' />
-        ) : (
-          <img src={profilePicBlank} alt="Blank Profile picture" className='w-10 mr-4 rounded-full'/>
-        )}
+        {/* Link to user's profile */}
+        <StyledLink to="/" customStyles="hover:opacity-95 active:opacity-100">
+          {post.user.profilePic ? (
+            <img src={post.user.profilePic.imageUrl} alt="Profile picture" className='w-10 mr-4 rounded-full' />
+          ) : (
+            <img src={profilePicBlank} alt="Blank Profile picture" className='w-10 mr-4 rounded-full'/>
+          )}
+        </StyledLink>
         <div>
           {/* Link to the user's profile page */}
           <StyledLink to="/" customStyles="block font-bold hover:underline">{post.user.fullName}</StyledLink>

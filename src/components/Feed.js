@@ -2,6 +2,7 @@ import {useFetchGet} from '../hooks/useFetchGet';
 import { useAuthContext } from '../hooks/useAuthContext';
 import Post from './Post';
 import Button from './utils/Button';
+import StyledLink from './utils/StyledLink';
 
 const Feed = () => {
   const { user } = useAuthContext();
@@ -17,10 +18,10 @@ const Feed = () => {
           ))}
         </div>
       )}
-      <div className='flex flex-col items-center content-center rounded shadow-md bg-white'>
-        <p className='font-bold text-lg text-slate-800'>No more posts</p>
-        <p className='text-md text-slate-700'>Add more friends to see more posts in your Feed.</p>
-        <Button design="primary" customStyles="w-40">Find Friends</Button>
+      <div className='flex flex-col items-center content-center rounded shadow-md bg-white px-4 py-8 mb-6 '>
+        <p className='font-bold text-xl text-gray-600'>No more posts</p>
+        <p className='text-md text-gray-600 mb-4'>Add more friends to see more posts in your Feed.</p>
+        <StyledLink to="/" design="btn-primary" customStyles="w-40">Find Friends</StyledLink>
       </div>
     </div>
   )

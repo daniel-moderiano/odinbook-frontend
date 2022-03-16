@@ -1,7 +1,6 @@
 import { useAuthContext } from '../hooks/useAuthContext';
 import StyledLink from './utils/StyledLink';
 import profilePicBlank from '../assets/profile-pic-blank.png';
-import { useEffect } from 'react';
 import { useFetchGet } from '../hooks/useFetchGet';
 
 const SideMenu = () => {
@@ -14,12 +13,15 @@ const SideMenu = () => {
       <div className='flex flex-col items-center justify-center rounded shadow-md bg-white'>
         {userDetails ? (
           <>
-            <div className=' bg-gradient-to-b from-[#90C2E7]/50 w-full flex items-center rounded-t justify-center py-4'>
+            <div className=' bg-plum-600/20 w-full flex items-center rounded-t justify-center py-4'>
+            <StyledLink to="/" customStyles="hover:opacity-95 active:opacity-100">
               {userDetails.user.profilePic ? (
                 <img src={userDetails.user.profilePic.imageUrl} alt="Profile picture" className='w-20 rounded-full border-2 border-white' />
               ) : (
                 <img src={profilePicBlank} alt="Blank Profile picture" className='w-20 rounded-full border-4 border-white'/>
               )}
+            </StyledLink>
+
             </div>
             <div className='p-4 flex flex-col items-center justify-center w-full'>
               <p className='font-bold text-xl'>{userDetails.user.fullName}</p>

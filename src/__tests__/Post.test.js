@@ -26,6 +26,8 @@ const testPostWithPics = {
   ],
   "comments": [
   ],
+  "numComments": 0,
+  "numLikes": 1,
   "createdAt": "2022-03-14T10:32:12.064Z",
   "updatedAt": "2022-03-14T10:32:12.064Z",
   "__v": 0,
@@ -62,6 +64,8 @@ const testPostNoPics = {
           "id": "622f19ac4212d0e69e8eb0ef"
       }
   ],
+  "numComments": 1,
+  "numLikes": 2,
   "createdAt": "2022-03-14T10:32:12.064Z",
   "updatedAt": "2022-03-14T10:32:12.064Z",
   "__v": 0,
@@ -96,7 +100,7 @@ describe("Text-only posts", () => {
   });
 
   it("Displays correct like count for >1 like", () => {
-    const likes = screen.getByText(/2 likes/i) 
+    const likes = screen.getByText(/2/i) 
     expect(likes).toBeInTheDocument();
   });
 });
@@ -130,7 +134,7 @@ describe("Image-containing posts", () => {
   });
 
   it("Displays correct like count for single like", () => {
-    const likes = screen.getByText(/1 like/i) 
+    const likes = screen.getByText(/1/i) 
     expect(likes).toBeInTheDocument();
   });
 });
