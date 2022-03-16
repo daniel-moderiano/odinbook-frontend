@@ -9,7 +9,7 @@ const Feed = () => {
   const { data: posts, loading, error } = useFetchGet(`http://localhost:3000/api/users/${user._id}/feed`);
 
   return (
-    <div className='max-w-2xl'>
+    <div className='max-w-3xl lg:min-w-full'>
       {posts && (
         <div>
           {posts.map((post) => (
