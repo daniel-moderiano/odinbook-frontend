@@ -5,7 +5,7 @@ const Nav = () => {
   const { logout } = useLogout();
 
   return (
-    <nav aria-label="Main navigation menu" role="navigation" className="w-full lg:max-w-lg lg:justify-self-center">
+    <nav aria-label="Main menu" role="navigation" className="w-full lg:max-w-lg lg:justify-self-center">
       <ul role="menubar" className="flex items-center justify-evenly">
         <li role="menuitem">
           {/* Contain both items below in a Link component */}
