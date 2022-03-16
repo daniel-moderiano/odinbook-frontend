@@ -14,7 +14,7 @@ const SideMenu = () => {
       <div className='flex flex-col items-center justify-center rounded shadow-md bg-white'>
         {userDetails ? (
           <>
-            <div className='bg-plum-400 w-full flex items-center rounded-t justify-center py-4'>
+            <div className=' bg-gradient-to-b from-[#90C2E7]/50 w-full flex items-center rounded-t justify-center py-4'>
               {userDetails.user.profilePic ? (
                 <img src={userDetails.user.profilePic.imageUrl} alt="Profile picture" className='w-20 rounded-full border-2 border-white' />
               ) : (
