@@ -38,13 +38,13 @@ const Post = ({ post }) => {
         )}
         <div>
           <p className='font-bold'>{post.user.fullName}</p>
-          <p className='text-sm text-slate-500'>25 December 2022</p>
+          <p className='text-sm text-slate-500'>{post.datePosted}</p>
         </div>
       </div>
       <div>
         <p>{post.text}</p>
         {post.image && (
-          <img src={post.image.imageUrl} alt="" className='w-5' />
+          <img src={post.image.imageUrl} alt="" className='w-full' />
         )}
       </div>
       <div className='flex items-center justify-between'>
