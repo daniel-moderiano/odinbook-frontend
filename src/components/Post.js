@@ -1,5 +1,5 @@
 import Button from './utils/Button';
-import profilePicBlank from '../assets/profile-pic-blank.webp';
+import profilePicBlank from '../assets/profile-pic-blank.png';
 
 const Post = ({ post }) => {
   const customiseCommentText = (numComments) => {
@@ -29,8 +29,8 @@ const Post = ({ post }) => {
   };
 
   return (
-    <article className="rounded shadow-sm border border-slate-200 bg-white my-6">
-      <div className='flex items-center justify-start'>
+    <article className="rounded shadow-sm bg-white my-6 py-3">
+      <div className='flex items-center justify-start px-4'>
         {post.user.profilePic ? (
           <img src={post.user.profilePic.imageUrl} alt="Profile picture" className='w-5' />
         ) : (
@@ -42,16 +42,16 @@ const Post = ({ post }) => {
         </div>
       </div>
       <div>
-        <p>{post.text}</p>
+        <p className='px-4'>{post.text}</p>
         {post.image && (
           <img src={post.image.imageUrl} alt="" className='w-full' />
         )}
       </div>
-      <div className='flex items-center justify-between'>
-        <Button>{customiseLikeText(post.likes.length)} likes</Button>
-        <Button>{customiseCommentText(post.comments.length)} comments</Button>
+      <div className='flex items-center justify-between px-4'>
+        <Button>{customiseLikeText(post.numLikes)}</Button>
+        <Button>{customiseCommentText(post.numComments)}</Button>
       </div>
-      <div className='flex items-center justify-evenly'>
+      <div className='flex items-center justify-evenly px-4'>
         <Button>Like</Button>
         <Button>Comment</Button>
       </div>

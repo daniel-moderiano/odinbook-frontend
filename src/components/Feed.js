@@ -1,6 +1,5 @@
 import {useFetchGet} from '../hooks/useFetchGet';
 import { useAuthContext } from '../hooks/useAuthContext';
-import { useEffect } from 'react';
 import Post from './Post';
 import Button from './utils/Button';
 
@@ -9,17 +8,12 @@ const Feed = () => {
 
   const { data: posts, loading, error } = useFetchGet(`http://localhost:3000/api/users/${user._id}/feed`);
 
-  useEffect(() => {
-    console.log(posts);
-  }, [posts])
-
   return (
-    <div>
-      <h2>Feed</h2>
+    <div className='max-w-2xl'>
       {posts && (
         <div>
           {posts.map((post) => (
-            <Post post={post}/>
+            <Post post={post} key={post._id}/>
           ))}
         </div>
       )}

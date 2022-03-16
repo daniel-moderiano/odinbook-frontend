@@ -102,6 +102,7 @@ const Login = () => {
               <StyledLink to="/signup" design="btn-secondary" customStyles="w-60 mt-12">Create new account</StyledLink>
 
             </div>
+
           </div>
         </div>
       </div>
