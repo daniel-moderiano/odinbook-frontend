@@ -87,5 +87,4 @@ describe("User profile rendering in sidebar", () => {
     const friends = screen.getByText(/2 friends/i) 
     expect(friends).toBeInTheDocument();
   });
-
 });
