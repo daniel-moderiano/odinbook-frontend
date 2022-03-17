@@ -2,6 +2,9 @@ import { Route, Routes, Navigate } from "react-router";
 import Home from './components/Home';
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import FriendsHome from "./components/FriendsHome";
+import AllFriends from "./components/AllFriends";
+import FriendRequests from "./components/FriendRequests";
 import { useAuthContext } from "./hooks/useAuthContext";
 
 function App() {
@@ -28,6 +31,24 @@ function App() {
             <>
             {!user && <Login />}
             {user && <Navigate to="/" />}
+            </>
+          }/>
+          <Route path="/friends" element={
+            <>
+            {!user && <Login />}
+            {user && <FriendsHome />}
+            </>
+          }/>
+          <Route path="/friends/all" element={
+            <>
+            {!user && <Login />}
+            {user && <AllFriends />}
+            </>
+          }/>
+          <Route path="/friends/requests" element={
+            <>
+            {!user && <Login />}
+            {user && <FriendRequests />}
             </>
           }/>
         </Routes>
