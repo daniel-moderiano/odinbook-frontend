@@ -3,6 +3,7 @@ import Header from "./Header";
 import FriendsMenu from './FriendsMenu';
 import { useFetchGet } from '../hooks/useFetchGet';
 import { useEffect } from "react";
+import FriendCard from "./FriendCard";
 
 const FriendsHome = () => {
   const { user } = useAuthContext();
@@ -23,30 +24,9 @@ const FriendsHome = () => {
         {friends ? (
           <div className="flex">
             <div>
-              <h2>Friends</h2>
-              {friends.acceptedFriends.map((friend, index) => (
-                // Friend component here
-                <div key={friend._id}>
-                  <h3>{friend.user.fullName}</h3>
-                </div>
-              ))}
-            </div>
-
-            <div>
               <h2>Friend Requests</h2>
               {friends.incomingRequests.map((request) => (
-                <div key={request._id}>
-                  <h3>{request.user.fullName}</h3>
-                </div>
-              ))}
-            </div>
-
-            <div>
-              <h2>Requests Sent</h2>
-              {friends.outgoingRequests.map((request) => (
-                <div key={request._id}>
-                  <h3>{request.user.fullName}</h3>
-                </div>
+                <FriendCard friendData={request} type="incoming" key={request._id}/>
               ))}
             </div>
           </div>
