@@ -4,15 +4,18 @@ import FriendsMenu from './FriendsMenu';
 import { useFetchGet } from '../hooks/useFetchGet';
 import { useEffect } from "react";
 import FriendCard from "./FriendCard";
+import UserList from "./UserList";
 
 const FriendsHome = () => {
   const { user } = useAuthContext();
   // Friends data is an object containing 3 arrays of friends: acceptedFriends, incomingRequests, and outgoingRequests
   const { data: friends, loading, error } = useFetchGet(`http://localhost:3000/api/users/${user._id}/friends`);
 
+  const { data: users } = useFetchGet(`http://localhost:3000/api/users`);
+
   useEffect(() => {
-    console.log(friends);
-  }, [friends])
+    console.log(users);
+  }, [users])
 
   return (
     <div>
@@ -21,18 +24,25 @@ const FriendsHome = () => {
       <FriendsMenu />
 
       <main>
-        {friends ? (
-          <div className="flex">
-            <div>
-              <h2>Friend Requests</h2>
-              {friends.incomingRequests.map((request) => (
-                <FriendCard friendData={request} type="incoming" key={request._id}/>
-              ))}
+        <section>
+          <h2>Friend Requests</h2>
+          {friends ? (
+            <div className="flex">
+              <div>
+                
+                {friends.incomingRequests.map((request) => (
+                  <FriendCard friendData={request} type="incoming" key={request._id}/>
+                ))}
+              </div>
             </div>
-          </div>
-        ) : (
-          <div>Unable to load friends</div>
-        )}
+          ) : (
+            <div>Unable to load friends</div>
+          )}
+        </section>
+        <section>
+          <h2>All Users</h2>
+          <UserList />
+        </section>
       </main>
     </div>
   )
