@@ -15,7 +15,7 @@ const FriendCard = ({ friendData, type }) => {
       </div>
 
       <div className="flex flex-col justify-center w-full mb-1">
-        <p className='font-bold text-lg mb-2'>{friendData.fullName}</p>
+        <p className='font-bold text-md mb-2'>{friendData.fullName}</p>
 
         {type === 'friend' && (
           <Button design="primary">Unfriend</Button>
