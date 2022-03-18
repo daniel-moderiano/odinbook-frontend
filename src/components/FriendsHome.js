@@ -22,8 +22,8 @@ const FriendsHome = () => {
         </div>
 
         <main>
-          <section className="bg-white mb-4 mt-3 md:m-4">
-            <h2 className="text-xl font-bold p-4 pb-4">Friend Requests</h2>
+          <section className="bg-white mb-4 mt-3 md:m-4 lg:bg-transparent">
+            <h2 className="text-xl font-bold p-4 lg:pb-2">Friend Requests</h2>
             {friends ? (
               <>
                 {friends.incomingRequests.map((request) => (
@@ -35,8 +35,8 @@ const FriendsHome = () => {
             )}
           </section>
 
-          <section className="bg-white my-8 md:m-4">
-            <h2 className="text-xl font-bold p-4 pb-4">Find new friends</h2>
+          <section className="bg-white my-8 md:m-4 lg:bg-transparent">
+            <h2 className="text-xl font-bold p-4 lg:pb-2 lg:pt-8 lg:mt-8 lg:border-t lg:border-gray-300">Find new friends</h2>
             <UserList />
           </section>
         </main>

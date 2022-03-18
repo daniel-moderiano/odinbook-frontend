@@ -18,7 +18,7 @@ const AllFriends = () => {
           <FriendsMenu />
         </div>
 
-        <main className="md:m-4">
+        <main className="bg-white mb-4 mt-3 md:m-4">
           <h2 className="text-xl font-bold p-4 pb-4 bg-white">Friends</h2>
           {friends ? (
             <>

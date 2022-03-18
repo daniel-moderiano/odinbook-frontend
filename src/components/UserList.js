@@ -9,7 +9,7 @@ const UserList = () => {
   return (
     <div>
       {users && (
-        <div className="flex flex-auto flex-wrap items-center justify-center">
+        <div className="flex flex-wrap items-center justify-start">
           {users.users.map((userDetails) => {
             // Ensure that the current user is not rendered in the list of all users
             if (userDetails._id !== user._id) {
