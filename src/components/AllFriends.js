@@ -21,7 +21,7 @@ const AllFriends = () => {
               <h2>Friends</h2>
               {friends.acceptedFriends.map((friend, index) => (
                 // Friend component here
-                <FriendCard friendData={friend} type="friend" key={friend._id}/>
+                <FriendCard friendData={friend.user} type="friend" key={friend._id}/>
               ))}
             </div>
           </div>

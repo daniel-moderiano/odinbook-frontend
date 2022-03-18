@@ -11,12 +11,6 @@ const FriendsHome = () => {
   // Friends data is an object containing 3 arrays of friends: acceptedFriends, incomingRequests, and outgoingRequests
   const { data: friends, loading, error } = useFetchGet(`http://localhost:3000/api/users/${user._id}/friends`);
 
-  const { data: users } = useFetchGet(`http://localhost:3000/api/users`);
-
-  useEffect(() => {
-    console.log(users);
-  }, [users])
-
   return (
     <div>
       <Header />
@@ -29,9 +23,8 @@ const FriendsHome = () => {
           {friends ? (
             <div className="flex">
               <div>
-                
                 {friends.incomingRequests.map((request) => (
-                  <FriendCard friendData={request} type="incoming" key={request._id}/>
+                  <FriendCard friendData={request.user} type="incoming" key={request._id}/>
                 ))}
               </div>
             </div>

@@ -20,14 +20,14 @@ const FriendRequests = () => {
             <div>
               <h2>Incoming Friend Requests</h2>
               {friends.incomingRequests.map((request) => (
-                <FriendCard friendData={request} type="incoming" key={request._id}/>
+                <FriendCard friendData={request.user} type="incoming" key={request._id}/>
               ))}
             </div>
 
             <div>
               <h2>Requests Sent</h2>
               {friends.outgoingRequests.map((request) => (
-                <FriendCard friendData={request} type="outgoing" key={request._id}/>
+                <FriendCard friendData={request.user} type="outgoing" key={request._id}/>
               ))}
             </div>
           </div>

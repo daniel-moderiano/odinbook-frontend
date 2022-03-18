@@ -66,7 +66,7 @@ const userData = {
 describe("Friend card rendering (i.e. accepts that have been requests)", () => {
   beforeEach(() => {
     render(
-      <FriendCard friendData={friendData} type="friend"/>
+      <FriendCard friendData={friendData.user} type="friend"/>
     );
   })
 
@@ -89,7 +89,7 @@ describe("Friend card rendering (i.e. accepts that have been requests)", () => {
 describe("Incoming friend request rendering", () => {
   beforeEach(() => {
     render(
-      <FriendCard friendData={incomingRequest} type="incoming"/>
+      <FriendCard friendData={incomingRequest.user} type="incoming"/>
     );
   })
 
@@ -113,7 +113,7 @@ describe("Incoming friend request rendering", () => {
 describe("Outgoing friend request rendering", () => {
   beforeEach(() => {
     render(
-      <FriendCard friendData={outgoingRequest} type="outgoing" />
+      <FriendCard friendData={outgoingRequest.user} type="outgoing" />
     );
   })
 
@@ -132,7 +132,7 @@ describe("Outgoing friend request rendering", () => {
 describe("General user (potential friends) rendering", () => {
   beforeEach(() => {
     render(
-      <FriendCard friendData={outgoingRequest} type="user"/>
+      <FriendCard friendData={outgoingRequest.user} type="user"/>
     );
   })
 

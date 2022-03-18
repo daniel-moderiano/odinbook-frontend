@@ -1,33 +1,22 @@
-import profilePicBlank from '../assets/profile-pic-blank.png';
+import profilePicBlank from '../assets/profile-pic-blank.webp';
 import Button from './utils/Button';
 
 const FriendCard = ({ friendData, type }) => {
   // Based on request type, buttons and actions will be unique
   return (
-    <div className="rounded shadow-md flex flex-col bg-white">
-      {type === 'user' ? (
-        <div className="w-full flex items-cmiddle justify-center max-w-xs">
-          {friendData.profilePic ? (
-            <img src={friendData.profilePic.imageUrl} alt="Profile picture" />
-          ) : (
-            <img src={profilePicBlank} alt="Blank Profile picture" />
-          )}
-        </div>
-      ) : (
-        <div className="w-full flex items-cmiddle justify-center">
-          {friendData.user.profilePic ? (
-            <img src={friendData.user.profilePic.imageUrl} alt="Profile picture" />
-          ) : (
-            <img src={profilePicBlank} alt="Blank Profile picture" />
-          )}
-        </div>
-      )}
-      <div className="flex flex-col justify-start items-middle p-4">
-        {type === 'user' ? (
-          <p className='font-bold text-lg'>{friendData.fullName}</p>
+    <div className="rounded shadow-md flex flex-col bg-white w-60">
+
+      <div className="w-full flex items-cmiddle justify-center max-w-xs">
+        {friendData.profilePic ? (
+          <img src={friendData.profilePic.imageUrl} alt="Profile picture" />
         ) : (
-          <p className='font-bold text-lg'>{friendData.user.fullName}</p>
+          <img src={profilePicBlank} alt="Blank Profile picture" />
         )}
+      </div>
+
+      <div className="flex flex-col justify-start items-middle p-4">
+        <p className='font-bold text-lg'>{friendData.fullName}</p>
+
         {type === 'friend' && (
           <Button design="primary">Unfriend</Button>
         )}
