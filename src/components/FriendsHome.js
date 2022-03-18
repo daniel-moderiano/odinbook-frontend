@@ -19,7 +19,7 @@ const FriendsHome = () => {
 
       <main>
         <section className="bg-white mb-4 mt-3">
-          <h2 className="text-xl font-bold p-4 pb-3">Friend Requests</h2>
+          <h2 className="text-xl font-bold p-4 pb-4">Friend Requests</h2>
           {friends ? (
             <>
               {friends.incomingRequests.map((request) => (
@@ -32,7 +32,7 @@ const FriendsHome = () => {
         </section>
 
         <section className="bg-white my-8">
-          <h2 className="text-xl font-bold p-4 pb-3">Find new friends</h2>
+          <h2 className="text-xl font-bold p-4 pb-4">Find new friends</h2>
           <UserList />
         </section>
       </main>

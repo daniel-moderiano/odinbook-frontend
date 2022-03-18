@@ -16,21 +16,33 @@ const FriendRequests = () => {
 
       <main>
         {friends ? (
-          <div className="flex">
-            <div>
-              <h2>Incoming Friend Requests</h2>
-              {friends.incomingRequests.map((request) => (
-                <FriendCard friendData={request.user} type="incoming" key={request._id}/>
-              ))}
-            </div>
+           <>
+           <section className="bg-white mb-4 mt-3">
+              <h2 className="text-xl font-bold p-4 pb-4">Incoming Requests</h2>
+              {friends ? (
+                <>
+                  {friends.incomingRequests.map((request) => (
+                    <FriendCard friendData={request.user} type="incoming" key={request._id}/>
+                  ))}
+                </> 
+              ) : (
+                <div>Unable to load friends</div>
+              )}
+            </section>
 
-            <div>
-              <h2>Requests Sent</h2>
-              {friends.outgoingRequests.map((request) => (
-                <FriendCard friendData={request.user} type="outgoing" key={request._id}/>
-              ))}
-            </div>
-          </div>
+            <section className="bg-white mb-4 mt-3">
+              <h2 className="text-xl font-bold p-4 pb-4">Sent requests</h2>
+              {friends ? (
+                <>
+                  {friends.outgoingRequests.map((request) => (
+                    <FriendCard friendData={request.user} type="outgoing" key={request._id}/>
+                  ))}
+                </> 
+              ) : (
+                <div>Unable to load friends</div>
+              )}
+            </section>
+           </>
         ) : (
           <div>Unable to load friends</div>
         )}

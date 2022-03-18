@@ -15,16 +15,13 @@ const AllFriends = () => {
       <FriendsMenu />
 
       <main>
-      {friends ? (
-          <div className="flex">
-            <div>
-              <h2>Friends</h2>
-              {friends.acceptedFriends.map((friend, index) => (
-                // Friend component here
-                <FriendCard friendData={friend.user} type="friend" key={friend._id}/>
-              ))}
-            </div>
-          </div>
+        <h2 className="text-xl font-bold p-4 pb-4 bg-white mt-3">Friends</h2>
+        {friends ? (
+          <>
+            {friends.acceptedFriends.map((friend, index) => (
+              <FriendCard friendData={friend.user} type="friend" key={friend._id}/>
+            ))}
+          </> 
         ) : (
           <div>Unable to load friends</div>
         )}

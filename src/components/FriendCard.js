@@ -4,7 +4,7 @@ import Button from './utils/Button';
 const FriendCard = ({ friendData, type }) => {
   // Based on request type, buttons and actions will be unique
   return (
-    <div className=" shadow-md flex lg:flex-col bg-white w-full p-3 border-b">
+    <div className=" shadow-sm flex lg:flex-col bg-white w-full p-3 border-t">
 
       <div className='flex items-center justify-center w-24 mr-4 shrink-0'>
         {friendData.profilePic ? (
@@ -18,7 +18,7 @@ const FriendCard = ({ friendData, type }) => {
         <p className='font-bold text-md mb-2'>{friendData.fullName}</p>
 
         {type === 'friend' && (
-          <Button design="primary">Unfriend</Button>
+          <Button design="primary" customStyles="w-32">Unfriend</Button>
         )}
         {type === 'incoming' && (<>
           <div className='flex w-full items-center justify-center'>
@@ -27,7 +27,7 @@ const FriendCard = ({ friendData, type }) => {
           </div>
         </>)}
         {type === 'outgoing' && (
-          <Button design="primary">Cancel</Button>
+          <Button design="primary" customStyles="w-32">Cancel</Button>
         )}
         {type === 'user' && (
           <Button design="primary" customStyles="w-32">Add friend</Button>
