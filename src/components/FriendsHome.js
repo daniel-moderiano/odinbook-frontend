@@ -15,7 +15,7 @@ const FriendsHome = () => {
     <div>
       <Header />
 
-      <div className="md:grid grid-cols-[270px_1fr]">
+      <div className="md:grid md:grid-cols-[270px_1fr] lg:grid-cols-[320px_1fr]">
         {/* A bounding div is necessary to avoid the Friends menu fixed positioning from overflowing the grid */}
         <div>
           <FriendsMenu />

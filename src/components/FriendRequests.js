@@ -12,41 +12,46 @@ const FriendRequests = () => {
     <div>
       <Header />
 
-      <FriendsMenu />
+      <div className="md:grid md:grid-cols-[270px_1fr] lg:grid-cols-[320px_1fr]">
+        {/* A bounding div is necessary to avoid the Friends menu fixed positioning from overflowing the grid */}
+        <div>
+          <FriendsMenu />
+        </div>
 
-      <main>
-        {friends ? (
-           <>
-           <section className="bg-white mb-4 mt-3">
-              <h2 className="text-xl font-bold p-4 pb-4">Incoming Requests</h2>
-              {friends ? (
-                <>
-                  {friends.incomingRequests.map((request) => (
-                    <FriendCard friendData={request.user} type="incoming" key={request._id}/>
-                  ))}
-                </> 
-              ) : (
-                <div>Unable to load friends</div>
-              )}
-            </section>
+        <main>
+          {friends ? (
+            <>
+            <section className="bg-white mb-4 mt-3 md:m-4">
+                <h2 className="text-xl font-bold p-4 pb-4">Incoming Requests</h2>
+                {friends ? (
+                  <>
+                    {friends.incomingRequests.map((request) => (
+                      <FriendCard friendData={request.user} type="incoming" key={request._id}/>
+                    ))}
+                  </> 
+                ) : (
+                  <div>Unable to load friends</div>
+                )}
+              </section>
 
-            <section className="bg-white mb-4 mt-3">
-              <h2 className="text-xl font-bold p-4 pb-4">Sent requests</h2>
-              {friends ? (
-                <>
-                  {friends.outgoingRequests.map((request) => (
-                    <FriendCard friendData={request.user} type="outgoing" key={request._id}/>
-                  ))}
-                </> 
-              ) : (
-                <div>Unable to load friends</div>
-              )}
-            </section>
-           </>
-        ) : (
-          <div>Unable to load friends</div>
-        )}
-      </main>
+              <section className="bg-white mb-4 mt-3 md:m-4">
+                <h2 className="text-xl font-bold p-4 pb-4">Sent requests</h2>
+                {friends ? (
+                  <>
+                    {friends.outgoingRequests.map((request) => (
+                      <FriendCard friendData={request.user} type="outgoing" key={request._id}/>
+                    ))}
+                  </> 
+                ) : (
+                  <div>Unable to load friends</div>
+                )}
+              </section>
+            </>
+          ) : (
+            <div>Unable to load friends</div>
+          )}
+        </main>
+      </div>
     </div>
   )
 }
