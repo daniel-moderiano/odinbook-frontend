@@ -134,10 +134,10 @@ const Signup = () => {
                   </div>
                 )}
 
-                <Button type="submit" design="primary" customStyles="font-semibold mt-6">Create account</Button>
+                <Button type="submit" design="primary-lg" customStyles="font-semibold mt-6">Create account</Button>
               </form>
 
-              <StyledLink to="/login" design="btn-secondary-sm" customStyles="w-60 mt-12">Already have an account?</StyledLink>
+              <StyledLink to="/login" design="btn-secondary" customStyles="w-60 mt-12">Already have an account?</StyledLink>
 
             </div>
           </div>
