@@ -8,7 +8,7 @@ const Header = () => {
   return (
     // <header role="banner" aria-labelledby="odinbook-logo" className="shadow-sm sticky top-0 w-full bg-white flex items-center justify-evenly lg:justify-between">
 
-    <header role="banner" aria-labelledby="odinbook-logo" className="shadow-md sticky top-0 w-full bg-white grid grid-cols-1 lg:grid-cols-3 items-center">
+    <header role="banner" aria-labelledby="odinbook-logo" className="shadow-md sticky top-0 w-full bg-white grid grid-cols-1 lg:grid-cols-3 items-center z-10">
 
       <div className="items-center hidden lg:flex justify-self-start">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105.22 83.68" className="w-20">

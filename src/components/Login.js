@@ -99,7 +99,7 @@ const Login = () => {
                 <span>Log in with Facebook</span>
               </Button>
 
-              <StyledLink to="/signup" design="btn-secondary" customStyles="w-60 mt-12">Create new account</StyledLink>
+              <StyledLink to="/signup" design="btn-secondary" customStyles="w-56 mt-12 font-semibold">Create new account</StyledLink>
 
             </div>
 

@@ -15,27 +15,32 @@ const FriendsHome = () => {
     <div>
       <Header />
 
-      <FriendsMenu />
+      <div className="md:grid grid-cols-[270px_1fr]">
+        {/* A bounding div is necessary to avoid the Friends menu fixed positioning from overflowing the grid */}
+        <div>
+          <FriendsMenu />
+        </div>
 
-      <main>
-        <section className="bg-white mb-4 mt-3">
-          <h2 className="text-xl font-bold p-4 pb-4">Friend Requests</h2>
-          {friends ? (
-            <>
-              {friends.incomingRequests.map((request) => (
-                <FriendCard friendData={request.user} type="incoming" key={request._id}/>
-              ))}
-            </> 
-          ) : (
-            <div>Unable to load friends</div>
-          )}
-        </section>
+        <main>
+          <section className="bg-white mb-4 mt-3 md:m-4">
+            <h2 className="text-xl font-bold p-4 pb-4">Friend Requests</h2>
+            {friends ? (
+              <>
+                {friends.incomingRequests.map((request) => (
+                  <FriendCard friendData={request.user} type="incoming" key={request._id}/>
+                ))}
+              </> 
+            ) : (
+              <div>Unable to load friends</div>
+            )}
+          </section>
 
-        <section className="bg-white my-8">
-          <h2 className="text-xl font-bold p-4 pb-4">Find new friends</h2>
-          <UserList />
-        </section>
-      </main>
+          <section className="bg-white my-8 md:m-4">
+            <h2 className="text-xl font-bold p-4 pb-4">Find new friends</h2>
+            <UserList />
+          </section>
+        </main>
+      </div>
     </div>
   )
 }
