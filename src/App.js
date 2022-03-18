@@ -6,6 +6,7 @@ import FriendsHome from "./components/FriendsHome";
 import AllFriends from "./components/AllFriends";
 import FriendRequests from "./components/FriendRequests";
 import { useAuthContext } from "./hooks/useAuthContext";
+import Profile from "./components/Profile";
 
 function App() {
   // Presence of user will allow conditional rendering of routes/route protection on frontend
@@ -49,6 +50,12 @@ function App() {
             <>
             {!user && <Login />}
             {user && <FriendRequests />}
+            </>
+          }/>
+          <Route path="/profile/:userId" element={
+            <>
+            {!user && <Login />}
+            {user && <Profile />}
             </>
           }/>
         </Routes>
