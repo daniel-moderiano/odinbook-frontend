@@ -3,7 +3,7 @@ import StyledLink from './utils/StyledLink';
 const FriendsMenu = () => {
   return (
     <aside className="">
-      <nav role="navigation" aria-label="Friends menu">
+      <nav role="navigation" aria-label="Friends menu" className=''>
         <ul>
           <li><StyledLink to="/friends">Home</StyledLink></li>
           <li><StyledLink to="/friends/requests">Friend requests</StyledLink></li>

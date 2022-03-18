@@ -18,22 +18,21 @@ const FriendsHome = () => {
       <FriendsMenu />
 
       <main>
-        <section>
-          <h2>Friend Requests</h2>
+        <section className="bg-white my-8">
+          <h2 className="text-2xl font-bold p-4 pb-3">Friend Requests</h2>
           {friends ? (
-            <div className="flex">
-              <div>
-                {friends.incomingRequests.map((request) => (
-                  <FriendCard friendData={request.user} type="incoming" key={request._id}/>
-                ))}
-              </div>
-            </div>
+            <>
+              {friends.incomingRequests.map((request) => (
+                <FriendCard friendData={request.user} type="incoming" key={request._id}/>
+              ))}
+            </> 
           ) : (
             <div>Unable to load friends</div>
           )}
         </section>
-        <section>
-          <h2>All Users</h2>
+
+        <section className="bg-white my-8">
+          <h2 className="text-2xl font-bold p-4 pb-3">Find new friends</h2>
           <UserList />
         </section>
       </main>

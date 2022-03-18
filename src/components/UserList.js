@@ -7,9 +7,9 @@ const UserList = () => {
   const { user } = useAuthContext();
 
   return (
-    <div className="mx-4">UserList
+    <div>
       {users && (
-        <div className="flex flex-auto flex-wrap gap-6 items-center justify-center">
+        <div className="flex flex-auto flex-wrap items-center justify-center">
           {users.users.map((userDetails) => {
             // Ensure that the current user is not rendered in the list of all users
             if (userDetails._id !== user._id) {
