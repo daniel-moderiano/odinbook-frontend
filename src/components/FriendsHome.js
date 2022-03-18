@@ -24,15 +24,17 @@ const FriendsHome = () => {
         <main>
           <section className="bg-white mb-4 mt-3 md:m-4 lg:bg-transparent">
             <h2 className="text-xl font-bold p-4 lg:pb-2">Friend Requests</h2>
-            {friends ? (
-              <>
-                {friends.incomingRequests.map((request) => (
-                  <FriendCard friendData={request.user} type="incoming" key={request._id}/>
-                ))}
-              </> 
-            ) : (
-              <div>Unable to load friends</div>
-            )}
+            <div className="flex flex-wrap items-center justify-start">
+              {friends ? (
+                <>
+                  {friends.incomingRequests.map((request) => (
+                    <FriendCard friendData={request.user} type="incoming" key={request._id}/>
+                  ))}
+                </> 
+              ) : (
+                <div>Unable to load friends</div>
+              )}
+            </div>
           </section>
 
           <section className="bg-white my-8 md:m-4 lg:bg-transparent">

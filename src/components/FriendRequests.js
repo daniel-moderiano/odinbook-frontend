@@ -21,30 +21,34 @@ const FriendRequests = () => {
         <main>
           {friends ? (
             <>
-            <section className="bg-white mb-4 mt-3 md:m-4">
-                <h2 className="text-xl font-bold p-4 pb-4">Incoming Requests</h2>
-                {friends ? (
-                  <>
-                    {friends.incomingRequests.map((request) => (
-                      <FriendCard friendData={request.user} type="incoming" key={request._id}/>
-                    ))}
-                  </> 
-                ) : (
-                  <div>Unable to load friends</div>
-                )}
+            <section className="bg-white mb-4 mt-3 md:m-4 lg:bg-transparent">
+                <h2 className="text-xl font-bold p-4 pb-4 lg:pb-2">Incoming Requests</h2>
+                <div className="flex flex-wrap items-center justify-start">
+                  {friends ? (
+                    <>
+                      {friends.incomingRequests.map((request) => (
+                        <FriendCard friendData={request.user} type="incoming" key={request._id}/>
+                      ))}
+                    </> 
+                  ) : (
+                    <div>Unable to load friends</div>
+                  )}
+                </div>
               </section>
 
-              <section className="bg-white mb-4 mt-3 md:m-4">
-                <h2 className="text-xl font-bold p-4 pb-4">Sent requests</h2>
-                {friends ? (
-                  <>
-                    {friends.outgoingRequests.map((request) => (
-                      <FriendCard friendData={request.user} type="outgoing" key={request._id}/>
-                    ))}
-                  </> 
-                ) : (
-                  <div>Unable to load friends</div>
-                )}
+              <section className="bg-white mb-4 mt-3 md:m-4 lg:bg-transparent">
+                <h2 className="text-xl font-bold p-4 pb-4 lg:pb-2 lg:pt-8 lg:mt-8 lg:border-t lg:border-gray-300">Sent requests</h2>
+                <div className="flex flex-wrap items-center justify-start">
+                  {friends ? (
+                    <>
+                      {friends.outgoingRequests.map((request) => (
+                        <FriendCard friendData={request.user} type="outgoing" key={request._id}/>
+                      ))}
+                    </> 
+                  ) : (
+                    <div>Unable to load friends</div>
+                  )}
+                </div>
               </section>
             </>
           ) : (

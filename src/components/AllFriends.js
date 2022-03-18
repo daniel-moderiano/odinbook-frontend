@@ -18,17 +18,19 @@ const AllFriends = () => {
           <FriendsMenu />
         </div>
 
-        <main className="bg-white mb-4 mt-3 md:m-4">
-          <h2 className="text-xl font-bold p-4 pb-4 bg-white">Friends</h2>
-          {friends ? (
-            <>
-              {friends.acceptedFriends.map((friend, index) => (
-                <FriendCard friendData={friend.user} type="friend" key={friend._id}/>
-              ))}
-            </> 
-          ) : (
-            <div>Unable to load friends</div>
-          )}
+        <main className="bg-white mb-4 mt-3 md:m-4 lg:bg-transparent">
+          <h2 className="text-xl font-bold p-4 pb-4 lg:pb-2">Friends</h2>
+          <div className="flex flex-wrap items-center justify-start">
+            {friends ? (
+              <>
+                {friends.acceptedFriends.map((friend, index) => (
+                  <FriendCard friendData={friend.user} type="friend" key={friend._id}/>
+                ))}
+              </> 
+            ) : (
+              <div>Unable to load friends</div>
+            )}
+        </div>
         </main>
       </div>
     </div>
