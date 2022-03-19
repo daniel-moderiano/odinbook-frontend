@@ -1,5 +1,4 @@
 // Custom hook to determine the relationship between two users - a user whose profile you are viewing, and the currently logged in user. Profile user will have all their data available, specifically their friends list, to help comparison.
-
 import { useState, useEffect } from "react";
 
 export const useProfileType = (profileUser, currentUser) => {
@@ -17,19 +16,19 @@ export const useProfileType = (profileUser, currentUser) => {
       return 'friend'
     }
 
-    // The default case should be nonFriend, as this is the safest option in case of unexpected error/results
+    // As above, the default case is nonFriend
     return 'nonFriend';
   }
 
-  // Dynamically set the profileType once all user data is available
+  // Set the profileType once all user data is available
   useEffect(() => {
-    // Do not attempt relationship determination unless all fetched data is available for comparison
     if (profileUser && currentUser) {
-      // Set the profile type based on the relationship
-      setProfileType(findRelationshipType(profileUser, currentUser));
+      // Profile type is set based on relationshipType determined
+      // profileUser.user is supplied to this function, and assumes the profileUser data is of the form { user: { userData } } as this is the format of all user fetched data from backend API
+      setProfileType(findRelationshipType(profileUser.user, currentUser));
     }
   }, [profileUser, currentUser]);
 
-  // return profile type variable to be passed to components of the profile page
+  // Return profile type variable to be passed to components of the profile page
   return { profileType };
 }

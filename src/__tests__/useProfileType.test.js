@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { useProfileType } from '../hooks/useProfileType';
 
-// Example users are provided in a format virtually identical to what will be used within the app
+// Example users are provided in a format virtually identical to what will be used within the app. Current user represents the logged in user. Profile user represents the details of the user whose profile is being requests
 
 const currentUserOne = {
   "_id": "622ffeb44dc1fd166b08b3ce",
@@ -21,6 +21,7 @@ const currentUserThree = {
   "lastName": "Invisible",
 };
 
+// User details of the profile that is being requests
 const profileUser = {
   user: {
     "bio": {
@@ -58,16 +59,16 @@ const profileUser = {
 }
 
 it('correctly identifies a friend profile', () => {
-  const { result } = renderHook(() => useProfileType(profileUser.user, currentUserOne));
+  const { result } = renderHook(() => useProfileType(profileUser, currentUserOne));
   expect(result.current.profileType).toBe('friend');
 });
 
 it('correctly identifies a non-friend profile', () => {
-  const { result } = renderHook(() => useProfileType(profileUser.user, currentUserThree));
+  const { result } = renderHook(() => useProfileType(profileUser, currentUserThree));
   expect(result.current.profileType).toBe('nonFriend');
 });
 
 it("correctly identifies a user's own profile", () => {
-  const { result } = renderHook(() => useProfileType(profileUser.user, currentUserTwo));
+  const { result } = renderHook(() => useProfileType(profileUser, currentUserTwo));
   expect(result.current.profileType).toBe('ownProfile');
 });
