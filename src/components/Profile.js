@@ -15,7 +15,7 @@ const Profile = () => {
     <div>
       <Header />
      {profileUser && (
-        <div className="w-full flex justify-center mt-6">
+        <div className="w-full flex justify-center">
         <ProfileHeader profileUser={profileUser.user} profileType={profileType}/>
         {/* ProfileHeader */}
         {/* ProfileNav - optional */}
