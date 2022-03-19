@@ -122,7 +122,7 @@ describe("Image-containing posts", () => {
     expect(pic).toBeInTheDocument();
   });
 
-  it("Displays image when image url exists for the post", () => {
+  it("Displays post image when image url exists for the post", () => {
     // Image posts will have blank alt text
     const pic = screen.queryByAltText('');
     expect(pic).toBeInTheDocument();

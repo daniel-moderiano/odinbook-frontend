@@ -73,14 +73,13 @@ describe("User profile rendering in sidebar", () => {
     );
   })
 
-  it("Displays blank profile pic when none are available", () => {
-    const pic = screen.getByAltText(/^blank profile picture/i) 
-    expect(pic).toBeInTheDocument();
-  });
+  it("Displays only a blank profile pic when no image URL for profile pic is available", () => {
+    const blankPic = screen.getByAltText(/^blank profile picture/i) 
+    expect(blankPic).toBeInTheDocument();
 
-  it("Does not attempt to show a unique profile picture when one is not provided", () => {
-    const pic = screen.queryAllByAltText(/^profile picture/i) 
-    expect(pic.length).toBe(0);
+    // Check that no other profile pic is attempting to be rendered (normal profile images have the alt text below)
+    const otherPic = screen.queryAllByAltText(/^profile picture/i) 
+    expect(otherPic.length).toBe(0);
   });
 
   it("Displays correct number of friends", () => {

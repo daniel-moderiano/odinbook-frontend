@@ -75,14 +75,13 @@ describe("Friend card rendering (i.e. accepts that have been requests)", () => {
     expect(pic).toBeInTheDocument();
   });
 
-  it("Renders an unfriend button", () => {
+  it("Renders only the unfriend button", () => {
     const unfriend = screen.getByRole('button', { name: /unfriend/i });
     expect(unfriend).toBeInTheDocument();
-  });
 
-  it("Does not render an accept, cancel or add button", () => {
-    const btn = screen.queryByRole('button', { name: /(accept)|(add)|(cancel)/i }) 
-    expect(btn).not.toBeInTheDocument();
+    // Check that inappropriate btns aren't rendered
+    const otherBtns = screen.queryByRole('button', { name: /(accept)|(add)|(cancel)/i }) 
+    expect(otherBtns).not.toBeInTheDocument();
   });
 });
 
@@ -93,19 +92,16 @@ describe("Incoming friend request rendering", () => {
     );
   })
 
-  it("Renders a delete button", () => {
+  it("Renders only the accept and delete buttons", () => {
     const deleteBtn = screen.getByRole('button', { name: /delete/i });
     expect(deleteBtn).toBeInTheDocument();
-  });
 
-  it("Renders an accept button", () => {
     const acceptBtn = screen.getByRole('button', { name: /accept/i }) 
     expect(acceptBtn).toBeInTheDocument();
-  });
 
-  it("Does not render an add friend, unfriend or cancel button", () => {
-    const btn = screen.queryByRole('button', { name: /(add)|(cancel)|(unfriend)/i }) 
-    expect(btn).not.toBeInTheDocument();
+    // Check for all inapporpriate buttons
+    const otherBtns = screen.queryByRole('button', { name: /(add)|(cancel)|(unfriend)/i }) 
+    expect(otherBtns).not.toBeInTheDocument();
   });
 });
 
@@ -117,14 +113,13 @@ describe("Outgoing friend request rendering", () => {
     );
   })
 
-  it("Renders a cancel button", () => {
+  it("Renders only a cancel button", () => {
     const cancelBtn = screen.getByRole('button', { name: /cancel/i });
     expect(cancelBtn).toBeInTheDocument();
-  });
 
-  it("Does not render an add, delete, unfriend, or accept button", () => {
-    const btn = screen.queryByRole('button', { name: /(add)|(delete)|(accept)|(unfriend)/i }) 
-    expect(btn).not.toBeInTheDocument();
+    // Check for inappropriate buttons
+    const otherBtns = screen.queryByRole('button', { name: /(add)|(delete)|(accept)|(unfriend)/i }) 
+    expect(otherBtns).not.toBeInTheDocument();
   });
 });
 
@@ -136,13 +131,12 @@ describe("General user (potential friends) rendering", () => {
     );
   })
 
-  it("Renders an 'add friend' button", () => {
+  it("Renders only an 'add friend' button", () => {
     const addBtn = screen.getByRole('button', { name: /add/i });
     expect(addBtn).toBeInTheDocument();
-  });
 
-  it("Does not render an cancel, delete, unfriend, or accept button", () => {
-    const btn = screen.queryByRole('button', { name: /(cancel)|(delete)|(accept)|(unfriend)/i }) 
-    expect(btn).not.toBeInTheDocument();
+    // Check for inappropriate buttons
+    const otherBtns = screen.queryByRole('button', { name: /(cancel)|(delete)|(accept)|(unfriend)/i }) 
+    expect(otherBtns).not.toBeInTheDocument();
   });
 });
