@@ -14,16 +14,24 @@ const Profile = () => {
   return (
     <div>
       <Header />
-     {profileUser && (
-        <div className="w-full flex justify-center">
-        <ProfileHeader profileUser={profileUser.user} profileType={profileType}/>
-        {/* ProfileHeader */}
+     {(profileUser && profileType) ? (
+      <div className="w-full flex justify-center">
+        <section>
+          <ProfileHeader profileUser={profileUser.user} profileType={profileType}/>
+        </section>
+        {profileUser.user.bio && (
+          <section>
+          
+          </section>
+        )}
         {/* ProfileNav - optional */}
         {/* ProfileBio/ProfileIntro */}
         {/* ProfileFriends */}
         {/* ProfilePosts */}
         {/* ProfilePhotos - optional */}
       </div>
+     ) : (
+       <div>User not loaded</div>
      )}
     </div>
   )
