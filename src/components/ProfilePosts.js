@@ -25,4 +25,4 @@ const ProfilePosts = ({ profileUser, profileType }) => {
   )
 }
 
-export default ProfilePosts
+export default ProfilePosts;

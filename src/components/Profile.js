@@ -27,16 +27,12 @@ const Profile = () => {
             <ProfileBio profileUser={profileUser.user}/>
           </section>
         )}
-        {/* ProfileNav - optional */}
         <section className='shadow-sm mb-6 rounded max-w-2xl w-full'>
           <ProfileFriends profileUser={profileUser.user}/>
         </section>
-        
         <section className='mb-6 rounded max-w-2xl w-full'>
           <ProfilePosts profileUser={profileUser.user}/>
         </section>
-        {/* ProfilePosts */}
-        {/* ProfilePhotos - optional */}
       </div>
      ) : (
        <div>User not loaded</div>
