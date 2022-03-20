@@ -19,20 +19,20 @@ const Profile = () => {
       <Header />
      {(profileUser && profileType) ? (
       <div className="w-full flex justify-center items-center flex-col">
-        <section className='shadow-sm mb-8 w-full'>
+        <section className='shadow-sm mb-6 w-full'>
           <ProfileHeader profileUser={profileUser.user} profileType={profileType}/>
         </section>
         {profileUser.user.bio && (
-          <section className='shadow-sm mb-8 rounded max-w-2xl w-full'>
+          <section className='shadow-sm mb-6 rounded max-w-2xl w-full'>
             <ProfileBio profileUser={profileUser.user}/>
           </section>
         )}
         {/* ProfileNav - optional */}
-        <section className='shadow-sm mb-8 rounded max-w-2xl w-full'>
+        <section className='shadow-sm mb-6 rounded max-w-2xl w-full'>
           <ProfileFriends profileUser={profileUser.user}/>
         </section>
         
-        <section className='shadow-sm mb-8 rounded max-w-2xl w-full'>
+        <section className='mb-6 rounded max-w-2xl w-full'>
           <ProfilePosts profileUser={profileUser.user}/>
         </section>
         {/* ProfilePosts */}

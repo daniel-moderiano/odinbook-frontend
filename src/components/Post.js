@@ -19,7 +19,7 @@ const Post = ({ post }) => {
   };
 
   return (
-    <article className="rounded shadow-md bg-white mb-6 pt-3 pb-1">
+    <article className="rounded shadow-sm bg-white mb-6 pt-3 pb-1">
       <div className='flex items-center justify-start px-4'>
         {/* Link to user's profile */}
         <StyledLink to="/" customStyles="hover:opacity-95 active:opacity-100">
