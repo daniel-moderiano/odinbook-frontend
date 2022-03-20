@@ -5,6 +5,8 @@ import ProfileHeader from './ProfileHeader';
 import ProfileBio from './ProfileBio';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useProfileType } from '../hooks/useProfileType';
+import ProfileFriends from './ProfileFriends';
+import ProfilePosts from './ProfilePosts';
 
 const Profile = () => {
   const { userId } = useParams();
@@ -26,8 +28,13 @@ const Profile = () => {
           </section>
         )}
         {/* ProfileNav - optional */}
-        {/* ProfileBio/ProfileIntro */}
-        {/* ProfileFriends */}
+        <section className='shadow-sm mb-8 rounded max-w-2xl w-full'>
+          <ProfileFriends profileUser={profileUser.user}/>
+        </section>
+        
+        <section className='shadow-sm mb-8 rounded max-w-2xl w-full'>
+          <ProfilePosts profileUser={profileUser.user}/>
+        </section>
         {/* ProfilePosts */}
         {/* ProfilePhotos - optional */}
       </div>

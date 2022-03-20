@@ -1,6 +1,5 @@
 
 const ProfileBio = ({ profileUser, profileType }) => {
-  console.log(profileUser);
 
   return (
     <div className="bg-white p-4 md:p-6 rounded">
@@ -37,8 +36,6 @@ const ProfileBio = ({ profileUser, profileType }) => {
         </svg>
         <p>Member since {profileUser.dateJoined}</p>
       </div>
-
-    
     </div>
   )
 }
