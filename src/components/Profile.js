@@ -16,7 +16,7 @@ const Profile = () => {
       <Header />
      {(profileUser && profileType) ? (
       <div className="w-full flex justify-center">
-        <section>
+        <section className='w-full'>
           <ProfileHeader profileUser={profileUser.user} profileType={profileType}/>
         </section>
         {profileUser.user.bio && (

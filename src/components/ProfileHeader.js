@@ -3,12 +3,12 @@ import profilePicBlank from '../assets/profile-pic-blank.png';
 
 const ProfileHeader = ({ profileUser, profileType }) => {
   return (
-    <div className="w-full relative shadow-sm pb-7 bg-white">
-      <div className="bg-gradient-to-t from-gray-400 h-28 relative"></div>
-      <div className="w-full absolute flex items-center justify-center top-7">
+    <div className="w-full relative shadow-sm pb-7 bg-white flex flex-col items-center justify-center">
+      <div className="bg-gradient-to-t from-gray-400 h-28 md:h-36 relative w-full"></div>
+      <div className="w-full absolute flex items-center justify-center top-7 md:top-14 lg:top-24 lg:justify-start max-w-4xl">
         <div className="relative">
           {profileUser.profilePic ? (
-            <img src={profileUser.profilePic.imageUrl} alt="Profile picture" className='w-40 rounded-full border-4 border-white' />
+            <img src={profileUser.profilePic.imageUrl} alt="Profile picture" className='w-40 lg:w-44 rounded-full border-4 border-white' />
           ) : (
             <img src={profilePicBlank} alt="Blank Profile picture" className='w-20 rounded-full border-4 border-white'/>
           )}
@@ -19,21 +19,25 @@ const ProfileHeader = ({ profileUser, profileType }) => {
         </button>
         </div>
       </div>
-      <div className="px-6 mt-20 pt-2 flex flex-col items-center justify-center">
+      <div className="w-full px-6 mt-20 pt-2 flex flex-col items-center justify-center max-w-2xl lg:mt-10 lg:flex-row lg:justify-between lg:ml-36 lg:px-0 lg:items-end lg:pb-2">
+       <div className='lg:pl-4'>
         <h2 className="font-bold text-3xl mb-1">{profileUser.fullName}</h2>
-        <p className="text-gray-600 mb-4">
+        <p className="text-gray-600 mb-4 w-full text-center lg:text-left">
           {/* Adjust format of friends string for singular vs plural friends */}
           {profileUser.friends.length !== 1 ? `${profileUser.friends.length} Friends` : '1 Friend'}
         </p>
-        {profileType === 'friend' && (
-          <Button design="ghost" customStyles="w-44">Friends</Button>
-        )}
-          {profileType === 'ownProfile' && (
-          <Button design="primary" customStyles="w-44">Edit profile</Button>
-        )}
-          {profileType === 'nonFriend' && (
-          <Button design="primary" customStyles="w-44">Add friend</Button>
-        )}
+       </div>
+        <div className='lg:-mr-10 lg:mb-4'>
+          {profileType === 'friend' && (
+            <Button design="ghost" customStyles="w-44">Friends</Button>
+          )}
+            {profileType === 'ownProfile' && (
+            <Button design="primary" customStyles="w-44">Edit profile</Button>
+          )}
+            {profileType === 'nonFriend' && (
+            <Button design="primary" customStyles="w-44">Add friend</Button>
+          )}
+        </div>
       </div>
     </div>
   )
