@@ -22,10 +22,7 @@ const user = {
         "_id": "622f19ac4212d0e69e8eb0ef",
       },
     ],
-    "friends": [
-      'friend1',
-      'friend2'
-    ],
+    "numFriends": 2,
     "comments": [
         {
             "_id": "622f19ac4212d0e69e8eb0ef",

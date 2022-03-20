@@ -24,7 +24,7 @@ const ProfileHeader = ({ profileUser, profileType }) => {
         <h2 className="font-bold text-3xl mb-1">{profileUser.fullName}</h2>
         <p className="text-gray-600 mb-4 w-full text-center lg:text-left">
           {/* Adjust format of friends string for singular vs plural friends */}
-          {profileUser.friends.length !== 1 ? `${profileUser.friends.length} Friends` : '1 Friend'}
+          {profileUser.numFriends !== 1 ? `${profileUser.numFriends} Friends` : '1 Friend'}
         </p>
        </div>
         <div className='lg:-mr-10 lg:mb-4'>
