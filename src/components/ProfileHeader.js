@@ -3,7 +3,7 @@ import profilePicBlank from '../assets/profile-pic-blank.png';
 
 const ProfileHeader = ({ profileUser, profileType }) => {
   return (
-    <div className="w-full relative shadow-sm pb-7 bg-white flex flex-col items-center justify-center">
+    <div className="w-full relative pb-7 bg-white flex flex-col items-center justify-center">
       <div className="bg-gradient-to-t from-gray-400 h-28 md:h-36 relative w-full"></div>
       <div className="w-full absolute flex items-center justify-center top-7 md:top-14 lg:top-24 lg:justify-start max-w-4xl">
         <div className="relative">

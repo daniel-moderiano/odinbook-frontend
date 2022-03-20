@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import Header from './Header';
 import { useFetchGet } from '../hooks/useFetchGet';
 import ProfileHeader from './ProfileHeader';
+import ProfileBio from './ProfileBio';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useProfileType } from '../hooks/useProfileType';
 
@@ -15,13 +16,13 @@ const Profile = () => {
     <div>
       <Header />
      {(profileUser && profileType) ? (
-      <div className="w-full flex justify-center">
-        <section className='w-full'>
+      <div className="w-full flex justify-center items-center flex-col">
+        <section className='shadow-sm mb-8 w-full'>
           <ProfileHeader profileUser={profileUser.user} profileType={profileType}/>
         </section>
         {profileUser.user.bio && (
-          <section>
-          
+          <section className='shadow-sm mb-8 rounded max-w-2xl w-full'>
+            <ProfileBio profileUser={profileUser.user}/>
           </section>
         )}
         {/* ProfileNav - optional */}
