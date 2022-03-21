@@ -6,8 +6,8 @@ const ProfilePosts = ({ profileUser, profileType }) => {
 
   return (
     <div>
-      <div className="bg-white px-4 pt-4 md:px-6 rounded">
-        <h2 className="font-bold text-2xl border-b pb-4">Posts</h2>
+      <div className="bg-white p-4 md:px-6 rounded shadow-sm mb-6">
+        <h2 className="font-bold text-2xl">Posts</h2>
       </div>
       <div className='max-w-3xl lg:min-w-full'>
         {posts && (

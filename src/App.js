@@ -55,7 +55,13 @@ function App() {
           <Route path="/profile/:userId" element={
             <>
             {!user && <Login />}
-            {user && <Profile />}
+            {user && <Profile profileView="main" />}
+            </>
+          }/>
+          <Route path="/profile/:userId/friends" element={
+            <>
+            {!user && <Login />}
+            {user && <Profile profileView="friends" />}
             </>
           }/>
         </Routes>

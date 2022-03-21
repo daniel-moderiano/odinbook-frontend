@@ -10,7 +10,7 @@ const SideMenu = () => {
 
   return (
     <aside className='flex flex-col w-[350px] fixed'>
-      <div className='flex flex-col items-center justify-center rounded shadow-md bg-white'>
+      <div className='flex flex-col items-center justify-center rounded shadow-sm bg-white'>
         {userDetails ? (
           <>
             <div className=' bg-plum-600/20 w-full flex items-center rounded-t justify-center py-4'>

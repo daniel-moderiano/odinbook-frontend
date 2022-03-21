@@ -7,8 +7,9 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { useProfileType } from '../hooks/useProfileType';
 import ProfileFriends from './ProfileFriends';
 import ProfilePosts from './ProfilePosts';
+import ProfileFriendsView from './ProfileFriendsView';
 
-const Profile = () => {
+const Profile = ({ profileView }) => {
   const { userId } = useParams();
   const { user: currentUser } = useAuthContext();
   const { data: profileUser, loading, error } = useFetchGet(`http://localhost:3000/api/users/${userId}`);
@@ -22,21 +23,26 @@ const Profile = () => {
         <section className='shadow-sm mb-6 w-full'>
           <ProfileHeader profileUser={profileUser.user} profileType={profileType}/>
         </section>
-       <div className='flex flex-col lg:flex-row lg:items-start justify-center w-full max-w-4xl'>
-        <div className='lg:mr-6 w-[376px] shrink-0'>
-          {profileUser.user.bio && (
-            <section className='shadow-sm mb-6 rounded max-w-2xl w-full'>
-              <ProfileBio profileUser={profileUser.user}/>
-            </section>
-          )}
-          <section className='shadow-sm mb-6 rounded max-w-2xl w-full'>
-            <ProfileFriends profileUser={profileUser.user}/>
-          </section>
-          </div>
-          <section className='mb-6 rounded max-w-2xl w-full'>
-            <ProfilePosts profileUser={profileUser.user}/>
-          </section>
-        </div>
+       {profileView === 'main' && (
+         <div className='flex flex-col lg:flex-row lg:items-start items-center justify-center w-full max-w-4xl'>
+         <div className='lg:mr-6 lg:w-[376px] w-full shrink-0 flex flex-col items-center justify center'>
+           {profileUser.user.bio && (
+             <section className='shadow-sm mb-6 rounded max-w-2xl w-full'>
+               <ProfileBio profileUser={profileUser.user}/>
+             </section>
+           )}
+           <section className='shadow-sm mb-6 rounded max-w-2xl w-full'>
+             <ProfileFriends profileUser={profileUser.user}/>
+           </section>
+           </div>
+           <section className='mb-6 rounded max-w-2xl w-full'>
+             <ProfilePosts profileUser={profileUser.user}/>
+           </section>
+         </div>
+       )}
+       {profileView === 'friends' && (
+         <ProfileFriendsView profileUser={profileUser.user}/>
+       )}
       </div>
      ) : (
        <div>User not loaded</div>
