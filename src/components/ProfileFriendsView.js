@@ -19,7 +19,7 @@ const ProfileFriendsView = ({ profileUser }) => {
             <>
               <div className="flex flex-wrap gap-4 sm:gap-5 lg:gap-5">
                 {friends.acceptedFriends.map((friend, index) => (
-                  <div key={friend.user._id} className="flex items-center justify-start">
+                  <div key={friend.user._id} className="flex flex-col items-center justify-start">
                     {friend.user.profilePic ? (
                       <img src={friend.user.profilePic.imageUrl} alt="Profile picture" className='w-24 sm:w-32 lg:w-24 rounded' />
                     ) : (

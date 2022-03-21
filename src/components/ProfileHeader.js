@@ -1,9 +1,12 @@
 import Button from './utils/Button';
 import profilePicBlank from '../assets/profile-pic-blank.png';
+import { Link } from 'react-router-dom';
+import ProfileNav from './ProfileNav';
 
 const ProfileHeader = ({ profileUser, profileType }) => {
+
   return (
-    <div className="w-full relative pb-7 bg-white flex flex-col items-center justify-center">
+    <div className="w-full relative bg-white flex flex-col items-center justify-center">
       <div className="bg-gradient-to-t from-plum-50 h-28 md:h-36 relative w-full"></div>
       <div className="w-full absolute flex items-center justify-center top-7 md:top-14 lg:top-24 lg:justify-start max-w-4xl">
         <div className="relative">
@@ -23,7 +26,6 @@ const ProfileHeader = ({ profileUser, profileType }) => {
        <div className='lg:pl-4'>
         <h2 className="font-bold text-3xl mb-1">{profileUser.fullName}</h2>
         <p className="text-gray-600 mb-4 w-full text-center lg:text-left">
-          {/* Adjust format of friends string for singular vs plural friends */}
           {profileUser.numFriends !== 1 ? `${profileUser.numFriends} Friends` : '1 Friend'}
         </p>
        </div>
@@ -38,6 +40,9 @@ const ProfileHeader = ({ profileUser, profileType }) => {
             <Button design="primary" customStyles="w-44">Add friend</Button>
           )}
         </div>
+      </div>
+      <div className='w-full flex items-center justify-center lg:max-w-4xl lg:justify-start'>
+        <ProfileNav profileUser={profileUser}/>
       </div>
     </div>
   )

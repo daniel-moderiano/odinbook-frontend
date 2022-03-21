@@ -41,7 +41,9 @@ const Profile = ({ profileView }) => {
          </div>
        )}
        {profileView === 'friends' && (
-         <ProfileFriendsView profileUser={profileUser.user}/>
+         <section className='mb-6 rounded max-w-4xl w-full'>
+          <ProfileFriendsView profileUser={profileUser.user}/>
+        </section>
        )}
       </div>
      ) : (
