@@ -29,7 +29,7 @@ const ProfileHeader = ({ profileUser, profileType }) => {
           {profileUser.numFriends !== 1 ? `${profileUser.numFriends} Friends` : '1 Friend'}
         </p>
        </div>
-        <div className='lg:-mr-10 lg:mb-4'>
+        <div className='lg:-mr-10 lg:mb-4 z-10'>
           {profileType === 'friend' && (
             <Button design="ghost" customStyles="w-44">Friends</Button>
           )}
