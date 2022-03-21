@@ -22,17 +22,21 @@ const Profile = () => {
         <section className='shadow-sm mb-6 w-full'>
           <ProfileHeader profileUser={profileUser.user} profileType={profileType}/>
         </section>
-        {profileUser.user.bio && (
+       <div className='flex flex-col lg:flex-row lg:items-start justify-center w-full max-w-4xl'>
+        <div className='lg:mr-6 w-[376px] shrink-0'>
+          {profileUser.user.bio && (
+            <section className='shadow-sm mb-6 rounded max-w-2xl w-full'>
+              <ProfileBio profileUser={profileUser.user}/>
+            </section>
+          )}
           <section className='shadow-sm mb-6 rounded max-w-2xl w-full'>
-            <ProfileBio profileUser={profileUser.user}/>
+            <ProfileFriends profileUser={profileUser.user}/>
           </section>
-        )}
-        <section className='shadow-sm mb-6 rounded max-w-2xl w-full'>
-          <ProfileFriends profileUser={profileUser.user}/>
-        </section>
-        <section className='mb-6 rounded max-w-2xl w-full'>
-          <ProfilePosts profileUser={profileUser.user}/>
-        </section>
+          </div>
+          <section className='mb-6 rounded max-w-2xl w-full'>
+            <ProfilePosts profileUser={profileUser.user}/>
+          </section>
+        </div>
       </div>
      ) : (
        <div>User not loaded</div>

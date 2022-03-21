@@ -19,16 +19,17 @@ const ProfileFriends = ({ profileUser }) => {
           {friends.acceptedFriends ? (
             <>
               <h3 className="mb-4">{profileUser.numFriends !== 1 ? `${profileUser.numFriends} Friends` : '1 Friend'}</h3>
-              <div className="flex flex-wrap gap-4 sm:gap-5">
+              <div className="flex flex-wrap gap-4 sm:gap-5 lg:gap-5">
                 {/* Ensure only the first 9 freinds are rendered */}
                 {friends.acceptedFriends.slice(0, 9).map((friend, index) => (
                   <div key={friend.user._id} className="">
+                    {/* Width adjusts back to smaller size on large screens because the friends section becomes a side column instead of full screen width */}
                     {friend.user.profilePic ? (
-                      <img src={friend.user.profilePic.imageUrl} alt="Profile picture" className='w-24 sm:w-32 rounded' />
+                      <img src={friend.user.profilePic.imageUrl} alt="Profile picture" className='w-24 sm:w-32 lg:w-24 rounded' />
                     ) : (
-                      <img src={profilePicBlank} alt="Blank Profile picture" className='w-24 sm:w-32 rounded'/>
+                      <img src={profilePicBlank} alt="Blank Profile picture" className='w-24 sm:w-32 lg:w-24 rounded'/>
                     )}
-                    <p className="text-xs sm:text-sm font-semibold mt-1 w-full text-center">{friend.user.fullName}</p>
+                    <p className="text-xs sm:text-sm lg:text-xs font-semibold mt-1 w-full text-center">{friend.user.fullName}</p>
                   </div>
                 ))}
               </div>
