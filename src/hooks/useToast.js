@@ -6,7 +6,7 @@ export const useToast = () => {
   const [toastParams, setToastParams] = useState({});
 
   // Set time that toast is visible
-  const durationMilliseconds = 2000;
+  const durationMilliseconds = 3000;
 
   const showToast = useCallback((type, message) => {
     setToastVisible(true);

@@ -1,6 +1,6 @@
 import { useFetchGet } from "../hooks/useFetchGet";
-import profilePicBlank from '../assets/profile-pic-blank.png';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import ProfilePic from "./utils/ProfilePic";
 
 const ProfileFriendsTab = ({ profileUser }) => {
   const { data: friends, loading, error } = useFetchGet(`http://localhost:3000/api/users/${profileUser._id}/friends`);
@@ -19,11 +19,7 @@ const ProfileFriendsTab = ({ profileUser }) => {
                 {friends.acceptedFriends.map((friend, index) => (
                   <div key={friend.user._id} className="flex flex-col items-center justify-start lg:flex-row lg:rounded lg:border lg:border-gray-200 lg:p-2 lg:w-[415px]">
                     <Link to={`/profile/${friend.user._id}`} className="hover:opacity-95 active:opacity-100">
-                      {friend.user.profilePic ? (
-                        <img src={friend.user.profilePic.imageUrl} alt="Profile picture" className='w-24 sm:w-28 rounded lg:w-24 lg:mr-4' />
-                      ) : (
-                        <img src={profilePicBlank} alt="Blank Profile picture" className='w-24 sm:w-28 rounded lg:w-24 lg:mr-4'/>
-                      )}
+                      <ProfilePic imgUrl={friend.user.profilePic ? friend.user.profilePic.imageUrl : null} styles="w-24 sm:w-28 rounded lg:w-24 lg:mr-4"/>
                     </Link>
                     <div>
                       <Link to={`/profile/${friend.user._id}`} className="block text-xs sm:text-sm lg:text-lg font-semibold mt-2 w-full text-center max-w-[96px] sm:max-w-[112px] lg:max-w-xs lg:text-left hover:underline">{friend.user.fullName}</Link>

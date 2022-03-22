@@ -348,7 +348,9 @@ jest.mock("../hooks/useAuthContext", () => ({
 
 it("Displays a 'no friends' message when the user has no friends", () => {
   // Use friends list with no users
-  mockFriends = {};
+  mockFriends = {
+    "acceptedFriends": []
+  };
 
   render(
     <BrowserRouter>

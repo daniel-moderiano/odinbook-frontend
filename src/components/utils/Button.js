@@ -1,10 +1,10 @@
-const Button = ({ children, type, design, onClick, customStyles }) => {
+const Button = ({ children, type, design, onClick, customStyles, disabled }) => {
   // Define CSS styles for different types of buttons
   const designClass = (design) => {
     let CSS = '';
     switch (design) {
       case 'primary-lg':
-        CSS = 'flex items-center justify-center w-full px-4 py-2 font-medium bg-plum-400 border border-plum-400 text-white text-md md:text-lg shadow-md hover:bg-plum-300 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-plum-300/30'
+        CSS = 'flex items-center justify-center w-full px-4 py-2 font-medium bg-plum-400 border border-plum-400 text-white text-md md:text-lg shadow-md hover:bg-plum-300 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-plum-300/30 disabled:bg-gray-100 disabled:text-gray-600'
         break;
 
       case 'ghost-lg':
@@ -16,7 +16,7 @@ const Button = ({ children, type, design, onClick, customStyles }) => {
         break;
 
       case 'primary':
-        CSS = 'flex items-center justify-center w-full px-2 py-1 bg-plum-400 border border-plum-400 text-white shadow-md hover:bg-plum-300 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-plum-300/30'
+        CSS = 'flex items-center justify-center w-full px-2 py-1 bg-plum-400 border border-plum-400 text-white shadow-md hover:bg-plum-300 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-plum-300/30 disabled:bg-gray-100 disabled:text-gray-500 border-gray-100 disabled:shadow-none'
         break;
 
       case 'ghost':
@@ -34,7 +34,12 @@ const Button = ({ children, type, design, onClick, customStyles }) => {
   }
 
   return (
-    <button onClick={onClick} type={type} className={`${designClass(design)} ${customStyles}`}>
+    <button 
+      onClick={onClick} 
+      type={type} 
+      className={`${designClass(design)} ${customStyles}`} 
+      disabled={disabled ? true : undefined}
+    >
       {children}
     </button>
   )

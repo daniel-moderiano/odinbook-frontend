@@ -82,7 +82,6 @@ function App() {
         </Routes>
       </>)}
       <Toast visible={toastVisible} params={toastParams}/>
-      <button onClick={() => showToast('error', 'There was a problem getting this toast to work.')}>Toast time!</button>
     </div>
   );
 }

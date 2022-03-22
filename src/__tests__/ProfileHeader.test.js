@@ -1,5 +1,7 @@
 import ProfileHeader from "../components/ProfileHeader";
 import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
+import { AuthContextProvider } from "../context/AuthContext";
 
 const user = {
   "profilePic": {
@@ -46,7 +48,13 @@ const userNoPic = {
 
 describe('Profile picture selective rendering', () => {
   it("Displays only blank profile pic when no image URL is available for profile pic", () => {
-    render(<ProfileHeader profileUser={userNoPic} />);
+    render(
+      <BrowserRouter>
+        <AuthContextProvider>
+          <ProfileHeader profileUser={userNoPic} />
+        </AuthContextProvider>
+      </BrowserRouter>
+    );
     const blank = screen.getByAltText(/blank profile picture/i) 
     expect(blank).toBeInTheDocument();
 
@@ -55,7 +63,13 @@ describe('Profile picture selective rendering', () => {
   });
   
   it("Displays correct profile picture if an image URL is provided", () => {
-    render(<ProfileHeader profileUser={user} />);
+    render(
+      <BrowserRouter>
+        <AuthContextProvider>
+          <ProfileHeader profileUser={user} />
+        </AuthContextProvider>
+      </BrowserRouter>
+    );
     const pic = screen.getByAltText(/^profile picture/i);
     expect(pic).toBeInTheDocument();
 
@@ -68,7 +82,13 @@ describe('Profile picture selective rendering', () => {
 
 describe('Profile header buttons', () => {
   it("Shows add friend button when viewing a profile for a non-friend", () => {
-    render(<ProfileHeader profileUser={user} profileType="nonFriend"/>);
+    render(
+      <BrowserRouter>
+        <AuthContextProvider>
+          <ProfileHeader profileUser={user} profileType="nonFriend"/>
+        </AuthContextProvider>
+      </BrowserRouter>
+    );
     const btn = screen.getByRole('button', { name: /add friend/i });
     expect(btn).toBeInTheDocument();
 
@@ -78,7 +98,13 @@ describe('Profile header buttons', () => {
   });
 
   it("Shows edit profile button when viewing your own profile", () => {
-    render(<ProfileHeader profileUser={user} profileType="ownProfile"/>);
+    render(
+      <BrowserRouter>
+        <AuthContextProvider>
+          <ProfileHeader profileUser={user} profileType="ownProfile"/>
+        </AuthContextProvider>
+      </BrowserRouter>
+    );
     const btn = screen.getByRole('button', { name: /edit profile/i });
     expect(btn).toBeInTheDocument();
 
@@ -88,7 +114,13 @@ describe('Profile header buttons', () => {
   });
 
   it("Shows only friends/unfriend button when viewing a profile of a friend", () => {
-    render(<ProfileHeader profileUser={user} profileType="friend"/>);
+    render(
+      <BrowserRouter>
+        <AuthContextProvider>
+          <ProfileHeader profileUser={user} profileType="friend"/>
+        </AuthContextProvider>
+      </BrowserRouter>
+    );
     const btn = screen.getByRole('button', { name: /friends/i });
     expect(btn).toBeInTheDocument();
 
