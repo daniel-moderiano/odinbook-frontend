@@ -1,5 +1,6 @@
 import { useFetchGet } from "../hooks/useFetchGet";
 import profilePicBlank from '../assets/profile-pic-blank.png';
+import { Link } from 'react-router-dom'
 
 const ProfileFriendsView = ({ profileUser }) => {
   const { data: friends, loading, error } = useFetchGet(`http://localhost:3000/api/users/${profileUser._id}/friends`);
@@ -12,18 +13,20 @@ const ProfileFriendsView = ({ profileUser }) => {
       {friends ? (
         <>
           {/* Friends array may exist but the user may not yet have any accepted friends. Hence this is checked here */}
-          {friends.acceptedFriends ? (
+          {friends.acceptedFriends.length > 0 ? (
             <>
               <div className="flex flex-wrap gap-x-4 gap-y-3 sm:gap-x-5 lg:gap-3">
                 {friends.acceptedFriends.map((friend, index) => (
                   <div key={friend.user._id} className="flex flex-col items-center justify-start lg:flex-row lg:rounded lg:border lg:border-gray-200 lg:p-2 lg:w-[415px]">
-                    {friend.user.profilePic ? (
-                      <img src={friend.user.profilePic.imageUrl} alt="Profile picture" className='w-24 sm:w-28 rounded lg:w-24 lg:mr-4' />
-                    ) : (
-                      <img src={profilePicBlank} alt="Blank Profile picture" className='w-24 sm:w-28 rounded lg:w-24 lg:mr-4'/>
-                    )}
+                    <Link to={`/profile/${friend.user._id}`} className="hover:opacity-95 active:opacity-100">
+                      {friend.user.profilePic ? (
+                        <img src={friend.user.profilePic.imageUrl} alt="Profile picture" className='w-24 sm:w-28 rounded lg:w-24 lg:mr-4' />
+                      ) : (
+                        <img src={profilePicBlank} alt="Blank Profile picture" className='w-24 sm:w-28 rounded lg:w-24 lg:mr-4'/>
+                      )}
+                    </Link>
                     <div>
-                      <p className="text-xs sm:text-sm lg:text-lg font-semibold mt-2 w-full text-center max-w-[96px] sm:max-w-[112px] lg:max-w-xs lg:text-left">{friend.user.fullName}</p>
+                      <Link to={`/profile/${friend.user._id}`} className="block text-xs sm:text-sm lg:text-lg font-semibold mt-2 w-full text-center max-w-[96px] sm:max-w-[112px] lg:max-w-xs lg:text-left hover:underline">{friend.user.fullName}</Link>
                     </div>
                   </div>
                 ))}

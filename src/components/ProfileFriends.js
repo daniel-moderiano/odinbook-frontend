@@ -16,7 +16,7 @@ const ProfileFriends = ({ profileUser }) => {
       {friends ? (
         <>
           {/* Friends array may exist but the user may not yet have any accepted friends. Hence this is checked here */}
-          {friends.acceptedFriends ? (
+          {friends.acceptedFriends.length > 0 ? (
             <>
               <h3 className="mb-4">{profileUser.numFriends !== 1 ? `${profileUser.numFriends} Friends` : '1 Friend'}</h3>
               <div className="flex flex-wrap gap-x-4 gap-y-3 sm:gap-x-4 lg:gap-x-5">
@@ -24,12 +24,15 @@ const ProfileFriends = ({ profileUser }) => {
                 {friends.acceptedFriends.slice(0, 9).map((friend, index) => (
                   <div key={friend.user._id} className="">
                     {/* Width adjusts back to smaller size on large screens because the friends section becomes a side column instead of full screen width */}
-                    {friend.user.profilePic ? (
-                      <img src={friend.user.profilePic.imageUrl} alt="Profile picture" className='w-24 sm:w-28 lg:w-24 rounded' />
-                    ) : (
-                      <img src={profilePicBlank} alt="Blank Profile picture" className='w-24 sm:w-28 lg:w-24 rounded'/>
-                    )}
-                    <p className="text-xs sm:text-sm lg:text-xs font-semibold mt-1.5 w-full text-center max-w-[96px] sm:max-w-[112px] lg:max-w-[96px]">{friend.user.fullName}</p>
+                    <Link to={`/profile/${friend.user._id}`} className="block hover:opacity-95 active:opacity-100">
+                      {friend.user.profilePic ? (
+                        <img src={friend.user.profilePic.imageUrl} alt="Profile picture" className='w-24 sm:w-28 lg:w-24 rounded' />
+                      ) : (
+                        <img src={profilePicBlank} alt="Blank Profile picture" className='w-24 sm:w-28 lg:w-24 rounded'/>
+                      )}
+                    </Link>
+  
+                      <Link to={`/profile/${friend.user._id}`} className="block text-xs sm:text-sm lg:text-xs font-semibold mt-1.5 w-full text-center max-w-[96px] sm:max-w-[112px] lg:max-w-[96px] hover:underline">{friend.user.fullName}</Link>
                   </div>
                 ))}
               </div>

@@ -13,7 +13,7 @@ const ProfileHeader = ({ profileUser, profileType }) => {
           {profileUser.profilePic ? (
             <img src={profileUser.profilePic.imageUrl} alt="Profile picture" className='w-40 lg:w-44 rounded-full border-4 border-white' />
           ) : (
-            <img src={profilePicBlank} alt="Blank Profile picture" className='w-20 rounded-full border-4 border-white'/>
+            <img src={profilePicBlank} alt="Blank Profile picture" className='w-40 lg:w-44 rounded-full border-4 border-white'/>
           )}
           <button className="absolute rounded-full bg-gray-200 w-9 h-9 flex items-center justify-center bottom-4 right-0 border-gray-300 border">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5">\

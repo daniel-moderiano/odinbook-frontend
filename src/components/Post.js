@@ -22,7 +22,7 @@ const Post = ({ post }) => {
     <article className="rounded shadow-sm bg-white mb-6 pt-3 pb-1">
       <div className='flex items-center justify-start px-4'>
         {/* Link to user's profile */}
-        <StyledLink to="/" customStyles="hover:opacity-95 active:opacity-100">
+        <StyledLink to={`/profile/${post.user._id}`} customStyles="hover:opacity-95 active:opacity-100">
           {post.user.profilePic ? (
             <img src={post.user.profilePic.imageUrl} alt="Profile picture" className='w-10 mr-4 rounded-full' />
           ) : (
@@ -31,9 +31,8 @@ const Post = ({ post }) => {
         </StyledLink>
         <div>
           {/* Link to the user's profile page */}
-          <StyledLink to="/" customStyles="block font-bold hover:underline">{post.user.fullName}</StyledLink>
-          {/* Link to the detailed post page */}
-          <StyledLink to="/" customStyles="block text-sm text-gray-600 hover:underline hover:decoration-gray-600">{post.datePosted}</StyledLink>
+          <StyledLink to={`/profile/${post.user._id}`} customStyles="block font-bold hover:underline">{post.user.fullName}</StyledLink>
+          <p className="block text-sm text-gray-600">{post.datePosted}</p>
         </div>
       </div>
       <div>
