@@ -33,5 +33,4 @@ describe('Selective biography info rendering', () => {
     expect(occupation).toBeInTheDocument();
     expect(education).not.toBeInTheDocument();
   });
-  
 });

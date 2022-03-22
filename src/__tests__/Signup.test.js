@@ -5,7 +5,7 @@ import Signup from '../components/Signup';
 import { AuthContextProvider } from "../context/AuthContext";
 
 describe("Password confirmation input", () => {
-  beforeEach(() => {
+  it("hides confirmPassword input by default", () => {
     render(
       <BrowserRouter>
         <AuthContextProvider>
@@ -13,14 +13,19 @@ describe("Password confirmation input", () => {
         </AuthContextProvider>
       </BrowserRouter>
     )
-  })
-
-  it("hides confirmPassword input by default", () => {
     const input = screen.queryAllByLabelText('Confirm password');
     expect(input.length).toBe(0);
   });
 
   it("shows confirmPassword input when user begins typing in password input", () => {
+    render(
+      <BrowserRouter>
+        <AuthContextProvider>
+          <Signup />
+        </AuthContextProvider>
+      </BrowserRouter>
+    );
+    
     const password = screen.getByLabelText('Password');
 
     userEvent.type(password, 'test');

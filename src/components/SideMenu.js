@@ -1,11 +1,10 @@
 import { useAuthContext } from '../hooks/useAuthContext';
 import StyledLink from './utils/StyledLink';
-import profilePicBlank from '../assets/profile-pic-blank.png';
 import { useFetchGet } from '../hooks/useFetchGet';
+import ProfilePic from './utils/ProfilePic';
 
 const SideMenu = () => {
   const { user } = useAuthContext();
-  
   const { data: userDetails, loading, error } = useFetchGet(`http://localhost:3000/api/users/${user._id}`);
 
   return (
@@ -15,11 +14,7 @@ const SideMenu = () => {
           <>
             <div className=' bg-plum-600/20 w-full flex items-center rounded-t justify-center py-4'>
             <StyledLink to={`/profile/${user._id}`} customStyles="hover:opacity-95 active:opacity-100">
-              {userDetails.user.profilePic ? (
-                <img src={userDetails.user.profilePic.imageUrl} alt="Profile picture" className='w-20 rounded-full border-2 border-white' />
-              ) : (
-                <img src={profilePicBlank} alt="Blank Profile picture" className='w-20 rounded-full border-4 border-white'/>
-              )}
+              <ProfilePic imgUrl={userDetails.user.profilePic ? userDetails.user.profilePic.imageUrl : null} styles="w-20 rounded-full border-2 border-white"/>
             </StyledLink>
 
             </div>

@@ -1,7 +1,6 @@
 import ProfileFriends from "../components/ProfileFriends";
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import { AuthContextProvider } from "../context/AuthContext";
 
 const currentUser = {
   "_id": "622ffe9baa78d2996267f821",
@@ -354,9 +353,7 @@ it("Displays a 'no friends' message when the user has no friends", () => {
 
   render(
     <BrowserRouter>
-      <AuthContextProvider>
-        <ProfileFriends profileUser={currentUser}/>
-      </AuthContextProvider>
+      <ProfileFriends profileUser={currentUser}/>
     </BrowserRouter>
   );
 
@@ -371,9 +368,7 @@ it("Renders all friends in the friend list if the list contains less than 9 frie
 
     render(
       <BrowserRouter>
-        <AuthContextProvider>
-          <ProfileFriends profileUser={currentUser}/>
-        </AuthContextProvider>
+        <ProfileFriends profileUser={currentUser}/>
       </BrowserRouter>
     );
 
@@ -387,9 +382,7 @@ it("Renders only a maximum of 9 friends if the friends list contains more than 9
 
     render(
       <BrowserRouter>
-        <AuthContextProvider>
-          <ProfileFriends profileUser={currentUser}/>
-        </AuthContextProvider>
+        <ProfileFriends profileUser={currentUser}/>
       </BrowserRouter>
     );
     

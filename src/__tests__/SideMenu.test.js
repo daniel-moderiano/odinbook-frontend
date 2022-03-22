@@ -58,9 +58,8 @@ jest.mock("../hooks/useFetchGet", () => ({
   }),
 }));
 
-
 describe("User profile rendering in sidebar", () => {
-  beforeEach(() => {
+  it("Displays only a blank profile pic when no image URL for profile pic is available", () => {
     render(
       <BrowserRouter>
         <AuthContextProvider user={user}>
@@ -68,9 +67,6 @@ describe("User profile rendering in sidebar", () => {
         </AuthContextProvider>
       </BrowserRouter>
     );
-  })
-
-  it("Displays only a blank profile pic when no image URL for profile pic is available", () => {
     const blankPic = screen.getByAltText(/^blank profile picture/i) 
     expect(blankPic).toBeInTheDocument();
 
@@ -80,6 +76,13 @@ describe("User profile rendering in sidebar", () => {
   });
 
   it("Displays correct number of friends", () => {
+    render(
+      <BrowserRouter>
+        <AuthContextProvider user={user}>
+          <SideMenu />
+        </AuthContextProvider>
+      </BrowserRouter>
+    );
     const friends = screen.getByText(/2 friends/i) 
     expect(friends).toBeInTheDocument();
   });

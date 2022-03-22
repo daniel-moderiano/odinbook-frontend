@@ -4,13 +4,16 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
-import { AuthContextProvider } from './context/AuthContext'
+import { AuthContextProvider } from './context/AuthContext';
+import { ToastContextProvider } from './context/ToastContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthContextProvider>
-        <App />
+        <ToastContextProvider>
+          <App />
+        </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
   </React.StrictMode>,

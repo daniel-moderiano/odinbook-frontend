@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import FriendCard from '../components/FriendCard';
 import { BrowserRouter } from "react-router-dom";
-import { AuthContextProvider } from "../context/AuthContext";
 
 const friendData = {
   "user": {
@@ -54,9 +53,7 @@ const outgoingRequest = {
 describe("Friend card rendering (i.e. accepts that have been requests)", () => {
   const setup = () => render(
     <BrowserRouter>
-      <AuthContextProvider>
-        <FriendCard friendData={friendData.user} type="friend" />
-      </AuthContextProvider>
+      <FriendCard friendData={friendData.user} type="friend" />
     </BrowserRouter>
   );
 
@@ -81,9 +78,7 @@ describe("Incoming friend request rendering", () => {
   it("Renders only the accept and delete buttons", () => {
     render(
       <BrowserRouter>
-        <AuthContextProvider>
-          <FriendCard friendData={incomingRequest.user} type="incoming" />
-        </AuthContextProvider>
+        <FriendCard friendData={incomingRequest.user} type="incoming" />
       </BrowserRouter>
     );
     const deleteBtn = screen.getByRole('button', { name: /delete/i });
@@ -103,9 +98,7 @@ describe("Outgoing friend request rendering", () => {
   it("Renders only a cancel button", () => {
     render(
       <BrowserRouter>
-        <AuthContextProvider>
-          <FriendCard friendData={outgoingRequest.user} type="outgoing" />
-        </AuthContextProvider>
+        <FriendCard friendData={outgoingRequest.user} type="outgoing" />
       </BrowserRouter>
     );
     const cancelBtn = screen.getByRole('button', { name: /cancel/i });
@@ -122,9 +115,7 @@ describe("General user (potential friends) rendering", () => {
   it("Renders only an 'add friend' button", () => {
     render(
       <BrowserRouter>
-        <AuthContextProvider>
-          <FriendCard friendData={outgoingRequest.user} type="user" />
-        </AuthContextProvider>
+        <FriendCard friendData={outgoingRequest.user} type="user" />
       </BrowserRouter>
     );
     const addBtn = screen.getByRole('button', { name: /add/i });

@@ -1,21 +1,8 @@
 import Button from './utils/Button';
 import { useFriendRequests } from '../hooks/useFriendRequests';
-import { useEffect } from 'react';
 
-const SendRequestBtn = ({ userId }) => {
+const SendRequestBtn = ({ userId, showToast }) => {
   const { sendRequest, response, loading, error } = useFriendRequests();
-
-  // useEffect(() => {
-  //   console.log(response);
-  // }, [response])
-
-  useEffect(() => {
-    console.log(error);
-  }, [error]);
-
-  useEffect(() => {
-
-  }, [])
 
   // Set out the conditionals in order of which they should be evaluated
   const setBtnText = (loadingState, errorState, successState) => {

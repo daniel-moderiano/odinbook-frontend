@@ -1,7 +1,6 @@
 import Button from './utils/Button';
-import profilePicBlank from '../assets/profile-pic-blank.png';
-import { Link } from 'react-router-dom';
 import ProfileNav from './ProfileNav';
+import ProfilePic from './utils/ProfilePic';
 
 const ProfileHeader = ({ profileUser, profileType }) => {
 
@@ -10,15 +9,11 @@ const ProfileHeader = ({ profileUser, profileType }) => {
       <div className="bg-gradient-to-t from-plum-50 h-28 md:h-36 relative w-full"></div>
       <div className="w-full absolute flex items-center justify-center top-7 md:top-14 lg:top-24 lg:justify-start max-w-4xl">
         <div className="relative">
-          {profileUser.profilePic ? (
-            <img src={profileUser.profilePic.imageUrl} alt="Profile picture" className='w-40 lg:w-44 rounded-full border-4 border-white' />
-          ) : (
-            <img src={profilePicBlank} alt="Blank Profile picture" className='w-40 lg:w-44 rounded-full border-4 border-white'/>
-          )}
+          <ProfilePic imgUrl={profileUser.profilePic ? profileUser.profilePic.imageUrl : null} styles="w-40 lg:w-44 rounded-full border-4 border-white"/>
           <button className="absolute rounded-full bg-gray-200 w-9 h-9 flex items-center justify-center bottom-4 right-0 border-gray-300 border">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5">\
-              <path d="M194.6 32H317.4C338.1 32 356.4 45.22 362.9 64.82L373.3 96H448C483.3 96 512 124.7 512 160V416C512 451.3 483.3 480 448 480H64C28.65 480 0 451.3 0 416V160C0 124.7 28.65 96 64 96H138.7L149.1 64.82C155.6 45.22 173.9 32 194.6 32H194.6zM256 384C309 384 352 341 352 288C352 234.1 309 192 256 192C202.1 192 160 234.1 160 288C160 341 202.1 384 256 384z"/>
-            </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5">\
+            <path d="M194.6 32H317.4C338.1 32 356.4 45.22 362.9 64.82L373.3 96H448C483.3 96 512 124.7 512 160V416C512 451.3 483.3 480 448 480H64C28.65 480 0 451.3 0 416V160C0 124.7 28.65 96 64 96H138.7L149.1 64.82C155.6 45.22 173.9 32 194.6 32H194.6zM256 384C309 384 352 341 352 288C352 234.1 309 192 256 192C202.1 192 160 234.1 160 288C160 341 202.1 384 256 384z"/>
+          </svg>
         </button>
         </div>
       </div>

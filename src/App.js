@@ -8,9 +8,9 @@ import FriendRequests from "./components/FriendRequests";
 import { useAuthContext } from "./hooks/useAuthContext";
 import Profile from "./components/Profile";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import Toast from "./components/utils/Toast";
-import { useToast } from './hooks/useToast';
+import { useContext, useEffect } from "react";
+import Toast from './components/utils/Toast';
+import { ToastContext } from "./context/ToastContext";
 
 function App() {
   // Presence of user will allow conditional rendering of routes/route protection on frontend
@@ -19,8 +19,9 @@ function App() {
   // Capture the pathname variable app-wide to act on any and all path changes with scroll adjustments
   const { pathname } = useLocation();
 
-  // Provide an app-wide function to display a toast notification with a message of your choosing
-  const { showToast, toastVisible, toastParams } = useToast();
+  const { showToast, toastVisible, toastParams } = useContext(ToastContext);
+
+  console.log('App rendering');
 
   // Ensure the window is scrolled to the top when changing any routes
   useEffect(() => {

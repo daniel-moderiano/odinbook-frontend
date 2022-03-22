@@ -1,10 +1,15 @@
 import Button from './utils/Button';
 import { Link } from 'react-router-dom';
-import SendRequestBtn from './SendRequestBtn';
 import ProfilePic from './utils/ProfilePic';
+import { useContext } from 'react';
+import { ToastContext } from '../context/ToastContext';
 
-const FriendCard = ({ friendData, type }) => {
+const FriendCard = ({ friendData, type, setMsg }) => {
 
+  console.log('Re-render');
+
+  const { showToast } = useContext(ToastContext);
+  
   // Based on request type, buttons and actions will be unique
   return (
     <div className="shadow-sm flex lg:flex-col bg-white w-full p-3 border-t lg:rounded lg:w-52 lg:m-4 lg:items-center lg:justify-center lg:p-0 lg:shadow-sm lg:border-none">
@@ -32,7 +37,8 @@ const FriendCard = ({ friendData, type }) => {
         )}
 
         {type === 'user' && (
-          <SendRequestBtn userId={friendData._id} />
+          // <SendRequestBtn userId={friendData._id} showToast={showToast}/>
+          <Button onClick={() => showToast()} design="primary" customStyles="w-32 sm:w-36">Cancel</Button>
         )}
 
       </div>

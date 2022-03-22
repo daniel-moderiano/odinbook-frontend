@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import { AuthContextProvider } from "../context/AuthContext";
 import Post from '../components/Post';
 
 const testPostWithPics = {
@@ -73,33 +72,34 @@ const testPostNoPics = {
 };
 
 describe("Text-only posts", () => {
-  beforeEach(() => {
-    render(
-      <BrowserRouter>
-        <AuthContextProvider>
-          <Post post={testPostNoPics} />
-        </AuthContextProvider>
-      </BrowserRouter>
-    );
-  })
+  const setup = () => render(
+    <BrowserRouter>
+      <Post post={testPostNoPics} />
+    </BrowserRouter>
+  );
+
 
   it("Displays blank profile pic when none are available for the author of the post", () => {
+    setup();
     const pic = screen.getByAltText(/blank profile picture/i) 
     expect(pic).toBeInTheDocument();
   });
 
   it("Does not attempt to display image when no image url exists for the post", () => {
+    setup();
     // Image posts will have blank alt text
     const pic = screen.queryByAltText('');
     expect(pic).not.toBeInTheDocument();
   });
 
   it("Displays correct comment count for single comment", () => {
+    setup();
     const comments = screen.getByText(/1 comment/i) 
     expect(comments).toBeInTheDocument();
   });
 
   it("Displays correct like count for >1 like", () => {
+    setup();
     const likes = screen.getByText(/2/i) 
     expect(likes).toBeInTheDocument();
   });
@@ -107,33 +107,33 @@ describe("Text-only posts", () => {
 
 
 describe("Image-containing posts", () => {
-  beforeEach(() => {
-    render(
-      <BrowserRouter>
-        <AuthContextProvider>
-          <Post post={testPostWithPics} />
-        </AuthContextProvider>
-      </BrowserRouter>
-    );
-  })
+  const setup = () => render(
+    <BrowserRouter>
+      <Post post={testPostWithPics} />
+    </BrowserRouter>
+  );
 
   it("Displays profile pic when one is available for the author of the post", () => {
+    setup();
     const pic = screen.getByAltText(/profile picture/i) 
     expect(pic).toBeInTheDocument();
   });
 
   it("Displays post image when image url exists for the post", () => {
+    setup();
     // Image posts will have blank alt text
     const pic = screen.queryByAltText('');
     expect(pic).toBeInTheDocument();
   });
 
   it("Displays correct comment count for no comments", () => {
+    setup();
     const comments = screen.getByText(/No comments/i) 
     expect(comments).toBeInTheDocument();
   });
 
   it("Displays correct like count for single like", () => {
+    setup();
     const likes = screen.getByText(/1/i) 
     expect(likes).toBeInTheDocument();
   });

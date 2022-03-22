@@ -2,14 +2,16 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import Header from "./Header";
 import FriendsMenu from './FriendsMenu';
 import { useFetchGet } from '../hooks/useFetchGet';
-import { useEffect } from "react";
+import { useContext } from "react";
 import FriendCard from "./FriendCard";
 import UserList from "./UserList";
+import {ToastContext} from '../context/ToastContext'
 
 const FriendsHome = () => {
   const { user } = useAuthContext();
   // Friends data is an object containing 3 arrays of friends: acceptedFriends, incomingRequests, and outgoingRequests
   const { data: friends, loading, error } = useFetchGet(`http://localhost:3000/api/users/${user._id}/friends`);
+  const { msg, setMsg } = useContext(ToastContext);
 
   return (
     <div>
@@ -39,7 +41,7 @@ const FriendsHome = () => {
 
           <section className="bg-white my-8 md:m-4 lg:bg-transparent">
             <h2 className="text-xl font-bold p-4 lg:pb-2 lg:pt-8 lg:mt-8 lg:border-t lg:border-gray-300">Find new friends</h2>
-            <UserList />
+            <UserList setMsg={setMsg}/>
           </section>
         </main>
       </div>

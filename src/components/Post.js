@@ -1,7 +1,7 @@
 import Button from './utils/Button';
-import profilePicBlank from '../assets/profile-pic-blank.png';
 import like from '../assets/like.png'
 import StyledLink from './utils/StyledLink';
+import ProfilePic from './utils/ProfilePic';
 
 const Post = ({ post }) => {
 
@@ -23,11 +23,7 @@ const Post = ({ post }) => {
       <div className='flex items-center justify-start px-4'>
         {/* Link to user's profile */}
         <StyledLink to={`/profile/${post.user._id}`} customStyles="hover:opacity-95 active:opacity-100">
-          {post.user.profilePic ? (
-            <img src={post.user.profilePic.imageUrl} alt="Profile picture" className='w-10 mr-4 rounded-full' />
-          ) : (
-            <img src={profilePicBlank} alt="Blank Profile picture" className='w-10 mr-4 rounded-full'/>
-          )}
+          <ProfilePic imgUrl={post.user.profilePic ? post.user.profilePic.imageUrl : null} styles="w-10 mr-4 rounded-full"/>
         </StyledLink>
         <div>
           {/* Link to the user's profile page */}
