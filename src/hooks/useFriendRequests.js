@@ -30,12 +30,11 @@ export const useFriendRequests = () => {
         return;
       }
 
-
       // No error, request successful
       setLoading(false);
       setError(null);
       setResponse(responseJSON);
-    } catch (err) {
+    } catch (err) {   // for all unexpected errors not handled on backend error handling
       setError(err);
       setLoading(false);
       setResponse(null)

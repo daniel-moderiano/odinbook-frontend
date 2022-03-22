@@ -7,10 +7,25 @@ import AllFriends from "./components/AllFriends";
 import FriendRequests from "./components/FriendRequests";
 import { useAuthContext } from "./hooks/useAuthContext";
 import Profile from "./components/Profile";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import Toast from "./components/utils/Toast";
+import { useToast } from './hooks/useToast';
 
 function App() {
   // Presence of user will allow conditional rendering of routes/route protection on frontend
   const { user, authIsReady } = useAuthContext();
+
+  // Capture the pathname variable app-wide to act on any and all path changes with scroll adjustments
+  const { pathname } = useLocation();
+
+  // Provide an app-wide function to display a toast notification with a message of your choosing
+  const { showToast, toastVisible, toastParams } = useToast();
+
+  // Ensure the window is scrolled to the top when changing any routes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <div className="bg-plum-50 w-full m-0 p-0 h-screen flex flex-col">
@@ -66,6 +81,8 @@ function App() {
           }/>
         </Routes>
       </>)}
+      <Toast visible={toastVisible} params={toastParams}/>
+      <button onClick={() => showToast('error', 'There was a problem getting this toast to work.')}>Toast time!</button>
     </div>
   );
 }
