@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const FriendCard = ({ friendData, type }) => {
   // Based on request type, buttons and actions will be unique
   return (
-    <div className="shadow-sm flex lg:flex-col bg-white w-full p-3 border-t lg:rounded lg:w-52 lg:m-4 lg:items-center lg:justify-center lg:p-0 lg:shadow-sm">
+    <div className="shadow-sm flex lg:flex-col bg-white w-full p-3 border-t lg:rounded lg:w-52 lg:m-4 lg:items-center lg:justify-center lg:p-0 lg:shadow-sm lg:border-none">
 
       <Link to={`/profile/${friendData._id}`} className='flex items-center justify-center w-24 mr-4 shrink-0 lg:m-0 lg:mb-2 lg:w-full lg:p-0 hover:opacity-95 active:opacity-100'>
         {friendData.profilePic ? (

@@ -2,7 +2,7 @@ import { useFetchGet } from "../hooks/useFetchGet";
 import profilePicBlank from '../assets/profile-pic-blank.png';
 import { Link } from 'react-router-dom'
 
-const ProfileFriendsView = ({ profileUser }) => {
+const ProfileFriendsTab = ({ profileUser }) => {
   const { data: friends, loading, error } = useFetchGet(`http://localhost:3000/api/users/${profileUser._id}/friends`);
 
   return (
@@ -43,4 +43,4 @@ const ProfileFriendsView = ({ profileUser }) => {
   )
 }
 
-export default ProfileFriendsView
+export default ProfileFriendsTab;

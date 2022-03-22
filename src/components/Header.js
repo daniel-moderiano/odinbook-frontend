@@ -7,7 +7,7 @@ const Header = () => {
   const { logout } = useLogout();
 
   return (
-    <header role="banner" aria-labelledby="odinbook-logo" className="shadow-md sticky top-0 w-full bg-white grid grid-cols-1 lg:grid-cols-3 items-center z-10">
+    <header role="banner" aria-labelledby="odinbook-logo" className="shadow-md sticky top-0 w-full bg-white grid grid-cols-1 lg:grid-cols-3 items-center z-20">
       <Link to="/" className="items-center hidden lg:flex justify-self-start">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105.22 83.68" className="w-20">
           <title id="odinbook-logo" aria-labelledby="odinbook-logo">Odinbook</title>

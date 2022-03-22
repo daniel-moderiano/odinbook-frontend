@@ -7,7 +7,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { useProfileType } from '../hooks/useProfileType';
 import ProfileFriends from './ProfileFriends';
 import ProfilePosts from './ProfilePosts';
-import ProfileFriendsView from './ProfileFriendsView';
+import ProfileFriendsTab from './ProfileFriendsTab';
 
 const Profile = ({ profileView }) => {
   const { userId } = useParams();
@@ -42,8 +42,7 @@ const Profile = ({ profileView }) => {
        )}
        {profileView === 'friends' && (
          <section className='mb-6 rounded max-w-4xl w-full'>
-          <ProfileFriendsView profileUser={profileUser.user}/>
-        </section>
+          <ProfileFriendsTab profileUser={profileUser.user}/>        </section>
        )}
       </div>
      ) : (
