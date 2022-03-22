@@ -17,6 +17,7 @@ export const useCurrentUser = () => {
 
       if (!responseJSON.user) {   // error on backend, current user does not exist. Return null for user.
         setError(responseJSON);
+        setLoading(false);
         return null;
       } 
       // No error occurred. Return response containing user object

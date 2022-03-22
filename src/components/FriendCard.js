@@ -1,8 +1,12 @@
 import profilePicBlank from '../assets/profile-pic-blank.webp';
 import Button from './utils/Button';
 import { Link } from 'react-router-dom';
+import { useFriendRequests } from '../hooks/useFriendRequests';
+import { useEffect } from 'react';
+import SendRequestBtn from './SendRequestBtn';
 
 const FriendCard = ({ friendData, type }) => {
+
   // Based on request type, buttons and actions will be unique
   return (
     <div className="shadow-sm flex lg:flex-col bg-white w-full p-3 border-t lg:rounded lg:w-52 lg:m-4 lg:items-center lg:justify-center lg:p-0 lg:shadow-sm lg:border-none">
@@ -21,18 +25,22 @@ const FriendCard = ({ friendData, type }) => {
         {type === 'friend' && (
           <Button design="primary" customStyles="w-32">Unfriend</Button>
         )}
+
         {type === 'incoming' && (<>
           <div className='flex w-full items-center justify-center sm:max-w-xs'>
             <Button design="primary" customStyles="mr-3">Accept</Button>
             <Button design="ghost">Delete</Button>
           </div>
         </>)}
+
         {type === 'outgoing' && (
           <Button design="primary" customStyles="w-32 sm:w-36">Cancel</Button>
         )}
+
         {type === 'user' && (
-          <Button design="primary" customStyles="w-32 sm:w-36">Add friend</Button>
+          <SendRequestBtn userId={friendData._id} />
         )}
+
       </div>
     </div>
   )

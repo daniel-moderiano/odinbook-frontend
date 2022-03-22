@@ -17,8 +17,10 @@ export const useLogout = () => {
       });
       const responseJSON = await response.json();
 
-      if (!response.status === 200) {   // error with logout request
+      if (response.status !== 200) {   // error with logout request
         setError(responseJSON);
+        setLoading(false);
+        return;
       }
 
       // No error, logout successful. Payload not required, it will be set to null within the reducer function for this action type

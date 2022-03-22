@@ -26,6 +26,8 @@ export const useLogin = () => {
 
       if (!responseJSON.user) {   // error with login request
         setError(responseJSON);
+        setLoading(false);
+        return;
       } else {
         // No errors occured. Dispatch appropriate LOGIN action after adjusting state 
         setLoading(false);
