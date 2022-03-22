@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 
 // Control the toast notification with a single callable function 'showToast'. This will set the toastVisible property to true for the indicated duration, and provide a custom message. A toast component should then display a toast while toastVisible is true
 export const useToast = () => {
@@ -8,18 +8,18 @@ export const useToast = () => {
   // Set time that toast is visible
   const durationMilliseconds = 2000;
 
-  const showToast = (type, message) => {
+  const showToast = useCallback((type, message) => {
     setToastVisible(true);
+    // Provide safe defaults if there is not message or type explicitly set
     setToastParams({
-      type,
-      message,
+      type: type ? type : 'error',
+      message: message ? message : '',
     })
 
     setTimeout(() => {
       setToastVisible(false);
-      // setToastParams({})
     }, durationMilliseconds)
-  };
+  }, []);
 
   return { showToast, toastVisible, toastParams };
 }
