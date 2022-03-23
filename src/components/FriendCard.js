@@ -5,6 +5,7 @@ import SendRequestBtn from './SendRequestBtn';
 import AcceptRequestBtn from './AcceptRequestBtn';
 import DeleteRequestBtn from './DeleteRequestBtn';
 import CancelRequestBtn from './CancelRequestBtn';
+import UnfriendRequestBtn from './UnfriendRequestBtn';
 
 const FriendCard = ({ friendData, type }) => {
   
@@ -20,7 +21,7 @@ const FriendCard = ({ friendData, type }) => {
         <Link to={`/profile/${friendData._id}`} className='font-semibold text-base mb-2 lg:mb-3 lg:text-center whitespace-nowrap overflow-clip lg:max-w-[180px] hover:underline'>{friendData.fullName}</Link>
 
         {type === 'friend' && (
-          <Button design="primary" customStyles="w-32">Unfriend</Button>
+          <UnfriendRequestBtn userId={friendData._id}/>
         )}
 
         {type === 'incoming' && (<>
