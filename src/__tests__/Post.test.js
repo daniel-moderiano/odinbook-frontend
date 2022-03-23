@@ -1,6 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
+import { AuthContextProvider } from "../context/AuthContext";
+import { ToastContextProvider } from "../context/ToastContext";
 import Post from '../components/Post';
+import userEvent from "@testing-library/user-event";
 
 const testPostWithPics = {
   "image": {
@@ -71,13 +74,29 @@ const testPostNoPics = {
   "id": "622f19ab4212d0e69e8eb0d4"
 };
 
+const currentUser = {
+  "_id": "622ffe9baa78d2996267f821",
+  "firstName": "Chardee",
+  "lastName": "McDennis",
+};
+
+jest.mock("../hooks/useAuthContext", () => ({
+  useAuthContext: () => ({ 
+    user: currentUser
+  }),
+}));
+
+
 describe("Text-only posts", () => {
   const setup = () => render(
     <BrowserRouter>
-      <Post post={testPostNoPics} />
+      <AuthContextProvider>
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <Post post={testPostNoPics} />
+        </ToastContextProvider>
+      </AuthContextProvider>
     </BrowserRouter>
   );
-
 
   it("Displays blank profile pic when none are available for the author of the post", () => {
     setup();
@@ -105,11 +124,14 @@ describe("Text-only posts", () => {
   });
 });
 
-
 describe("Image-containing posts", () => {
   const setup = () => render(
     <BrowserRouter>
-      <Post post={testPostWithPics} />
+      <AuthContextProvider>
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <Post post={testPostWithPics} />
+        </ToastContextProvider>
+      </AuthContextProvider>
     </BrowserRouter>
   );
 
@@ -137,4 +159,13 @@ describe("Image-containing posts", () => {
     const likes = screen.getByText(/1/i) 
     expect(likes).toBeInTheDocument();
   });
+
+  it('Increases local like count when clicking like button', () => {
+    setup();
+    const likeBtn = screen.getByRole('button', { name: /like/i });
+    userEvent.click(likeBtn);
+
+    const likes = screen.getByText(/2/i) 
+    expect(likes).toBeInTheDocument();
+  })
 });
