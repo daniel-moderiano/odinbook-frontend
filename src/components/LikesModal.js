@@ -52,7 +52,7 @@ const LikesModal = ({ postId, closeModal }) => {
            {likes && (
             <div className="text-sm text-gray-600 flex items-center justify-center">
               <img src={like} alt="Love heart" className='w-4 mr-1 mb-px' />
-              <span className='mt-px'>{likes.length} likes</span>
+              <span className='mt-px'>{(likes.length !== 1) ? `${likes.length} likes` : `1 like`}</span>
             </div>
            )}
 
@@ -70,7 +70,7 @@ const LikesModal = ({ postId, closeModal }) => {
             {likes && (
               <ul>
                 {likes.map((user) => (
-                  <li className='flex items-center justify-start border-b w-full py-2'>
+                  <li key={user._id} className='flex items-center justify-start border-b w-full py-2'>
                     <Link to={`/profile/${user._id}`} className="hover:opacity-95 active:opacity-100">
                       <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="w-10 mr-4 rounded-full"/>
                     </Link>
