@@ -12,6 +12,7 @@ export const ToastContextProvider = ({ children }) => {
   // Call this function from any component when a toast message needs to be displayed. 
   const showToast = useCallback((type, message) => {
     setToastVisible(true);
+ 
     // Provide safe defaults if there is not message or type explicitly set
     setToastParams({
       type: type ? type : 'error',
