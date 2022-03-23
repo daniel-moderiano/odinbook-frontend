@@ -43,6 +43,24 @@ const users = {
           "id": "622ffe9baa78d2996267f821"
       }
   ]
+};
+
+const friends = {
+  acceptedFriends: [
+    {user: {
+      "profilePic": {
+          "imageUrl": "https://randomuser.me/api/portraits/women/14.jpg"
+      },
+      "_id": "622ffe9baa78d2996267f831",
+      "firstName": "Vivienne",
+      "lastName": "Klein",
+      "fullName": "Vivienne Klein",
+      "dateJoined": "Invalid DateTime",
+      "id": "622ffe9baa78d2996267f831"
+  },},
+  ],
+  outgoingRequests: [],
+  incomingRequests: [],
 }
 
 // Mock useFetchGet to return a pre-defined users object
@@ -61,32 +79,23 @@ jest.mock("../hooks/useAuthContext", () => ({
   }),
 }));
 
-it("Renders all relevant users with provided users list of 3 users (skips current user)", () => {
+it("Renders all relevant users with provided users list of 3 users (skips related users)", () => {
   render(
     <BrowserRouter>
       <AuthContextProvider>
         <ToastContextProvider value={{ showToast: jest.fn }}>
-          <UserList />
+          <UserList userFriends={friends}/>
         </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
   );
   const userCards = screen.queryAllByRole('img') 
-  expect(userCards.length).toBe(2);
-});
+  const currentUserCard = screen.queryByText(/chardee mcdennis/i);
+  const friendUserCard = screen.queryByText(/vivienne klein/i) ;
 
-it("Does not render the current user in the user list", () => {
-  render(
-    <BrowserRouter>
-      <AuthContextProvider>
-        <ToastContextProvider value={{ showToast: jest.fn }}>
-          <UserList />
-        </ToastContextProvider>
-      </AuthContextProvider>
-    </BrowserRouter>
-  );
-  const userCard = screen.queryByText(/chardee mcdennis/i) 
-  expect(userCard).not.toBeInTheDocument();
+  expect(currentUserCard).not.toBeInTheDocument(); 
+  expect(friendUserCard).not.toBeInTheDocument();
+  expect(userCards.length).toBe(1);
 });
 
  
