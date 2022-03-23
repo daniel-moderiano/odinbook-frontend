@@ -1,4 +1,4 @@
-import { createContext, useState, useCallback } from 'react';
+import { createContext, useState, useCallback, useContext } from 'react';
 
 export const ToastContext = createContext();
 
@@ -29,4 +29,12 @@ export const ToastContextProvider = ({ children }) => {
       { children }
     </ToastContext.Provider>
   )
+}
+
+export const useToastContext = () => {
+  const context = useContext(ToastContext);
+
+  // Can add conditional here to ensure toast context is used only by those components wrapped in a toast context provider
+
+  return context;
 }

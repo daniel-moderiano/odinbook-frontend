@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import FriendCard from '../components/FriendCard';
 import { BrowserRouter } from "react-router-dom";
+import { ToastContextProvider } from "../context/ToastContext";
 
 const friendData = {
   "user": {
@@ -53,7 +54,9 @@ const outgoingRequest = {
 describe("Friend card rendering (i.e. accepts that have been requests)", () => {
   const setup = () => render(
     <BrowserRouter>
-      <FriendCard friendData={friendData.user} type="friend" />
+      <ToastContextProvider value={{ showToast: jest.fn }}>
+        <FriendCard friendData={friendData.user} type="friend" />
+      </ToastContextProvider>
     </BrowserRouter>
   );
 
@@ -78,7 +81,9 @@ describe("Incoming friend request rendering", () => {
   it("Renders only the accept and delete buttons", () => {
     render(
       <BrowserRouter>
-        <FriendCard friendData={incomingRequest.user} type="incoming" />
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <FriendCard friendData={incomingRequest.user} type="incoming" />
+        </ToastContextProvider>
       </BrowserRouter>
     );
     const deleteBtn = screen.getByRole('button', { name: /delete/i });
@@ -98,7 +103,9 @@ describe("Outgoing friend request rendering", () => {
   it("Renders only a cancel button", () => {
     render(
       <BrowserRouter>
-        <FriendCard friendData={outgoingRequest.user} type="outgoing" />
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <FriendCard friendData={outgoingRequest.user} type="outgoing" />
+        </ToastContextProvider>
       </BrowserRouter>
     );
     const cancelBtn = screen.getByRole('button', { name: /cancel/i });
@@ -115,7 +122,9 @@ describe("General user (potential friends) rendering", () => {
   it("Renders only an 'add friend' button", () => {
     render(
       <BrowserRouter>
-        <FriendCard friendData={outgoingRequest.user} type="user" />
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <FriendCard friendData={outgoingRequest.user} type="user" />
+        </ToastContextProvider>
       </BrowserRouter>
     );
     const addBtn = screen.getByRole('button', { name: /add/i });

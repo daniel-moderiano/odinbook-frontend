@@ -1,4 +1,11 @@
-const Button = ({ children, type, design, onClick, customStyles, disabled }) => {
+const Button = ({ 
+  children, 
+  type, 
+  design, 
+  onClick, 
+  customStyles, 
+  disabled,
+}) => {
   // Define CSS styles for different types of buttons
   const designClass = (design) => {
     let CSS = '';

@@ -3,7 +3,7 @@ import { useFriendRequests } from '../hooks/useFriendRequests';
 import { useToastContext } from '../context/ToastContext';
 import { useEffect } from 'react';
 
-const SendRequestBtn = ({ userId }) => {
+const DeleteRequestBtn = ({ userId }) => {
   const { request, response, loading, error } = useFriendRequests(userId);
   const { showToast } = useToastContext();
 
@@ -16,26 +16,26 @@ const SendRequestBtn = ({ userId }) => {
   // Set out the conditionals in order of which they should be evaluated
   const setBtnText = () => {
     if (loading) {
-      return 'Sending...';
+      return 'Deleting...';
     }
 
     if (error) {
-      return 'Add Friend';
+      return 'Delete';
     }
 
     if (response) {
-      return 'Sent!'
+      return 'Deleted!'
     }
 
     // Default state should be returned
-    return 'Add Friend';
+    return 'Delete';
   }
 
   return (
-    <Button onClick={() => request('sendRequest')} design="primary" customStyles="w-32 sm:w-36" disabled={response ? true : false}>
+    <Button onClick={() => request('deleteRequest')} design="ghost" disabled={response ? true : false}>
       {setBtnText(loading, error, response)}
     </Button>
   )
 }
 
-export default SendRequestBtn
+export default DeleteRequestBtn

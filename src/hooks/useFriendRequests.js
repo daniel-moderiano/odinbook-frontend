@@ -1,12 +1,12 @@
 import { useState } from "react"
 
-export const useFriendRequests = () => {
+export const useFriendRequests = (userId) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
 
   // Accepts the user ID of the request target (i.e. user you are sending request to)
-  const sendRequest = async (userId) => {
+  const request = async (requestType) => {
     setError(null);
     setLoading(true);
     setResponse(null);
@@ -17,7 +17,7 @@ export const useFriendRequests = () => {
         headers: {"Content-type": "application/json; charset=UTF-8"},
         mode: 'cors',
         credentials: 'include',
-        body: JSON.stringify({ requestType: 'sendRequest' })
+        body: JSON.stringify({ requestType })
       });
       const responseJSON = await response.json();
 
@@ -41,6 +41,6 @@ export const useFriendRequests = () => {
     } 
   };
 
-  return { sendRequest, response, loading, error };
+  return { request, response, loading, error };
 }
 

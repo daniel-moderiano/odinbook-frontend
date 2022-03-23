@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "../context/AuthContext";
 import UserList from '../components/UserList';
+import { ToastContextProvider } from "../context/ToastContext";
 
 const currentUser = {
   "_id": "622ffe9baa78d2996267f821",
@@ -64,7 +65,9 @@ it("Renders all relevant users with provided users list of 3 users (skips curren
   render(
     <BrowserRouter>
       <AuthContextProvider>
-        <UserList />
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <UserList />
+        </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
   );
@@ -76,7 +79,9 @@ it("Does not render the current user in the user list", () => {
   render(
     <BrowserRouter>
       <AuthContextProvider>
-        <UserList />
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <UserList />
+        </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
   );

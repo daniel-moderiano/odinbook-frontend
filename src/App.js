@@ -19,9 +19,7 @@ function App() {
   // Capture the pathname variable app-wide to act on any and all path changes with scroll adjustments
   const { pathname } = useLocation();
 
-  const { showToast, toastVisible, toastParams } = useContext(ToastContext);
-
-  console.log('App rendering');
+  const { toastVisible, toastParams } = useContext(ToastContext);
 
   // Ensure the window is scrolled to the top when changing any routes
   useEffect(() => {
