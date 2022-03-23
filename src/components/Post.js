@@ -2,8 +2,12 @@ import Button from './utils/Button';
 import like from '../assets/like.png'
 import StyledLink from './utils/StyledLink';
 import ProfilePic from './utils/ProfilePic';
+import LikesModal from './LikesModal';
+import { useState } from 'react';
 
 const Post = ({ post }) => {
+  
+  const [showModal, setShowModal] = useState(false);
 
   const customiseCommentText = (numComments) => {
     if (numComments === 0) {
@@ -39,7 +43,7 @@ const Post = ({ post }) => {
       </div>
       <div className='flex items-center justify-between px-4 py-2'>
         {/* Show modal listing user's who have liked (name + profile pic) */}
-        <Button customStyles="text-sm text-gray-600 flex items-center justify-center hover:underline hover:decoration-gray-600">
+        <Button customStyles="text-sm text-gray-600 flex items-center justify-center hover:underline hover:decoration-gray-600" onClick={() => setShowModal(true)}>
           <img src={like} alt="Love heart" className='w-4 mr-1 mb-px' />
           <span className='mt-px'>{post.numLikes}</span>
         </Button>
@@ -60,6 +64,9 @@ const Post = ({ post }) => {
           Comment
         </Button>
       </div>
+
+      
+      {showModal && (<LikesModal postId={post._id} closeModal={() => setShowModal(false)}/>)}
     </article>
   )
 }

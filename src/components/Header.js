@@ -9,8 +9,8 @@ const Header = () => {
   return (
     <header role="banner" aria-labelledby="odinbook-logo" className="shadow-md sticky top-0 w-full bg-white grid grid-cols-1 lg:grid-cols-3 items-center z-20">
       <Link to="/" className="items-center hidden lg:flex justify-self-start">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105.22 83.68" className="w-20">
-          <title id="odinbook-logo" aria-labelledby="odinbook-logo">Odinbook</title>
+        <svg aria-labelledby="odinbook-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105.22 83.68" className="w-20">
+          <title id="odinbook-logo" >Odinbook</title>
           <g id="Layer_2" data-name="Layer 2">
             <g id="Layer_1-2" data-name="Layer 1">
               <rect fill="#51557d" className="cls-1" width="105.22" height="83.68" />
