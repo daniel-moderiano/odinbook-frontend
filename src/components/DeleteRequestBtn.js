@@ -11,7 +11,13 @@ const DeleteRequestBtn = ({ userId }) => {
     if (error) {
       showToast('error', error.errorMsg)
     }
-  }, [error,showToast])
+  }, [error,showToast]);
+
+  useEffect(() => {
+    if (response) {
+      showToast('success', 'Request deleted successfully')
+    }
+  }, [response, showToast])
 
   // Set out the conditionals in order of which they should be evaluated
   const setBtnText = () => {

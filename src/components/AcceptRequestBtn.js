@@ -11,7 +11,14 @@ const AcceptRequestBtn = ({ userId }) => {
     if (error) {
       showToast('error', error.errorMsg)
     }
-  }, [error,showToast])
+  }, [error,showToast]);
+
+  
+  useEffect(() => {
+    if (response) {
+      showToast('success', 'Request accepted.')
+    }
+  }, [response, showToast])
 
   // Set out the conditionals in order of which they should be evaluated
   const setBtnText = () => {
