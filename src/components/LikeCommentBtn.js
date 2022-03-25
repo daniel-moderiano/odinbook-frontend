@@ -24,7 +24,7 @@ const LikeCommentBtn = ({ postId, comment, setLocalLike }) => {
     }
 
     // User already liked the post at an earlier time
-    const alreadyLiked = (comment.likes.some((id) => id === currentUser._id));
+    const alreadyLiked = (comment.likes.some((like) => like._id === currentUser._id));
 
     return alreadyLiked;
   }
@@ -48,7 +48,7 @@ const LikeCommentBtn = ({ postId, comment, setLocalLike }) => {
   }
 
   return (
-    <Button customStyles="text-xs text-gray-500 mr-4 font-medium hover:bg-gray-100 rounded-lg w-full disabled:hover:bg-transparent" disabled={disableButton()} onClick={() => {
+    <Button customStyles="text-xs text-gray-500 mr-4 font-medium hover:bg-gray-100 rounded w-full disabled:hover:bg-transparent" disabled={disableButton()} onClick={() => {
       likeComment(postId, comment._id);
       setLocalLike(1);    // Ensures a local state change and re-render of likes. Reverted if error occurs
     }}>
