@@ -5,12 +5,16 @@ import ProfilePic from './utils/ProfilePic';
 import LikesModal from './LikesModal';
 import { useState } from 'react';
 import LikeBtn from './LikeBtn';
+import Comments from './Comments';
 
 const Post = ({ post }) => {
   const [showModal, setShowModal] = useState(false);
 
   // A system for making a local change to the number of likes. This is indepndent of the db, and will be reverted in the case of an error with liking post on the backend
   const [localLike, setLocalLike] = useState(0);
+
+  // Show the comments section of a post by clicking on the numComments button (one way functionality)
+  const [showComments, setShowComments] = useState(false);
 
   const customiseCommentText = (numComments) => {
     if (numComments === 0) {
@@ -26,6 +30,7 @@ const Post = ({ post }) => {
   };
 
   return (
+    <>
     <article className="rounded shadow-sm bg-white mb-6 pt-3 pb-1">
       <div className='flex items-center justify-start px-4'>
         {/* Link to user's profile */}
@@ -51,7 +56,9 @@ const Post = ({ post }) => {
           <span className='mt-px'>{post.numLikes + localLike}</span>
         </Button>
         {/* Fetch comments and append to the DOM below this section */}
-        <Button customStyles="text-sm text-gray-600 hover:underline hover:decoration-gray-600">{customiseCommentText(post.numComments)}</Button>
+        {post.numComments > 0 && (
+          <Button customStyles="text-sm text-gray-600 hover:underline hover:decoration-gray-600" onClick={() => setShowComments(true)}>{customiseCommentText(post.numComments)}</Button>
+        )}
       </div>
       <div className='flex items-center justify-evenly mx-4 border-t pt-1'>
         <LikeBtn post={post} setLocalLike={setLocalLike}/>
@@ -62,9 +69,14 @@ const Post = ({ post }) => {
           Comment
         </Button>
       </div>
-
-      {showModal && (<LikesModal postId={post._id} closeModal={() => setShowModal(false)}/>)}
+      
+      {showComments && (
+        <Comments postId={post._id}/>
+      )}
+      
     </article>
+    {showModal && (<LikesModal postId={post._id} closeModal={() => setShowModal(false)}/>)}
+    </>
   )
 }
 

@@ -122,6 +122,22 @@ describe("Text-only posts", () => {
     const likes = screen.getByText(/2/i) 
     expect(likes).toBeInTheDocument();
   });
+
+  it("Hides comments section by default", () => {
+    setup();
+    const comments = screen.queryByTestId(/comments/i) 
+    expect(comments).not.toBeInTheDocument();
+  });
+
+  it("Shows comments section upon clicking comments button", () => {
+    setup();
+
+    const commentsBtn =  screen.getByRole('button', { name: /1 comment/i });
+    userEvent.click(commentsBtn);
+
+    const comments = screen.getByTestId(/comments/i) 
+    expect(comments).toBeInTheDocument();
+  });
 });
 
 describe("Image-containing posts", () => {
@@ -148,10 +164,10 @@ describe("Image-containing posts", () => {
     expect(pic).toBeInTheDocument();
   });
 
-  it("Displays correct comment count for no comments", () => {
+  it("Does not display 'x comments' button when there are no comments for a post", () => {
     setup();
-    const comments = screen.getByText(/No comments/i) 
-    expect(comments).toBeInTheDocument();
+    const comments = screen.queryByText(/comments/i) 
+    expect(comments).not.toBeInTheDocument();
   });
 
   it("Displays correct like count for single like", () => {
