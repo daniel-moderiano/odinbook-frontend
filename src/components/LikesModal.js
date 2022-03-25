@@ -5,8 +5,9 @@ import { useFetchGet } from '../hooks/useFetchGet';
 import ProfilePic from './utils/ProfilePic';
 import like from '../assets/like.png'
 
-const LikesModal = ({ postId, closeModal }) => {
-  const { data: likes, loading, error } = useFetchGet(`http://localhost:3000/api/posts/${postId}/likes`);
+const LikesModal = ({ postId, commentId, closeModal }) => {
+  // Amend the fetch URL if comment ID is present (i.e. fetching likes for comment instead of post)
+  const { data: likes, loading, error } = useFetchGet(`http://localhost:3000/api/posts/${postId}/${commentId ? `comments/${commentId}/likes` : 'likes'}`);
 
   // Add user-expected actions when pressing the escape key or clicking outside the modal (close the modal)
   useEffect(() => {

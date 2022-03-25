@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export const useLikePost = () => {
+export const useLikeComment = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);

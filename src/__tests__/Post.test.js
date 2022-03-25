@@ -164,10 +164,10 @@ describe("Image-containing posts", () => {
     expect(pic).toBeInTheDocument();
   });
 
-  it("Does not display 'x comments' button when there are no comments for a post", () => {
+  it("Displays 'no comments' when there are no comments for the post", () => {
     setup();
-    const comments = screen.queryByText(/comments/i) 
-    expect(comments).not.toBeInTheDocument();
+    const comments = screen.getByText(/no comments/i) 
+    expect(comments).toBeInTheDocument();
   });
 
   it("Displays correct like count for single like", () => {
