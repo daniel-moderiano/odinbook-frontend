@@ -7,7 +7,6 @@ export const useSignup = () => {
   const { dispatch } = useAuthContext();
 
   const signup = async (formData) => {
-    const { email, password, confirmPassword, firstName, lastName } = formData;
     setLoading(true);
     setError(null);
     try {
@@ -15,16 +14,10 @@ export const useSignup = () => {
         method: 'POST', 
         mode: 'cors', 
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'application/json'
         },
         credentials: 'include',
-        body: new URLSearchParams([
-          ['email', email], 
-          ['password', password],
-          ['confirmPassword', confirmPassword],
-          ['firstName', firstName],
-          ['lastName', lastName],
-        ]).toString()
+        body: JSON.stringify(formData),
       });
 
       const responseJSON = await response.json();

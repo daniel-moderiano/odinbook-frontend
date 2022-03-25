@@ -8,7 +8,6 @@ export const useLogin = () => {
 
   // Accepts formData param - an object containing the relevant fields/values for login request
   const login = async (formData) => {
-    const { email, password } = formData;
     setLoading(true);
     setError(null);
     try {
@@ -16,10 +15,10 @@ export const useLogin = () => {
         method: 'POST', 
         mode: 'cors', 
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'application/json'
         },
         credentials: 'include',
-        body: new URLSearchParams([['email', email], ['password', password]]).toString()
+        body: JSON.stringify(formData),
       });
 
       const responseJSON = await response.json();

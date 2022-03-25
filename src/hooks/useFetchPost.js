@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 
 export const useFetchPost = (url, data) => {
-  const [data, setData] = useState(null);
+  const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -24,7 +24,7 @@ export const useFetchPost = (url, data) => {
         });
         // Data should always be in JSON format. Note that the error message 'Unexpted token < in JSON' means we are getting HTML. Use response.text() to see this
         const responseJSON = await response.json();
-        setData(responseJSON);
+        setResponse(responseJSON);
       } catch (err) {
         setError(err);
       } finally {
@@ -34,7 +34,7 @@ export const useFetchPost = (url, data) => {
     };
     // Must call the fetch function to complete the hook
     fetchData();
-  }, [url])
+  }, [url, data])
 
-  return { data, loading, error };
+  return { response, loading, error };
 }

@@ -11,6 +11,8 @@ const currentUser = {
   "lastName": "McDennis",
 };
 
+const postId = '623131b16c80b0c51067d60a';
+
 jest.mock("../hooks/useAuthContext", () => ({
   useAuthContext: () => ({ 
     user: currentUser
@@ -23,7 +25,7 @@ it("Hides the post button by default", () => {
     <BrowserRouter>
       <AuthContextProvider>
         <ToastContextProvider value={{ showToast: jest.fn }}>
-          <CommentForm />
+          <CommentForm postId={postId}/>
         </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
@@ -39,7 +41,7 @@ it('Shows post button only when the user types input', () => {
     <BrowserRouter>
       <AuthContextProvider>
         <ToastContextProvider value={{ showToast: jest.fn }}>
-          <CommentForm />
+          <CommentForm postId={postId}/>
         </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
@@ -51,4 +53,16 @@ it('Shows post button only when the user types input', () => {
 
   const postBtn = screen.getByRole('button', { name: /post/i });
   expect(postBtn).toBeInTheDocument();
+});
+
+it('Calls useFetchPost on form submission (i.e. posting comment)', () => {
+  render(
+    <BrowserRouter>
+      <AuthContextProvider>
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <CommentForm postId={postId}/>
+        </ToastContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
+  );
 })
