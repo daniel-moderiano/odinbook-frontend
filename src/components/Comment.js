@@ -12,12 +12,12 @@ const Comment = ({ postId, commentData }) => {
 
   return (
     <>
-    <article className="flex w-full items-start justify-start mb-4">
+    <article className="flex items-start justify-start mb-4 pr-2">
       <ProfilePic imgUrl={commentData.user.profilePic ? commentData.user.profilePic.imageUrl : null} styles="w-8 mr-2 mt-1 rounded-full"/>
       <div className="flex flex-col items-start justify-center w-full">
-        <div className="bg-zinc-200/50 rounded p-2 w-full">
-          <div className="flex w-full items-center justify-between mb-2">
-            <h3 className="font-semibold text-sm">{commentData.user.fullName}</h3>
+        <div className="bg-zinc-200/50 rounded p-3 pr-3">
+          <div className="flex w-full items-center justify-between mb-1">
+            <h3 className="font-semibold text-sm mr-4">{commentData.user.fullName}</h3>
             <p className="text-xs text-gray-500">{commentData.dateAdded}</p>
           </div>
           <p className="text-sm w-full">{commentData.text}</p>
