@@ -85,7 +85,7 @@ const Post = ({ post }) => {
       {showComments && (
         <div>
           <CommentForm postId={post._id} updateComments={setUpdateKey}/>
-          <Comments postId={post._id} updateCommentCount={setNewCommentCount} key={updateKey}/>
+          <Comments postId={post._id} updateCommentCount={setNewCommentCount} updateKey={setUpdateKey} key={updateKey}/>
         </div>
       )}
       

@@ -3,7 +3,7 @@ import { useFetchGet } from "../hooks/useFetchGet";
 import Comment from "./Comment";
 import { useToastContext } from "../context/ToastContext";
 
-const Comments = ({ postId, updateCommentCount }) => {
+const Comments = ({ postId, updateCommentCount, updateKey }) => {
   const { data: comments, loading, error } = useFetchGet(`http://localhost:3000/api/posts/${postId}/comments`);
   const { showToast } = useToastContext();
 
@@ -30,7 +30,7 @@ const Comments = ({ postId, updateCommentCount }) => {
       {comments && (
         <div className="w-full px-4 pt-4">
           {comments.map((comment) => (
-            <Comment key={comment._id} commentData={comment} postId={postId}/>
+            <Comment key={comment._id} commentData={comment} postId={postId} updateKey={updateKey}/>
           ))}
         </div>
       )}

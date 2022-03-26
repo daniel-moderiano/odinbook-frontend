@@ -95,7 +95,7 @@ it("Renders the correct number of comments", () => {
     <BrowserRouter>
       <AuthContextProvider>
         <ToastContextProvider value={{ showToast: jest.fn }}>
-          <Comments postId="622ffe9baa78d2996267f834"/>
+          <Comments postId="622ffe9baa78d2996267f834" updateCommentCount={jest.fn} updateKey={jest.fn}/>
         </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
