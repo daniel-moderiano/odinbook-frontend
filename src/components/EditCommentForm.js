@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { usePostComment } from '../hooks/usePostComment';
 import { useToastContext } from '../context/ToastContext';
+import { useEditComment } from '../hooks/useEditComment';
 
-const EditCommentForm = ({ postId, currentText, updateComments }) => {
-  const { postComment, response, loading, error } = usePostComment()
+const EditCommentForm = ({ postId, commentId, currentText, updateComments }) => {
+  const { editComment, response, loading, error } = useEditComment()
   const [commentText, setCommentText] = useState(currentText);
 
   const { showToast } = useToastContext();
@@ -15,16 +15,16 @@ const EditCommentForm = ({ postId, currentText, updateComments }) => {
   }, [error,showToast]);
 
   // Update UI changes to reflect a successful comment submission ('reset' form and thus hide post button)
-  // useEffect(() => {
-  //   if (response) {
-  //     setCommentText('');
-  //     updateComments(Math.random());
-  //   }
-  // }, [response, updateComments])
+  useEffect(() => {
+    if (response) {
+      // setCommentText('');
+      updateComments(Math.random());
+    }
+  }, [response, updateComments])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // postComment(postId, commentText);
+    editComment(postId, commentId, commentText);
   }
 
   return (

@@ -43,7 +43,7 @@ const Comment = ({ postId, commentData, updateKey }) => {
               <p className="text-xs text-gray-500">{commentData.dateAdded}</p>
             </div>
             {editMode ? (
-              <EditCommentForm currentText={commentData.text} postId={postId}/>
+              <EditCommentForm currentText={commentData.text} commentId={commentData._id} postId={postId} updateComments={updateKey}/>
             ) : (
               <p className="text-sm w-full">{commentData.text}</p>
             )}        
