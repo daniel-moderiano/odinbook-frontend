@@ -3,9 +3,16 @@ import { useFetchGet } from "../hooks/useFetchGet";
 import Comment from "./Comment";
 import { useToastContext } from "../context/ToastContext";
 
-const Comments = ({ postId }) => {
+const Comments = ({ postId, updateCommentCount }) => {
   const { data: comments, loading, error } = useFetchGet(`http://localhost:3000/api/posts/${postId}/comments`);
   const { showToast } = useToastContext();
+
+  // When the number of comments changes, update the parent Post component of the most current number of comments
+  useEffect(() => {
+    if (comments) {
+      updateCommentCount(comments.length);
+    }
+  }, [updateCommentCount, comments]);
 
   useEffect(() => {
     if (error) {
@@ -18,7 +25,7 @@ const Comments = ({ postId }) => {
       <span className="text-sm text-gray-500 block mx-4 pb-0.5 pt-4">All comments</span>
       {/* Comment input here? */}
       {loading && (
-        <p>Loading...</p>
+        <p>Loading comments...</p>
       )}
       {comments && (
         <div className="w-full px-4 pt-4">

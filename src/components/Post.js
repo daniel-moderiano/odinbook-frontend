@@ -17,6 +17,12 @@ const Post = ({ post }) => {
   // Show the comments section of a post by clicking on the numComments button (one way functionality)
   const [showComments, setShowComments] = useState(false);
 
+  // A more up-to-date comment count that can be retrieved without making a new API call to update the entire post component. Updates from within the Comments component. Initialised to the number of comments at initial post data fetch.
+  const [newCommentCount, setNewCommentCount] = useState(post.numComments);
+
+  // A key that is passed to the comments component. When a user successfully posts a comment with the comment form, the comments component should be re-rendered in full (thereby calling comments fetch to update with new comment). The re-render will be achieved by randomising this key on successful comment post
+  const [updateKey, setUpdateKey] = useState(0);
+
   const customiseCommentText = (numComments) => {
     if (numComments === 0) {
       return 'No comments';
@@ -60,7 +66,10 @@ const Post = ({ post }) => {
 
         <Button customStyles="text-sm text-gray-600 hover:underline hover:decoration-gray-600" onClick={() => {
           if (post.numComments > 0) { setShowComments(true) }
-        }}>{customiseCommentText(post.numComments)}</Button>
+        }}>
+          {/* Adjust the displayed number of comments to match the most up-to-date source numComments */}
+          {customiseCommentText(newCommentCount)}
+        </Button>
 
       </div>
       <div className={`flex items-center justify-evenly mx-4 border-t pt-1 ${showComments && 'border-b mb-6 py-1'}`}>
@@ -75,8 +84,8 @@ const Post = ({ post }) => {
       
       {showComments && (
         <div>
-          <CommentForm postId={post._id}/>
-          <Comments postId={post._id}/>
+          <CommentForm postId={post._id} updateComments={setUpdateKey}/>
+          <Comments postId={post._id} updateCommentCount={setNewCommentCount} key={updateKey}/>
         </div>
       )}
       
