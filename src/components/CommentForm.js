@@ -2,19 +2,22 @@ import ProfilePic from './utils/ProfilePic';
 import Input from './utils/Input';
 import { useState } from 'react';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { usePostComment } from '../hooks/usePostComment';
 
-const CommentInput = ({ imageUrl, postId }) => {
+const CommentForm = ({ imageUrl, postId }) => {
   const { user: currentUser } = useAuthContext();
+  const { postComment, response, loading, error } = usePostComment()
   const [commentText, setCommentText] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    postComment(postId, commentText);
   }
 
   return (
     <div>
       <ProfilePic imgUrl={imageUrl ? imageUrl : null} styles="w-8 mr-2 mt-1 rounded-full"/>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Input 
           name="commentText" 
           value={commentText}
@@ -29,4 +32,4 @@ const CommentInput = ({ imageUrl, postId }) => {
   )
 }
 
-export default CommentInput
+export default CommentForm

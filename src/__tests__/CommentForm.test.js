@@ -19,6 +19,13 @@ jest.mock("../hooks/useAuthContext", () => ({
   }),
 }));
 
+jest.mock("../hooks/usePostComment", () => ({
+  usePostComment: () => ({ 
+    response: {},
+    loading: null,
+    error: null
+  }),
+}));
 
 it("Hides the post button by default", () => {
   render(
@@ -54,15 +61,3 @@ it('Shows post button only when the user types input', () => {
   const postBtn = screen.getByRole('button', { name: /post/i });
   expect(postBtn).toBeInTheDocument();
 });
-
-it('Calls useFetchPost on form submission (i.e. posting comment)', () => {
-  render(
-    <BrowserRouter>
-      <AuthContextProvider>
-        <ToastContextProvider value={{ showToast: jest.fn }}>
-          <CommentForm postId={postId}/>
-        </ToastContextProvider>
-      </AuthContextProvider>
-    </BrowserRouter>
-  );
-})
