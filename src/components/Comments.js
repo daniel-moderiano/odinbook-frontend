@@ -1,14 +1,21 @@
+import { useEffect } from "react";
 import { useFetchGet } from "../hooks/useFetchGet";
 import Comment from "./Comment";
-import CommentForm from "./CommentForm";
+import { useToastContext } from "../context/ToastContext";
 
 const Comments = ({ postId }) => {
   const { data: comments, loading, error } = useFetchGet(`http://localhost:3000/api/posts/${postId}/comments`);
+  const { showToast } = useToastContext();
+
+  useEffect(() => {
+    if (error) {
+      showToast('error', error.errorMsg)
+    }
+  }, [error,showToast]);
 
   return (
     <section data-testid="comments" className="w-full mt-1">
-      <CommentForm postId={postId}/>
-      <span className="text-sm text-gray-500 block border-t mx-4 pb-0.5 pt-4">All comments</span>
+      <span className="text-sm text-gray-500 block mx-4 pb-0.5 pt-4">All comments</span>
       {/* Comment input here? */}
       {loading && (
         <p>Loading...</p>
