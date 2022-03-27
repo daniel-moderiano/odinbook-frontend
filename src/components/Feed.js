@@ -11,24 +11,31 @@ const Feed = () => {
 
 
   return (
-    <div className='max-w-3xl lg:min-w-full'>
-      {[1, 2, 3, 4, 5].map((skeleton, index) => (
-        <SkeletonPost key={index}/>
-      ))}
+    <div className='w-full max-w-3xl lg:min-w-full'>
+      {loading && (
+        <div>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => (
+          <SkeletonPost key={index}/>
+        ))}
+        </div>
+      )}
 
 
       {posts && (
-        <div>
-          {posts.map((post) => (
-            <Post post={post} key={post._id}/>
-          ))}
-        </div>
+        <>
+          <div>
+            {posts.map((post) => (
+              <Post post={post} key={post._id}/>
+            ))}
+          </div>
+          <div className='flex flex-col items-center content-center rounded shadow-sm bg-white px-4 py-8 mb-6 '>
+            <p className='font-bold text-xl text-gray-600'>No more posts</p>
+            <p className='text-md text-gray-600 mb-4'>Add more friends to see more posts in your Feed.</p>
+            <StyledLink to="/" design="btn-primary" customStyles="w-40">Find Friends</StyledLink>
+          </div>
+        </>
       )}
-      <div className='flex flex-col items-center content-center rounded shadow-sm bg-white px-4 py-8 mb-6 '>
-        <p className='font-bold text-xl text-gray-600'>No more posts</p>
-        <p className='text-md text-gray-600 mb-4'>Add more friends to see more posts in your Feed.</p>
-        <StyledLink to="/" design="btn-primary" customStyles="w-40">Find Friends</StyledLink>
-      </div>
+      
     </div>
   )
 }
