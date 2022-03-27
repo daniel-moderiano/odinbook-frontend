@@ -1,25 +1,32 @@
-import {useFetchGet} from '../hooks/useFetchGet';
+import { useFetchGet } from '../hooks/useFetchGet';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useToastContext } from '../context/ToastContext';
 import Post from './Post';
 import StyledLink from './utils/StyledLink';
 import SkeletonPost from './skeletons/SkeletonPost';
+import { useEffect } from 'react';
 
 const Feed = () => {
   const { user } = useAuthContext();
-
   const { data: posts, loading, error } = useFetchGet(`http://localhost:3000/api/users/${user._id}/feed`);
+  const { showToast } = useToastContext();
 
+  // Display toast on error of loading feed
+  useEffect(() => {
+    if (error) {
+      showToast('error', error.errMsg);
+    }
+  }, [error, showToast])
 
   return (
     <div className='w-full max-w-3xl lg:min-w-full'>
       {loading && (
-        <div>
+        <div data-testid="skeleton">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => (
           <SkeletonPost key={index}/>
         ))}
         </div>
       )}
-
 
       {posts && (
         <>
@@ -40,4 +47,4 @@ const Feed = () => {
   )
 }
 
-export default Feed
+export default Feed;
