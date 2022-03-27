@@ -3,8 +3,6 @@ import Feed from "./Feed";
 import SideMenu from "./SideMenu";
 import SideFooter from "./SideFooter";
 
-// TODO: fix design when no posts are available
-
 const Home = () => {
   return (
     <div>
@@ -14,10 +12,10 @@ const Home = () => {
           <div className="hidden lg:flex">
             <SideMenu />
           </div>
-          <main className="col-start-1 lg:col-start-2 flex justify-center self-center">
+          <main className="max-w-[640px] col-start-1 lg:col-start-2 flex justify-center self-center w-full lg:max-w-[550px] xl:max-w-[640px]">
             <Feed />
           </main>
-          <div className="hidden lg:flex">
+          <div className="hidden 2xl:flex">
             <SideFooter />
           </div>
         </div>

@@ -3,7 +3,7 @@ import Shimmer from "./Shimmer";
 
 const SkeletonPost = () => {
   return (
-    <div className="mb-8 py-5 px-5 rounded bg-white relative overflow-hidden shadow-sm max-w-3xl w-screen">
+    <div className="mb-8 py-5 px-5 rounded bg-white relative overflow-hidden shadow-sm max-w-3xl">
       <div className="flex items-center justify-start">
         <SkeletonElement type="avatar"/>
         <div className="w-20 ml-4">
@@ -11,7 +11,7 @@ const SkeletonPost = () => {
           <SkeletonElement type="text-sm"/>
         </div>
       </div>
-      <div>
+      <div className="flex flex-col">
         <SkeletonElement type="text"/>
         <SkeletonElement type="text"/>
         <SkeletonElement type="text"/>

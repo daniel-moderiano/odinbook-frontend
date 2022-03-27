@@ -5,7 +5,7 @@ const SkeletonElement = ({ type }) => {
 
   switch (type) {
     case 'text':
-      classStyles += 'w-full h-3 rounded my-4';
+      classStyles += 'w-full h-3 rounded my-2';
       break;
 
     case 'text-sm':
@@ -18,6 +18,10 @@ const SkeletonElement = ({ type }) => {
 
     case 'avatar':
       classStyles += 'w-10 h-10 rounded-full my-4';
+      break;
+
+    case 'avatar-lg':
+      classStyles += 'w-20 h-20 rounded-full my-4';
       break;
 
     case 'thumbnail':
