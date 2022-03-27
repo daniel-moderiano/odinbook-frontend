@@ -2,6 +2,7 @@ import {useFetchGet} from '../hooks/useFetchGet';
 import { useAuthContext } from '../hooks/useAuthContext';
 import Post from './Post';
 import StyledLink from './utils/StyledLink';
+import SkeletonPost from './skeletons/SkeletonPost';
 
 const Feed = () => {
   const { user } = useAuthContext();
@@ -11,6 +12,11 @@ const Feed = () => {
 
   return (
     <div className='max-w-3xl lg:min-w-full'>
+      {[1, 2, 3, 4, 5].map((skeleton, index) => (
+        <SkeletonPost key={index}/>
+      ))}
+
+
       {posts && (
         <div>
           {posts.map((post) => (

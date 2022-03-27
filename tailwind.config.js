@@ -20,6 +20,13 @@ module.exports = {
       screens: {
         'sm': '475px',
       },
+      keyframes: {
+        shimmer: {
+          '0%': { transform: 'translateX(-150%)' },
+          '50%': { transform: 'translateX(-60%)' },
+          '100%': { transform: 'translateX(+100%)' },
+        }
+      }
     }, 
     
     fontFamily: {

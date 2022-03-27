@@ -48,7 +48,7 @@ const LikeBtn = ({ post, setLocalLike }) => {
   }
 
   return (
-    <Button customStyles="flex items-middle justify-center text-gray-500 font-medium hover:bg-gray-100 py-2 rounded-lg w-full disabled:hover:bg-transparent" disabled={disableButton()} onClick={() => {
+    <Button customStyles="flex items-middle justify-center text-gray-500 font-medium hover:bg-gray-100 py-2 rounded w-full disabled:hover:bg-transparent" disabled={disableButton()} onClick={() => {
       likePost(post._id);
       setLocalLike(1);    // Ensures a local state change and re-render of likes. Reverted if error occurs
     }}>
