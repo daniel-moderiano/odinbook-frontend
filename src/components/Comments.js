@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useFetchGet } from "../hooks/useFetchGet";
 import Comment from "./Comment";
 import { useToastContext } from "../context/ToastContext";
+import SkeletonComment from './skeletons/SkeletonComment';
 
 const Comments = ({ postId, updateCommentCount, updateKey }) => {
   const { data: comments, loading, error } = useFetchGet(`http://localhost:3000/api/posts/${postId}/comments`);
@@ -25,7 +26,11 @@ const Comments = ({ postId, updateCommentCount, updateKey }) => {
       <span className="text-sm text-gray-500 block mx-4 pb-0.5 pt-4">All comments</span>
       {/* Comment input here? */}
       {loading && (
-        <p>Loading comments...</p>
+        <div>
+          {[1, 2, 3, 4, 5].map((index) => (
+            <SkeletonComment key={index}/>
+          ))}
+        </div>
       )}
       {comments && (
         <div className="w-full px-4 pt-4">
