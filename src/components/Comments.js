@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFetchGet } from "../hooks/useFetchGet";
 import Comment from "./Comment";
 import { useToastContext } from "../context/ToastContext";
@@ -27,7 +27,8 @@ const Comments = ({ postId, updateCommentCount, updateKey }) => {
       {/* Comment input here? */}
       {loading && (
         <div>
-          {[1, 2, 3, 4, 5].map((index) => (
+          {/* Customise length of array to replicate current number of comments?? */}
+          {[0, 1, 2, 3].map((index) => (
             <SkeletonComment key={index}/>
           ))}
         </div>

@@ -20,6 +20,10 @@ const SkeletonElement = ({ type }) => {
       classStyles += 'w-10 h-10 rounded-full my-4';
       break;
 
+    case 'avatar-sm':
+      classStyles += 'w-8 h-8 rounded-full';
+      break;
+  
     case 'avatar-lg':
       classStyles += 'w-20 h-20 rounded-full my-4';
       break;
