@@ -25,6 +25,10 @@ module.exports = {
           '0%': { transform: 'translateX(-150%)' },
           '50%': { transform: 'translateX(-60%)' },
           '100%': { transform: 'translateX(+100%)' },
+        },
+        spinner: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' }
         }
       }
     }, 
