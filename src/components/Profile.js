@@ -13,13 +13,15 @@ import ProfileEdit from './ProfileEdit';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useFetchProfile } from '../hooks/useFetchProfile';
 
 // !Recommend switching some useFetchGet calls to callable functions and placing them in empty or single dep useEffect hooks
 
 const Profile = ({ profileView }) => {
   const { userId } = useParams();
   const { user: currentUser } = useAuthContext();
-  const { data: profileUser, loading, error } = useFetchGet(`http://localhost:3000/api/users/${userId}`);
+  // const { data: profileUser, loading, error } = useFetchGet(`http://localhost:3000/api/users/${userId}`);
+  const { fetchProfile, profileUser, loading, error } = useFetchProfile();
   const { profileType } = useProfileType(profileUser, currentUser);
 
 
@@ -30,8 +32,13 @@ const Profile = ({ profileView }) => {
     // State has been passed from edit profile page (i.e. user updated profile details)
     if (location.state) {
       // Somehow refresh the fetch call here
+      fetchProfile(userId);
     }
-  }, [location.state])
+  }, [location.state, fetchProfile, userId]);
+
+  useEffect(() => {
+    fetchProfile(userId);
+  }, [fetchProfile, userId])
 
   return (
     <div>
