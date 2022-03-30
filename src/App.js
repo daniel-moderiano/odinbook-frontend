@@ -78,6 +78,12 @@ function App() {
             {user && <Profile profileView="friends" />}
             </>
           }/>
+          <Route path="/profile/:userId/edit" element={
+            <>
+            {!user && <Login />}
+            {user && <Profile profileView="edit" />}
+            </>
+          }/>
         </Routes>
       </>)}
       <Toast visible={toastVisible} params={toastParams}/>

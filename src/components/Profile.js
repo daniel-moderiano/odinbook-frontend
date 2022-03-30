@@ -9,6 +9,7 @@ import ProfileFriends from './ProfileFriends';
 import ProfilePosts from './ProfilePosts';
 import ProfileFriendsTab from './ProfileFriendsTab';
 import Spinner from './utils/Spinner'
+import ProfileEdit from './ProfileEdit';
 
 const Profile = ({ profileView }) => {
   const { userId } = useParams();
@@ -51,6 +52,11 @@ const Profile = ({ profileView }) => {
           {profileView === 'friends' && (
             <section className='mb-6 rounded max-w-4xl w-full'>
               <ProfileFriendsTab profileUser={profileUser.user}/>        
+            </section>
+          )}
+          {profileView === 'edit' && (
+            <section className='shadow-sm mb-6 rounded max-w-2xl w-full'>
+              <ProfileEdit profileUser={profileUser.user}/>
             </section>
           )}
         </div>)}

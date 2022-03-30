@@ -1,6 +1,7 @@
 import Button from './utils/Button';
 import ProfileNav from './ProfileNav';
 import ProfilePic from './utils/ProfilePic';
+import StyledLink from './utils/StyledLink';
 
 const ProfileHeader = ({ profileUser, profileType }) => {
 
@@ -29,7 +30,7 @@ const ProfileHeader = ({ profileUser, profileType }) => {
             <Button design="ghost" customStyles="w-44">Friends</Button>
           )}
             {profileType === 'ownProfile' && (
-            <Button design="primary" customStyles="w-44">Edit profile</Button>
+            <StyledLink to={`/profile/${profileUser._id}/edit`} design="btn-primary" customStyles="w-44">Edit profile</StyledLink>
           )}
             {profileType === 'nonFriend' && (
             <Button design="primary" customStyles="w-44">Add friend</Button>
