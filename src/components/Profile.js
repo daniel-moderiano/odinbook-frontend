@@ -10,12 +10,28 @@ import ProfilePosts from './ProfilePosts';
 import ProfileFriendsTab from './ProfileFriendsTab';
 import Spinner from './utils/Spinner'
 import ProfileEdit from './ProfileEdit';
+import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+// !Recommend switching some useFetchGet calls to callable functions and placing them in empty or single dep useEffect hooks
 
 const Profile = ({ profileView }) => {
   const { userId } = useParams();
   const { user: currentUser } = useAuthContext();
   const { data: profileUser, loading, error } = useFetchGet(`http://localhost:3000/api/users/${userId}`);
   const { profileType } = useProfileType(profileUser, currentUser);
+
+
+  // Extract any state passed from edit profile page
+  let location = useLocation();
+
+  useEffect(() => {
+    // State has been passed from edit profile page (i.e. user updated profile details)
+    if (location.state) {
+      // Somehow refresh the fetch call here
+    }
+  }, [location.state])
 
   return (
     <div>

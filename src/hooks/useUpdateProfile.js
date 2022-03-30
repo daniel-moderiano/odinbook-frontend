@@ -1,25 +1,25 @@
 import { useState } from "react"
 
-export const usePostComment = () => {
+export const useUpdateProfile = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
 
   // Accepts the comment ID of the comment to be liked
-  const postComment = async (postId, commentText) => {
+  const updateProfile = async (userId, formData) => {
     setError(null);
     setLoading(true);
     setResponse(null);
 
     try {
-      const response = await fetch(`http://localhost:3000/api/posts/${postId}/comments`, {
-        method: 'POST', 
+      const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
+        method: 'PUT', 
         mode: 'cors', 
         headers: {
           'Content-Type': 'application/json'
         },
         credentials: 'include',
-        body: JSON.stringify({ text: commentText }),
+        body: JSON.stringify(formData),    // Takes in profileData object (essentially an object containing form data)
       });
       const responseJSON = await response.json();
 
@@ -41,6 +41,6 @@ export const usePostComment = () => {
     } 
   };
 
-  return { postComment, response, loading, error };
+  return { updateProfile, response, loading, error };
 }
 
