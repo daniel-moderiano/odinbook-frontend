@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import Header from './Header';
-import { useFetchGet } from '../hooks/useFetchGet';
 import ProfileHeader from './ProfileHeader';
 import ProfileBio from './ProfileBio';
 import { useAuthContext } from '../hooks/useAuthContext';
@@ -11,19 +10,14 @@ import ProfileFriendsTab from './ProfileFriendsTab';
 import Spinner from './utils/Spinner'
 import ProfileEdit from './ProfileEdit';
 import { useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useFetchProfile } from '../hooks/useFetchProfile';
-
-// !Recommend switching some useFetchGet calls to callable functions and placing them in empty or single dep useEffect hooks
 
 const Profile = ({ profileView }) => {
   const { userId } = useParams();
   const { user: currentUser } = useAuthContext();
-  // const { data: profileUser, loading, error } = useFetchGet(`http://localhost:3000/api/users/${userId}`);
   const { fetchProfile, profileUser, loading, error } = useFetchProfile();
   const { profileType } = useProfileType(profileUser, currentUser);
-
 
   // Extract any state passed from edit profile page
   let location = useLocation();
@@ -36,9 +30,10 @@ const Profile = ({ profileView }) => {
     }
   }, [location.state, fetchProfile, userId]);
 
+  // Initial render
   useEffect(() => {
     fetchProfile(userId);
-  }, [fetchProfile, userId])
+  }, [fetchProfile, userId]);
 
   return (
     <div>

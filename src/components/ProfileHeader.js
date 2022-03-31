@@ -29,10 +29,10 @@ const ProfileHeader = ({ profileUser, profileType }) => {
           {profileType === 'friend' && (
             <Button design="ghost" customStyles="w-44">Friends</Button>
           )}
-            {profileType === 'ownProfile' && (
+          {profileType === 'ownProfile' && (
             <StyledLink to={`/profile/${profileUser._id}/edit`} design="btn-primary" customStyles="w-44">Edit profile</StyledLink>
           )}
-            {profileType === 'nonFriend' && (
+          {profileType === 'nonFriend' && (
             <Button design="primary" customStyles="w-44">Add friend</Button>
           )}
         </div>
