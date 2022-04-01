@@ -39,11 +39,11 @@ const testPostWithPics = {
 const testPostNoPics = {
   "_id": "622f19ab4212d0e69e8eb0d4",
   "user": {
-      "_id": "622f19ab4212d0e69e8eb0b9",
-      "firstName": "John",
-      "lastName": "Doe",
-      "fullName": "John Doe",
-      "id": "622f19ab4212d0e69e8eb0b9"
+      "_id": "622ffe9baa78d2996267f821",
+      "firstName": "Chardee",
+      "lastName": "McDennis",
+      "fullName": "Chardee McDennis",
+      "id": "622ffe9baa78d2996267f821"
   },
   "text": "Test post",
   "likes": [
@@ -151,6 +151,12 @@ describe("Image-containing posts", () => {
     </BrowserRouter>
   );
 
+  it("Does not display post menu btn other people's posts", () => {
+    setup();
+    const btn = screen.queryByTestId(/menu/i) 
+    expect(btn).not.toBeInTheDocument();
+  });
+
   it("Displays profile pic when one is available for the author of the post", () => {
     setup();
     const pic = screen.getByAltText(/profile picture/i) 
@@ -192,22 +198,15 @@ describe("User-only post functions (update/delete)", () => {
     <BrowserRouter>
       <AuthContextProvider>
         <ToastContextProvider value={{ showToast: jest.fn }}>
-          <Post post={testPostWithPics} />
+          <Post post={testPostNoPics} />
         </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
   );
 
-  it("Displays edit and delete buttons for user's own posts", () => {
+  it("Displays post menu btn for user's own posts", () => {
     setup();
-    const pic = screen.getByAltText(/profile picture/i) 
-    expect(pic).toBeInTheDocument();
-  });
-
-  it("Does not display edit and delete buttons for other people's posts", () => {
-    setup();
-    // Image posts will have blank alt text
-    const pic = screen.queryByAltText('');
-    expect(pic).toBeInTheDocument();
+    const btn = screen.getByTestId(/menu/i) 
+    expect(btn).toBeInTheDocument();
   });
 });

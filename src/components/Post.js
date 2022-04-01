@@ -7,8 +7,10 @@ import { useState } from 'react';
 import LikeBtn from './LikeBtn';
 import Comments from './Comments';
 import CommentForm from './CommentForm';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Post = ({ post }) => {
+  const { user } = useAuthContext();
   const [showModal, setShowModal] = useState(false);
 
   // A system for making a local change to the number of likes. This is indepndent of the db, and will be reverted in the case of an error with liking post on the backend
@@ -39,16 +41,25 @@ const Post = ({ post }) => {
   return (
     <>
     <article className="rounded shadow-sm bg-white mb-6 pt-3 pb-1">
-      <div className='flex items-center justify-start px-4'>
-        {/* Link to user's profile */}
-        <StyledLink to={`/profile/${post.user._id}`} customStyles="hover:opacity-95 active:opacity-100">
-          <ProfilePic imgUrl={post.user.profilePic ? post.user.profilePic.imageUrl : null} styles="w-10 mr-4 rounded-full"/>
-        </StyledLink>
-        <div>
-          {/* Link to the user's profile page */}
-          <StyledLink to={`/profile/${post.user._id}`} customStyles="block font-bold hover:underline">{post.user.fullName}</StyledLink>
-          <p className="block text-sm text-gray-600">{post.datePosted}</p>
+      <div className='flex items-center justify-between px-4'>
+        <div className='flex items-center justify-start'>
+          {/* Link to user's profile */}
+          <StyledLink to={`/profile/${post.user._id}`} customStyles="hover:opacity-95 active:opacity-100">
+            <ProfilePic imgUrl={post.user.profilePic ? post.user.profilePic.imageUrl : null} styles="w-10 mr-2 sm:mr-3 rounded-full"/>
+          </StyledLink>
+          <div>
+            {/* Link to the user's profile page */}
+            <StyledLink to={`/profile/${post.user._id}`} customStyles="block font-bold hover:underline sm:text-base text-sm max-w-[200px]">{post.user.fullName}</StyledLink>
+            <p className="block text-xs sm:text-sm text-gray-600">{post.datePosted}</p>
+          </div>
         </div>
+        {post.user._id === user._id && (
+          <button data-testid="menu">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className='w-4'>
+              <path d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"/>
+            </svg>
+          </button>
+        )}
       </div>
       <div>
         <p className='px-4 py-2'>{post.text}</p>
