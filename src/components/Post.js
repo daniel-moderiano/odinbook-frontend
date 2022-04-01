@@ -13,7 +13,7 @@ import PostMenu from './PostMenu';
 const Post = ({ post }) => {
   const { user } = useAuthContext();
   const [showModal, setShowModal] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(true);
 
   // A system for making a local change to the number of likes. This is indepndent of the db, and will be reverted in the case of an error with liking post on the backend
   const [localLike, setLocalLike] = useState(0);
@@ -85,13 +85,20 @@ const Post = ({ post }) => {
             <p className="block text-xs sm:text-sm text-gray-600">{post.datePosted}</p>
           </div>
         </div>
-        {post.user._id === user._id && (
-          <button data-id="post-menu" onClick={toggleMenu} data-testid="menu" className='px-2 py-1 rounded hover:bg-gray-100 active:bg-gray-200'>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className='w-4 pointer-events-none'>
-              <path d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"/>
-            </svg>
-          </button>
-        )}
+        <div className='relative'>
+          {post.user._id === user._id && (
+            <button data-id="post-menu" onClick={toggleMenu} data-testid="menu" className='px-2 py-1 rounded hover:bg-gray-100 active:bg-gray-200'>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className='w-4 pointer-events-none'>
+                <path d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"/>
+              </svg>
+            </button>
+          )}
+          
+          {showMenu && (
+            <PostMenu closeMenu={toggleMenu}/>
+          )}
+        </div>
+       
       </div>
       <div>
         <p className='px-4 py-2'>{post.text}</p>
@@ -130,10 +137,6 @@ const Post = ({ post }) => {
           <CommentForm postId={post._id} updateComments={setUpdateKey}/>
           <Comments postId={post._id} updateCommentCount={setNewCommentCount} updateKey={setUpdateKey} key={updateKey}/>
         </div>
-      )}
-
-      {showMenu && (
-        <PostMenu closeMenu={toggleMenu}/>
       )}
       
     </article>
