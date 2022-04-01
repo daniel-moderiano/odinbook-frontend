@@ -2,6 +2,7 @@ import Header from "./Header";
 import Feed from "./Feed";
 import SideMenu from "./SideMenu";
 import SideFooter from "./SideFooter";
+import AddPost from "./AddPost";
 
 const Home = () => {
   return (
@@ -12,7 +13,8 @@ const Home = () => {
           <div className="hidden lg:flex">
             <SideMenu />
           </div>
-          <main className="max-w-[640px] col-start-1 lg:col-start-2 flex justify-center self-center w-full lg:max-w-[550px] xl:max-w-[640px]">
+          <main className="max-w-[640px] col-start-1 lg:col-start-2 flex flex-col justify-center self-center w-full lg:max-w-[550px] xl:max-w-[640px]">
+            <AddPost />
             <Feed />
           </main>
           <div className="hidden 2xl:flex">
