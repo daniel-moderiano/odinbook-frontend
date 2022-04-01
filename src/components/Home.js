@@ -3,8 +3,12 @@ import Feed from "./Feed";
 import SideMenu from "./SideMenu";
 import SideFooter from "./SideFooter";
 import CreatePost from "./CreatePost";
+import { useState } from "react";
 
 const Home = () => {
+  // A method of updating the Feed when a new post is created, updated, or deleted. Update or change the feedKey state from within a child component to re-render the Feed component
+  const [feedKey, setFeedKey] = useState()
+
   return (
     <div>
       <Header />
@@ -14,8 +18,8 @@ const Home = () => {
             <SideMenu />
           </div>
           <main className="max-w-[640px] col-start-1 lg:col-start-2 flex flex-col justify-center self-center w-full lg:max-w-[550px] xl:max-w-[640px]">
-            <CreatePost />
-            <Feed />
+            <CreatePost updateFeed={setFeedKey}/>
+            <Feed updateFeed={setFeedKey} key={feedKey}/>
           </main>
           <div className="hidden 2xl:flex">
             <SideFooter />

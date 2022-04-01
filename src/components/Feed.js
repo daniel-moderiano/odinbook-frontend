@@ -6,7 +6,7 @@ import StyledLink from './utils/StyledLink';
 import SkeletonPost from './skeletons/SkeletonPost';
 import { useEffect } from 'react';
 
-const Feed = () => {
+const Feed = ({ updateFeed }) => {
   const { user } = useAuthContext();
   const { data: posts, loading, error } = useFetchGet(`http://localhost:3000/api/users/${user._id}/feed`);
   const { showToast } = useToastContext();
@@ -33,7 +33,7 @@ const Feed = () => {
         <>
           <div>
             {posts.map((post) => (
-              <Post post={post} key={post._id}/>
+              <Post post={post} key={post._id} updateFeed={updateFeed}/>
             ))}
           </div>
           <div className='flex flex-col items-center content-center rounded shadow-sm bg-white px-4 py-8 mb-6'>

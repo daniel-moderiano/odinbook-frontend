@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import Button from "./utils/Button";
 import { useCreatePost } from '../hooks/useCreatePost';
+import { useToastContext } from '../context/ToastContext'
 
-const CreatePost = () => {
+const CreatePost = ({ updateFeed }) => {
   const [showForm, setShowForm] = useState(false);
   const { createPost, response, loading, error } = useCreatePost();
+  const { showToast } = useToastContext();
 
   const [postText, setPostText] = useState('');
 
@@ -15,9 +17,18 @@ const CreatePost = () => {
 
   useEffect(() => {
     if (error) {
-      console.log(error);
+      showToast('error', 'An error occurred while creating the post.');
     }
-  }, [error])
+  }, [error, showToast]);
+
+  useEffect(() => {
+    if (response) {
+      setPostText('');
+      setShowForm(false);
+      showToast('success', 'Post successfully created.')
+      updateFeed(Math.random());
+    }
+  }, [response, updateFeed, showToast])
 
   return (
     <div className="rounded w-full bg-white p-1 mb-6 flex flex-col items-center justify-center">
@@ -37,7 +48,9 @@ const CreatePost = () => {
           <form className="py-4" onSubmit={handleSubmit}>
             <label htmlFor="post">Post text</label>
             <input type="text" id="post" onChange={(e) => setPostText(e.target.value)} value={postText} name="post"/>
-            <Button type="submit" design="primary">Post</Button>
+            <Button type="submit" design="primary">
+              {loading ? 'Posting...' : 'Post'}
+            </Button>
           </form>
         </div>
       )}

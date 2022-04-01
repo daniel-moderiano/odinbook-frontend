@@ -23,7 +23,7 @@ const Comments = ({ postId, updateCommentCount, updateKey }) => {
 
   return (
     <section data-testid="comments" className="w-full mt-1">
-      {comments && (
+      {comments && (    // Don't render the 'All comments' message unless there is one or more comments on a post
         <>
           {comments.length > 0 && (
             <span className="text-sm text-gray-500 block mx-4 pb-0.5 pt-4">All comments</span>
