@@ -3,7 +3,7 @@ import like from '../assets/like.png'
 import StyledLink from './utils/StyledLink';
 import ProfilePic from './utils/ProfilePic';
 import LikesModal from './LikesModal';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import LikeBtn from './LikeBtn';
 import Comments from './Comments';
 import CommentForm from './CommentForm';
@@ -26,6 +26,36 @@ const Post = ({ post }) => {
 
   // A key that is passed to the comments component. When a user successfully posts a comment with the comment form, the comments component should be re-rendered in full (thereby calling comments fetch to update with new comment). The re-render will be achieved by randomising this key on successful comment post
   const [updateKey, setUpdateKey] = useState(0);
+
+  const toggleMenu = () => {
+    setShowMenu((prevState) => !prevState);
+  };
+
+
+  // Runs once only on initial mount, and cleans up on dismount
+  useEffect(() => {
+    // Ensure the post menu closes on outside click with a global window event listener
+    const menuOutsideClick = (event) => {
+      if (event.target.dataset.id !== 'post-menu') {
+        setShowMenu(false);
+      }      
+    };
+
+    const closeOnEsc = (event) => {
+      if (event.key === 'Escape') {
+        console.log('Escape pressed');
+        setShowMenu(false);
+      }
+    };
+
+    window.addEventListener('click', menuOutsideClick);
+    window.addEventListener('keydown', closeOnEsc);
+
+    return () => {
+      window.removeEventListener('click', menuOutsideClick);
+      window.addEventListener('keydown', closeOnEsc);
+    }
+  }, [])
 
   const customiseCommentText = (numComments) => {
     if (numComments === 0) {
@@ -56,8 +86,8 @@ const Post = ({ post }) => {
           </div>
         </div>
         {post.user._id === user._id && (
-          <button onClick={() => setShowMenu((prevState) => !prevState)} data-testid="menu" className='px-2 py-1 rounded hover:bg-gray-100 active:bg-gray-200'>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className='w-4'>
+          <button data-id="post-menu" onClick={toggleMenu} data-testid="menu" className='px-2 py-1 rounded hover:bg-gray-100 active:bg-gray-200'>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className='w-4 pointer-events-none'>
               <path d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"/>
             </svg>
           </button>
@@ -103,7 +133,7 @@ const Post = ({ post }) => {
       )}
 
       {showMenu && (
-        <PostMenu />
+        <PostMenu closeMenu={toggleMenu}/>
       )}
       
     </article>

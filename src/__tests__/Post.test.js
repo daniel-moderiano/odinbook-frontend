@@ -239,6 +239,7 @@ describe('Post menu display tests', () => {
 
   it('Closes post menu on click of ellipsis btn if menu is already open', () => {
     setup();
+    // Open and close with double btn press
     const btn = screen.getByTestId(/menu/i);
     userEvent.click(btn);
     userEvent.click(btn);
@@ -249,6 +250,9 @@ describe('Post menu display tests', () => {
 
   it('Closes menu when either menu btn is pressed', () => {
     setup();
+    // Open menu
+    const btn = screen.getByTestId(/menu/i);
+    userEvent.click(btn);
     
     const menuBtn = screen.getByRole('button', { name: /edit/i });
     userEvent.click(menuBtn);
@@ -259,16 +263,24 @@ describe('Post menu display tests', () => {
   
   it('Closes menu when outside click occurs', () => {
     setup();
+    const post = screen.getByRole('article');
+
+    // Open menu
+    const btn = screen.getByTestId(/menu/i);
+    userEvent.click(btn);
     
-    // const menuBtn = screen.getByRole('button', { name: /edit/i });
-    // userEvent.click(menuBtn);
+    // Outside click by clicking on post body
+    userEvent.click(post);
   
-    // const menu = screen.queryByTestId('post-menu');
-    // expect(menu).not.toBeInTheDocument();
+    const menu = screen.queryByTestId('post-menu');
+    expect(menu).not.toBeInTheDocument();
   });
   
   it('Closes menu when Esc key is pressed', () => {
     setup();
+    // Open menu
+    const btn = screen.getByTestId(/menu/i);
+    userEvent.click(btn);
     
     userEvent.keyboard('{esc}')
   
@@ -278,6 +290,9 @@ describe('Post menu display tests', () => {
   
   it('Does not close menu when menu is clicked in a non-btn area', () => {
     setup();
+    // Open menu
+    const btn = screen.getByTestId(/menu/i);
+    userEvent.click(btn);
     
     const menu = screen.getByTestId('post-menu');
     userEvent.click(menu);
