@@ -3,17 +3,20 @@ import like from '../assets/like.png'
 import StyledLink from './utils/StyledLink';
 import ProfilePic from './utils/ProfilePic';
 import LikesModal from './LikesModal';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import LikeBtn from './LikeBtn';
 import Comments from './Comments';
 import CommentForm from './CommentForm';
 import { useAuthContext } from '../hooks/useAuthContext';
 import PostMenu from './PostMenu';
+import { useDeletePost } from '../hooks/useDeletePost';
 
 const Post = ({ post }) => {
   const { user } = useAuthContext();
+  const { deletePost, response, loading, error } = useDeletePost();
+
   const [showModal, setShowModal] = useState(false);
-  const [showMenu, setShowMenu] = useState(true);
+  const [showMenu, setShowMenu] = useState(false);
 
   // A system for making a local change to the number of likes. This is indepndent of the db, and will be reverted in the case of an error with liking post on the backend
   const [localLike, setLocalLike] = useState(0);
@@ -26,6 +29,12 @@ const Post = ({ post }) => {
 
   // A key that is passed to the comments component. When a user successfully posts a comment with the comment form, the comments component should be re-rendered in full (thereby calling comments fetch to update with new comment). The re-render will be achieved by randomising this key on successful comment post
   const [updateKey, setUpdateKey] = useState(0);
+
+  useEffect(() => {
+    if (response) {
+      console.log('Post deleted');
+    }
+  }, [response])
 
   const toggleMenu = () => {
     setShowMenu((prevState) => !prevState);
@@ -95,7 +104,7 @@ const Post = ({ post }) => {
           )}
           
           {showMenu && (
-            <PostMenu closeMenu={toggleMenu}/>
+            <PostMenu closeMenu={toggleMenu} deletePost={() => deletePost(post._id)}/>
           )}
         </div>
        
