@@ -222,12 +222,29 @@ describe('Post menu display tests', () => {
     </BrowserRouter>
   );
 
-  it('Opens post menu on click of ellipsis btn', () => {
+  it('Hides post menu by default', () => {
+    setup();
+    const menu = screen.queryByTestId('post-menu');
+    expect(menu).not.toBeInTheDocument();
+  });
+
+  it('Opens post menu on click of ellipsis btn if menu is currently closed', () => {
+    setup();
     const btn = screen.getByTestId(/menu/i);
     userEvent.click(btn);
 
     const menu = screen.getByTestId('post-menu');
     expect(menu).toBeInTheDocument();
+  });
+
+  it('Closes post menu on click of ellipsis btn if menu is already open', () => {
+    setup();
+    const btn = screen.getByTestId(/menu/i);
+    userEvent.click(btn);
+    userEvent.click(btn);
+
+    const menu = screen.queryByTestId('post-menu');
+    expect(menu).not.toBeInTheDocument();
   });
 
   it('Closes menu when either menu btn is pressed', () => {
