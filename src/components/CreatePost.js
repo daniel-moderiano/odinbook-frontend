@@ -1,8 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "./utils/Button";
+import { useCreatePost } from '../hooks/useCreatePost';
 
-const AddPost = () => {
+const CreatePost = () => {
   const [showForm, setShowForm] = useState(false);
+  const { createPost, response, loading, error } = useCreatePost();
+
+  const [postText, setPostText] = useState('');
+
+  const handleSubmit = (e)  => {
+    e.preventDefault();
+    createPost(postText);
+  };
+
+  useEffect(() => {
+    if (error) {
+      console.log(error);
+    }
+  }, [error])
 
   return (
     <div className="rounded w-full bg-white p-1 mb-6 flex flex-col items-center justify-center">
@@ -19,10 +34,10 @@ const AddPost = () => {
       {showForm && (
         <div>
           <button onClick={() => setShowForm(false)}>Cancel</button>
-          <form className="py-4">
+          <form className="py-4" onSubmit={handleSubmit}>
             <label htmlFor="post">Post text</label>
-            <input type="text" id="post"/>
-            <Button design="primary">Post</Button>
+            <input type="text" id="post" onChange={(e) => setPostText(e.target.value)} value={postText} name="post"/>
+            <Button type="submit" design="primary">Post</Button>
           </form>
         </div>
       )}
@@ -30,4 +45,4 @@ const AddPost = () => {
   )
 }
 
-export default AddPost;
+export default CreatePost;

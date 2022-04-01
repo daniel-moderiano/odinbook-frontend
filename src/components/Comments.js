@@ -23,7 +23,13 @@ const Comments = ({ postId, updateCommentCount, updateKey }) => {
 
   return (
     <section data-testid="comments" className="w-full mt-1">
-      <span className="text-sm text-gray-500 block mx-4 pb-0.5 pt-4">All comments</span>
+      {comments && (
+        <>
+          {comments.length > 0 && (
+            <span className="text-sm text-gray-500 block mx-4 pb-0.5 pt-4">All comments</span>
+          )}
+        </>
+      )}
       {/* Comment input here? */}
       {loading && (
         <div data-testid="skeleton">

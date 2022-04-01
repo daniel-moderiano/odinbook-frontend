@@ -2,7 +2,7 @@ import Header from "./Header";
 import Feed from "./Feed";
 import SideMenu from "./SideMenu";
 import SideFooter from "./SideFooter";
-import AddPost from "./AddPost";
+import CreatePost from "./CreatePost";
 
 const Home = () => {
   return (
@@ -14,7 +14,7 @@ const Home = () => {
             <SideMenu />
           </div>
           <main className="max-w-[640px] col-start-1 lg:col-start-2 flex flex-col justify-center self-center w-full lg:max-w-[550px] xl:max-w-[640px]">
-            <AddPost />
+            <CreatePost />
             <Feed />
           </main>
           <div className="hidden 2xl:flex">

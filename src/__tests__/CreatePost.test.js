@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "../context/AuthContext";
 import { ToastContextProvider } from "../context/ToastContext";
-import AddPost from "../components/AddPost";
+import CreatePost from "../components/CreatePost";
 import userEvent from "@testing-library/user-event";
 
 const currentUser = {
@@ -17,12 +17,12 @@ jest.mock("../hooks/useAuthContext", () => ({
   }),
 }));
 
-it("Hides add post form by default", () => {
+it("Hides create post form by default", () => {
   render(
     <BrowserRouter>
       <AuthContextProvider>
         <ToastContextProvider value={{ showToast: jest.fn }}>
-          <AddPost/>
+          <CreatePost/>
         </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
@@ -32,12 +32,12 @@ it("Hides add post form by default", () => {
   expect(form).not.toBeInTheDocument();
 });
 
-it("Shows add post form when clicking create post button", () => {
+it("Shows create post form when clicking create post button", () => {
   render(
     <BrowserRouter>
       <AuthContextProvider>
         <ToastContextProvider value={{ showToast: jest.fn }}>
-          <AddPost/>
+          <CreatePost/>
         </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
