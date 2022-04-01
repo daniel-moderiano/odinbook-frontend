@@ -39,11 +39,7 @@ const Profile = ({ profileView }) => {
     <div>
       <Header />
 
-      {loading && (
-        <div className='w-full h-screen flex items-center justify-center'>
-          <Spinner />
-        </div>
-      )}
+      <Spinner loading={loading}/>
 
       {(profileUser && profileType) && (
         <div className="w-full flex justify-center items-center flex-col">
@@ -68,12 +64,12 @@ const Profile = ({ profileView }) => {
             </div>
           )}
           {profileView === 'friends' && (
-            <section className='mb-6 rounded max-w-4xl w-full'>
+            <section className='mb-6 rounded sm:max-w-2xl lg:max-w-4xl w-full'>
               <ProfileFriendsTab profileUser={profileUser.user}/>        
             </section>
           )}
           {profileView === 'edit' && (
-            <section className='shadow-sm mb-6 rounded max-w-2xl w-full'>
+            <section className='shadow-sm mb-6 rounded sm:max-w-2xl lg:max-w-4xl w-full'>
               <ProfileEdit profileUser={profileUser.user}/>
             </section>
           )}

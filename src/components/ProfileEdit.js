@@ -48,97 +48,106 @@ const ProfileEdit = ({ profileUser }) => {
   }
 
   return (
-    <div className="bg-white p-4 md:p-6 rounded">
-      <h2 className="font-bold text-2xl mb-3">About</h2>
+    <div className="bg-white p-4 md:py-6 md:px-8 rounded">
+
+      <h2 className="font-bold text-2xl mb-4">Edit profile</h2>
+
       <form onSubmit={handleSubmit}>
         
-       <fieldset>
-        <legend>Personal information</legend>
+       <fieldset className='mb-3'>
+        <legend className='md:text-xl md:pb-1 text-lg border-b mb-4 w-full text-left text-plum-600'>Personal information</legend>
 
-          <div className="mb-4">
-            <label htmlFor="firstName" className="flex flex-col text-sm md:text-base">
-              First name
-              <Input
-                id="firstName"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                required={true}
-              />
-            </label>
-          </div>
+          <div className="max-w-lg">
+            <div className="mb-4">
+              <label htmlFor="firstName" className="flex flex-col text-sm md:text-base">
+                First name
+                <Input
+                  id="firstName"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  required={true}
+                />
+              </label>
+            </div>
 
-          <div className="mb-4">
-            <label htmlFor="lastName" className="flex flex-col text-sm md:text-base">
-              Last name
-              <Input
-                id="lastName"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                required={true}
-              />
-            </label>
-          </div>
+            <div className="mb-4">
+              <label htmlFor="lastName" className="flex flex-col text-sm md:text-base">
+                Last name
+                <Input
+                  id="lastName"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  required={true}
+                />
+              </label>
+            </div>
 
-          <div className="mb-4">
-            <label htmlFor="email" className="flex flex-col text-sm md:text-base">
-              Email address
-              <Input
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required={true}
-              />
-            </label>
+            <div className="mb-4">
+              <label htmlFor="email" className="flex flex-col text-sm md:text-base">
+                Email address
+                <Input
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required={true}
+                />
+              </label>
+            </div>
           </div>
        </fieldset>
 
         <fieldset>
-          <legend>Bio</legend>
+          <legend className='md:text-xl md:pb-1 text-lg border-b mb-4 w-full text-left text-plum-600'>About you</legend>
 
-          <div className="mb-4">
-            <label htmlFor="occupation" className="flex flex-col text-sm md:text-base">
-              Occupation
-              <Input
-                id="occupation"
-                name="occupation"
-                value={formData.occupation}
-                onChange={handleChange}
-                required
-              />
-            </label>
-          </div>
-                  
-          <div className="mb-4">
-            <label htmlFor="education" className="flex flex-col text-sm md:text-base">
-              Education
-              <Input
-                id="education"
-                name="education"
-                value={formData.education}
-                onChange={handleChange}
-                required
-              />
-            </label>
-          </div>
+          <div className="max-w-lg">
+            <div className="mb-4">
+              <label htmlFor="occupation" className="flex flex-col text-sm md:text-base">
+                Occupation
+                <Input
+                  id="occupation"
+                  name="occupation"
+                  value={formData.occupation}
+                  onChange={handleChange}
+                  required
+                />
+              </label>
+            </div>
+                    
+            <div className="mb-4">
+              <label htmlFor="education" className="flex flex-col text-sm md:text-base">
+                Education
+                <Input
+                  id="education"
+                  name="education"
+                  value={formData.education}
+                  onChange={handleChange}
+                  required
+                />
+              </label>
+            </div>
 
-          <div className="mb-4">
-            <label htmlFor="location" className="flex flex-col text-sm md:text-base">
-              Location
-              <Input
-                id="location"
-                name="location"
-                value={formData.location}
-                onChange={handleChange}
-                required
-              />
-            </label>
+            <div className="mb-4">
+              <label htmlFor="location" className="flex flex-col text-sm md:text-base">
+                Location
+                <Input
+                  id="location"
+                  name="location"
+                  value={formData.location}
+                  onChange={handleChange}
+                  required
+                />
+              </label>
+            </div>
           </div>
+         
         </fieldset>
 
-        <Button customStyles="w-40 mt-6" design="primary" type="submit">Save changes</Button>
+        <Button customStyles="w-40 md:mt-4 md:mb-2 my-4" design="primary" type="submit">
+          {loading ? 'Saving...' : 'Save changes'}
+        </Button>
       </form>
     </div>
   )

@@ -96,7 +96,7 @@ describe('Profile header buttons', () => {
         <ProfileHeader profileUser={user} profileType="ownProfile"/>
       </BrowserRouter>
     );
-    const btn = screen.getByRole('button', { name: /edit profile/i });
+    const btn = screen.getByRole('link', { name: /edit profile/i });
     expect(btn).toBeInTheDocument();
 
     // Check for presence of incorrect buttons

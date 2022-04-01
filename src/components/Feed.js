@@ -22,6 +22,7 @@ const Feed = () => {
     <div className='w-screen max-w-3xl lg:min-w-full'>
       {loading && (
         <div data-testid="skeleton">
+          {/* Render 10 skeleton posts */}
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => (
             <SkeletonPost key={index}/>
           ))}
