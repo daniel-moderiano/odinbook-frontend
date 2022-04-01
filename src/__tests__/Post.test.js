@@ -210,3 +210,60 @@ describe("User-only post functions (update/delete)", () => {
     expect(btn).toBeInTheDocument();
   });
 });
+
+describe('Post menu display tests', () => {
+  const setup = () => render(
+    <BrowserRouter>
+      <AuthContextProvider>
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <Post post={testPostNoPics} />
+        </ToastContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
+  );
+
+  it('Opens post menu on click of ellipsis btn', () => {
+    const btn = screen.getByTestId(/menu/i);
+    userEvent.click(btn);
+
+    const menu = screen.getByTestId('post-menu');
+    expect(menu).toBeInTheDocument();
+  });
+
+  it('Closes menu when either menu btn is pressed', () => {
+    setup();
+    
+    const menuBtn = screen.getByRole('button', { name: /edit/i });
+    userEvent.click(menuBtn);
+  
+    const menu = screen.queryByTestId('post-menu');
+    expect(menu).not.toBeInTheDocument();
+  });
+  
+  it('Closes menu when outside click occurs', () => {
+    setup();
+    
+    // const menuBtn = screen.getByRole('button', { name: /edit/i });
+    // userEvent.click(menuBtn);
+  
+    // const menu = screen.queryByTestId('post-menu');
+    // expect(menu).not.toBeInTheDocument();
+  });
+  
+  it('Closes menu when Esc key is pressed', () => {
+    setup();
+    
+    userEvent.keyboard('{esc}')
+  
+    const menu = screen.queryByTestId('post-menu');
+    expect(menu).not.toBeInTheDocument();
+  });
+  
+  it('Does not close menu when menu is clicked in a non-btn area', () => {
+    setup();
+    
+    const menu = screen.getByTestId('post-menu');
+    userEvent.click(menu);
+    expect(menu).toBeInTheDocument();
+  });
+})
