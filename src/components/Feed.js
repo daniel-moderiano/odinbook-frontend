@@ -19,7 +19,7 @@ const Feed = ({ updateFeed }) => {
   }, [error, showToast])
 
   return (
-    <div className='w-screen max-w-3xl lg:min-w-full'>
+    <div className='md:w-auto lg:min-w-full w-screen max-w-full'>
       {loading && (
         <div data-testid="skeleton">
           {/* Render 10 skeleton posts */}

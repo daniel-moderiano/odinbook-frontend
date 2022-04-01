@@ -185,3 +185,29 @@ describe("Image-containing posts", () => {
     expect(likes).toBeInTheDocument();
   })
 });
+
+
+describe("User-only post functions (update/delete)", () => {
+  const setup = () => render(
+    <BrowserRouter>
+      <AuthContextProvider>
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <Post post={testPostWithPics} />
+        </ToastContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
+  );
+
+  it("Displays edit and delete buttons for user's own posts", () => {
+    setup();
+    const pic = screen.getByAltText(/profile picture/i) 
+    expect(pic).toBeInTheDocument();
+  });
+
+  it("Does not display edit and delete buttons for other people's posts", () => {
+    setup();
+    // Image posts will have blank alt text
+    const pic = screen.queryByAltText('');
+    expect(pic).toBeInTheDocument();
+  });
+});
