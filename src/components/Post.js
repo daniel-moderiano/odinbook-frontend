@@ -10,13 +10,18 @@ import CommentForm from './CommentForm';
 import { useAuthContext } from '../hooks/useAuthContext';
 import PostMenu from './PostMenu';
 import { useDeletePost } from '../hooks/useDeletePost';
+import DeletePostModal from './DeletePostModal';
+import { useToastContext } from '../context/ToastContext';
 
 const Post = ({ post }) => {
   const { user } = useAuthContext();
+  const { showToast } = useToastContext();
   const { deletePost, response, loading, error } = useDeletePost();
 
-  const [showModal, setShowModal] = useState(false);
+  const [showLikesModal, setShowLikesModal] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   // A system for making a local change to the number of likes. This is indepndent of the db, and will be reverted in the case of an error with liking post on the backend
   const [localLike, setLocalLike] = useState(0);
@@ -30,16 +35,9 @@ const Post = ({ post }) => {
   // A key that is passed to the comments component. When a user successfully posts a comment with the comment form, the comments component should be re-rendered in full (thereby calling comments fetch to update with new comment). The re-render will be achieved by randomising this key on successful comment post
   const [updateKey, setUpdateKey] = useState(0);
 
-  useEffect(() => {
-    if (response) {
-      console.log('Post deleted');
-    }
-  }, [response])
-
   const toggleMenu = () => {
     setShowMenu((prevState) => !prevState);
   };
-
 
   // Runs once only on initial mount, and cleans up on dismount
   useEffect(() => {
@@ -104,7 +102,7 @@ const Post = ({ post }) => {
           )}
           
           {showMenu && (
-            <PostMenu closeMenu={toggleMenu} deletePost={() => deletePost(post._id)}/>
+            <PostMenu closeMenu={toggleMenu} handleDelete={() => setShowDeleteModal(true)} handleEdit={() => console.log('Edit')}/>
           )}
         </div>
        
@@ -117,7 +115,7 @@ const Post = ({ post }) => {
       </div>
       <div className='flex items-center justify-between px-4 py-2'>
         {/* Show modal listing user's who have liked (name + profile pic) */}
-        <Button customStyles="text-sm text-gray-600 flex items-center justify-center hover:underline hover:decoration-gray-600" onClick={() => setShowModal(true)}>
+        <Button customStyles="text-sm text-gray-600 flex items-center justify-center hover:underline hover:decoration-gray-600" onClick={() => setShowLikesModal(true)}>
           <img src={like} alt="Love heart" className='w-4 mr-1 mb-px' />
           <span className='mt-px'>{post.numLikes + localLike}</span>
         </Button>
@@ -149,7 +147,9 @@ const Post = ({ post }) => {
       )}
       
     </article>
-    {showModal && (<LikesModal postId={post._id} closeModal={() => setShowModal(false)}/>)}
+    {showLikesModal && (<LikesModal postId={post._id} closeModal={() => setShowLikesModal(false)}/>)}
+
+    {showDeleteModal && (<DeletePostModal postId={post._id} closeModal={() => setShowDeleteModal(false)}/>)}
     </>
   )
 }

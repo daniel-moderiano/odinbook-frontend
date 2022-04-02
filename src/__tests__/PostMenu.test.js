@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 
 it("Calls deletePost function on when clicking the delete option", () => {
   const deletePostMock = jest.fn();
-  render(<PostMenu closeMenu={jest.fn} deletePost={deletePostMock} />);
+  render(<PostMenu closeMenu={jest.fn} handleDelete={deletePostMock} handleEdit={jest.fn}/>);
   
   const deleteBtn = screen.getByRole('button', { name: /delete/i });
   userEvent.click(deleteBtn);
@@ -14,10 +14,10 @@ it("Calls deletePost function on when clicking the delete option", () => {
 
 it("Calls editPost function on when clicking the edit option", () => {
   const editPostMock = jest.fn();
-  render(<PostMenu closeMenu={jest.fn} editPost={editPostMock}/>);
+  render(<PostMenu closeMenu={jest.fn} handleEdit={editPostMock} handleDelete={jest.fn}/>);
   
-  const deleteBtn = screen.getByRole('button', { name: /edit/i });
-  userEvent.click(deleteBtn);
+  const editBtn = screen.getByRole('button', { name: /edit/i });
+  userEvent.click(editBtn);
 
   expect(editPostMock).toHaveBeenCalledTimes(1);
 });
