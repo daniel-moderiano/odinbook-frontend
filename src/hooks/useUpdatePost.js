@@ -13,7 +13,7 @@ export const useUpdatePost = () => {
 
     try {
       const response = await fetch(`http://localhost:3000/api/posts/${postId}`, {
-        method: 'POST', 
+        method: 'PUT', 
         mode: 'cors', 
         headers: {
           'Content-Type': 'application/json'

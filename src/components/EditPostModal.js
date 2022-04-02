@@ -1,11 +1,16 @@
 import FocusTrap from 'focus-trap-react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useUpdatePost } from '../hooks/useUpdatePost';
 import { useToastContext } from '../context/ToastContext';
+import Button from './utils/Button';
 
-const EditPostModal = ({ closeModal, postId, updateFeed }) => {
+const EditPostModal = ({ closeModal, post, updateFeed }) => {
   const { updatePost, response, loading, error } = useUpdatePost();
   const { showToast } = useToastContext();
+
+  // Set state initially to current post text. 
+  // ? Consider making fetch request for post details here instead of passing as a prop
+  const [postText, setPostText] = useState(post.text);
 
   useEffect(() => {
     if (response) {
@@ -21,6 +26,11 @@ const EditPostModal = ({ closeModal, postId, updateFeed }) => {
       closeModal();
     }
   }, [error, showToast, closeModal]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updatePost(post._id, postText);
+  }
 
   // Add user-expected actions when pressing the escape key or clicking outside the modal (close the modal)
   useEffect(() => {
@@ -66,9 +76,17 @@ const EditPostModal = ({ closeModal, postId, updateFeed }) => {
           </header>
 
           <div>
-            <p>Are you sure you want to remove this post?</p>
+            <div className="w-full">
+              <form className="py-4" onSubmit={handleSubmit}>
+                <label htmlFor="post">Post text</label>
+                <input type="text" id="post" onChange={(e) => setPostText(e.target.value)} value={postText} name="post"/>
+                <Button type="submit" design="primary">
+                  {loading ? 'Posting...' : 'Post'}
+                </Button>
+              </form>
+            </div>
 
-            <button className='bg-red-500 text-white font-semibold' onClick={() => ({})}>
+            <button className='bg-red-500 text-white font-semibold' onClick={handleSubmit}>
               {loading ? 'Updating...' : 'Delete'}
             </button>
             <button className='bg-gray-100 text-gray-800'>Cancel</button>

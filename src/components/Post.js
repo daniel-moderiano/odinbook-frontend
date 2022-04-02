@@ -146,7 +146,7 @@ const Post = ({ post, updateFeed }) => {
 
     {showDeleteModal && (<DeletePostModal postId={post._id} closeModal={() => setShowDeleteModal(false)} updateFeed={updateFeed}/>)}
 
-    {showEditModal && (<EditPostModal postId={post._id} closeModal={() => setShowEditModal(false)} updateFeed={updateFeed}/>)}
+    {showEditModal && (<EditPostModal post={post} closeModal={() => setShowEditModal(false)} updateFeed={updateFeed}/>)}
     </>
   )
 }
