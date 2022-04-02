@@ -298,4 +298,50 @@ describe('Post menu display tests', () => {
     userEvent.click(menu);
     expect(menu).toBeInTheDocument();
   });
-})
+});
+
+describe('Modal tests', () => {
+  const setup = () => render(
+    <BrowserRouter>
+      <AuthContextProvider>
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <Post post={testPostNoPics} />
+        </ToastContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
+  );
+
+  it('All modals hidden by default', () => {
+    setup();
+    const modal = screen.queryByRole('dialog');
+    expect(modal).not.toBeInTheDocument();
+  });
+
+  it('Delete post btn opens delete modal', () => {
+    setup();
+    // Open post menu
+    const btn = screen.getByTestId(/menu/i);
+    userEvent.click(btn);
+
+    // Click delete post btn
+    const deleteBtn = screen.getByRole('button', { name: /delete/i });
+    userEvent.click(deleteBtn);
+
+    const modal = screen.getByRole('dialog', { name: /delete post/i });
+    expect(modal).toBeInTheDocument();
+  });
+
+  it('Edit post btn opens edit modal', () => {
+    setup();
+    // Open post menu
+    const btn = screen.getByTestId(/menu/i);
+    userEvent.click(btn);
+
+    // Click delete post btn
+    const editBtn = screen.getByRole('button', { name: /edit/i });
+    userEvent.click(editBtn);
+
+    const modal = screen.getByRole('dialog', { name: /edit post/i });
+    expect(modal).toBeInTheDocument();
+  });
+});

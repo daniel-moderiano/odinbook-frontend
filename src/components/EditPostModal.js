@@ -1,23 +1,23 @@
 import FocusTrap from 'focus-trap-react';
 import { useEffect } from 'react';
-import { useDeletePost } from '../hooks/useDeletePost';
+import { useUpdatePost } from '../hooks/useUpdatePost';
 import { useToastContext } from '../context/ToastContext';
 
-const DeletePostModal = ({ closeModal, postId, updateFeed }) => {
-  const { deletePost, response, loading, error } = useDeletePost();
+const EditPostModal = ({ closeModal, postId, updateFeed }) => {
+  const { updatePost, response, loading, error } = useUpdatePost();
   const { showToast } = useToastContext();
 
   useEffect(() => {
     if (response) {
       updateFeed(Math.random())
-      showToast('success', 'Post removed');
+      showToast('success', 'Post edited');
       closeModal();
     }
   }, [response, showToast, closeModal, updateFeed]);
 
   useEffect(() => {
     if (error) {
-      showToast('error', 'An error occurred while removing the post.');
+      showToast('error', 'An error occurred while editing the post.');
       closeModal();
     }
   }, [error, showToast, closeModal]);
@@ -54,7 +54,7 @@ const DeletePostModal = ({ closeModal, postId, updateFeed }) => {
           <header className='flex flex-col justify-start items-start w-full border-b pb-2'>
 
             <div className='flex justify-between items-center w-full pb-4'>
-              <h4 id="modal-title" className='text-xl font-semibold'>Delete post</h4>
+              <h4 id="modal-title" className='text-xl font-semibold'>Edit post</h4>
               <button type="button" aria-label="close current window" onClick={closeModal}>
                 <svg className="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1B1E22">
                   <path d="M0 0h24v24H0z" fill="none"/>
@@ -68,8 +68,8 @@ const DeletePostModal = ({ closeModal, postId, updateFeed }) => {
           <div>
             <p>Are you sure you want to remove this post?</p>
 
-            <button className='bg-red-500 text-white font-semibold' onClick={() => deletePost(postId)}>
-              {loading ? 'Deleting...' : 'Delete'}
+            <button className='bg-red-500 text-white font-semibold' onClick={() => ({})}>
+              {loading ? 'Updating...' : 'Delete'}
             </button>
             <button className='bg-gray-100 text-gray-800'>Cancel</button>
           </div>
@@ -80,4 +80,4 @@ const DeletePostModal = ({ closeModal, postId, updateFeed }) => {
   )
 }
 
-export default DeletePostModal;
+export default EditPostModal;

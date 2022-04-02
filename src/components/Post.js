@@ -9,19 +9,15 @@ import Comments from './Comments';
 import CommentForm from './CommentForm';
 import { useAuthContext } from '../hooks/useAuthContext';
 import PostMenu from './PostMenu';
-import { useDeletePost } from '../hooks/useDeletePost';
 import DeletePostModal from './DeletePostModal';
-import { useToastContext } from '../context/ToastContext';
+import EditPostModal from './EditPostModal';
 
-const Post = ({ post }) => {
+const Post = ({ post, updateFeed }) => {
   const { user } = useAuthContext();
-  const { showToast } = useToastContext();
-  const { deletePost, response, loading, error } = useDeletePost();
-
   const [showLikesModal, setShowLikesModal] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   // A system for making a local change to the number of likes. This is indepndent of the db, and will be reverted in the case of an error with liking post on the backend
   const [localLike, setLocalLike] = useState(0);
@@ -50,7 +46,6 @@ const Post = ({ post }) => {
 
     const closeOnEsc = (event) => {
       if (event.key === 'Escape') {
-        console.log('Escape pressed');
         setShowMenu(false);
       }
     };
@@ -102,7 +97,7 @@ const Post = ({ post }) => {
           )}
           
           {showMenu && (
-            <PostMenu closeMenu={toggleMenu} handleDelete={() => setShowDeleteModal(true)} handleEdit={() => console.log('Edit')}/>
+            <PostMenu closeMenu={toggleMenu} handleDelete={() => setShowDeleteModal(true)} handleEdit={() => setShowEditModal(true)}/>
           )}
         </div>
        
@@ -145,11 +140,13 @@ const Post = ({ post }) => {
           <Comments postId={post._id} updateCommentCount={setNewCommentCount} updateKey={setUpdateKey} key={updateKey}/>
         </div>
       )}
-      
     </article>
+
     {showLikesModal && (<LikesModal postId={post._id} closeModal={() => setShowLikesModal(false)}/>)}
 
-    {showDeleteModal && (<DeletePostModal postId={post._id} closeModal={() => setShowDeleteModal(false)}/>)}
+    {showDeleteModal && (<DeletePostModal postId={post._id} closeModal={() => setShowDeleteModal(false)} updateFeed={updateFeed}/>)}
+
+    {showEditModal && (<EditPostModal postId={post._id} closeModal={() => setShowEditModal(false)} updateFeed={updateFeed}/>)}
     </>
   )
 }
