@@ -83,7 +83,7 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
             </div>
             <form className="w-full" onSubmit={handleSubmit}>
               <label htmlFor="postText" className='sr-only'>Post text</label>
-              <textarea  required
+              <textarea  required autoFocus
           className="w-full resize-none rounded py-2 text-sm sm:text-base outline-none" name="postText" id="postText" rows="5" onChange={(e) => setPostText(e.target.value)} value={postText} placeholder="What's on your mind?"></textarea>
             </form>
 

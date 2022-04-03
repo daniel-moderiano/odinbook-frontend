@@ -1,14 +1,14 @@
 const PostMenu = ({ closeMenu, handleDelete, handleEdit }) => {
   return (
-    <div data-testid="post-menu" data-id="post-menu" className="rounded p-2 absolute top-full right-4 shadow-md w-36 bg-white text-left">
+    <div data-testid="post-menu" data-id="post-menu" className="rounded p-1 absolute top-full right-4 shadow-md w-36 bg-white text-left">
       <button data-id="post-menu" onClick={() => {
         handleEdit();
         closeMenu();
-      }} className="bg-white p-2 hover:bg-gray-100 w-full text-left">Edit post</button>
+      }} className="bg-white py-2 px-3 hover:bg-gray-100 w-full text-left rounded">Edit post</button>
       <button data-id="post-menu" onClick={() => {
         handleDelete();
         closeMenu();
-      }} className="bg-white p-2 hover:bg-gray-100 w-full text-left">Delete post</button>
+      }} className="bg-white py-2 px-3 hover:bg-gray-100 w-full text-left rounded">Delete post</button>
     </div>
   )
 }
