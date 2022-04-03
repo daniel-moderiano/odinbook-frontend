@@ -17,7 +17,7 @@ jest.mock("../hooks/useAuthContext", () => ({
   }),
 }));
 
-it("Hides create post form by default", () => {
+it("Hides modal by default", () => {
   render(
     <BrowserRouter>
       <AuthContextProvider>
@@ -28,11 +28,11 @@ it("Hides create post form by default", () => {
     </BrowserRouter>
   );
 
-  const form = screen.queryByRole('textbox');
-  expect(form).not.toBeInTheDocument();
+  const modal = screen.queryByRole('dialog');
+  expect(modal).not.toBeInTheDocument();
 });
 
-it("Shows create post form when clicking create post button", () => {
+it("Shows modal when clicking create post button", () => {
   render(
     <BrowserRouter>
       <AuthContextProvider>
@@ -47,7 +47,6 @@ it("Shows create post form when clicking create post button", () => {
   const btn = screen.getByRole('button', { name: /create a post/i });
   userEvent.click(btn);
 
-  // Select form by looking for text input
-  const form = screen.getByRole('textbox');
-  expect(form).toBeInTheDocument();
+  const modal = screen.getByRole('dialog');
+  expect(modal).toBeInTheDocument();
 });

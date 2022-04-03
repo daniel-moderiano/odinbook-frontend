@@ -3,10 +3,13 @@ import { useEffect, useState } from 'react';
 import { useCreatePost } from '../hooks/useCreatePost';
 import { useToastContext } from '../context/ToastContext';
 import Button from './utils/Button';
+import { useAuthContext } from '../hooks/useAuthContext';
+import ProfilePic from './utils/ProfilePic';
 
 const CreatePostModal = ({ closeModal, updateFeed }) => {
   const { createPost, response, loading, error } = useCreatePost();
   const { showToast } = useToastContext();
+  const { user } = useAuthContext();
 
   const [postText, setPostText] = useState('');
 
@@ -57,12 +60,12 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
     <FocusTrap>
       <div id='Modal' aria-modal="true" role="dialog" aria-labelledby="modal-title" className='flex fixed z-[1000] left-0 top-0 h-full w-full overflow-auto bg-gray-700/70 justify-center items-center'>
 
-        <div className='bg-white w-full max-w-md p-5 flex flex-col items-start rounded shadow-md'>
+        <div className='bg-white w-full max-w-md px-5 py-4 flex flex-col items-start rounded shadow-md'>
 
-          <header className='flex flex-col justify-start items-start w-full border-b pb-2'>
+          <header className='flex flex-col justify-start items-start w-full border-b'>
 
             <div className='flex justify-between items-center w-full pb-4'>
-              <h4 id="modal-title" className='text-xl font-semibold'>Create post</h4>
+              <h4 id="modal-title" className='text-xl font-semibold'>Create a post</h4>
               <button type="button" aria-label="close current window" onClick={closeModal}>
                 <svg className="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1B1E22">
                   <path d="M0 0h24v24H0z" fill="none"/>
@@ -73,23 +76,22 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
 
           </header>
 
-          <div>
-            <div className="w-full">
-              <form className="py-4" onSubmit={handleSubmit}>
-                <label htmlFor="post">Post text</label>
-                <input type="text" id="post" onChange={(e) => setPostText(e.target.value)} value={postText} name="post"/>
-                <Button type="submit" design="primary">
-                  {loading ? 'Posting...' : 'Post'}
-                </Button>
-              </form>
+          <div className="w-full">
+            <div className='flex items-center justify-start py-3'>
+              <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="w-10 mr-2 sm:mr-3 rounded-full"/>
+              <p className="block font-semibold hover:underlinemax-w-[200px]">{user.fullName}</p>
             </div>
+            <form className="w-full" onSubmit={handleSubmit}>
+              <label htmlFor="postText" className='sr-only'>Post text</label>
+              <textarea  required
+          className="w-full resize-none rounded py-2 text-sm sm:text-base outline-none" name="postText" id="postText" rows="6" onChange={(e) => setPostText(e.target.value)} value={postText} placeholder="What's on your mind?"></textarea>
+            </form>
 
             <button className='bg-red-500 text-white font-semibold' onClick={handleSubmit}>
-              {loading ? 'Updating...' : 'Delete'}
+            {loading ? 'Updating...' : 'Delete'}
             </button>
             <button className='bg-gray-100 text-gray-800'>Cancel</button>
           </div>
-
         </div>
       </div>
     </FocusTrap>
