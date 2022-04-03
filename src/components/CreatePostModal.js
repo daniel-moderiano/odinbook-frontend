@@ -87,10 +87,14 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
           className="w-full resize-none rounded py-2 text-sm sm:text-base outline-none" name="postText" id="postText" rows="6" onChange={(e) => setPostText(e.target.value)} value={postText} placeholder="What's on your mind?"></textarea>
             </form>
 
-            <button className='bg-red-500 text-white font-semibold' onClick={handleSubmit}>
-            {loading ? 'Updating...' : 'Delete'}
-            </button>
-            <button className='bg-gray-100 text-gray-800'>Cancel</button>
+            <div className='flex items-center justify-between'>
+              {/* Image upload btn and feature here */}
+              <button>Add image</button>
+              <Button design="primary" customStyles="w-16" disabled={!(postText.length > 0)} onClick={handleSubmit}>
+                {loading ? 'Posting...' : 'Post'}
+              </Button>
+            </div>
+      
           </div>
         </div>
       </div>
