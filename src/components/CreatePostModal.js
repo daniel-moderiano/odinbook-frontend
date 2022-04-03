@@ -78,19 +78,21 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
 
           <div className="w-full">
             <div className='flex items-center justify-start py-3'>
-              <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="w-10 mr-2 sm:mr-3 rounded-full"/>
+              <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="w-10 mr-3 sm:mr-3 rounded-full"/>
               <p className="block font-semibold hover:underlinemax-w-[200px]">{user.fullName}</p>
             </div>
             <form className="w-full" onSubmit={handleSubmit}>
               <label htmlFor="postText" className='sr-only'>Post text</label>
               <textarea  required
-          className="w-full resize-none rounded py-2 text-sm sm:text-base outline-none" name="postText" id="postText" rows="6" onChange={(e) => setPostText(e.target.value)} value={postText} placeholder="What's on your mind?"></textarea>
+          className="w-full resize-none rounded py-2 text-sm sm:text-base outline-none" name="postText" id="postText" rows="5" onChange={(e) => setPostText(e.target.value)} value={postText} placeholder="What's on your mind?"></textarea>
             </form>
 
             <div className='flex items-center justify-between'>
               {/* Image upload btn and feature here */}
-              <button>Add image</button>
-              <Button design="primary" customStyles="w-16" disabled={!(postText.length > 0)} onClick={handleSubmit}>
+              <button className='p-1 rounded'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className='w-6'><path fill='#50547C' d="M152 120c-26.51 0-48 21.49-48 48s21.49 48 48 48s48-21.49 48-48S178.5 120 152 120zM447.1 32h-384C28.65 32-.0091 60.65-.0091 96v320c0 35.35 28.65 64 63.1 64h384c35.35 0 64-28.65 64-64V96C511.1 60.65 483.3 32 447.1 32zM463.1 409.3l-136.8-185.9C323.8 218.8 318.1 216 312 216c-6.113 0-11.82 2.768-15.21 7.379l-106.6 144.1l-37.09-46.1c-3.441-4.279-8.934-6.809-14.77-6.809c-5.842 0-11.33 2.529-14.78 6.809l-75.52 93.81c0-.0293 0 .0293 0 0L47.99 96c0-8.822 7.178-16 16-16h384c8.822 0 16 7.178 16 16V409.3z"/></svg>
+              </button>
+              <Button design="primary" customStyles="max-w-[100px]" disabled={!(postText.length > 0)} onClick={handleSubmit}>
                 {loading ? 'Posting...' : 'Post'}
               </Button>
             </div>
