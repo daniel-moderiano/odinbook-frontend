@@ -16,6 +16,7 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
 
   // Image value is in the context of e.target.value and represents a pseudo string path to an image
   const [imageValue, setImageValue] = useState('');
+  const [imageFile, setImageFile] = useState(null);
   const [imageData, setImageData] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
   const [imageError, setImageError] = useState(false);
@@ -58,7 +59,10 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
 
   const handleSubmit = (e)  => {
     e.preventDefault();
-    createPost(postText);
+    const formData = new FormData();
+    formData.append('text', postText);
+    formData.append('image', imageFile);
+    createPost(formData);
   };
 
   useEffect(() => {
@@ -167,9 +171,9 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
 
             <div className='flex items-center justify-between'>
               {/* FIles are accessed using the FileList property => element.files */}
-              <ImageUploadBtn handleChange={(e) => handleFile(e.target.files[0])} imageValue={imageValue} setImageValue={setImageValue}/>
+              <ImageUploadBtn handleChange={(e) => handleFile(e.target.files[0])} imageValue={imageValue} setImageValue={setImageValue} setImageFile={setImageFile}/>
               
-              <Button design="primary" customStyles="max-w-[100px]" disabled={!(postText.length > 0)} onClick={handleSubmit}>
+              <Button design="primary" customStyles="max-w-[100px]" disabled={postText.length === 0 && !imageFile} onClick={handleSubmit}>
                 {loading ? 'Posting...' : 'Post'}
               </Button>
             </div>

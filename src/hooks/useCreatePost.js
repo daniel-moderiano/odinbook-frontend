@@ -6,7 +6,7 @@ export const useCreatePost = () => {
   const [response, setResponse] = useState(null);
 
   // Accepts the comment ID of the comment to be liked
-  const createPost = async (postText) => {
+  const createPost = async (formData) => {
     setError(null);
     setLoading(true);
     setResponse(null);
@@ -15,11 +15,8 @@ export const useCreatePost = () => {
       const response = await fetch(`http://localhost:3000/api/posts`, {
         method: 'POST', 
         mode: 'cors', 
-        headers: {
-          'Content-Type': 'application/json'
-        },
         credentials: 'include',
-        body: JSON.stringify({ text: postText }),
+        body: formData,
       });
       const responseJSON = await response.json();
 
