@@ -18,17 +18,17 @@ const UserList = ({ userFriends }) => {
   }
 
   return (
-    <div>
+    <>
       {users && (
-        <div className="flex flex-wrap items-center justify-start">
+        <>
           {users.users.map((userDetails) => {
             if (!isRelatedUser(userDetails._id)) {
               return (<FriendCard friendData={userDetails} type="user" key={userDetails._id}/>)
             }
           })}
-        </div>
+        </>
       )}
-    </div>
+    </>
   )
 }
 
