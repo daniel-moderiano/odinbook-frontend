@@ -11,40 +11,46 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
   const { createPost, response, loading, error } = useCreatePost();
   const { showToast } = useToastContext();
   const { user } = useAuthContext();
+  console.log('Re-render');
 
   const [postText, setPostText] = useState('');
 
-  const [image, setImage] = useState(null);
+  const [imageData, setImageData] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
+  // Take file input from HTML input and convert it to a thumbnail for UI
   function handleFile(file) {
-    const imgPreview = document.querySelector('#preview')
-    const img = document.createElement("img");
-    img.file = file;
-    imgPreview.appendChild(img);
-
     // Create a new FileReader instance to convert the File object into a readable stream of data for UI display
     const reader = new FileReader();
 
+    // Set appropriate loading states to update relevant UI
     reader.onloadstart = (function () {
       return () => {
-        console.log('Loading');
-        document.querySelector('#imgLoading').textContent = 'Loading';
+        setImageData(null)
+        setImageLoading(true);
+        setImageError(false);
       }
     })();
 
-    
+    // Announce an error if once occurs
+    reader.onerror = (function () {
+      return () => {
+        setImageError(true);
+      }
+    })();
+
     // Called once the reader instance completes the read. This pattern of an immediately called function is required for correct behaviour
     reader.onload = (function () {
       return (e) => {
-        console.log('Loaded');
-        document.querySelector('#imgLoading').textContent = '';
-        // Result of file read can be accessed using e.target.result
-        const imgRead = e.target.result;
-        // Use image read as the new source of the img html element above
-        img.src = imgRead;
+        setImageLoading(false);
+        setImageError(false);
+        // Result of file read (i.e. the image data) can be accessed using e.target.result
+        setImageData(e.target.result);
       }
     })();
 
+    // Commence the file read using the parameter File object obtained from an HTML file input
     reader.readAsDataURL(file);
   }
 
@@ -59,6 +65,13 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
       closeModal();
     }
   }, [error, showToast, closeModal]);
+
+  
+  useEffect(() => {
+    if (imageError) {
+      showToast('error', 'An error occurred while uploading the image.');
+    }
+  }, [imageError, showToast]);
 
   useEffect(() => {
     if (response) {
@@ -124,7 +137,10 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
 
             {/* Image preview div */}
             <div id='preview'>
-              <span id='imgLoading'></span>
+              <span id='imgLoading'>{imageLoading && 'Loading...'}</span>
+              {imageData && (
+                <img className='w-72' src={imageData} alt="" />
+              )}
             </div>
 
             <div className='flex items-center justify-between'>
