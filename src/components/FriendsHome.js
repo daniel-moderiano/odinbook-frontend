@@ -4,6 +4,7 @@ import FriendsMenu from './FriendsMenu';
 import { useFetchGet } from '../hooks/useFetchGet';
 import FriendCard from "./FriendCard";
 import UserList from "./UserList";
+import SkeletonFriendCard from "./skeletons/SkeletonFriendCard";
 
 const FriendsHome = () => {
   const { user } = useAuthContext();
@@ -24,15 +25,24 @@ const FriendsHome = () => {
           <section className="bg-white mb-4 mt-3 md:m-4 lg:bg-transparent">
             <h2 className="text-xl font-bold p-4 lg:pb-2">Friend Requests</h2>
             <div className="flex flex-wrap items-center justify-start">
-              {friends ? (
+              {/* {friends ? (
                 <>
                   {friends.incomingRequests.map((request) => (
                     <FriendCard friendData={request.user} type="incoming" key={request._id}/>
                   ))}
                 </> 
               ) : (
-                <div>Unable to load friends</div>
-              )}
+                <>
+                  <SkeletonFriendCard />
+                  <SkeletonFriendCard />
+                  <SkeletonFriendCard />
+                </>
+              )} */}
+               <>
+                  <SkeletonFriendCard />
+                  <SkeletonFriendCard />
+                  <SkeletonFriendCard />
+                </>
             </div>
           </section>
 
