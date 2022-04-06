@@ -11,10 +11,11 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
   const { createPost, response, loading, error } = useCreatePost();
   const { showToast } = useToastContext();
   const { user } = useAuthContext();
-  console.log('Re-render');
 
   const [postText, setPostText] = useState('');
 
+  // Image value is in the context of e.target.value and represents a pseudo string path to an image
+  const [imageValue, setImageValue] = useState('');
   const [imageData, setImageData] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
   const [imageError, setImageError] = useState(false);
@@ -47,6 +48,7 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
         setImageError(false);
         // Result of file read (i.e. the image data) can be accessed using e.target.result
         setImageData(e.target.result);
+
       }
     })();
 
@@ -138,14 +140,29 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
             {/* Image preview div */}
             <div id='preview'>
               <span id='imgLoading'>{imageLoading && 'Loading...'}</span>
-              {imageData && (
-                <img className='w-72' src={imageData} alt="" />
-              )}
+              <div className='relative'>
+                {imageData && (
+                  <>
+                    <img className='w-72' src={imageData} alt="" />
+                    <button className='absolute top-0 right-0 p-1 rounded-full bg-gray-100 flex items-center justify-center' onClick={() => {
+                      // Clear the file from the input
+                      setImageValue('');
+                      // Clear the thumbnail image
+                      setImageData(null);
+                    }}>
+                      <svg className="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1B1E22">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                      </svg>
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
 
             <div className='flex items-center justify-between'>
               {/* FIles are accessed using the FileList property => element.files */}
-              <ImageUploadBtn handleChange={(e) => handleFile(e.target.files[0])}/>
+              <ImageUploadBtn handleChange={(e) => handleFile(e.target.files[0])} imageValue={imageValue} setImageValue={setImageValue}/>
               
               <Button design="primary" customStyles="max-w-[100px]" disabled={!(postText.length > 0)} onClick={handleSubmit}>
                 {loading ? 'Posting...' : 'Post'}
