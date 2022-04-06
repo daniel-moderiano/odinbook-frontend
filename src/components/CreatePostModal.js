@@ -138,26 +138,31 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
             </form>
 
             {/* Image preview div */}
-            <div id='preview'>
-              <span id='imgLoading'>{imageLoading && 'Loading...'}</span>
-              <div className='relative'>
-                {imageData && (
-                  <>
-                    <img className='w-72' src={imageData} alt="" />
-                    <button className='absolute top-0 right-0 p-1 rounded-full bg-gray-100 flex items-center justify-center' onClick={() => {
-                      // Clear the file from the input
-                      setImageValue('');
-                      // Clear the thumbnail image
-                      setImageData(null);
-                    }}>
-                      <svg className="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1B1E22">
-                        <path d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                      </svg>
-                    </button>
-                  </>
-                )}
-              </div>
+            <div id='preview' className='flex items-center justify-center w-full'>
+              {imageLoading && (
+                <div className='h-36'>
+                  <div role="status" className="border-[6px] border-gray-200 w-10 h-10 border-t-plum-500 rounded-full w animate-[spinner_1.5s_infinite_linear]">
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                </div>
+              )}
+              {imageData && (
+                <div className='relative p-2 border border-gray-200 rounded mb-4 w-full'>
+                  <img className='w-full' src={imageData} alt="" />
+                  <button className='flex absolute top-2 right-2 p-1 rounded-full bg-gray-100 border-gray-300 border items-center justify-center hover:bg-gray-200' onClick={() => {
+                    // Clear the file from the input
+                    setImageValue('');
+                    // Clear the thumbnail image
+                    setImageData(null);
+                  }}>
+                    <svg className="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1B1E22">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                  </button>
+                </div>
+              )}
+
             </div>
 
             <div className='flex items-center justify-between'>
