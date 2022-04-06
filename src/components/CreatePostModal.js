@@ -5,6 +5,7 @@ import { useToastContext } from '../context/ToastContext';
 import Button from './utils/Button';
 import { useAuthContext } from '../hooks/useAuthContext';
 import ProfilePic from './utils/ProfilePic';
+import ImageUploadBtn from './ImageUploadBtn';
 
 const CreatePostModal = ({ closeModal, updateFeed }) => {
   const { createPost, response, loading, error } = useCreatePost();
@@ -12,6 +13,40 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
   const { user } = useAuthContext();
 
   const [postText, setPostText] = useState('');
+
+  const [image, setImage] = useState(null);
+
+  function handleFile(file) {
+    const imgPreview = document.querySelector('#preview')
+    const img = document.createElement("img");
+    img.file = file;
+    imgPreview.appendChild(img);
+
+    // Create a new FileReader instance to convert the File object into a readable stream of data for UI display
+    const reader = new FileReader();
+
+    reader.onloadstart = (function () {
+      return () => {
+        console.log('Loading');
+        document.querySelector('#imgLoading').textContent = 'Loading';
+      }
+    })();
+
+    
+    // Called once the reader instance completes the read. This pattern of an immediately called function is required for correct behaviour
+    reader.onload = (function () {
+      return (e) => {
+        console.log('Loaded');
+        document.querySelector('#imgLoading').textContent = '';
+        // Result of file read can be accessed using e.target.result
+        const imgRead = e.target.result;
+        // Use image read as the new source of the img html element above
+        img.src = imgRead;
+      }
+    })();
+
+    reader.readAsDataURL(file);
+  }
 
   const handleSubmit = (e)  => {
     e.preventDefault();
@@ -87,11 +122,15 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
           className="w-full resize-none rounded py-2 text-sm sm:text-base outline-none" name="postText" id="postText" rows="5" onChange={(e) => setPostText(e.target.value)} value={postText} placeholder="What's on your mind?"></textarea>
             </form>
 
+            {/* Image preview div */}
+            <div id='preview'>
+              <span id='imgLoading'></span>
+            </div>
+
             <div className='flex items-center justify-between'>
-              {/* Image upload btn and feature here */}
-              <button className='p-1 rounded'>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className='w-6'><path fill='#50547C' d="M152 120c-26.51 0-48 21.49-48 48s21.49 48 48 48s48-21.49 48-48S178.5 120 152 120zM447.1 32h-384C28.65 32-.0091 60.65-.0091 96v320c0 35.35 28.65 64 63.1 64h384c35.35 0 64-28.65 64-64V96C511.1 60.65 483.3 32 447.1 32zM463.1 409.3l-136.8-185.9C323.8 218.8 318.1 216 312 216c-6.113 0-11.82 2.768-15.21 7.379l-106.6 144.1l-37.09-46.1c-3.441-4.279-8.934-6.809-14.77-6.809c-5.842 0-11.33 2.529-14.78 6.809l-75.52 93.81c0-.0293 0 .0293 0 0L47.99 96c0-8.822 7.178-16 16-16h384c8.822 0 16 7.178 16 16V409.3z"/></svg>
-              </button>
+              {/* FIles are accessed using the FileList property => element.files */}
+              <ImageUploadBtn handleChange={(e) => handleFile(e.target.files[0])}/>
+              
               <Button design="primary" customStyles="max-w-[100px]" disabled={!(postText.length > 0)} onClick={handleSubmit}>
                 {loading ? 'Posting...' : 'Post'}
               </Button>
