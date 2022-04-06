@@ -3,6 +3,7 @@ import Header from "./Header";
 import FriendsMenu from './FriendsMenu';
 import { useFetchGet } from "../hooks/useFetchGet";
 import FriendCard from "./FriendCard";
+import SkeletonFriendCard from './skeletons/SkeletonFriendCard';
 
 const AllFriends = () => {
   const { user } = useAuthContext();
@@ -28,7 +29,11 @@ const AllFriends = () => {
                 ))}
               </> 
             ) : (
-              <div>Unable to load friends</div>
+              <>
+                <SkeletonFriendCard />
+                <SkeletonFriendCard />
+                <SkeletonFriendCard />
+              </>
             )}
         </div>
         </main>

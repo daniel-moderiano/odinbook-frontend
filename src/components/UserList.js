@@ -3,7 +3,7 @@ import { useFetchGet } from "../hooks/useFetchGet"
 import FriendCard from "./FriendCard";
                            
 const UserList = ({ userFriends }) => {
-  const { data: users } = useFetchGet(`http://localhost:3000/api/users`);
+  const { data: users, loading, error } = useFetchGet(`http://localhost:3000/api/users`);
   const { user: currentUser } = useAuthContext();
 
   // Returns false if a user is either involved in the current user's friends array (request or friend), or is the current user themselves. Should only be called once users data is available
@@ -19,7 +19,7 @@ const UserList = ({ userFriends }) => {
 
   return (
     <div>
-      {users &&(
+      {users && (
         <div className="flex flex-wrap items-center justify-start">
           {users.users.map((userDetails) => {
             if (!isRelatedUser(userDetails._id)) {
