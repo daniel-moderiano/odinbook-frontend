@@ -18,12 +18,13 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
   // Note: image value is in the context of an HTML file input value (e.target.value) and represents a pseudo string path to an image (e.g. 'C:/fakepath/image.png')
   const [imageValue, setImageValue] = useState('');
   const [imageFile, setImageFile] = useState(null);
-
+  
+  const [postText, setPostText] = useState('');
+  
   // Custom useEffect-style hook to control modal closing on esc and outside click
   useModalEvents(closeModal);
 
-  const [postText, setPostText] = useState('');
-
+  // Convert to FormData object to allow backend processing with Express Multer middleware
   const handleSubmit = (e)  => {
     e.preventDefault();
     const formData = new FormData();
@@ -118,10 +119,10 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
               <ImageUploadBtn handleChange={(e) => handleFile(e.target.files[0])} imageValue={imageValue} setImageValue={setImageValue} setImageFile={setImageFile}/>
               
               <Button 
-              design="primary" 
-              customStyles="max-w-[100px]" 
-              disabled={postText.length === 0 && !imageFile} 
-              onClick={handleSubmit}>
+                design="primary" 
+                customStyles="max-w-[100px]" 
+                disabled={postText.length === 0 && !imageFile} 
+                onClick={handleSubmit}>
                 {loading ? 'Posting...' : 'Post'}
               </Button>
             </div>

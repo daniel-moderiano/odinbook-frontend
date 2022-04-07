@@ -6,7 +6,7 @@ const ImageUploadBtn = ({ handleChange, imageValue, setImageValue, setImageFile 
     // Accepts only the formats specified
     <>
       <label htmlFor="image" className='file-label'>
-        <input type="file" value={imageValue} name="image" id="image" accept='.jpg, .jpeg, .png' className="file-input" onChange={(e) => {
+        <input data-testid="input" type="file" value={imageValue} name="image" id="image" accept='.jpg, .jpeg, .png' className="file-input" onChange={(e) => {
           setImageValue(e.target.value);
           setImageFile(e.target.files[0]);
           handleChange(e);
