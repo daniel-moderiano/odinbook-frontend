@@ -6,56 +6,23 @@ import Button from './utils/Button';
 import { useAuthContext } from '../hooks/useAuthContext';
 import ProfilePic from './utils/ProfilePic';
 import ImageUploadBtn from './ImageUploadBtn';
+import { useModalEvents } from '../hooks/useModalEvents';
+import { useImageThumbnail } from '../hooks/useImageThumbnail';
 
 const CreatePostModal = ({ closeModal, updateFeed }) => {
   const { createPost, response, loading, error } = useCreatePost();
   const { showToast } = useToastContext();
   const { user } = useAuthContext();
+  const { handleFile, removeThumbnail, imageData, imageError, imageLoading } = useImageThumbnail();
 
-  const [postText, setPostText] = useState('');
-
-  // Image value is in the context of e.target.value and represents a pseudo string path to an image
+  // Note: image value is in the context of an HTML file input value (e.target.value) and represents a pseudo string path to an image (e.g. 'C:/fakepath/image.png')
   const [imageValue, setImageValue] = useState('');
   const [imageFile, setImageFile] = useState(null);
-  const [imageData, setImageData] = useState(null);
-  const [imageLoading, setImageLoading] = useState(false);
-  const [imageError, setImageError] = useState(false);
 
-  // Take file input from HTML input and convert it to a thumbnail for UI
-  function handleFile(file) {
-    // Create a new FileReader instance to convert the File object into a readable stream of data for UI display
-    const reader = new FileReader();
+  // Custom useEffect-style hook to control modal closing on esc and outside click
+  useModalEvents(closeModal);
 
-    // Set appropriate loading states to update relevant UI
-    reader.onloadstart = (function () {
-      return () => {
-        setImageData(null)
-        setImageLoading(true);
-        setImageError(false);
-      }
-    })();
-
-    // Announce an error if once occurs
-    reader.onerror = (function () {
-      return () => {
-        setImageError(true);
-      }
-    })();
-
-    // Called once the reader instance completes the read. This pattern of an immediately called function is required for correct behaviour
-    reader.onload = (function () {
-      return (e) => {
-        setImageLoading(false);
-        setImageError(false);
-        // Result of file read (i.e. the image data) can be accessed using e.target.result
-        setImageData(e.target.result);
-
-      }
-    })();
-
-    // Commence the file read using the parameter File object obtained from an HTML file input
-    reader.readAsDataURL(file);
-  }
+  const [postText, setPostText] = useState('');
 
   const handleSubmit = (e)  => {
     e.preventDefault();
@@ -86,29 +53,6 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
       closeModal();
     }
   }, [response, updateFeed, showToast, closeModal])
-
-  // Add user-expected actions when pressing the escape key or clicking outside the modal (close the modal)
-  useEffect(() => {
-    const outsideClick = (event) => {
-      if (event.target === document.querySelector('#Modal')) {
-        closeModal();
-      }
-    }
-
-    const escClose = (event) => {
-      if (event.key === 'Escape') {
-        closeModal();
-      }
-    }
-
-    window.addEventListener('click', outsideClick);
-    window.addEventListener('keydown', escClose);
-
-    return () => {
-      window.removeEventListener('click', outsideClick)
-      window.removeEventListener('keydown', escClose)
-    }
-  }, [closeModal])
 
   return (
     <FocusTrap>
@@ -157,8 +101,7 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
                     // Clear the file from the input and from the file state
                     setImageValue('');
                     setImageFile(null);
-                    // Clear the thumbnail image
-                    setImageData(null);
+                    removeThumbnail();
                   }}>
                     <svg className="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1B1E22">
                       <path d="M0 0h24v24H0z" fill="none"/>
