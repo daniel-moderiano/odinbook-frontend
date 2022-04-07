@@ -154,8 +154,9 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
                 <div className='relative p-2 border border-gray-200 rounded mb-4 w-full'>
                   <img className='w-full' src={imageData} alt="" />
                   <button className='flex absolute top-2 right-2 p-1 rounded-full bg-gray-100 border-gray-300 border items-center justify-center hover:bg-gray-200' onClick={() => {
-                    // Clear the file from the input
+                    // Clear the file from the input and from the file state
                     setImageValue('');
+                    setImageFile(null);
                     // Clear the thumbnail image
                     setImageData(null);
                   }}>
@@ -173,7 +174,11 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
               {/* FIles are accessed using the FileList property => element.files */}
               <ImageUploadBtn handleChange={(e) => handleFile(e.target.files[0])} imageValue={imageValue} setImageValue={setImageValue} setImageFile={setImageFile}/>
               
-              <Button design="primary" customStyles="max-w-[100px]" disabled={postText.length === 0 && !imageFile} onClick={handleSubmit}>
+              <Button 
+              design="primary" 
+              customStyles="max-w-[100px]" 
+              disabled={postText.length === 0 && !imageFile} 
+              onClick={handleSubmit}>
                 {loading ? 'Posting...' : 'Post'}
               </Button>
             </div>
