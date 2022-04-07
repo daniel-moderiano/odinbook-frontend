@@ -5,14 +5,37 @@ import { useToastContext } from '../context/ToastContext';
 import Button from './utils/Button';
 import ProfilePic from './utils/ProfilePic';
 import { useAuthContext } from '../hooks/useAuthContext';
+import ImageUploadBtn from './ImageUploadBtn';
+import { useImageThumbnail } from '../hooks/useImageThumbnail';
+import { useModalEvents } from '../hooks/useModalEvents';
 
 const EditPostModal = ({ closeModal, post, updateFeed }) => {
   const { updatePost, response, loading, error } = useUpdatePost();
   const { showToast } = useToastContext();
   const { user } = useAuthContext();
 
+  const { handleFile, removeThumbnail, imageData, imageError, imageLoading, setImageData } = useImageThumbnail();
+
+  // Note: image value is in the context of an HTML file input value (e.target.value) and represents a pseudo string path to an image (e.g. 'C:/fakepath/image.png')
+  const [imageValue, setImageValue] = useState('');
+  const [imageFile, setImageFile] = useState(null);
+
+  // Custom useEffect-style hook to control modal closing on esc and outside click
+  useModalEvents(closeModal);
+
   // Set state initially to current post text. 
   const [postText, setPostText] = useState(post.text);
+
+  // Image handling
+  // If the user updates the current post image, this should be set to true. This includes replacing the image, or simply removing it. This will be appended to the req.body to inform the server to delete the old image
+  const [imageUpdated, setImageUpdated] = useState(false);
+
+  // Initialise imageData state to any existing image in the post
+  useEffect(() => {
+    if (post.image) {
+      setImageData(post.image.imageUrl)
+    }
+  }, [post.image, setImageData])
 
   useEffect(() => {
     if (response) {
@@ -33,29 +56,6 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
     e.preventDefault();
     updatePost(post._id, postText);
   }
-
-  // Add user-expected actions when pressing the escape key or clicking outside the modal (close the modal)
-  useEffect(() => {
-    const outsideClick = (event) => {
-      if (event.target === document.querySelector('#Modal')) {
-        closeModal();
-      }
-    }
-
-    const escClose = (event) => {
-      if (event.key === 'Escape') {
-        closeModal();
-      }
-    }
-
-    window.addEventListener('click', outsideClick);
-    window.addEventListener('keydown', escClose);
-
-    return () => {
-      window.removeEventListener('click', outsideClick)
-      window.removeEventListener('keydown', escClose)
-    }
-  }, [closeModal])
 
   return (
     <FocusTrap>
@@ -91,11 +91,37 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
           className="w-full resize-none rounded py-2 text-sm sm:text-base outline-none" name="postText" id="postText" rows="5" onChange={(e) => setPostText(e.target.value)} value={postText} placeholder="What's on your mind?"></textarea>
             </form>
 
+            {/* Image preview div */}
+            <div id='preview' className='flex items-center justify-center w-full'>
+              {imageLoading && (
+                <div className='h-36'>
+                  <div role="status" className="border-[6px] border-gray-200 w-10 h-10 border-t-plum-500 rounded-full w animate-[spinner_1.5s_infinite_linear]">
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                </div>
+              )}
+              {imageData && (
+                <div className='relative p-2 border border-gray-200 rounded mb-4 w-full'>
+                  <img className='w-full' src={imageData} alt="" />
+                  <button className='flex absolute top-2 right-2 p-1 rounded-full bg-gray-100 border-gray-300 border items-center justify-center hover:bg-gray-200' onClick={() => {
+                    // Clear the file from the input and from the file state
+                    setImageValue('');
+                    setImageFile(null);
+                    removeThumbnail();
+                  }}>
+                    <svg className="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1B1E22">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                  </button>
+                </div>
+              )}
+
+            </div>
+           
+
             <div className='flex items-center justify-between'>
-              {/* Image upload btn and feature here */}
-              <button className='p-1 rounded'>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className='w-6'><path fill='#50547C' d="M152 120c-26.51 0-48 21.49-48 48s21.49 48 48 48s48-21.49 48-48S178.5 120 152 120zM447.1 32h-384C28.65 32-.0091 60.65-.0091 96v320c0 35.35 28.65 64 63.1 64h384c35.35 0 64-28.65 64-64V96C511.1 60.65 483.3 32 447.1 32zM463.1 409.3l-136.8-185.9C323.8 218.8 318.1 216 312 216c-6.113 0-11.82 2.768-15.21 7.379l-106.6 144.1l-37.09-46.1c-3.441-4.279-8.934-6.809-14.77-6.809c-5.842 0-11.33 2.529-14.78 6.809l-75.52 93.81c0-.0293 0 .0293 0 0L47.99 96c0-8.822 7.178-16 16-16h384c8.822 0 16 7.178 16 16V409.3z"/></svg>
-              </button>
+              <ImageUploadBtn handleChange={(e) => handleFile(e.target.files[0])} imageValue={imageValue} setImageValue={setImageValue} setImageFile={setImageFile}/>
               <Button design="primary" customStyles="max-w-[100px]" disabled={!(postText.length > 0)} onClick={handleSubmit}>
                 {loading ? 'Saving...' : 'Save'}
               </Button>

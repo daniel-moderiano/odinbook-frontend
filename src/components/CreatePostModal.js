@@ -115,7 +115,6 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
             </div>
 
             <div className='flex items-center justify-between'>
-              {/* FIles are accessed using the FileList property => element.files */}
               <ImageUploadBtn handleChange={(e) => handleFile(e.target.files[0])} imageValue={imageValue} setImageValue={setImageValue} setImageFile={setImageFile}/>
               
               <Button 

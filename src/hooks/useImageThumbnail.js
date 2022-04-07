@@ -50,7 +50,8 @@ export const useImageThumbnail = () => {
     removeThumbnail,
     imageData, 
     imageLoading, 
-    imageError 
+    imageError,
+    setImageData 
   };
 }
 
