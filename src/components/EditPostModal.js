@@ -41,6 +41,7 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
     if (response) {
       updateFeed(Math.random())
       showToast('success', 'Post edited');
+      console.log(response);
       closeModal();
     }
   }, [response, showToast, closeModal, updateFeed]);
@@ -54,7 +55,11 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updatePost(post._id, postText);
+    const formData = new FormData();
+    formData.append('text', postText);
+    formData.append('image', imageFile);
+    formData.append('imageUpdated', imageUpdated);
+    updatePost(post._id, formData);
   }
 
   return (
@@ -107,6 +112,7 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
                     // Clear the file from the input and from the file state
                     setImageValue('');
                     setImageFile(null);
+                    setImageUpdated(true);
                     removeThumbnail();
                   }}>
                     <svg className="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1B1E22">
@@ -121,7 +127,10 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
            
 
             <div className='flex items-center justify-between'>
-              <ImageUploadBtn handleChange={(e) => handleFile(e.target.files[0])} imageValue={imageValue} setImageValue={setImageValue} setImageFile={setImageFile}/>
+              <ImageUploadBtn handleChange={(e) => {
+                handleFile(e.target.files[0]);
+                setImageUpdated(true);
+              }} imageValue={imageValue} setImageValue={setImageValue} setImageFile={setImageFile}/>
               <Button design="primary" customStyles="max-w-[100px]" disabled={!(postText.length > 0)} onClick={handleSubmit}>
                 {loading ? 'Saving...' : 'Save'}
               </Button>
