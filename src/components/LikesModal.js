@@ -36,7 +36,7 @@ const LikesModal = ({ postId, commentId, closeModal }) => {
     <FocusTrap>
       <div id='Modal' aria-modal="true" role="dialog" aria-labelledby="modal-title" className='flex fixed z-[1000] left-0 top-0 h-full w-full overflow-auto bg-gray-700/70 justify-center items-center'>
 
-        <div className='bg-white w-full max-w-md p-5 flex flex-col items-start rounded shadow-md max-h-full overflow-scroll'>
+        <div className='bg-white w-full max-w-md p-5 flex flex-col items-start rounded shadow-md max-h-full overflow-auto'>
 
           <header className='flex flex-col justify-start items-start w-full border-b pb-2'>
 

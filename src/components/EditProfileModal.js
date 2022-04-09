@@ -62,7 +62,7 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
     <FocusTrap>
       <div id='Modal' aria-modal="true" role="dialog" aria-labelledby="modal-title" className='flex fixed z-[1000] left-0 top-0 h-full w-full overflow-auto bg-gray-700/70 justify-center items-center'>
 
-        <div className='bg-white w-full max-w-md px-6 py-6 flex flex-col items-start rounded shadow-md max-h-full overflow-scroll'>
+        <div className='bg-white w-full max-w-md px-6 py-6 flex flex-col items-start rounded shadow-md max-h-full overflow-auto'>
 
           <header className='flex flex-col justify-start items-start w-full border-b'>
 
@@ -134,8 +134,8 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
                 </div>
               ) : (
                 <div className='max-w-lg mb-4'>
-                  <p className='font-bold'>{profileUser.fullName}</p>
-                  <p className='font-bold'>{profileUser.email}</p>
+                  <p className='font-semibold'>{profileUser.fullName}</p>
+                  <p className='font-semibold'>{profileUser.email}</p>
                 </div>
               )}
             </fieldset>
@@ -195,9 +195,9 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
                 <div className='max-w-lg mb-4'>
                   {profileUser.bio ? (
                     <>
-                     {profileUser.bio.occupation && <p className='font-bold'>{profileUser.bio.occupation}</p>}
-                     {profileUser.bio.occupation && <p>Studied at <strong>{profileUser.bio.education}</strong></p>}
-                     {profileUser.bio.occupation && <p>Lives in <strong>{profileUser.bio.location}</strong></p>}
+                     {profileUser.bio.occupation && <p className='font-semibold'>{profileUser.bio.occupation}</p>}
+                     {profileUser.bio.occupation && <p>Studied at <span className='font-semibold'>{profileUser.bio.education}</span></p>}
+                     {profileUser.bio.occupation && <p>Lives in <span className='font-semibold'>{profileUser.bio.location}</span></p>}
                     </>
                   ) : (
                     <p>No information added yet.</p>
