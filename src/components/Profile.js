@@ -8,7 +8,6 @@ import ProfileFriends from './ProfileFriends';
 import ProfilePosts from './ProfilePosts';
 import ProfileFriendsTab from './ProfileFriendsTab';
 import Spinner from './utils/Spinner'
-import ProfileEdit from './ProfileEdit';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useFetchProfile } from '../hooks/useFetchProfile';
@@ -67,11 +66,6 @@ const Profile = ({ profileView }) => {
           {profileView === 'friends' && (
             <section className='mb-6 rounded sm:max-w-2xl lg:max-w-4xl w-full'>
               <ProfileFriendsTab profileUser={profileUser.user}/>        
-            </section>
-          )}
-          {profileView === 'edit' && (
-            <section className='shadow-sm mb-6 rounded sm:max-w-2xl lg:max-w-4xl w-full'>
-              <ProfileEdit profileUser={profileUser.user}/>
             </section>
           )}
         </div>)}
