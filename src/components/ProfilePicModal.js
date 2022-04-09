@@ -9,7 +9,7 @@ import ImageUploadBtn from './ImageUploadBtn';
 import { useImageThumbnail } from '../hooks/useImageThumbnail';
 import { useModalEvents } from '../hooks/useModalEvents';
 
-const EditPostModal = ({ closeModal, post, updateFeed }) => {
+const ProfilePicModal = ({ closeModal, profileUser, updateFeed }) => {
   const { updatePost, response, loading, error } = useUpdatePost();
   const { showToast } = useToastContext();
   const { user } = useAuthContext();
@@ -23,19 +23,9 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
   // Custom useEffect-style hook to control modal closing on esc and outside click
   useModalEvents(closeModal);
 
-  // Set state initially to current post text. 
-  const [postText, setPostText] = useState(post.text);
-
   // Image handling
   // If the user updates the current post image, this should be set to true. This includes replacing the image, or simply removing it. This will be appended to the req.body to inform the server to delete the old image
   const [imageUpdated, setImageUpdated] = useState(false);
-
-  // Initialise imageData state to any existing image in the post
-  useEffect(() => {
-    if (post.image) {
-      setImageData(post.image.imageUrl)
-    }
-  }, [post.image, setImageData])
 
   useEffect(() => {
     if (response) {
@@ -54,11 +44,10 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('text', postText);
-    formData.append('image', imageFile);
-    formData.append('imageUpdated', imageUpdated);
-    updatePost(post._id, formData);
+    // const formData = new FormData();
+    // formData.append('image', imageFile);
+    // formData.append('imageUpdated', imageUpdated);
+    // updatePost(post._id, formData);
   }
 
   return (
@@ -86,14 +75,6 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
               <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="w-10 mr-3 sm:mr-3 rounded-full"/>
               <p className="block font-semibold hover:underlinemax-w-[200px]">{user.fullName}</p>
             </div>
-            <form className="w-full" onSubmit={handleSubmit}>
-              <label htmlFor="postText" className='sr-only'>Post text</label>
-              <textarea  required autoFocus onFocus={(e) => {
-                // Set the cursor at the end of the current post text
-                e.target.setSelectionRange(postText.length, postText.length);
-              }}
-          className="w-full resize-none rounded py-2 text-sm sm:text-base outline-none" name="postText" id="postText" rows="4" onChange={(e) => setPostText(e.target.value)} value={postText} placeholder="What's on your mind?"></textarea>
-            </form>
 
             {/* Image preview div */}
             <div id='preview' className='flex items-center justify-center w-full'>
@@ -130,7 +111,7 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
                 handleFile(e.target.files[0]);
                 setImageUpdated(true);
               }} imageValue={imageValue} setImageValue={setImageValue} setImageFile={setImageFile}/>
-              <Button design="primary" customStyles="max-w-[100px]" disabled={!(postText.length > 0)} onClick={handleSubmit}>
+              <Button design="primary" customStyles="max-w-[100px]" onClick={handleSubmit}>
                 {loading ? 'Saving...' : 'Save'}
               </Button>
             </div>
@@ -143,4 +124,4 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
   )
 }
 
-export default EditPostModal;
+export default ProfilePicModal;
