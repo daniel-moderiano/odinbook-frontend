@@ -25,10 +25,11 @@ const Profile = ({ profileView }) => {
   useEffect(() => {
     // State has been passed from edit profile page (i.e. user updated profile details)
     if (location.state) {
-      // Somehow refresh the fetch call here
+      // Refresh the fetch call here, and reset the location state
       fetchProfile(userId);
+      location.state = undefined;
     }
-  }, [location.state, fetchProfile, userId]);
+  }, [location, fetchProfile, userId]);
 
   // Initial render
   useEffect(() => {

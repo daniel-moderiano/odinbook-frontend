@@ -45,7 +45,7 @@ const ProfileHeader = ({ profileUser, profileType }) => {
       </div>
 
       {showPicModal && (
-        <ProfilePicModal closeModal={() => setShowPicModal(false)} profileUser={profileUser}/>
+        <ProfilePicModal closeModal={() => setShowPicModal(false)} profileUser={profileUser} />
       )}
     </div>
   )

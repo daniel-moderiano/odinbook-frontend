@@ -7,11 +7,14 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import ImageUploadBtn from './ImageUploadBtn';
 import { useImageThumbnail } from '../hooks/useImageThumbnail';
 import { useModalEvents } from '../hooks/useModalEvents';
+import { useNavigate } from 'react-router-dom';
 
-const ProfilePicModal = ({ closeModal, profileUser, updateFeed }) => {
+const ProfilePicModal = ({ closeModal, profileUser }) => {
   const { updateProfilePic, loading, response, error } = useUpdateProfilePic();
   const { showToast } = useToastContext();
   const { user } = useAuthContext();
+  let navigate = useNavigate();
+
 
   const { handleFile, removeThumbnail, imageData, imageError, imageLoading, setImageData } = useImageThumbnail();
 
@@ -33,17 +36,17 @@ const ProfilePicModal = ({ closeModal, profileUser, updateFeed }) => {
     }
   }, [profileUser.profilePic, setImageData])
 
+  
   useEffect(() => {
     if (response) {
-      updateFeed(Math.random())
-      showToast('success', 'Post edited');
+      showToast('success', 'Profile picture updated');
       closeModal();
+      navigate(`/profile/${profileUser._id}`, { state: 'update' });
     }
-  }, [response, showToast, closeModal, updateFeed]);
+  }, [profileUser, response, navigate, showToast, closeModal]);
 
   useEffect(() => {
     if (error) {
-      console.log(error);
       showToast('error', 'An error occurred while editing the post.');
       closeModal();
     }
