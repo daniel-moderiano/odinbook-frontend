@@ -1,6 +1,9 @@
 import ProfileHeader from "../components/ProfileHeader";
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
+import { ToastContextProvider } from "../context/ToastContext";
+import { AuthContextProvider } from "../context/AuthContext";
 
 const user = {
   "profilePic": {
@@ -44,6 +47,13 @@ const userNoPic = {
   "dateJoined": "March 15, 2022",
   "id": "622ffeb44dc1fd166b08b3ce"
 }
+
+// Mock useFetchGet to return a pre-defined users object
+jest.mock("../hooks/useAuthContext", () => ({
+  useAuthContext: () => ({ 
+    user: user
+  }),
+}));
 
 describe('Profile picture selective rendering', () => {
   it("Displays only blank profile pic when no image URL is available for profile pic", () => {
@@ -117,6 +127,23 @@ describe('Profile header buttons', () => {
     const otherBtns = screen.queryByRole('button', { name: /edit|add/i });
     expect(otherBtns).not.toBeInTheDocument();
   });
+
+  it('shows profile pic update modal on camera btn click', () => {
+    render(
+      <BrowserRouter>
+        <ToastContextProvider>
+          <AuthContextProvider>
+            <ProfileHeader profileUser={user} profileType="friend"/>
+          </AuthContextProvider>
+        </ToastContextProvider>
+      </BrowserRouter>
+    );
+    const btn = screen.getByTestId('camera');
+    userEvent.click(btn);
+
+    const modal = screen.getByRole('dialog');
+    expect(modal).toBeInTheDocument();
+  })
 });
 
 
