@@ -27,6 +27,13 @@ const ProfilePicModal = ({ closeModal, profileUser, updateFeed }) => {
   // If the user updates the current post image, this should be set to true. This includes replacing the image, or simply removing it. This will be appended to the req.body to inform the server to delete the old image
   const [imageUpdated, setImageUpdated] = useState(false);
 
+  // Initialise imageData state to any existing image in the post
+  useEffect(() => {
+    if (profileUser.profilePic) {
+      setImageData(profileUser.profilePic.imageUrl)
+    }
+  }, [profileUser.profilePic, setImageData])
+
   useEffect(() => {
     if (response) {
       updateFeed(Math.random())
@@ -59,7 +66,7 @@ const ProfilePicModal = ({ closeModal, profileUser, updateFeed }) => {
           <header className='flex flex-col justify-start items-start w-full border-b'>
 
             <div className='flex justify-between items-center w-full pb-4'>
-              <h4 id="modal-title" className='text-xl font-semibold'>Edit post</h4>
+              <h4 id="modal-title" className='text-xl font-semibold'>Edit profile picture</h4>
               <button type="button" aria-label="close current window" onClick={closeModal}>
                 <svg className="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1B1E22">
                   <path d="M0 0h24v24H0z" fill="none"/>
@@ -72,8 +79,7 @@ const ProfilePicModal = ({ closeModal, profileUser, updateFeed }) => {
 
           <div className="w-full">
             <div className='flex items-center justify-start py-3'>
-              <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="w-10 mr-3 sm:mr-3 rounded-full"/>
-              <p className="block font-semibold hover:underlinemax-w-[200px]">{user.fullName}</p>
+              <p>Current profile pic</p>
             </div>
 
             {/* Image preview div */}
@@ -85,7 +91,7 @@ const ProfilePicModal = ({ closeModal, profileUser, updateFeed }) => {
                   </div>
                 </div>
               )}
-              {imageData && (
+              {imageData ? (
                 <div className='relative p-2 border border-gray-200 rounded mb-4 w-full'>
                   <img className='w-full' src={imageData} alt="" />
                   <button className='flex absolute top-2 right-2 p-1 rounded-full bg-gray-100 border-gray-300 border items-center justify-center hover:bg-gray-200' onClick={() => {
@@ -101,6 +107,8 @@ const ProfilePicModal = ({ closeModal, profileUser, updateFeed }) => {
                     </svg>
                   </button>
                 </div>
+              ) : (
+                <div>No profile picture yet</div>
               )}
 
             </div>

@@ -15,11 +15,8 @@ export const useUpdateProfile = () => {
       const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
         method: 'PUT', 
         mode: 'cors', 
-        headers: {
-          'Content-Type': 'application/json'
-        },
         credentials: 'include',
-        body: JSON.stringify(formData),    // Takes in profileData object (essentially an object containing form data)
+        body: formData,
       });
       const responseJSON = await response.json();
 

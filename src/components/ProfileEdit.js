@@ -44,7 +44,12 @@ const ProfileEdit = ({ profileUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    updateProfile(profileUser._id, formData);
+    // Convert JS Object to Form Data object
+    const newFormData = new FormData();
+    for (let key in formData) {
+      newFormData.append(key, formData[key]);
+    }
+    updateProfile(profileUser._id, newFormData);
   }
 
   return (
