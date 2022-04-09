@@ -1,7 +1,7 @@
 import { useFetchGet } from "../hooks/useFetchGet";
 import Post from "./Post";
 
-const ProfilePosts = ({ profileUser, profileType }) => {
+const ProfilePosts = ({ profileUser }) => {
   const { data: posts, loading, error } = useFetchGet(`http://localhost:3000/api/users/${profileUser._id}/posts`);
 
   return (

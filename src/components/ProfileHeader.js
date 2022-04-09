@@ -4,9 +4,11 @@ import ProfilePic from './utils/ProfilePic';
 import StyledLink from './utils/StyledLink';
 import { useState } from 'react';
 import ProfilePicModal from './ProfilePicModal';
+import EditProfileModal from './EditProfileModal';
 
 const ProfileHeader = ({ profileUser, profileType }) => {
   const [showPicModal, setShowPicModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   return (
     <div className="w-full relative bg-white flex flex-col items-center justify-center">
@@ -33,7 +35,8 @@ const ProfileHeader = ({ profileUser, profileType }) => {
             <Button design="ghost" customStyles="w-44">Friends</Button>
           )}
           {profileType === 'ownProfile' && (
-            <StyledLink to={`/profile/${profileUser._id}/edit`} design="btn-primary" customStyles="w-44">Edit profile</StyledLink>
+            // <StyledLink to={`/profile/${profileUser._id}/edit`} design="btn-primary" customStyles="w-44">Edit profile</StyledLink>
+            <Button onClick={() => setShowEditModal(true)} design="primary" customStyles="w-44">Edit profile</Button>
           )}
           {profileType === 'nonFriend' && (
             <Button design="primary" customStyles="w-44">Add friend</Button>
@@ -46,6 +49,10 @@ const ProfileHeader = ({ profileUser, profileType }) => {
 
       {showPicModal && (
         <ProfilePicModal closeModal={() => setShowPicModal(false)} profileUser={profileUser} />
+      )}
+
+      {showEditModal && (
+        <EditProfileModal closeModal={() => setShowEditModal(false)} profileUser={profileUser} />
       )}
     </div>
   )
