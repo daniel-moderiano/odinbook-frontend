@@ -1,16 +1,15 @@
 import FocusTrap from 'focus-trap-react';
 import { useEffect, useState } from 'react';
-import { useUpdatePost } from '../hooks/useUpdatePost';
+import { useUpdateProfilePic } from '../hooks/useUpdateProfilePic'
 import { useToastContext } from '../context/ToastContext';
 import Button from './utils/Button';
-import ProfilePic from './utils/ProfilePic';
 import { useAuthContext } from '../hooks/useAuthContext';
 import ImageUploadBtn from './ImageUploadBtn';
 import { useImageThumbnail } from '../hooks/useImageThumbnail';
 import { useModalEvents } from '../hooks/useModalEvents';
 
 const ProfilePicModal = ({ closeModal, profileUser, updateFeed }) => {
-  const { updatePost, response, loading, error } = useUpdatePost();
+  const { updateProfilePic, loading, response, error } = useUpdateProfilePic();
   const { showToast } = useToastContext();
   const { user } = useAuthContext();
 
@@ -44,6 +43,7 @@ const ProfilePicModal = ({ closeModal, profileUser, updateFeed }) => {
 
   useEffect(() => {
     if (error) {
+      console.log(error);
       showToast('error', 'An error occurred while editing the post.');
       closeModal();
     }
@@ -51,10 +51,10 @@ const ProfilePicModal = ({ closeModal, profileUser, updateFeed }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const formData = new FormData();
-    // formData.append('image', imageFile);
-    // formData.append('imageUpdated', imageUpdated);
-    // updatePost(post._id, formData);
+    const formData = new FormData();
+    formData.append('image', imageFile);
+    formData.append('imageUpdated', imageUpdated);
+    updateProfilePic(profileUser._id, formData);
   }
 
   return (
@@ -78,10 +78,6 @@ const ProfilePicModal = ({ closeModal, profileUser, updateFeed }) => {
           </header>
 
           <div className="w-full">
-            <div className='flex items-center justify-start py-3'>
-              <p>Current profile pic</p>
-            </div>
-
             {/* Image preview div */}
             <div id='preview' className='flex items-center justify-center w-full'>
               {imageLoading && (
@@ -91,25 +87,29 @@ const ProfilePicModal = ({ closeModal, profileUser, updateFeed }) => {
                   </div>
                 </div>
               )}
-              {imageData ? (
-                <div className='relative p-2 border border-gray-200 rounded mb-4 w-full'>
-                  <img className='w-full' src={imageData} alt="" />
-                  <button className='flex absolute top-2 right-2 p-1 rounded-full bg-gray-100 border-gray-300 border items-center justify-center hover:bg-gray-200' onClick={() => {
-                    // Clear the file from the input and from the file state
-                    setImageValue('');
-                    setImageFile(null);
-                    setImageUpdated(true);
-                    removeThumbnail();
-                  }}>
-                    <svg className="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1B1E22">
-                      <path d="M0 0h24v24H0z" fill="none"/>
-                      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                    </svg>
-                  </button>
-                </div>
-              ) : (
-                <div>No profile picture yet</div>
-              )}
+     
+              <div className={`relative px-2 py-4 border mt-4 border-gray-200 ${!imageData && 'border-dashed bg-gray-50'} rounded mb-4 w-full flex items-center- justify-center`}>
+                {imageData ? (
+                  <>
+                    <img className='w-8/12 rounded-full' src={imageData} alt="" />
+                    <button className='flex absolute top-2 right-2 p-1 rounded-full bg-gray-100 border-gray-300 border items-center justify-center hover:bg-gray-200' onClick={() => {
+                      // Clear the file from the input and from the file state
+                      setImageValue('');
+                      setImageFile(null);
+                      setImageUpdated(true);
+                      removeThumbnail();
+                    }}>
+                      <svg className="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1B1E22">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                      </svg>
+                    </button>
+                  </>
+                ) : (
+                  <p>No picture added</p>
+                )}
+              </div>
+
 
             </div>
            

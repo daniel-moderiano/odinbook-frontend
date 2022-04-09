@@ -1,25 +1,22 @@
 import { useState } from "react"
 
-export const useUpdateProfile = () => {
+export const useUpdateProfilePic = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
 
   // Accepts the comment ID of the comment to be liked
-  const updateProfile = async (userId, formData) => {
+  const updateProfilePic = async (userId, formData) => {
     setError(null);
     setLoading(true);
     setResponse(null);
 
     try {
-      const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
+      const response = await fetch(`http://localhost:3000/api/users/${userId}/profile-pic`, {
         method: 'PUT', 
         mode: 'cors', 
-        headers: {
-          'Content-Type': 'application/json'
-        },
         credentials: 'include',
-        body: JSON.stringify(formData),    // Takes in profileData object (essentially an object containing form data)
+        body: formData,
       });
       const responseJSON = await response.json();
 
@@ -41,6 +38,6 @@ export const useUpdateProfile = () => {
     } 
   };
 
-  return { updateProfile, response, loading, error };
+  return { updateProfilePic, response, loading, error };
 }
 
