@@ -27,6 +27,7 @@ function App() {
   }, [pathname]);
 
   return (
+    <>
     <div className="bg-plum-50 w-full m-0 p-0 h-screen flex flex-col">
       {authIsReady && (<>
         <Routes>
@@ -88,6 +89,7 @@ function App() {
       </>)}
       <Toast visible={toastVisible} params={toastParams}/>
     </div>
+    </>
   );
 }
 
