@@ -37,6 +37,7 @@ export const AuthContextProvider = ({ children }) => {
     getCurrentUser()
       // getCurrentUser returns null where there is no user logged in
       .then((user) => {
+        console.log(user);
         dispatch({
           type: 'AUTH_IS_READY',
           payload: user,

@@ -4,11 +4,10 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { usePostComment } from '../hooks/usePostComment';
 import { useToastContext } from '../context/ToastContext';
 
-const CommentForm = ({ imageUrl, postId, updateComments }) => {
-  const { user: currentUser } = useAuthContext();
+const CommentForm = ({ postId, updateComments }) => {
+  const { user } = useAuthContext();
   const { postComment, response, loading, error } = usePostComment()
   const [commentText, setCommentText] = useState('');
-
   const { showToast } = useToastContext();
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const CommentForm = ({ imageUrl, postId, updateComments }) => {
 
   return (
     <div className='flex items-start mx-4'>
-      <ProfilePic imgUrl={imageUrl ? imageUrl : null} styles="w-9 h-9 mr-2 mt-0 rounded-full"/>
+      <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="w-9 h-9 mr-2 mt-0 rounded-full"/>
       <form onSubmit={handleSubmit} className="w-full mr-2 flex flex-col items-start">
         <textarea 
           name="commentText"
