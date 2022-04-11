@@ -16,6 +16,7 @@
   },
   "scripts": {
     "full": "concurrently \"PORT=3006 react-scripts start\" \"cd ../backend && npm run dev\"",
+    "debug": "concurrently \"PORT=3006 react-scripts start\" \"cd ../backend && npm run debug\"",
     "start": "PORT=3006 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
