@@ -25,7 +25,15 @@ const Login = () => {
     e.preventDefault();
     login(formData);
   };
-  
+
+  // Uses normal login function, but passes in test account credentials
+  const loginTestAccount = () => {
+    login({
+      email: 'dan@gmail.com',
+      password: 'test123',
+    });
+  }
+ 
   // Open the facebook auth page by a direct URL request to the backend API url
   const FacebookLogin = () => {
     window.open('http://localhost:3000/auth/facebook', "_self");
@@ -98,13 +106,21 @@ const Login = () => {
               </form>
 
               <Button type="button" design="ghost-lg" customStyles="font-semibold mt-3 max-w-sm" onClick={FacebookLogin}>
-                <svg className="w-6 mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <svg className="w-5 mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                   <path fill="#50547C" d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z" />
                 </svg>
                 <span>Log in with Facebook</span>
               </Button>
 
-              <StyledLink to="/signup" design="btn-secondary" customStyles="w-56 mt-12 font-semibold">Create new account</StyledLink>
+              <div>
+                <StyledLink to="/signup" design="btn-secondary" customStyles="w-56 mt-12 font-semibold">Create new account</StyledLink>
+                <button onClick={loginTestAccount} type="button" className="font-semibold mt-3 flex items-center justify-center w-full px-2 py-1 bg-white text-teal-750 shadow-sm border border-teal-750 hover:bg-plum-50 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-teal-550/30 disabled:bg-gray-100 disabled:text-gray-400 disabled:shadow-none disabled:border-gray-100">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="w-4 mr-2" >
+                    <path fill="#218381" d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
+                    </svg>
+                  <span>Try a test account</span>
+                </button>
+              </div>
             </div>
 
           </div>
