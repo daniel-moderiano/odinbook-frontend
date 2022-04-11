@@ -94,7 +94,7 @@ const ProfilePicModal = ({ closeModal, profileUser }) => {
               <div className={`relative px-2 py-4 border mt-4 border-gray-200 ${!imageData && 'border-dashed bg-gray-50'} rounded mb-4 w-full flex items-center- justify-center`}>
                 {imageData ? (
                   <>
-                    <img className='w-8/12 rounded-full' src={imageData} alt="" />
+                    <img className='object-cover w-52 h-52 rounded-full' src={imageData} alt="" />
                     <button className='flex absolute top-2 right-2 p-1 rounded-full bg-gray-100 border-gray-300 border items-center justify-center hover:bg-gray-200' onClick={() => {
                       // Clear the file from the input and from the file state
                       setImageValue('');

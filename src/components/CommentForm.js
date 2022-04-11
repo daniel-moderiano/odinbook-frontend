@@ -32,7 +32,7 @@ const CommentForm = ({ imageUrl, postId, updateComments }) => {
 
   return (
     <div className='flex items-start mx-4'>
-      <ProfilePic imgUrl={imageUrl ? imageUrl : null} styles="w-9 mr-2 mt-0 rounded-full"/>
+      <ProfilePic imgUrl={imageUrl ? imageUrl : null} styles="w-9 h-9 mr-2 mt-0 rounded-full"/>
       <form onSubmit={handleSubmit} className="w-full mr-2 flex flex-col items-start">
         <textarea 
           name="commentText"

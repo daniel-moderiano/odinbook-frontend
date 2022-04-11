@@ -39,7 +39,7 @@ const AcceptRequestBtn = ({ userId }) => {
   }
 
   return (
-    <Button onClick={() => request('acceptRequest')} design="primary" customStyles="mr-3" disabled={response ? true : false}>
+    <Button onClick={() => request('acceptRequest')} design="primary" customStyles="mr-3 lg:mr-0 lg:mb-2" disabled={response ? true : false}>
       {setBtnText(loading, error, response)}
     </Button>
   )

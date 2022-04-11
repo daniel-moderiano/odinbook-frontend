@@ -20,7 +20,7 @@ const SideMenu = () => {
             <>
               <div className=' bg-plum-600/20 w-full flex items-center rounded-t justify-center py-4'>
               <StyledLink to={`/profile/${user._id}`} customStyles="hover:opacity-95 active:opacity-100">
-                <ProfilePic imgUrl={userDetails.user.profilePic ? userDetails.user.profilePic.imageUrl : null} styles="w-20 rounded-full border-2 border-white"/>
+                <ProfilePic imgUrl={userDetails.user.profilePic ? userDetails.user.profilePic.imageUrl : null} styles="w-20 h-20 rounded-full border-2 border-white"/>
               </StyledLink>
 
               </div>

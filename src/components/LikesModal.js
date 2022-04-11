@@ -73,7 +73,7 @@ const LikesModal = ({ postId, commentId, closeModal }) => {
                 {likes.map((user) => (
                   <li key={user._id} className='flex items-center justify-start border-b w-full py-2'>
                     <Link to={`/profile/${user._id}`} className="hover:opacity-95 active:opacity-100">
-                      <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="w-10 mr-4 rounded-full"/>
+                      <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="w-10 h-10 mr-4 rounded-full"/>
                     </Link>
                     <Link to={`/profile/${user._id}`} className='text-sm font-semibold hover:underline'>{user.fullName}</Link>
                   </li>

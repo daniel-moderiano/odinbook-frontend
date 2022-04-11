@@ -79,7 +79,7 @@ const Post = ({ post, updateFeed }) => {
         <div className='flex items-center justify-start'>
           {/* Link to user's profile */}
           <StyledLink to={`/profile/${post.user._id}`} customStyles="hover:opacity-95 active:opacity-100">
-            <ProfilePic imgUrl={post.user.profilePic ? post.user.profilePic.imageUrl : null} styles="w-10 mr-2 sm:mr-3 rounded-full"/>
+            <ProfilePic imgUrl={post.user.profilePic ? post.user.profilePic.imageUrl : null} styles="w-10 h-10 mr-2 sm:mr-3 rounded-full"/>
           </StyledLink>
           <div>
             {/* Link to the user's profile page */}

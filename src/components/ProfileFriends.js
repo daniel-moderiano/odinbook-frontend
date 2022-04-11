@@ -23,7 +23,7 @@ const ProfileFriends = ({ profileUser }) => {
                   <div key={friend.user._id} className="">
                     {/* Width adjusts back to smaller size on large screens because the friends section becomes a side column instead of full screen width */}
                     <Link to={`/profile/${friend.user._id}`} className="block hover:opacity-95 active:opacity-100">
-                      <ProfilePic imgUrl={friend.user.profilePic ? friend.user.profilePic.imageUrl : null} styles="w-24 sm:w-28 lg:w-24 rounded"/>
+                      <ProfilePic imgUrl={friend.user.profilePic ? friend.user.profilePic.imageUrl : null} styles="w-24 h-24 sm:w-28 sm:h-28 lg:w-24 lg:h-24 rounded"/>
                     </Link>
   
                       <Link to={`/profile/${friend.user._id}`} className="block text-xs sm:text-sm lg:text-xs font-semibold mt-1.5 w-full text-center max-w-[96px] sm:max-w-[112px] lg:max-w-[96px] hover:underline">{friend.user.fullName}</Link>

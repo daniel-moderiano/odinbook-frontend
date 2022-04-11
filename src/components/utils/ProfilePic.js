@@ -5,9 +5,9 @@ const ProfilePic = ({ imgUrl, styles }) => {
   return (
     <>
       {imgUrl ? (
-        <img src={imgUrl} alt="Profile picture" className={styles} />
+        <img src={imgUrl} alt="Profile picture" className={`object-cover ${styles}`} />
       ) : (
-        <img src={anonPicLarge} alt="Blank Profile picture" className={styles}/>
+        <img src={anonPicLarge} alt="Blank Profile picture" className={`object-cover ${styles}`}/>
       )}
     </>
   )
