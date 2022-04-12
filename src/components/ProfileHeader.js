@@ -1,7 +1,6 @@
 import Button from './utils/Button';
 import ProfileNav from './ProfileNav';
 import ProfilePic from './utils/ProfilePic';
-import StyledLink from './utils/StyledLink';
 import { useState } from 'react';
 import ProfilePicModal from './ProfilePicModal';
 import EditProfileModal from './EditProfileModal';

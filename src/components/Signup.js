@@ -3,9 +3,11 @@ import { useSignup } from "../hooks/useSignup";
 import Input from "./utils/Input";
 import Button from './utils/Button';
 import StyledLink from "./utils/StyledLink";
+import { useToastContext } from "../context/ToastContext";
 
 const Signup = () => {
   const { signup, error, loading } = useSignup();
+  const { showToast } = useToastContext();
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -33,9 +35,9 @@ const Signup = () => {
 
   useEffect(() => {
     if (error) {
-      console.log(error);
+      showToast('error', 'An error occurred while creating the account.')
     }
-  }, [error])
+  }, [error, showToast])
 
   return (
     <div className="flex w-full flex-col h-screen">
@@ -134,7 +136,9 @@ const Signup = () => {
                   </div>
                 )}
 
-                <Button type="submit" design="primary-lg" customStyles="font-semibold mt-6">Create account</Button>
+                <Button type="submit" design="primary-lg" customStyles="font-semibold mt-6">
+                  {loading ? 'Creating...' : 'Create Account'}
+                </Button>
               </form>
 
               <StyledLink to="/login" design="btn-secondary" customStyles="w-60 mt-12 font-semibold">Already have an account?</StyledLink>

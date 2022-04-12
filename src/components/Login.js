@@ -3,9 +3,11 @@ import { useLogin } from "../hooks/useLogin";
 import Input from "./utils/Input";
 import Button from "./utils/Button";
 import StyledLink from "./utils/StyledLink";
+import { useToastContext } from '../context/ToastContext'
 
 const Login = () => {
   const { login, error, loading } = useLogin();
+  const { showToast } = useToastContext();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -41,9 +43,9 @@ const Login = () => {
 
   useEffect(() => {
     if (error) {
-      console.log(error);
+      showToast('error', 'An error occurred while logging in')
     }
-  }, [error])
+  }, [error, showToast])
 
   return (
     <div className="flex w-full flex-col h-screen">
@@ -101,7 +103,9 @@ const Login = () => {
                   </label>
                 </div>
 
-                <Button type="submit" design="primary-lg" customStyles="font-semibold mt-3">Log in</Button>
+                <Button type="submit" design="primary-lg" customStyles="font-semibold mt-3">
+                  {loading ? 'Logging in...' : 'Log in'}
+                </Button>
 
               </form>
 

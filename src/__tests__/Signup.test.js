@@ -3,13 +3,16 @@ import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import Signup from '../components/Signup';
 import { AuthContextProvider } from "../context/AuthContext";
+import { ToastContextProvider } from '../context/ToastContext'
 
 describe("Password confirmation input", () => {
   it("hides confirmPassword input by default", () => {
     render(
       <BrowserRouter>
         <AuthContextProvider>
-          <Signup />
+          <ToastContextProvider value={{ showToast: jest.fn }}>
+            <Signup />
+          </ToastContextProvider>
         </AuthContextProvider>
       </BrowserRouter>
     )
@@ -21,7 +24,9 @@ describe("Password confirmation input", () => {
     render(
       <BrowserRouter>
         <AuthContextProvider>
-          <Signup />
+          <ToastContextProvider value={{ showToast: jest.fn }}>
+            <Signup />
+          </ToastContextProvider>
         </AuthContextProvider>
       </BrowserRouter>
     );
