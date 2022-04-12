@@ -29,8 +29,8 @@ const Login = () => {
   // Uses normal login function, but passes in test account credentials
   const loginTestAccount = () => {
     login({
-      email: 'dan@gmail.com',
-      password: 'test123',
+      email: 'tobey@gmail.com',
+      password: 'peterparker',
     });
   }
  

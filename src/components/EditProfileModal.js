@@ -160,7 +160,6 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
                         name="occupation"
                         value={formData.occupation}
                         onChange={handleChange}
-                        required
                       />
                     </label>
                   </div>
@@ -173,7 +172,6 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
                         name="education"
                         value={formData.education}
                         onChange={handleChange}
-                        required
                       />
                     </label>
                   </div>
@@ -186,7 +184,6 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
                         name="location"
                         value={formData.location}
                         onChange={handleChange}
-                        required
                       />
                     </label>
                   </div>
