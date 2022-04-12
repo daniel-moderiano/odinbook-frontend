@@ -6,9 +6,11 @@ import LikesModal from "./LikesModal";
 import { useDeleteComment } from "../hooks/useDeleteComment";
 import { useToastContext } from "../context/ToastContext";
 import EditCommentForm from "./EditCommentForm";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Comment = ({ postId, commentData, updateKey }) => {
   const { deleteComment, response, loading, error } = useDeleteComment();
+  const { user } = useAuthContext();
   const { showToast } = useToastContext();
 
   const [showModal, setShowModal] = useState(false);
@@ -56,10 +58,12 @@ const Comment = ({ postId, commentData, updateKey }) => {
                 <span className='mt-px'>{commentData.numLikes + localLike}</span>
               </button>
             </div>
-            <div className="flex items-center justify-center">
-              <button className="text-xs text-gray-500 mr-3 font-medium hover:text-gray-700  disabled:hover:bg-transparent" onClick={() => setEditMode(true)}>Edit</button>
-              <button className="text-xs text-gray-500 font-medium hover:text-red-700 disabled:hover:bg-transparent" onClick={() => deleteComment(postId, commentData._id)}>Delete</button>
-            </div>
+            {commentData.user._id === user._id && (
+              <div className="flex items-center justify-center">
+                <button className="text-xs text-gray-500 mr-3 font-medium hover:text-gray-700  disabled:hover:bg-transparent" onClick={() => setEditMode(true)}>Edit</button>
+                <button className="text-xs text-gray-500 font-medium hover:text-red-700 disabled:hover:bg-transparent" onClick={() => deleteComment(postId, commentData._id)}>Delete</button>
+              </div>
+            )}
           </div>
         </div>
       </article>

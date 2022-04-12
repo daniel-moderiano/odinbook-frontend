@@ -29,6 +29,26 @@ const comment = {
     "id": "622ffe9caa78d2996267f85d"
 }
 
+const commentOwn = {
+  "_id": "622ffe9caa78d2996267f85d",
+  "user": {
+      "_id": "622ffe9baa78d2996267f821",
+      "firstName": "Chardee",
+      "lastName": "McDennis",
+  },
+  "text": "Nulla omnis aliquam autem est aut officia placeat sunt iste.",
+  "likes": [
+    "622ffe9baa78d2996267f82f",
+    "622ffe9baa78d2996267f82g"
+  ],
+  "createdAt": "2022-03-15T02:49:00.053Z",
+  "updatedAt": "2022-03-15T02:49:00.053Z",
+  "__v": 0,
+  "dateAdded": "March 15, 2022",
+  "numLikes": 2,
+  "id": "622ffe9caa78d2996267f85d"
+}
+
 const currentUser = {
   "_id": "622ffe9baa78d2996267f821",
   "firstName": "Chardee",
@@ -74,4 +94,40 @@ it('Increases local like count when clicking like button', () => {
 
   const likes = screen.getByText(/3/i) 
   expect(likes).toBeInTheDocument();
-})
+});
+
+it("Shows edit and delete buttons for users own comments", () => {
+  render(
+    <BrowserRouter>
+      <AuthContextProvider>
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <Comment postId="622ffe9baa78d2996267f835" commentData={commentOwn}/>
+        </ToastContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
+  );
+
+  const editBtn = screen.getByRole('button', { name: /edit/i });
+  const deleteBtn = screen.getByRole('button', { name: /delete/i });
+
+  expect(editBtn).toBeInTheDocument();
+  expect(deleteBtn).toBeInTheDocument();
+});
+
+it("Does not show edit and delete buttons on other people's comments", () => {
+  render(
+    <BrowserRouter>
+      <AuthContextProvider>
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <Comment postId="622ffe9baa78d2996267f835" commentData={comment}/>
+        </ToastContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
+  );
+
+  const editBtn = screen.queryByRole('button', { name: /edit/i });
+  const deleteBtn = screen.queryByRole('button', { name: /delete/i });
+  
+  expect(editBtn).not.toBeInTheDocument();
+  expect(deleteBtn).not.toBeInTheDocument();
+});
