@@ -8,14 +8,14 @@ const ProfileFriendsTab = ({ profileUser }) => {
   return (
     <div className="bg-white p-4 md:p-6 rounded">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="font-bold text-2xl">Friends</h2>
+        <h2 className="font-bold text-2xl lg:mb-2">Friends</h2>
       </div>
       {friends ? (
         <>
           {/* Friends array may exist but the user may not yet have any accepted friends. Hence this is checked here */}
           {friends.acceptedFriends.length > 0 ? (
             <>
-              <div className="flex flex-wrap gap-x-4 gap-y-3 sm:gap-x-5 lg:gap-3">
+              <div className="flex flex-wrap gap-x-4 gap-y-3 sm:gap-x-5 md:gap-x-10 lg:gap-3 sm:justify-between">
                 {friends.acceptedFriends.map((friend, index) => (
                   <div key={friend.user._id} className="flex flex-col items-center justify-start lg:flex-row lg:rounded lg:border lg:border-gray-200 lg:p-2 lg:w-[415px]">
                     <Link to={`/profile/${friend.user._id}`} className="hover:opacity-95 active:opacity-100">

@@ -20,6 +20,7 @@ module.exports = {
       },
       screens: {
         'sm': '475px',
+        'friend': { 'raw': '(min-width: 672px) and (max-width: 1023px)' },
       },
       keyframes: {
         shimmer: {
