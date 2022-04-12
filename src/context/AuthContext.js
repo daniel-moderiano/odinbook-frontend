@@ -18,6 +18,10 @@ export const authReducer = (state, action) => {
     case 'AUTH_IS_READY':
       return { ...state, user: action.payload, authIsReady: true }
 
+    // Update the current state with the most recent version of a user. Used when updating profile details
+    case 'UPDATE':
+      return { ...state, user: action.payload }
+
     default:
       return state;
   }

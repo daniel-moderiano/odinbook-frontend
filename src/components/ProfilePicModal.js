@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 const ProfilePicModal = ({ closeModal, profileUser }) => {
   const { updateProfilePic, loading, response, error } = useUpdateProfilePic();
   const { showToast } = useToastContext();
-  const { user } = useAuthContext();
+  const { user, dispatch } = useAuthContext();
   let navigate = useNavigate();
 
 
@@ -39,11 +39,13 @@ const ProfilePicModal = ({ closeModal, profileUser }) => {
   
   useEffect(() => {
     if (response) {
+      // Adjust current user within auth context to updated profile pic user
+      dispatch({ type: 'UPDATE', payload: response })
       showToast('success', 'Profile picture updated');
       closeModal();
       navigate(`/profile/${profileUser._id}`, { state: 'update' });
     }
-  }, [profileUser, response, navigate, showToast, closeModal]);
+  }, [profileUser, response, navigate, showToast, closeModal, dispatch]);
 
   useEffect(() => {
     if (error) {

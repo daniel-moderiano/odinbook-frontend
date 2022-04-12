@@ -10,7 +10,7 @@ import Input from './utils/Input';
 
 const EditProfileModal = ({ closeModal, profileUser }) => {
   const { showToast } = useToastContext();
-  const { user } = useAuthContext();
+  const { user, dispatch } = useAuthContext();
   const [editPersonal, setEditPersonal] = useState(false);
   const [editAbout, setEditAbout] = useState(false);
 
@@ -37,11 +37,13 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
 
   useEffect(() => {
     if (response) {
+      // Adjust current user within auth context to updated profile pic user
+      dispatch({ type: 'UPDATE', payload: response })
       showToast('success', 'Profile information updated');
       closeModal();
       navigate(`/profile/${profileUser._id}`, { state: 'update' });
     }
-  }, [profileUser, response, navigate, showToast, closeModal]);
+  }, [profileUser, response, navigate, showToast, closeModal, dispatch]);
 
   // Use the name attributes to set the state (ensure names correspond to keys in state object)
   const handleChange = (e) => {
