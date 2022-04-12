@@ -5,11 +5,20 @@ import { useFetchGet } from '../hooks/useFetchGet';
 import FriendCard from "./FriendCard";
 import UserList from "./UserList";
 import SkeletonFriendCard from "./skeletons/SkeletonFriendCard";
+import { useEffect } from "react";
+import { useToastContext } from "../context/ToastContext";
 
 const FriendsHome = () => {
   const { user } = useAuthContext();
   // Friends data is an object containing 3 arrays of friends: acceptedFriends, incomingRequests, and outgoingRequests
   const { data: friends, loading, error } = useFetchGet(`http://localhost:3000/api/users/${user._id}/friends`);
+  const { showToast } = useToastContext();
+
+  useEffect(() => {
+    if (error) {
+      showToast('error', 'An error occurred while loading friends.')
+    }
+  }, [error,showToast]);
 
   return (
     <div>
@@ -25,18 +34,23 @@ const FriendsHome = () => {
           <section className="bg-white mb-4 mt-3 md:m-4 lg:bg-transparent">
             <h2 className="text-xl font-bold p-4 lg:pb-2">Friend Requests</h2>
             <div className="flex flex-wrap items-center justify-start">
-              {friends ? (
+              {friends && (
                 <>
                   {friends.incomingRequests.map((request) => (
                     <FriendCard friendData={request.user} type="incoming" key={request._id}/>
                   ))}
                 </> 
-              ) : (
+              )}
+              {loading && (
                 <>
                   <SkeletonFriendCard />
                   <SkeletonFriendCard />
                   <SkeletonFriendCard />
                 </>
+              )}
+              {/* Error UI is only required once here to avoid duplication below */}
+              {error && (
+                <div>An error occurred</div>
               )}
             </div>
           </section>
@@ -44,9 +58,10 @@ const FriendsHome = () => {
           <section className="bg-white my-8 md:m-4 lg:bg-transparent">
             <h2 className="text-xl font-bold p-4 lg:pb-2 lg:pt-8 lg:mt-8 lg:border-t lg:border-gray-300">Find new friends</h2>
             <div className="flex flex-wrap items-center justify-start">
-              {friends ? (
+              {friends && (
                 <UserList userFriends={friends}/>
-              ) : (
+              )}
+              {loading && (
                 <>
                   <SkeletonFriendCard />
                   <SkeletonFriendCard />
@@ -54,7 +69,6 @@ const FriendsHome = () => {
                 </>
               )}
             </div>
-
           </section>
         </main>
       </div>

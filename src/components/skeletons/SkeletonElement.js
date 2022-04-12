@@ -45,7 +45,7 @@ const SkeletonElement = ({ type }) => {
   }
 
   return (
-    <div className={classStyles}></div>
+    <div data-testid="skeleton" className={classStyles}></div>
   )
 }
 

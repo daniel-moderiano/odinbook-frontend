@@ -9,7 +9,7 @@ const AcceptRequestBtn = ({ userId }) => {
 
   useEffect(() => {
     if (error) {
-      showToast('error', error.errorMsg)
+      showToast('error', 'An error occurred while accepting the request')
     }
   }, [error,showToast]);
 
