@@ -3,10 +3,12 @@ import { useLogin } from "../hooks/useLogin";
 import Input from "./utils/Input";
 import Button from "./utils/Button";
 import StyledLink from "./utils/StyledLink";
-import { useToastContext } from '../context/ToastContext'
+import { useToastContext } from '../context/ToastContext';
+import { useTestLogin } from '../hooks/useTestLogin';
 
 const Login = () => {
   const { login, error, loading } = useLogin();
+  const { testLogin, error: testError, loading: testLoading } = useTestLogin();
   const { showToast } = useToastContext();
 
   const [formData, setFormData] = useState({
@@ -28,14 +30,6 @@ const Login = () => {
     login(formData);
   };
 
-  // Uses normal login function, but passes in test account credentials
-  const loginTestAccount = () => {
-    login({
-      email: 'tobey@gmail.com',
-      password: 'peterparker',
-    });
-  }
- 
   // Open the facebook auth page by a direct URL request to the backend API url
   const FacebookLogin = () => {
     window.open('http://localhost:3000/auth/facebook', "_self");
@@ -45,7 +39,13 @@ const Login = () => {
     if (error) {
       showToast('error', 'An error occurred while logging in')
     }
-  }, [error, showToast])
+  }, [error, showToast]);
+
+  useEffect(() => {
+    if (testError) {
+      showToast('error', 'An error occurred while logging in')
+    }
+  }, [testError, showToast]);
 
   return (
     <div className="flex w-full flex-col h-screen">
@@ -118,11 +118,13 @@ const Login = () => {
 
               <div>
                 <StyledLink to="/signup" design="btn-secondary" customStyles="w-56 mt-12 font-semibold">Create new account</StyledLink>
-                <button onClick={loginTestAccount} type="button" className="font-semibold mt-3 flex items-center justify-center w-full px-2 py-1 bg-white text-teal-750 shadow-sm border border-teal-750 hover:bg-plum-50 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-teal-550/30 disabled:bg-gray-100 disabled:text-gray-400 disabled:shadow-none disabled:border-gray-100">
+                <button onClick={testLogin} type="button" className="font-semibold mt-3 flex items-center justify-center w-full px-2 py-1 bg-white text-teal-750 shadow-sm border border-teal-750 hover:bg-plum-50 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-teal-550/30 disabled:bg-gray-100 disabled:text-gray-400 disabled:shadow-none disabled:border-gray-100">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="w-4 mr-2" >
                     <path fill="#218381" d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
                     </svg>
-                  <span>Try a test account</span>
+                  <span>
+                    {testLoading ? 'Logging in': 'Try a test account'}
+                  </span>
                 </button>
               </div>
             </div>
