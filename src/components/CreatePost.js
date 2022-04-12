@@ -1,9 +1,8 @@
 import { useState } from "react";
 import CreatePostModal from "./CreatePostModal";
 
-const CreatePost = ({ updateFeed }) => {
+const CreatePost = ({ updatePosts }) => {
   const [showModal, setShowModal] = useState(false);
-
 
   return (
     <div className="w-full rounded bg-white p-1 mb-6 flex flex-col items-center justify-center max-w-3xl lg:min-w-full shadow-sm">
@@ -18,7 +17,7 @@ const CreatePost = ({ updateFeed }) => {
       </button>
 
       {showModal && (
-        <CreatePostModal closeModal={() => setShowModal(false)} updateFeed={updateFeed}/>
+        <CreatePostModal closeModal={() => setShowModal(false)} updatePosts={updatePosts}/>
       )}
     </div>
   )

@@ -19,7 +19,7 @@ const Home = () => {
               <SideMenu />
             </div>
             <main className="max-w-[640px] col-start-1 lg:col-start-2 flex flex-col justify-center self-center w-full lg:max-w-[550px] xl:max-w-[640px] md:min-w-[640px] lg:min-w-[550px] xl:min-w-[640px]">
-              <CreatePost updateFeed={setFeedKey}/>
+              <CreatePost updatePosts={() => setFeedKey(Math.random())}/>
               <Feed updateFeed={setFeedKey} key={feedKey}/>
             </main>
             <div className="hidden 2xl:flex">

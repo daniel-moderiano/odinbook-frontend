@@ -9,7 +9,7 @@ import ImageUploadBtn from './ImageUploadBtn';
 import { useModalEvents } from '../hooks/useModalEvents';
 import { useImageThumbnail } from '../hooks/useImageThumbnail';
 
-const CreatePostModal = ({ closeModal, updateFeed }) => {
+const CreatePostModal = ({ closeModal, updatePosts }) => {
   const { createPost, response, loading, error } = useCreatePost();
   const { showToast } = useToastContext();
   const { user } = useAuthContext();
@@ -50,10 +50,10 @@ const CreatePostModal = ({ closeModal, updateFeed }) => {
   useEffect(() => {
     if (response) {
       showToast('success', 'Post successfully created.')
-      updateFeed(Math.random());
+      updatePosts();
       closeModal();
     }
-  }, [response, updateFeed, showToast, closeModal])
+  }, [response, updatePosts, showToast, closeModal])
 
   return (
     <FocusTrap>
