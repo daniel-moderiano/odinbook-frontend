@@ -83,7 +83,7 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
 
           <div className="w-full">
             <div className='flex items-center justify-start py-3'>
-              <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="w-10 mr-3 sm:mr-3 rounded-full"/>
+              <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="w-10 h-10 mr-3 sm:mr-3 rounded-full"/>
               <p className="block font-semibold hover:underlinemax-w-[200px]">{user.fullName}</p>
             </div>
             <form className="w-full" onSubmit={handleSubmit}>
