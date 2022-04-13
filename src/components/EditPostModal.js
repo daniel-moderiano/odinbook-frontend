@@ -9,6 +9,7 @@ import ImageUploadBtn from './ImageUploadBtn';
 import { useImageThumbnail } from '../hooks/useImageThumbnail';
 import { useModalEvents } from '../hooks/useModalEvents';
 import { useErrorToast } from '../hooks/useErrorToast';
+import Picker from 'emoji-picker-react';
 
 const EditPostModal = ({ closeModal, post, updateFeed }) => {
   const { updatePost, response, loading, error } = useUpdatePost();
@@ -27,6 +28,8 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
 
   // Set state initially to current post text. 
   const [postText, setPostText] = useState(post.text);
+
+  const [showPicker, setShowPicker] = useState(false);
 
   // Image handling
   // If the user updates the current post image, this should be set to true. This includes replacing the image, or simply removing it. This will be appended to the req.body to inform the server to delete the old image
@@ -63,7 +66,11 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
     formData.append('image', imageFile);
     formData.append('imageUpdated', imageUpdated);
     updatePost(post._id, formData);
-  }
+  };
+  
+  const onEmojiClick = (event, emojiObject) => {
+    setPostText((prevState) => (prevState + emojiObject.emoji))
+  };
 
   return (
     <FocusTrap>
@@ -130,10 +137,33 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
            
 
             <div className='flex items-center justify-between'>
-              <ImageUploadBtn handleChange={(e) => {
-                handleFile(e.target.files[0]);
-                setImageUpdated(true);
-              }} imageValue={imageValue} setImageValue={setImageValue} setImageFile={setImageFile}/>
+              <div className='flex items-center'>
+                <div className='relative after:py-1 px-2 rounded hover:bg-gray-100 hover:cursor-pointer' onClick={() => setShowPicker((prevState) => !prevState)}>
+                  🙂
+                  {showPicker && (
+                    <Picker 
+                      onEmojiClick={onEmojiClick}
+                      native={true}
+                      disableSearchBar={true}
+                      groupVisibility={{
+                        recently_used: false,
+                      }}
+                      pickerStyle={{ 
+                        height: '200px', 
+                        position: 'absolute',
+                        left: '100%',
+                        bottom: '100%'
+                      }}
+                    />
+                  )}
+                </div>
+
+                <ImageUploadBtn handleChange={(e) => {
+                  handleFile(e.target.files[0]);
+                  setImageUpdated(true);
+                }} imageValue={imageValue} setImageValue={setImageValue} setImageFile={setImageFile}/>
+              </div>
+
               <Button design="primary" customStyles="max-w-[100px]" disabled={!(postText.length > 0)} onClick={handleSubmit}>
                 {loading ? 'Saving...' : 'Save'}
               </Button>
