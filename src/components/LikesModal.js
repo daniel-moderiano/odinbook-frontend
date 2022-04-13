@@ -5,6 +5,7 @@ import ProfilePic from './utils/ProfilePic';
 import like from '../assets/like.png';
 import { useModalEvents } from '../hooks/useModalEvents';
 import SkeletonLike from './skeletons/SkeletonLike';
+import CloseIcon from './icons/CloseIcon'
 
 const LikesModal = ({ postId, commentId, closeModal }) => {
   // Amend the fetch URL if comment ID is present (i.e. fetching likes for comment instead of post)
@@ -23,10 +24,7 @@ const LikesModal = ({ postId, commentId, closeModal }) => {
             <div className='flex justify-between items-center w-full pb-4'>
               <h4 id="modal-title" className='text-xl font-semibold'>Likes</h4>
               <button type="button" aria-label="close current window" onClick={closeModal}>
-                <svg className="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1B1E22">
-                  <path d="M0 0h24v24H0z" fill="none"/>
-                  <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                </svg>
+                <CloseIcon iconStyles="w-6" iconFill="#1B1E22"/>
               </button>
             </div>
 

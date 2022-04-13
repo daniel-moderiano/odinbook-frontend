@@ -10,6 +10,7 @@ import { useModalEvents } from '../hooks/useModalEvents';
 import { useNavigate } from 'react-router-dom';
 import { useErrorToast } from '../hooks/useErrorToast';
 import ImageIcon from './icons/ImageIcon'
+import CloseIcon from './icons/CloseIcon';
 
 const ProfilePicModal = ({ closeModal, profileUser }) => {
   const { updateProfilePic, loading, response, error } = useUpdateProfilePic();
@@ -73,7 +74,7 @@ const ProfilePicModal = ({ closeModal, profileUser }) => {
             <div className='flex justify-between items-center w-full pb-4'>
               <h4 id="modal-title" className='text-xl font-semibold'>Edit profile picture</h4>
               <button type="button" aria-label="close current window" onClick={closeModal}>
-               <ImageIcon iconFill="#1B1E22" iconStyles="w-6" />
+                <CloseIcon iconStyles="w-6" iconFill="#1B1E22"/>
               </button>
             </div>
 
@@ -101,7 +102,7 @@ const ProfilePicModal = ({ closeModal, profileUser }) => {
                       setImageUpdated(true);
                       removeThumbnail();
                     }}>
-                    <ImageIcon iconFill="#1B1E22" iconStyles="w-6" />
+                    <CloseIcon iconFill="#1f2937" iconStyles="w-6" />
                     </button>
                   </>
                 ) : (
