@@ -4,6 +4,8 @@ import Input from "./utils/Input";
 import Button from './utils/Button';
 import StyledLink from "./utils/StyledLink";
 import { useErrorToast } from "../hooks/useErrorToast";
+import OdinbookIcon from "./icons/OdinbookIcon";
+import FormErrorIcon from './icons/FormErrorIcon';
 
 const Signup = () => {
   const { signup, error, formError, loading } = useSignup();
@@ -40,16 +42,7 @@ const Signup = () => {
       <div className="h-screen m-2 px-4 pt-10 pb-12 flex flex-col items-center lg:justify-center bg-white shadow-sm rounded max-w-md sm:h-auto sm:px-10 sm:mx-auto sm:w-full lg:m-0 lg:flex-row lg:max-w-full lg:bg-transparent lg:h-full lg:shadow-none">
         <div className="container max-w-7xl w-full flex items-center justify-center">
           <div className="items-center justify-center hidden lg:flex w-full -mr-16">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105.22 83.68" className="w-20">
-              <title>Odinbook</title>
-              <g id="Layer_2" data-name="Layer 2">
-                <g id="Layer_1-2" data-name="Layer 1">
-                  <rect fill="#51557d" className="cls-1" width="105.22" height="83.68" />
-                  <path fill="#fff" className="cls-2" d="M15.36,48.09c0-11.74,8.07-18.43,17.28-18.43s17.28,6.69,17.28,18.43c0,11.59-8.06,18.29-17.28,18.29S15.36,59.68,15.36,48.09Zm28.44,0c0-8.07-4.46-13.47-11.16-13.47S21.48,40,21.48,48.09,26,61.41,32.64,61.41,43.8,56.08,43.8,48.09Z" />
-                  <path fill="#fff" className="cls-2" d="M62.88,61.63h-.22l-.57,3.88H57.34V14.25h6v14L63,35h.22A17.2,17.2,0,0,1,75,29.66c9.43,0,14.54,7,14.54,17.78,0,12-7.49,18.94-15.77,18.94C70.3,66.38,66.12,64.58,62.88,61.63ZM83.4,47.51c0-7.7-2.88-12.81-9.86-12.81-3.1,0-6.7,1.58-10.23,5.18V57.31a14.67,14.67,0,0,0,9.44,4C78.79,61.34,83.4,56.15,83.4,47.51Z" />
-                </g>
-              </g>
-            </svg>
+            <OdinbookIcon iconStyles="w-20" />
             <h2 className="font-semibold text-3xl sm:text-4xl text-plum-500 ml-5">odinbook</h2>
           </div>
 
@@ -137,9 +130,7 @@ const Signup = () => {
                   <div className="-mb-2">
                     {formError.map((error, index) => (
                       <div key={index} className="text-sm text-red-700 flex items-center justify-start my-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-4 mr-2">
-                          <path fill="#b91c1c" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z" />
-                        </svg>
+                        <FormErrorIcon iconStyles="w-4 mr-2" />
                         <span>{error.msg}</span>
                       </div>
                     ))}
