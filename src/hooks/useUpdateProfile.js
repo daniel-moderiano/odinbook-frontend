@@ -2,6 +2,7 @@ import { useState } from "react"
 
 export const useUpdateProfile = () => {
   const [error, setError] = useState(null);
+  const [formError, setFormError] = useState(null)
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
 
@@ -10,6 +11,7 @@ export const useUpdateProfile = () => {
     setError(null);
     setLoading(true);
     setResponse(null);
+    setFormError(null);
 
     try {
       const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
@@ -24,6 +26,10 @@ export const useUpdateProfile = () => {
       const responseJSON = await response.json();
 
       if (response.status !== 200) {   // error with posting comment
+        if (responseJSON.length) {    // form validation error
+          setFormError(responseJSON)
+          setLoading(false);
+        }
         setError(responseJSON);
         setLoading(false);
         // Return out of the function here to avoid setting the 'completed' response below with error JSON data
@@ -33,6 +39,7 @@ export const useUpdateProfile = () => {
       // No error, request successful
       setLoading(false);
       setError(null);
+      setFormError(null)
       setResponse(responseJSON);
     } catch (err) {   // for all unexpected errors not handled on backend error handling
       setError(err);
@@ -41,6 +48,6 @@ export const useUpdateProfile = () => {
     } 
   };
 
-  return { updateProfile, response, loading, error };
+  return { updateProfile, response, loading, error, formError };
 }
 

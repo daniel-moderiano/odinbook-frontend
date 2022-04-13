@@ -31,6 +31,20 @@ const profile = {
   },
 }
 
+// Customise loading/error/data states to properly test UI in different states
+let mockLoading;
+let mockError;
+let mockFormError;
+
+jest.mock("../hooks/useUpdateProfile", () => ({
+  useUpdateProfile: () => ({ 
+    updateProfile: jest.fn,
+    loading: mockLoading,
+    error: mockError,
+    formError: mockFormError,
+  }),
+}));
+
 jest.mock("../hooks/useAuthContext", () => ({
   useAuthContext: () => ({ 
     user: currentUser
@@ -77,4 +91,65 @@ it("Renders profile edit form upon clicking edit btn", () => {
   expect(editForm).toBeInTheDocument();
 });
 
+describe('Form validation', () => {
+  it("Shows single form validation error when only on is provided", () => {
+    mockLoading = false;
+    mockError = true;
+    mockFormError = [
+      {
+        "value": "",
+        "msg": "Email is required",
+        "param": "email",
+        "location": "body"
+      },
+    ]
+  
+    render(
+      <BrowserRouter>
+        <AuthContextProvider>
+          <ToastContextProvider value={{ showToast: jest.fn }}>
+            <EditProfileModal profileUser={profile} closeModal={jest.fn} />
+          </ToastContextProvider>
+        </AuthContextProvider>
+      </BrowserRouter>
+    );
+  
+    const error = screen.getByText(/email is required/i);
+    expect(error).toBeInTheDocument();
+  });
+
+  it("Shows multiple form validation errors when multiple are set", () => {
+    mockLoading = false;
+    mockError = true;
+    mockFormError = [
+      {
+          "value": "",
+          "msg": "Email is required",
+          "param": "email",
+          "location": "body"
+      },
+      {
+          "value": "",
+          "msg": "First name is required",
+          "param": "password",
+          "location": "body"
+      }
+    ]
+  
+    render(
+      <BrowserRouter>
+        <AuthContextProvider>
+          <ToastContextProvider value={{ showToast: jest.fn }}>
+            <EditProfileModal profileUser={profile} closeModal={jest.fn} />
+          </ToastContextProvider>
+        </AuthContextProvider>
+      </BrowserRouter>
+    );
+  
+    const errorOne = screen.getByText(/first name is required/i);
+    const errorTwo = screen.getByText(/email is required/i);
+    expect(errorOne).toBeInTheDocument();
+    expect(errorTwo).toBeInTheDocument();
+  });
+})
 

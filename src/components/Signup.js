@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSignup } from "../hooks/useSignup";
 import Input from "./utils/Input";
 import Button from './utils/Button';
 import StyledLink from "./utils/StyledLink";
-import { useToastContext } from "../context/ToastContext";
+import { useErrorToast } from "../hooks/useErrorToast";
 
 const Signup = () => {
-  const { signup, error, loading } = useSignup();
-  const { showToast } = useToastContext();
+  const { signup, error, formError, loading } = useSignup();
+
+  // All non-form validation errors
+  useErrorToast(error, (error && error.errorMsg));
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -32,12 +34,6 @@ const Signup = () => {
     e.preventDefault();
     signup(formData)
   }
-
-  useEffect(() => {
-    if (error) {
-      showToast('error', 'An error occurred while creating the account.')
-    }
-  }, [error, showToast])
 
   return (
     <div className="flex w-full flex-col h-screen">
@@ -136,6 +132,20 @@ const Signup = () => {
                   </div>
                 )}
 
+                {/* Display form validation errors in single location here */}
+                {formError && (
+                  <div className="-mb-2">
+                    {formError.map((error, index) => (
+                      <div key={index} className="text-sm text-red-700 flex items-center justify-start my-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-4 mr-2">
+                          <path fill="#b91c1c" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z" />
+                        </svg>
+                        <span>{error.msg}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
                 <Button type="submit" design="primary-lg" customStyles="font-semibold mt-6">
                   {loading ? 'Creating...' : 'Create Account'}
                 </Button>

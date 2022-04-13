@@ -12,7 +12,7 @@ import { useErrorToast } from '../hooks/useErrorToast';
 const EditProfileModal = ({ closeModal, profileUser }) => {
   const { showToast } = useToastContext();
   const { dispatch } = useAuthContext();
-  const { updateProfile, response, loading, error } = useUpdateProfile();
+  const { updateProfile, response, loading, error, formError } = useUpdateProfile();
   let navigate = useNavigate();
 
   // Custom useEffect-style hook to control modal closing on esc and outside click
@@ -76,6 +76,20 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
 
           </header>
 
+          {/* Display form validation errors in single location here */}
+          {formError && (
+            <div className="-mb-4 mt-3">
+              {formError.map((error, index) => (
+                <div key={index} className="text-sm text-red-700 flex items-center justify-start my-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-4 mr-2">
+                    <path fill="#b91c1c" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z" />
+                  </svg>
+                  <span>{error.msg}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
           <div className="w-full mt-6">
             
           <form onSubmit={handleSubmit}>
@@ -99,7 +113,7 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleChange}
-                        required={true}
+                        required
                       />
                     </label>
                   </div>
@@ -112,7 +126,7 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleChange}
-                        required={true}
+                        required
                       />
                     </label>
                   </div>
@@ -125,7 +139,7 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        required={true}
+                        required
                       />
                     </label>
                   </div>

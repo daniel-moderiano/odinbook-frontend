@@ -68,12 +68,12 @@ const Login = () => {
                   <label htmlFor="email" className="flex flex-col text-sm md:text-base">
                     Email address
                     <Input
-                      // type="email"
+                      type="email"
                       id="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      // required
+                      required
                     />
                   </label>
                 </div>
@@ -87,7 +87,7 @@ const Login = () => {
                       name="password"
                       value={formData.password}
                       onChange={handleChange}
-                      // required
+                      required
                     />
                   </label>
                 </div>
