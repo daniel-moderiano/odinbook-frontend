@@ -1,14 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
 import Input from "./utils/Input";
 import Button from "./utils/Button";
 import StyledLink from "./utils/StyledLink";
-import { useToastContext } from '../context/ToastContext';
+import { useErrorToast } from '../hooks/useErrorToast';
+import { useTestLogin } from '../hooks/useTestLogin';
 
 const Login = () => {
-  const { login, error, loading } = useLogin();
-  const { login: testLogin, error: testError, loading: testLoading } = useLogin();
-  const { showToast } = useToastContext();
+  const { login, error, formError, loading } = useLogin();
+  const { testLogin, testError, testLoading } = useTestLogin();
+
+  // All non-401 and non-400 errors
+  useErrorToast(error, (error && error.errorMsg));
+  useErrorToast(testError, 'An unknown error occurred while logging in')
 
   const [formData, setFormData] = useState({
     email: '',
@@ -29,30 +33,10 @@ const Login = () => {
     login(formData);
   };
 
-  // Specific login function call with Peter Parker test account
-  const handleTestLogin = () => {
-    testLogin({
-      email: 'tobey@gmail.com',
-      password: 'peterparker'
-    })
-  }
-
   // Open the facebook auth page by a direct URL request to the backend API url
   const FacebookLogin = () => {
     window.open('http://localhost:3000/auth/facebook', "_self");
   };
-
-  useEffect(() => {
-    if (error) {
-      showToast('error', 'An error occurred while logging in')
-    }
-  }, [error, showToast]);
-
-  useEffect(() => {
-    if (testError) {
-      showToast('error', 'An error occurred while logging in')
-    }
-  }, [testError, showToast]);
 
   return (
     <div className="flex w-full flex-col h-screen">
@@ -126,7 +110,7 @@ const Login = () => {
               <div>
                 <StyledLink to="/signup" design="btn-secondary" customStyles="w-56 mt-12 font-semibold">Create new account</StyledLink>
                 <button 
-                  onClick={handleTestLogin} 
+                  onClick={testLogin} 
                   type="button" 
                   className="font-semibold mt-3 flex items-center justify-center w-full px-2 py-1 bg-white text-teal-750 shadow-sm border border-teal-750 hover:bg-plum-50 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-teal-550/30 disabled:bg-gray-100 disabled:text-gray-400 disabled:shadow-none disabled:border-gray-100">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="w-4 mr-2" >

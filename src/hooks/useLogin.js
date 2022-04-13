@@ -3,6 +3,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
+  const [formError, setFormError] = useState(null);
   const [loading, setLoading] = useState(false);
   const { dispatch } = useAuthContext();
 
@@ -10,6 +11,7 @@ export const useLogin = () => {
   const login = async (formData) => {
     setLoading(true);
     setError(null);
+    setFormError(null);
     try {
       const response = await fetch('http://localhost:3000/api/users/login', {
         method: 'POST', 
@@ -23,22 +25,33 @@ export const useLogin = () => {
 
       const responseJSON = await response.json();
 
-      if (!responseJSON.user) {   // error with login request
-        setError(responseJSON);
-        setLoading(false);
-        return;
-      } else {
+      if (responseJSON.user) {
         // No errors occured. Dispatch appropriate LOGIN action after adjusting state 
         setLoading(false);
         setError(null);
-        dispatch({ type: 'LOGIN', payload: responseJSON.user })
+        setFormError(null)
+        dispatch({ type: 'LOGIN', payload: responseJSON.user });
+        return;
+      } else {    // error with login request
+        console.log(responseJSON.errorMsg);
+        if (responseJSON.errorMsg === 'Unauthorized') {   // invalid credentials
+          console.log('Reached here');
+          setError({ errorMsg: 'Invalid credentials. Try again.' });
+          setLoading(false);
+        } else if (Array.isArray(response.JSON)) {    // array indicates form validation errors
+          setFormError(response.JSON)
+          setLoading(false);
+        } else {    // unspecified error, return generic error msg
+          setError({ errorMsg: 'An unknown error occurred while logging in.' })
+          setLoading(false);
+        }
       }
-    } catch (err) {
-      setError(err);
+    } catch (err) {   // internal React hook error
+      setError({ errorMsg: 'An unknown error occurred while logging in.' });
       setLoading(false);
     }
   };
 
-  return { login, loading, error };
+  return { login, loading, error, formError };
 }
 
