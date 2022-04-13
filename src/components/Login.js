@@ -4,6 +4,7 @@ import Input from "./utils/Input";
 import Button from "./utils/Button";
 import { useErrorToast } from '../hooks/useErrorToast';
 import TestLogin from "./TestLogin";
+import StyledLink from "./utils/StyledLink";
 
 const Login = () => {
   const { login, error, formError, loading } = useLogin();
@@ -105,7 +106,11 @@ const Login = () => {
                 <span>Log in with Facebook</span>
               </Button>
 
-              <TestLogin />
+              <div>
+                <StyledLink to="/signup" design="btn-secondary" customStyles="w-56 mt-12 font-semibold">Create new account</StyledLink>
+                <TestLogin />
+              </div>
+              
             </div>
 
           </div>
