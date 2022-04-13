@@ -127,6 +127,56 @@ it("Renders all current friends", () => {
   expect(friends.length).toBe(3);
 });
 
+it("Renders no friends message when the user has no current friends", () => {
+  mockLoading = false;
+  mockError = null;
+  mockFriends = {
+    "acceptedFriends": [],
+    "incomingRequests": [
+        {
+            "user": {
+                "_id": "622ffe9baa78d2996267f829",
+                "firstName": "Tate",
+                "lastName": "Prohaska",
+                "fullName": "Tate Prohaska",
+                "dateJoined": "Invalid DateTime",
+                "id": "622ffe9baa78d2996267f829"
+            },
+            "status": "incomingRequest",
+            "_id": "6230762de5936743db38c389"
+        }
+    ],
+    "outgoingRequests": [
+        {
+            "user": {
+                "_id": "622ffe9baa78d2996267f828",
+                "firstName": "Isac",
+                "lastName": "Conroy",
+                "fullName": "Isac Conroy",
+                "dateJoined": "Invalid DateTime",
+                "id": "622ffe9baa78d2996267f828"
+            },
+            "status": "outgoingRequest",
+            "_id": "6230762de5936743db38c312"
+        }
+    ]
+  }
+
+  render(
+    <BrowserRouter>
+      <AuthContextProvider>
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <AllFriends />
+        </ToastContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
+  );
+
+  // Friends visible
+  const friends = screen.queryAllByRole('button', { name: /unfriend/i });
+  expect(friends.length).toBe(0);
+});
+
 it("Renders loaders correctly", () => {
   mockLoading = true;
   mockError = null;

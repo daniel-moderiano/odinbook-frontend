@@ -23,18 +23,30 @@ const FriendRequests = () => {
           <section className="bg-white mb-4 mt-3 md:m-4 lg:bg-transparent">
             <h2 className="text-xl font-bold p-4 pb-4 lg:pb-2">Incoming Requests</h2>
             <div className="flex flex-wrap items-center justify-start">
-              {friends ? (
+              {friends && (
                 <>
-                  {friends.incomingRequests.map((request) => (
-                    <FriendCard friendData={request.user} type="incoming" key={request._id}/>
-                  ))}
+                  {friends.incomingRequests.length > 0 ? (
+                    <>
+                      {friends.incomingRequests.map((request) => (
+                        <FriendCard friendData={request.user} type="incoming" key={request._id}/>
+                      ))}
+                    </>
+                  ) : (
+                    <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>No requests yet</p>
+                  )} 
                 </> 
-              ) : (
+              )}
+
+              {loading && (
                 <>
                   <SkeletonFriendCard />
                   <SkeletonFriendCard />
                   <SkeletonFriendCard />
                 </>
+              )}
+
+              {error && (
+                <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>Unable to load requests</p>
               )}
             </div>
           </section>
@@ -42,18 +54,30 @@ const FriendRequests = () => {
           <section className="bg-white mb-4 mt-3 md:m-4 lg:bg-transparent">
             <h2 className="text-xl font-bold p-4 pb-4 lg:pb-2 lg:pt-8 lg:mt-8 lg:border-t lg:border-gray-300">Sent requests</h2>
             <div className="flex flex-wrap items-center justify-start">
-              {friends ? (
+              {friends && (
                 <>
-                  {friends.outgoingRequests.map((request) => (
-                    <FriendCard friendData={request.user} type="outgoing" key={request._id}/>
-                  ))}
+                  {friends.outgoingRequests.length > 0 ? (
+                    <>
+                      {friends.outgoingRequests.map((request) => (
+                        <FriendCard friendData={request.user} type="outgoing" key={request._id}/>
+                      ))}
+                    </>
+                  ) : (
+                    <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>No requests sent</p>
+                  )} 
                 </> 
-              ) : (
+              )}
+
+              {loading && (
                 <>
                   <SkeletonFriendCard />
                   <SkeletonFriendCard />
                   <SkeletonFriendCard />
                 </>
+              )}
+
+              {error && (
+                <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>Unable to load requests</p>
               )}
             </div>
           </section>

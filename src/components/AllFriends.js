@@ -25,9 +25,15 @@ const AllFriends = () => {
             
             {friends && (
               <>
-                {friends.acceptedFriends.map((friend, index) => (
-                  <FriendCard friendData={friend.user} type="friend" key={friend._id}/>
-                ))}
+                {friends.acceptedFriends.length > 0 ? (
+                  <>
+                    {friends.acceptedFriends.map((friend, index) => (
+                      <FriendCard friendData={friend.user} type="friend" key={friend._id}/>
+                    ))}
+                  </>
+                ) : (
+                  <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>No friends yet</p>
+                )} 
               </> 
             )}
 
