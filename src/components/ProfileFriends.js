@@ -26,7 +26,7 @@ const ProfileFriends = ({ profileUser }) => {
       {/* Display 6 skeleton friend tiles while loading */}
       {loading && (
         <div className="mt-4 flex flex-wrap gap-x-5 gap-y-5 sm:gap-x-4 lg:gap-x-5 lg:gap-y-4 sm:gap-y-4 sm:justify-between friend:justify-center">
-          {[0, 1, 2, 3, 4, 5].map((friend, index) => {
+          {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((friend, index) => {
             return <SkeletonFriendTile key={index}/>
           })}
         </div>
