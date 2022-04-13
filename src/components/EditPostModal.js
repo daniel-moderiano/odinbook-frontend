@@ -10,6 +10,7 @@ import { useImageThumbnail } from '../hooks/useImageThumbnail';
 import { useModalEvents } from '../hooks/useModalEvents';
 import { useErrorToast } from '../hooks/useErrorToast';
 import Picker from 'emoji-picker-react';
+import CloseIcon from './icons/CloseIcon';
 
 const EditPostModal = ({ closeModal, post, updateFeed }) => {
   const { updatePost, response, loading, error } = useUpdatePost();
@@ -83,10 +84,7 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
             <div className='flex justify-between items-center w-full pb-4'>
               <h4 id="modal-title" className='text-xl font-semibold'>Edit post</h4>
               <button type="button" aria-label="close current window" onClick={closeModal}>
-                <svg className="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1B1E22">
-                  <path d="M0 0h24v24H0z" fill="none"/>
-                  <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                </svg>
+                <CloseIcon iconStyles="w-6" iconFill="#1B1E22"/>
               </button>
             </div>
 
@@ -125,10 +123,7 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
                     setImageUpdated(true);
                     removeThumbnail();
                   }}>
-                    <svg className="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1B1E22">
-                      <path d="M0 0h24v24H0z" fill="none"/>
-                      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                    </svg>
+                    <CloseIcon iconStyles="w-6" iconFill="#1B1E22"/>
                   </button>
                 </div>
               )}
