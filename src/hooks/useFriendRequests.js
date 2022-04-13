@@ -21,8 +21,6 @@ export const useFriendRequests = (userId) => {
       });
       const responseJSON = await response.json();
 
-      console.log(response.status);
-
       if (response.status !== 200) {   // error with friend request
         setError(responseJSON);
         setLoading(false);

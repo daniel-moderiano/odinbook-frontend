@@ -1,23 +1,15 @@
 import Button from './utils/Button';
 import { useFriendRequests } from '../hooks/useFriendRequests';
-import { useToastContext } from '../context/ToastContext';
-import { useEffect } from 'react';
+import { useErrorToast } from '../hooks/useErrorToast';
+import { useSuccessToast } from '../hooks/useSuccessToast';
 
 const SendRequestBtn = ({ userId }) => {
   const { request, response, loading, error } = useFriendRequests(userId);
-  const { showToast } = useToastContext();
 
-  useEffect(() => {
-    if (error) {
-      showToast('error', error.errorMsg)
-    }
-  }, [error,showToast]);
-
-  useEffect(() => {
-    if (response) {
-      showToast('success', 'Request sent.')
-    }
-  }, [response, showToast])
+  // Set up notifications. Backend error messages are well suited for direct frontend use here
+  // Must use conditional for error.errorMsg to avoid TypeError of undefined before error is initialised/true
+  useErrorToast(error, (error && error.errorMsg));
+  useSuccessToast(response, 'Request sent.');
 
   // Set out the conditionals in order of which they should be evaluated
   const setBtnText = () => {
@@ -44,4 +36,4 @@ const SendRequestBtn = ({ userId }) => {
   )
 }
 
-export default SendRequestBtn
+export default SendRequestBtn;
