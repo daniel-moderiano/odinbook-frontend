@@ -4,6 +4,8 @@ import { AuthContextProvider } from "../context/AuthContext";
 import { ToastContextProvider } from "../context/ToastContext";
 import FriendsHome from "../components/FriendsHome";
 
+// Rendering of friends in either requests of 'new friends' section is not done here, as this has been tested in the UserList and FriendRequest components instead
+
 const currentUser = {
   "profilePic": {
       "imageId": "odinbook/abadhe3dfphb0a1cmqh4",
@@ -58,32 +60,6 @@ it("Displays skeleton loaders when fetch data is loading", () => {
   expect(loaders.length > 0).toBe(true);
 });
 
-it("Hides loading and error UI when data is fetched", () => {
-  mockLoading = false;
-  mockError = null;
-  mockFriends = null;
-
-  render(
-    <BrowserRouter>
-      <AuthContextProvider>
-        <ToastContextProvider value={{ showToast: jest.fn }}>
-          <FriendsHome />
-        </ToastContextProvider>
-      </AuthContextProvider>
-    </BrowserRouter>
-  );
-
-  // ! Testing friend presentation data is impossible here without nested mocking of some sort. Likely requires splitting the component into two
-
-  // Ensure error UI is not present
-  const error = screen.queryByText(/error/i);
-  expect(error).not.toBeInTheDocument();
-
-  // Ensure loaders are not present
-  const loaders = screen.queryAllByTestId('skeleton');
-  expect(loaders.length > 0).toBe(false);
-});
-
 it("Displays error UI only when an error occurs in fetching data", () => {
   mockLoading = false;
   mockError = true;
@@ -99,8 +75,9 @@ it("Displays error UI only when an error occurs in fetching data", () => {
     </BrowserRouter>
   );
 
-  const error = screen.getByText(/error/i);
-  expect(error).toBeInTheDocument();
+  // Check for two messages (one for each section)
+  const error = screen.getAllByText(/unable to load/i);
+  expect(error.length).toBe(2);
 
   // Ensure loaders are not present
   const loaders = screen.queryAllByTestId('skeleton');

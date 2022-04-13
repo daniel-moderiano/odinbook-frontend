@@ -4,10 +4,13 @@ import FriendsMenu from './FriendsMenu';
 import { useFetchGet } from "../hooks/useFetchGet";
 import FriendCard from "./FriendCard";
 import SkeletonFriendCard from './skeletons/SkeletonFriendCard';
+import { useErrorToast } from '../hooks/useErrorToast';
 
 const AllFriends = () => {
   const { user } = useAuthContext();
   const { data: friends, loading, error } = useFetchGet(`http://localhost:3000/api/users/${user._id}/friends`);
+
+  useErrorToast(error, 'An error occurred while loading friends');
 
   return (
     <div>

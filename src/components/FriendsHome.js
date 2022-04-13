@@ -5,20 +5,14 @@ import { useFetchGet } from '../hooks/useFetchGet';
 import FriendCard from "./FriendCard";
 import UserList from "./UserList";
 import SkeletonFriendCard from "./skeletons/SkeletonFriendCard";
-import { useEffect } from "react";
-import { useToastContext } from "../context/ToastContext";
+import { useErrorToast } from "../hooks/useErrorToast";
 
 const FriendsHome = () => {
   const { user } = useAuthContext();
   // Friends data is an object containing 3 arrays of friends: acceptedFriends, incomingRequests, and outgoingRequests
   const { data: friends, loading, error } = useFetchGet(`http://localhost:3000/api/users/${user._id}/friends`);
-  const { showToast } = useToastContext();
 
-  useEffect(() => {
-    if (error) {
-      showToast('error', 'An error occurred while loading friends.')
-    }
-  }, [error,showToast]);
+  useErrorToast(error, 'An error occurred while loading requests')
 
   return (
     <div>
@@ -32,35 +26,43 @@ const FriendsHome = () => {
 
         <main>
           <section className="bg-white mb-4 mt-3 md:m-4 lg:bg-transparent">
-            <h2 className="text-xl font-bold p-4 lg:pb-2">Friend Requests</h2>
-            <div className="flex flex-wrap items-center justify-start">
-              {friends && (
-                <>
-                  {friends.incomingRequests.map((request) => (
-                    <FriendCard friendData={request.user} type="incoming" key={request._id}/>
-                  ))}
-                </> 
-              )}
-              {loading && (
-                <>
-                  <SkeletonFriendCard />
-                  <SkeletonFriendCard />
-                  <SkeletonFriendCard />
-                </>
-              )}
-              {/* Error UI is only required once here to avoid duplication below */}
-              {error && (
-                <div>An error occurred</div>
-              )}
-            </div>
-          </section>
+              <h2 className="text-xl font-bold p-4 pb-4 lg:pb-2">Friend Requests</h2>
+              <div className="flex flex-wrap items-center justify-start">
+                {friends && (
+                  <>
+                    {friends.incomingRequests.length > 0 ? (
+                      <>
+                        {friends.incomingRequests.map((request) => (
+                          <FriendCard friendData={request.user} type="incoming" key={request._id}/>
+                        ))}
+                      </>
+                    ) : (
+                      <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>No requests yet</p>
+                    )} 
+                  </> 
+                )}
+
+                {loading && (
+                  <>
+                    <SkeletonFriendCard />
+                    <SkeletonFriendCard />
+                    <SkeletonFriendCard />
+                  </>
+                )}
+
+                {error && (
+                  <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>Unable to load requests</p>
+                )}
+              </div>
+            </section>
 
           <section className="bg-white my-8 md:m-4 lg:bg-transparent">
             <h2 className="text-xl font-bold p-4 lg:pb-2 lg:pt-8 lg:mt-8 lg:border-t lg:border-gray-300">Find new friends</h2>
-            <div className="flex flex-wrap items-center justify-start">
+            <>
               {friends && (
                 <UserList userFriends={friends}/>
               )}
+
               {loading && (
                 <>
                   <SkeletonFriendCard />
@@ -68,7 +70,11 @@ const FriendsHome = () => {
                   <SkeletonFriendCard />
                 </>
               )}
-            </div>
+
+              {error && (
+                <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>Unable to load users</p>
+              )}
+            </>
           </section>
         </main>
       </div>
