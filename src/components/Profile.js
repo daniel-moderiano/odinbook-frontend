@@ -45,6 +45,10 @@ const Profile = ({ profileView }) => {
 
       <Spinner loading={loading}/>
 
+      {error && (
+        <p className='mt-12 text-center w-full text-plum-600 text-lg font-semibold'>Unable to load Profile</p>
+      )}
+
       {(profileUser && profileType) && (
         <div className="w-full flex justify-center items-center flex-col">
           <section className='shadow-sm mb-6 w-full'>

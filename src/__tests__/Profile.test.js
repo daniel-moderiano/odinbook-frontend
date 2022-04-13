@@ -6,6 +6,7 @@ import Profile from "../components/Profile";
 
 let mockResponse;
 let mockLoading;
+let mockError;
 
 const currentUser = {
   "_id": "622ffe9baa78d2996267f821",
@@ -18,7 +19,7 @@ jest.mock("../hooks/useFetchProfile", () => ({
     fetchProfile: jest.fn,
     profileUser: mockResponse,
     loading: mockLoading,
-    error: null,
+    error: mockError,
   }),
 }));
 
@@ -31,6 +32,7 @@ jest.mock("../hooks/useAuthContext", () => ({
 it("Displays loading spinner on loading fetch data", () => {
   mockLoading = true;
   mockResponse = null;
+  mockError = null;
 
   render(
     <BrowserRouter>
@@ -42,11 +44,39 @@ it("Displays loading spinner on loading fetch data", () => {
     </BrowserRouter>
   );
 
+  // No error UI present
+  const error = screen.queryByText(/unable to load profile/i)
+  expect(error).not.toBeInTheDocument();
+
   const spinner = screen.getByRole('status');
   expect(spinner).toBeInTheDocument();
 });
 
+it("Displays error message when profile fails to load", () => {
+  mockLoading = false;
+  mockResponse = null;
+  mockError = true;
+
+  render(
+    <BrowserRouter>
+      <AuthContextProvider>
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <Profile profileView="main"/>
+        </ToastContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
+  );
+  
+  // No loader
+  const spinner = screen.queryByRole('status');
+  expect(spinner).not.toBeInTheDocument();
+
+  const error = screen.getByText(/unable to load profile/i)
+  expect(error).toBeInTheDocument();
+});
+
 it("Hides loading spinner once fetched data has loaded", () => {
+  mockError = null;
   mockLoading = false;
   mockResponse = {
     "user": {
@@ -64,46 +94,6 @@ it("Hides loading spinner once fetched data has loaded", () => {
                 "status": "friend",
                 "_id": "6230762de5936743db38c348"
             },
-            {
-                "user": "622ffe9baa78d2996267f824",
-                "status": "friend",
-                "_id": "62393fb4341ff6f85fcc4aac"
-            },
-            {
-                "user": "623a86a4a4637528c0bcf712",
-                "status": "friend",
-                "_id": "623a870ba4637528c0bcf80d"
-            },
-            {
-                "user": "622ffe9baa78d2996267f831",
-                "status": "outgoingRequest",
-                "_id": "623a9b65a4637528c0bcfdb6"
-            },
-            {
-                "user": "622ffe9baa78d2996267f820",
-                "status": "outgoingRequest",
-                "_id": "623a9ce0a4637528c0bcfe80"
-            },
-            {
-                "user": "622ffe9baa78d2996267f823",
-                "status": "outgoingRequest",
-                "_id": "623a9ceaa4637528c0bcfe9a"
-            },
-            {
-                "user": "622ffe9baa78d2996267f825",
-                "status": "outgoingRequest",
-                "_id": "623a9d14a4637528c0bcfea8"
-            },
-            {
-                "user": "622ffe9baa78d2996267f821",
-                "status": "outgoingRequest",
-                "_id": "623ab433b419f0bb8a6db79b"
-            },
-            {
-                "user": "623e54c4d956308f27ea9d64",
-                "status": "friend",
-                "_id": "623e54cad956308f27ea9d7b"
-            }
         ],
         "createdAt": "2022-03-15T02:49:24.460Z",
         "updatedAt": "2022-03-31T23:14:17.812Z",
@@ -125,8 +115,13 @@ it("Hides loading spinner once fetched data has loaded", () => {
     </BrowserRouter>
   );
 
+  // No loader
   const spinner = screen.queryByRole('status');
   expect(spinner).not.toBeInTheDocument();
+
+  // No error UI present
+  const error = screen.queryByText(/unable to load profile/i)
+  expect(error).not.toBeInTheDocument();
 
   // Check profile has loaded
   const header = screen.getByText('Chardee McDennis');
