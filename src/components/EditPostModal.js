@@ -15,6 +15,8 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
   const { showToast } = useToastContext();
   const { user } = useAuthContext();
   const { handleFile, removeThumbnail, imageData, imageError, imageLoading, setImageData } = useImageThumbnail();
+  
+  useModalEvents(closeModal);
 
   // Set up notifications
   useErrorToast(imageError, 'An error occurred while uploading the image.');
@@ -22,9 +24,6 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
   // Note: image value is in the context of an HTML file input value (e.target.value) and represents a pseudo string path to an image (e.g. 'C:/fakepath/image.png')
   const [imageValue, setImageValue] = useState('');
   const [imageFile, setImageFile] = useState(null);
-
-  // Custom useEffect-style hook to control modal closing on esc and outside click
-  useModalEvents(closeModal);
 
   // Set state initially to current post text. 
   const [postText, setPostText] = useState(post.text);

@@ -8,12 +8,16 @@ import ProfilePic from './utils/ProfilePic';
 import ImageUploadBtn from './ImageUploadBtn';
 import { useModalEvents } from '../hooks/useModalEvents';
 import { useImageThumbnail } from '../hooks/useImageThumbnail';
+import { useErrorToast } from '../hooks/useErrorToast';
 
 const CreatePostModal = ({ closeModal, updatePosts }) => {
   const { createPost, response, loading, error } = useCreatePost();
   const { showToast } = useToastContext();
   const { user } = useAuthContext();
   const { handleFile, removeThumbnail, imageData, imageError, imageLoading } = useImageThumbnail();
+
+  // Set up notifications
+  useErrorToast(imageError, 'An error occurred while uploading the image.');
 
   // Note: image value is in the context of an HTML file input value (e.target.value) and represents a pseudo string path to an image (e.g. 'C:/fakepath/image.png')
   const [imageValue, setImageValue] = useState('');
@@ -33,6 +37,7 @@ const CreatePostModal = ({ closeModal, updatePosts }) => {
     createPost(formData);
   };
 
+  // Manual error toast is used as there are additional actions to perform when an error occurs here
   useEffect(() => {
     if (error) {
       showToast('error', 'An error occurred while creating the post.');
@@ -40,16 +45,8 @@ const CreatePostModal = ({ closeModal, updatePosts }) => {
     }
   }, [error, showToast, closeModal]);
 
-  
-  useEffect(() => {
-    if (imageError) {
-      showToast('error', 'An error occurred while uploading the image.');
-    }
-  }, [imageError, showToast]);
-
   useEffect(() => {
     if (response) {
-      showToast('success', 'Post successfully created.')
       updatePosts();
       closeModal();
     }

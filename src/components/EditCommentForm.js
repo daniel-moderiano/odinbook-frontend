@@ -1,23 +1,17 @@
 import { useState, useEffect } from 'react';
-import { useToastContext } from '../context/ToastContext';
+import { useErrorToast } from '../hooks/useErrorToast';
 import { useEditComment } from '../hooks/useEditComment';
 
 const EditCommentForm = ({ postId, commentId, currentText, updateComments }) => {
   const { editComment, response, loading, error } = useEditComment()
   const [commentText, setCommentText] = useState(currentText);
 
-  const { showToast } = useToastContext();
-
-  useEffect(() => {
-    if (error) {
-      showToast('error', error.errorMsg)
-    }
-  }, [error,showToast]);
+  // Set up notifications
+  useErrorToast(error, 'An error occurred while saving changes');
 
   // Update UI changes to reflect a successful comment submission ('reset' form and thus hide post button)
   useEffect(() => {
     if (response) {
-      // setCommentText('');
       updateComments(Math.random());
     }
   }, [response, updateComments])

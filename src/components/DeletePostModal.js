@@ -2,11 +2,15 @@ import FocusTrap from 'focus-trap-react';
 import { useEffect } from 'react';
 import { useDeletePost } from '../hooks/useDeletePost';
 import { useToastContext } from '../context/ToastContext';
+import { useModalEvents } from '../hooks/useModalEvents';
 
 const DeletePostModal = ({ closeModal, postId, updateFeed }) => {
   const { deletePost, response, loading, error } = useDeletePost();
   const { showToast } = useToastContext();
 
+  useModalEvents(closeModal);
+
+  // Handle successful post deletion
   useEffect(() => {
     if (response) {
       updateFeed(Math.random())
@@ -15,35 +19,13 @@ const DeletePostModal = ({ closeModal, postId, updateFeed }) => {
     }
   }, [response, showToast, closeModal, updateFeed]);
 
+  // Handle post deletion error
   useEffect(() => {
     if (error) {
       showToast('error', 'An error occurred while removing the post.');
       closeModal();
     }
   }, [error, showToast, closeModal]);
-
-  // Add user-expected actions when pressing the escape key or clicking outside the modal (close the modal)
-  useEffect(() => {
-    const outsideClick = (event) => {
-      if (event.target === document.querySelector('#Modal')) {
-        closeModal();
-      }
-    }
-
-    const escClose = (event) => {
-      if (event.key === 'Escape') {
-        closeModal();
-      }
-    }
-
-    window.addEventListener('click', outsideClick);
-    window.addEventListener('keydown', escClose);
-
-    return () => {
-      window.removeEventListener('click', outsideClick)
-      window.removeEventListener('keydown', escClose)
-    }
-  }, [closeModal])
 
   return (
     <FocusTrap>

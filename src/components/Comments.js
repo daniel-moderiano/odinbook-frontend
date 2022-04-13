@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { useFetchGet } from "../hooks/useFetchGet";
 import Comment from "./Comment";
-import { useToastContext } from "../context/ToastContext";
 import SkeletonComment from './skeletons/SkeletonComment';
+import { useErrorToast } from '../hooks/useErrorToast';
 
 const Comments = ({ postId, updateCommentCount, updateKey }) => {
   const { data: comments, loading, error } = useFetchGet(`http://localhost:3000/api/posts/${postId}/comments`);
-  const { showToast } = useToastContext();
+
+  // Set up notifications. 
+  useErrorToast(error, 'An error occurred while loading comments.');
 
   // When the number of comments changes, update the parent Post component of the most current number of comments
   useEffect(() => {
@@ -14,12 +16,6 @@ const Comments = ({ postId, updateCommentCount, updateKey }) => {
       updateCommentCount(comments.length);
     }
   }, [updateCommentCount, comments]);
-
-  useEffect(() => {
-    if (error) {
-      showToast('error', error.errorMsg)
-    }
-  }, [error,showToast]);
 
   return (
     <section data-testid="comments" className="w-full mt-1">

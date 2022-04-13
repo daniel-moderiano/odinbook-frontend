@@ -7,19 +7,22 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUpdateProfile } from '../hooks/useUpdateProfile';
 import Input from './utils/Input';
+import { useErrorToast } from '../hooks/useErrorToast';
 
 const EditProfileModal = ({ closeModal, profileUser }) => {
   const { showToast } = useToastContext();
-  const { user, dispatch } = useAuthContext();
-  const [editPersonal, setEditPersonal] = useState(false);
-  const [editAbout, setEditAbout] = useState(false);
+  const { dispatch } = useAuthContext();
+  const { updateProfile, response, loading, error } = useUpdateProfile();
+  let navigate = useNavigate();
 
   // Custom useEffect-style hook to control modal closing on esc and outside click
   useModalEvents(closeModal);
 
-  const { updateProfile, response, loading, error } = useUpdateProfile();
-  let navigate = useNavigate();
+  // Set up notifications
+  useErrorToast(error, 'An error occurred while saving changes.');
 
+  const [editPersonal, setEditPersonal] = useState(false);
+  const [editAbout, setEditAbout] = useState(false);
   const [formData, setFormData] = useState({
     firstName: profileUser.firstName,
     lastName: profileUser.lastName,
@@ -28,12 +31,6 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
     education: profileUser.bio ? profileUser.bio.education : '',
     location: profileUser.bio ? profileUser.bio.location : '',
   });
-
-  useEffect(() => {
-    if (error) {
-      showToast('error', error.errorMsg)
-    }
-  }, [error,showToast]);
 
   useEffect(() => {
     if (response) {
@@ -58,7 +55,6 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
     e.preventDefault();
     updateProfile(profileUser._id, formData);
   }
-
 
   return (
     <FocusTrap>
