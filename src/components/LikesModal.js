@@ -1,36 +1,19 @@
 import FocusTrap from 'focus-trap-react';
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useFetchGet } from '../hooks/useFetchGet';
 import ProfilePic from './utils/ProfilePic';
-import like from '../assets/like.png'
+import like from '../assets/like.png';
+import { useModalEvents } from '../hooks/useModalEvents';
+import { useErrorToast } from '../hooks/useErrorToast';
 
 const LikesModal = ({ postId, commentId, closeModal }) => {
   // Amend the fetch URL if comment ID is present (i.e. fetching likes for comment instead of post)
   const { data: likes, loading, error } = useFetchGet(`http://localhost:3000/api/posts/${postId}/${commentId ? `comments/${commentId}/likes` : 'likes'}`);
 
-  // Add user-expected actions when pressing the escape key or clicking outside the modal (close the modal)
-  useEffect(() => {
-    const outsideClick = (event) => {
-      if (event.target === document.querySelector('#Modal')) {
-        closeModal();
-      }
-    }
+  useModalEvents();
 
-    const escClose = (event) => {
-      if (event.key === 'Escape') {
-        closeModal();
-      }
-    }
-
-    window.addEventListener('click', outsideClick);
-    window.addEventListener('keydown', escClose);
-
-    return () => {
-      window.removeEventListener('click', outsideClick)
-      window.removeEventListener('keydown', escClose)
-    }
-  }, [closeModal])
+  // Set up notifications
+  useErrorToast(error, 'An error occurred while loading likes.');
 
   return (
     <FocusTrap>

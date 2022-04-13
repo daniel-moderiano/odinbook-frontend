@@ -1,10 +1,13 @@
 import { useFetchGet } from "../hooks/useFetchGet";
 import { Link } from "react-router-dom";
 import ProfilePic from "./utils/ProfilePic";
-
+import { useErrorToast } from "../hooks/useErrorToast";
 
 const ProfileFriends = ({ profileUser }) => {
   const { data: friends, loading, error } = useFetchGet(`http://localhost:3000/api/users/${profileUser._id}/friends`);
+
+  // Set up notifications
+  useErrorToast(error, 'An error occurred while loading friends.');
 
   return (
     <div className="bg-white p-4 md:p-6 rounded">

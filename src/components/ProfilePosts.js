@@ -2,10 +2,14 @@ import { useFetchGet } from "../hooks/useFetchGet";
 import Post from "./Post";
 import CreatePost from "./CreatePost";
 import { useNavigate } from "react-router-dom";
+import { useErrorToast } from "../hooks/useErrorToast";
 
 const ProfilePosts = ({ profileUser }) => {
   const { data: posts, loading, error } = useFetchGet(`http://localhost:3000/api/users/${profileUser._id}/posts`);
   let navigate = useNavigate();
+
+  // Set up notifications
+  useErrorToast(error, 'An error occurred while loading posts.');
 
   return (
     <div>

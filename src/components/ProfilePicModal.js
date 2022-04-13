@@ -8,24 +8,24 @@ import ImageUploadBtn from './ImageUploadBtn';
 import { useImageThumbnail } from '../hooks/useImageThumbnail';
 import { useModalEvents } from '../hooks/useModalEvents';
 import { useNavigate } from 'react-router-dom';
+import { useErrorToast } from '../hooks/useErrorToast';
 
 const ProfilePicModal = ({ closeModal, profileUser }) => {
   const { updateProfilePic, loading, response, error } = useUpdateProfilePic();
   const { showToast } = useToastContext();
-  const { user, dispatch } = useAuthContext();
+  const { dispatch } = useAuthContext();
   let navigate = useNavigate();
-
-
   const { handleFile, removeThumbnail, imageData, imageError, imageLoading, setImageData } = useImageThumbnail();
 
+  useModalEvents(closeModal);
+
+  // Set up notifications
+  useErrorToast(imageError, 'An error occurred while uploading the image.');
+  
   // Note: image value is in the context of an HTML file input value (e.target.value) and represents a pseudo string path to an image (e.g. 'C:/fakepath/image.png')
   const [imageValue, setImageValue] = useState('');
   const [imageFile, setImageFile] = useState(null);
 
-  // Custom useEffect-style hook to control modal closing on esc and outside click
-  useModalEvents(closeModal);
-
-  // Image handling
   // If the user updates the current post image, this should be set to true. This includes replacing the image, or simply removing it. This will be appended to the req.body to inform the server to delete the old image
   const [imageUpdated, setImageUpdated] = useState(false);
 
@@ -36,7 +36,6 @@ const ProfilePicModal = ({ closeModal, profileUser }) => {
     }
   }, [profileUser.profilePic, setImageData])
 
-  
   useEffect(() => {
     if (response) {
       // Adjust current user within auth context to updated profile pic user
@@ -114,10 +113,7 @@ const ProfilePicModal = ({ closeModal, profileUser }) => {
                   <p>No picture added</p>
                 )}
               </div>
-
-
             </div>
-           
 
             <div className='flex items-center justify-between'>
               <ImageUploadBtn handleChange={(e) => {

@@ -119,9 +119,9 @@ it('Renders skeleton loaders at appropriate time', () => {
       </AuthContextProvider>
     </BrowserRouter>
   );
-
-  const skeleton = screen.getByTestId('skeleton');
-  expect(skeleton).toBeInTheDocument();
+  
+  const loaders = screen.getAllByTestId('skeleton');
+  expect(loaders.length > 0).toBe(true);
 });
 
 it('Hides skeleton loaders once comments are loaded', () => {

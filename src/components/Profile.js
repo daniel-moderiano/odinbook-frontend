@@ -11,6 +11,7 @@ import Spinner from './utils/Spinner'
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useFetchProfile } from '../hooks/useFetchProfile';
+import { useErrorToast } from '../hooks/useErrorToast';
 
 const Profile = ({ profileView }) => {
   const { userId } = useParams();
@@ -20,6 +21,9 @@ const Profile = ({ profileView }) => {
 
   // Extract any state passed from edit profile page
   let location = useLocation();
+
+  // Set up notifications
+  useErrorToast(error, 'An error occurred while loading the profile.');
 
   useEffect(() => {
     // State has been passed from edit profile page (i.e. user updated profile details)

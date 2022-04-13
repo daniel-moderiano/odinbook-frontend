@@ -42,8 +42,8 @@ it("Displays skeleton loaders when fetch data is loading", () => {
     </BrowserRouter>
   );
  
-  const loaders = screen.getByTestId('skeleton');
-  expect(loaders).toBeInTheDocument();
+  const loaders = screen.getAllByTestId('skeleton');
+  expect(loaders.length > 0).toBe(true);
 });
 
 it("Displays all posts when fetch data has loaded (skeleton loaders disappear)", () => {
@@ -147,6 +147,6 @@ it("Displays all posts when fetch data has loaded (skeleton loaders disappear)",
   const posts = screen.getAllByRole('article');
   expect(posts.length).toBe(3);
 
-  const loaders = screen.queryByTestId('skeleton');
-  expect(loaders).not.toBeInTheDocument();
+  const loaders = screen.queryAllByTestId('skeleton');
+  expect(loaders.length).toBe(0);
 });
