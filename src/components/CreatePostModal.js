@@ -119,7 +119,7 @@ const CreatePostModal = ({ closeModal, updatePosts }) => {
 
             <div className='flex items-center justify-between'>
               <div className='flex items-center'>
-                <div className='relative after:py-1 px-2 rounded hover:bg-gray-100 hover:cursor-pointer' onClick={() => setShowPicker((prevState) => !prevState)}>
+                <div className='relative py-1 px-2 rounded hover:bg-gray-100 hover:cursor-pointer' onClick={() => setShowPicker((prevState) => !prevState)}>
                   🙂
                   {showPicker && (
                     <Picker 
