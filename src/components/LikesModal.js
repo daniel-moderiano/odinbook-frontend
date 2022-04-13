@@ -4,16 +4,13 @@ import { useFetchGet } from '../hooks/useFetchGet';
 import ProfilePic from './utils/ProfilePic';
 import like from '../assets/like.png';
 import { useModalEvents } from '../hooks/useModalEvents';
-import { useErrorToast } from '../hooks/useErrorToast';
+import SkeletonLike from './skeletons/SkeletonLike';
 
 const LikesModal = ({ postId, commentId, closeModal }) => {
   // Amend the fetch URL if comment ID is present (i.e. fetching likes for comment instead of post)
   const { data: likes, loading, error } = useFetchGet(`http://localhost:3000/api/posts/${postId}/${commentId ? `comments/${commentId}/likes` : 'likes'}`);
 
-  useModalEvents();
-
-  // Set up notifications
-  useErrorToast(error, 'An error occurred while loading likes.');
+  useModalEvents(closeModal);
 
   return (
     <FocusTrap>
@@ -44,11 +41,16 @@ const LikesModal = ({ postId, commentId, closeModal }) => {
 
           <div className='w-full'>  
             {loading && (
-              <p>Loading...</p>
+              <>
+                <SkeletonLike />
+                <SkeletonLike />
+              </>
             )}
 
             {error && (
-              <p>An error has occurred while loading likes.</p>
+              <div className='p-3 gb-gray-100 tex-gray-800'>
+                An error has occurred while loading likes.
+              </div>
             )}
 
             {likes && (
