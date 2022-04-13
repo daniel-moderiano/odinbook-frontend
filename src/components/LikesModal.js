@@ -48,7 +48,7 @@ const LikesModal = ({ postId, commentId, closeModal }) => {
             )}
 
             {error && (
-              <div className='p-3 gb-gray-100 tex-gray-800'>
+              <div className='p-3 bg-gray-100 my-1 text-gray-800 text-sm'>
                 An error has occurred while loading likes.
               </div>
             )}

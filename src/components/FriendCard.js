@@ -1,4 +1,3 @@
-import Button from './utils/Button';
 import { Link } from 'react-router-dom';
 import ProfilePic from './utils/ProfilePic';
 import SendRequestBtn from './SendRequestBtn';

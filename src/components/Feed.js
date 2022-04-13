@@ -1,25 +1,20 @@
 import { useFetchGet } from '../hooks/useFetchGet';
 import { useAuthContext } from '../hooks/useAuthContext';
-import { useToastContext } from '../context/ToastContext';
 import Post from './Post';
 import StyledLink from './utils/StyledLink';
 import SkeletonPost from './skeletons/SkeletonPost';
+import { useErrorToast } from '../hooks/useErrorToast';
 import { useEffect } from 'react';
 
 const Feed = ({ updateFeed }) => {
   const { user } = useAuthContext();
   const { data: posts, loading, error } = useFetchGet(`http://localhost:3000/api/users/${user._id}/feed`);
-  const { showToast } = useToastContext();
 
-  // Display toast on error of loading feed
-  useEffect(() => {
-    if (error) {
-      showToast('error', error.errMsg);
-    }
-  }, [error, showToast])
+  // Set up notifications
+  useErrorToast(error, 'An error occurred while loading feed.');
 
   return (
-    <div className='md:w-auto lg:min-w-full w-screen max-w-full'>
+    <div className='md:w-auto lg:min-w-full w-screen max-w-full'>      
       {loading && (
         <div data-testid="skeleton">
           {/* Render 10 skeleton posts */}
@@ -43,7 +38,10 @@ const Feed = ({ updateFeed }) => {
           </div>
         </>
       )}
-      
+
+      {error && (
+        <p className='mt-4 text-center w-full text-plum-600 text-lg font-semibold'>Unable to load Feed</p>
+      )}
     </div>
   )
 }

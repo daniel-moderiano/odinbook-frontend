@@ -12,6 +12,7 @@ const currentUser = {
 
 let mockLoading;
 let mockPosts;
+let mockError;
 
 jest.mock("../hooks/useAuthContext", () => ({
   useAuthContext: () => ({ 
@@ -24,13 +25,14 @@ jest.mock("../hooks/useFetchGet", () => ({
   useFetchGet: () => ({ 
     data: mockPosts,
     loading: mockLoading,
-    error: null
+    error: mockError,
   }),
 }));
 
 it("Displays skeleton loaders when fetch data is loading", () => {
   mockLoading = true;   // Data is loading
   mockPosts = null;
+  mockError = null;
 
   render(
     <BrowserRouter>
@@ -41,9 +43,37 @@ it("Displays skeleton loaders when fetch data is loading", () => {
       </AuthContextProvider>
     </BrowserRouter>
   );
+
+  // Error UI not present
+  const error = screen.queryByText(/unable to load/i);
+  expect(error).not.toBeInTheDocument();
  
   const loaders = screen.getAllByTestId('skeleton');
   expect(loaders.length > 0).toBe(true);
+});
+
+it("Displays error UI when fetch data fails", () => {
+  mockLoading = false;   // Data is loading
+  mockPosts = null;
+  mockError = true;
+
+  render(
+    <BrowserRouter>
+      <AuthContextProvider>
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <Feed />
+        </ToastContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
+  );
+
+  // Error UI present
+  const error = screen.getByText(/unable to load/i);
+  expect(error).toBeInTheDocument();
+ 
+  // Loaders not present
+  const loaders = screen.queryAllByTestId('skeleton');
+  expect(loaders.length).toBe(0);
 });
 
 it("Displays all posts when fetch data has loaded (skeleton loaders disappear)", () => {
@@ -132,6 +162,7 @@ it("Displays all posts when fetch data has loaded (skeleton loaders disappear)",
       "id": "622ffe9baa78d2996267f83f"
     },
   ];
+  mockError = null;
 
   render(
     <BrowserRouter>
@@ -147,6 +178,11 @@ it("Displays all posts when fetch data has loaded (skeleton loaders disappear)",
   const posts = screen.getAllByRole('article');
   expect(posts.length).toBe(3);
 
+  // Error UI not present
+  const error = screen.queryByText(/unable to load/i);
+  expect(error).not.toBeInTheDocument();
+
+  // Loaders not present
   const loaders = screen.queryAllByTestId('skeleton');
   expect(loaders.length).toBe(0);
 });

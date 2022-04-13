@@ -1,5 +1,5 @@
 
-const ProfileBio = ({ profileUser, profileType }) => {
+const ProfileBio = ({ profileUser }) => {
 
   return (
     <div className="bg-white p-4 md:p-6 rounded">
