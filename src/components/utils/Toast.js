@@ -18,7 +18,7 @@ const Toast = ({ visible, params }) => {
       </div>
       <div className="max-w-[200px]">
         {params.type === 'error' && (
-          <p className="font-semibold">An error has occurred.</p>
+          <p className="font-semibold">Error</p>
         )}
         {params.type === 'success' && (
           <p className="font-semibold">Success!</p>

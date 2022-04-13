@@ -8,13 +8,16 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import ImageUploadBtn from './ImageUploadBtn';
 import { useImageThumbnail } from '../hooks/useImageThumbnail';
 import { useModalEvents } from '../hooks/useModalEvents';
+import { useErrorToast } from '../hooks/useErrorToast';
 
 const EditPostModal = ({ closeModal, post, updateFeed }) => {
   const { updatePost, response, loading, error } = useUpdatePost();
   const { showToast } = useToastContext();
   const { user } = useAuthContext();
-
   const { handleFile, removeThumbnail, imageData, imageError, imageLoading, setImageData } = useImageThumbnail();
+
+  // Set up notifications
+  useErrorToast(imageError, 'An error occurred while uploading the image.');
 
   // Note: image value is in the context of an HTML file input value (e.target.value) and represents a pseudo string path to an image (e.g. 'C:/fakepath/image.png')
   const [imageValue, setImageValue] = useState('');
@@ -37,20 +40,22 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
     }
   }, [post.image, setImageData])
 
+  // 'Handle' a successful edit
   useEffect(() => {
     if (response) {
       updateFeed(Math.random())
-      showToast('success', 'Post edited');
+      showToast('success', 'Changes saved');
       closeModal();
     }
   }, [response, showToast, closeModal, updateFeed]);
 
+  // Additional action of closing the modal is required here, which is why showToast is called manually to avoid multiple useEffect hooks watching the same variable
   useEffect(() => {
-    if (error) {
-      showToast('error', 'An error occurred while editing the post.');
+    if (error) {  
+      showToast(error, 'An error occurred while saving your changes.');
       closeModal();
     }
-  }, [error, showToast, closeModal]);
+  }, [error, closeModal, showToast]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
