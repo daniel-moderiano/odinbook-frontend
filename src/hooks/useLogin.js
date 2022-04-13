@@ -33,13 +33,11 @@ export const useLogin = () => {
         dispatch({ type: 'LOGIN', payload: responseJSON.user });
         return;
       } else {    // error with login request
-        console.log(responseJSON.errorMsg);
         if (responseJSON.errorMsg === 'Unauthorized') {   // invalid credentials
-          console.log('Reached here');
           setError({ errorMsg: 'Invalid credentials. Try again.' });
           setLoading(false);
-        } else if (Array.isArray(response.JSON)) {    // array indicates form validation errors
-          setFormError(response.JSON)
+        } else if (responseJSON.length) {    // length indicates form validation errors (i.e. JSON response is array)
+          setFormError(responseJSON)
           setLoading(false);
         } else {    // unspecified error, return generic error msg
           setError({ errorMsg: 'An unknown error occurred while logging in.' })
