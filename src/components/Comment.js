@@ -4,14 +4,16 @@ import like from '../assets/like.png';
 import { useEffect, useState } from "react";
 import LikesModal from "./LikesModal";
 import { useDeleteComment } from "../hooks/useDeleteComment";
-import { useToastContext } from "../context/ToastContext";
 import EditCommentForm from "./EditCommentForm";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useErrorToast } from '../hooks/useErrorToast';
 
 const Comment = ({ postId, commentData, updateKey }) => {
   const { deleteComment, response, loading, error } = useDeleteComment();
   const { user } = useAuthContext();
-  const { showToast } = useToastContext();
+
+  // Set up notifications.
+  useErrorToast(error, 'An error occurred while deleting the comment.');
 
   const [showModal, setShowModal] = useState(false);
 
@@ -27,12 +29,6 @@ const Comment = ({ postId, commentData, updateKey }) => {
       updateKey(Math.random());
     }
   }, [response, updateKey]);
-
-  useEffect(() => {
-    if (error) {
-      showToast('error', error.errorMsg)
-    }
-  }, [error,showToast]);
 
   return (
     <>
@@ -61,7 +57,9 @@ const Comment = ({ postId, commentData, updateKey }) => {
             {commentData.user._id === user._id && (
               <div className="flex items-center justify-center">
                 <button className="text-xs text-gray-500 mr-3 font-medium hover:text-gray-700  disabled:hover:bg-transparent" onClick={() => setEditMode(true)}>Edit</button>
-                <button className="text-xs text-gray-500 font-medium hover:text-red-700 disabled:hover:bg-transparent" onClick={() => deleteComment(postId, commentData._id)}>Delete</button>
+                <button className="text-xs text-gray-500 font-medium hover:text-red-700 disabled:hover:bg-transparent" onClick={() => deleteComment(postId, commentData._id)}>
+                  {loading ? 'Deleting...' : 'Delete'}
+                </button>
               </div>
             )}
           </div>
