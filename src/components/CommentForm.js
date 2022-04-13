@@ -2,19 +2,15 @@ import ProfilePic from './utils/ProfilePic';
 import { useState, useEffect } from 'react';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { usePostComment } from '../hooks/usePostComment';
-import { useToastContext } from '../context/ToastContext';
+import { useErrorToast } from '../hooks/useErrorToast';
 
 const CommentForm = ({ postId, updateComments }) => {
   const { user } = useAuthContext();
-  const { postComment, response, loading, error } = usePostComment()
+  const { postComment, response, loading, error } = usePostComment();
   const [commentText, setCommentText] = useState('');
-  const { showToast } = useToastContext();
 
-  useEffect(() => {
-    if (error) {
-      showToast('error', error.errorMsg)
-    }
-  }, [error,showToast]);
+  // Set up notifications.
+  useErrorToast(error, 'An error occurred while posting the comment.');
 
   // Update UI changes to reflect a successful comment submission ('reset' form and thus hide post button)
   useEffect(() => {
