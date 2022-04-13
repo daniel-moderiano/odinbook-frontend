@@ -7,7 +7,6 @@ import { useProfileType } from '../hooks/useProfileType';
 import ProfileFriends from './ProfileFriends';
 import ProfilePosts from './ProfilePosts';
 import ProfileFriendsTab from './ProfileFriendsTab';
-import Spinner from './utils/Spinner'
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useFetchProfile } from '../hooks/useFetchProfile';

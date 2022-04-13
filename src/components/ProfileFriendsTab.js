@@ -2,8 +2,6 @@ import { useFetchGet } from "../hooks/useFetchGet";
 import { Link } from 'react-router-dom';
 import ProfilePic from "./utils/ProfilePic";
 import { useErrorToast } from "../hooks/useErrorToast";
-import SkeletonFriendTile from "./skeletons/SkeletonFriendTile";
-import Spinner from "./utils/Spinner";
 import SkeletonFriendTileLarge from "./skeletons/SkeletonFriendTileLarge";
 
 const ProfileFriendsTab = ({ profileUser }) => {
