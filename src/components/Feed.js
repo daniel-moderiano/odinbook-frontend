@@ -4,13 +4,13 @@ import Post from './Post';
 import StyledLink from './utils/StyledLink';
 import SkeletonPost from './skeletons/SkeletonPost';
 import { useErrorToast } from '../hooks/useErrorToast';
-import { useEffect } from 'react';
 
 const Feed = ({ updateFeed }) => {
   const { user } = useAuthContext();
   const { data: posts, loading, error } = useFetchGet(`http://localhost:3000/api/users/${user._id}/feed`);
 
-  // Set up notifications
+  // Set up notifications 
+  // ! Consider removing this to avoid doubling on error UI. Alternatively keep this but remove the error UI below
   useErrorToast(error, 'An error occurred while loading feed.');
 
   return (
