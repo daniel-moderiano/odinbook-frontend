@@ -9,6 +9,7 @@ import ImageUploadBtn from './ImageUploadBtn';
 import { useModalEvents } from '../hooks/useModalEvents';
 import { useImageThumbnail } from '../hooks/useImageThumbnail';
 import { useErrorToast } from '../hooks/useErrorToast';
+import Picker from 'emoji-picker-react';
 
 const CreatePostModal = ({ closeModal, updatePosts }) => {
   const { createPost, response, loading, error } = useCreatePost();
@@ -23,6 +24,7 @@ const CreatePostModal = ({ closeModal, updatePosts }) => {
   const [imageValue, setImageValue] = useState('');
   const [imageFile, setImageFile] = useState(null);
   
+  const [showPicker, setShowPicker] = useState(false);
   const [postText, setPostText] = useState('');
   
   // Custom useEffect-style hook to control modal closing on esc and outside click
@@ -35,6 +37,10 @@ const CreatePostModal = ({ closeModal, updatePosts }) => {
     formData.append('text', postText);
     formData.append('image', imageFile);
     createPost(formData);
+  };
+
+  const onEmojiClick = (event, emojiObject) => {
+    setPostText((prevState) => (prevState + emojiObject.emoji))
   };
 
   // Manual error toast is used as there are additional actions to perform when an error occurs here
@@ -56,7 +62,7 @@ const CreatePostModal = ({ closeModal, updatePosts }) => {
     <FocusTrap>
       <div id='Modal' aria-modal="true" role="dialog" aria-labelledby="modal-title" className='flex fixed z-[1000] left-0 top-0 h-full w-full overflow-auto bg-gray-700/70 justify-center items-center'>
 
-        <div className='bg-white w-full max-w-md px-5 py-4 flex flex-col items-start rounded shadow-md max-h-full overflow-auto'>
+        <div className='bg-white w-full  max-w-md px-5 py-4 flex flex-col items-start rounded shadow-md max-h-full overflow-auto'>
 
           <header className='flex flex-col justify-start items-start w-full border-b'>
 
@@ -79,10 +85,10 @@ const CreatePostModal = ({ closeModal, updatePosts }) => {
             </div>
             <form className="w-full" onSubmit={handleSubmit}>
               <label htmlFor="postText" className='sr-only'>Post text</label>
-              <textarea  required autoFocus
-          className="w-full resize-none rounded py-2 text-sm sm:text-base outline-none" name="postText" id="postText" rows="4" onChange={(e) => setPostText(e.target.value)} value={postText} placeholder="What's on your mind?"></textarea>
+              <textarea  required autoFocus className="w-full resize-none rounded py-2 text-sm sm:text-base outline-none" name="postText" id="postText" rows="4" onChange={(e) => setPostText(e.target.value)} value={postText} placeholder="What's on your mind?"></textarea>
+              
             </form>
-
+            
             {/* Image preview div */}
             <div id='preview' className='flex items-center justify-center w-full'>
               {imageLoading && (
@@ -112,7 +118,29 @@ const CreatePostModal = ({ closeModal, updatePosts }) => {
             </div>
 
             <div className='flex items-center justify-between'>
-              <ImageUploadBtn handleChange={(e) => handleFile(e.target.files[0])} imageValue={imageValue} setImageValue={setImageValue} setImageFile={setImageFile}/>
+              <div className='flex items-center'>
+                <div className='relative after:py-1 px-2 rounded hover:bg-gray-100 hover:cursor-pointer' onClick={() => setShowPicker((prevState) => !prevState)}>
+                  🙂
+                  {showPicker && (
+                    <Picker 
+                      onEmojiClick={onEmojiClick}
+                      native={true}
+                      disableSearchBar={true}
+                      groupVisibility={{
+                        recently_used: false,
+                      }}
+                      pickerStyle={{ 
+                        height: '200px', 
+                        position: 'absolute',
+                        left: '100%',
+                        bottom: '100%'
+                      }}
+                    />
+                  )}
+                </div>
+
+                <ImageUploadBtn handleChange={(e) => handleFile(e.target.files[0])} imageValue={imageValue} setImageValue={setImageValue} setImageFile={setImageFile}/>
+              </div>
               
               <Button 
                 design="primary" 
