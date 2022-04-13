@@ -1,6 +1,7 @@
 import ProfileFriends from "../components/ProfileFriends";
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
+import { ToastContextProvider } from "../context/ToastContext";
 
 const currentUser = {
   "_id": "622ffe9baa78d2996267f821",
@@ -328,13 +329,15 @@ const fewFriends = {
 
 // Initialise the variable here so the mock doesn't spit an undefined error
 let mockFriends;
+let mockLoading;
+let mockError;
 
 // Mock useFetchGet to return a pre-defined friends object that can be customised for different tests
 jest.mock("../hooks/useFetchGet", () => ({
   useFetchGet: () => ({ 
     data: mockFriends,
-    loading: null,
-    error: null
+    loading: mockLoading,
+    error: mockError,
   }),
 }));
 
@@ -345,47 +348,125 @@ jest.mock("../hooks/useAuthContext", () => ({
   }),
 }));
 
-it("Displays a 'no friends' message when the user has no friends", () => {
-  // Use friends list with no users
-  mockFriends = {
-    "acceptedFriends": []
-  };
-
-  render(
-    <BrowserRouter>
-      <ProfileFriends profileUser={currentUser}/>
-    </BrowserRouter>
-  );
-
-  const friends = screen.queryAllByRole('img');
-  expect(friends.length).toBe(0);
-});
-
-// Use images as markers for friends. All friend DOM elements will contain an image
-it("Renders all friends in the friend list if the list contains less than 9 friends", () => {
-    // Use friends list with <9 users (data in the exact form provided in app)
-    mockFriends = { ...fewFriends }
-
+describe('Friend list rendering', () => {
+  it("Displays a 'no friends' message when the user has no friends", () => {
+    // Use friends list with no users
+    mockFriends = {
+      "acceptedFriends": []
+    };
+  
     render(
       <BrowserRouter>
-        <ProfileFriends profileUser={currentUser}/>
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <ProfileFriends profileUser={currentUser}/>
+        </ToastContextProvider>
+      </BrowserRouter>
+    );
+  
+    const msg = screen.getByText(/no friends yet/i);
+    expect(msg).toBeInTheDocument();
+  });
+  
+  // Use images as markers for friends. All friend DOM elements will contain an image
+  it("Renders all friends in the friend list if the list contains less than 9 friends", () => {
+      // Use friends list with <9 users (data in the exact form provided in app)
+      mockFriends = { ...fewFriends }
+  
+      render(
+        <BrowserRouter>
+          <ToastContextProvider value={{ showToast: jest.fn }}>
+            <ProfileFriends profileUser={currentUser}/>
+          </ToastContextProvider>
+        </BrowserRouter>
+      );
+  
+      const friends = screen.queryAllByRole('img');
+      expect(friends.length).toBe(5);
+  });
+  
+  it("Renders only a maximum of 9 friends if the friends list contains more than 9 friends", () => {
+      // Use friends list with >9 users
+      mockFriends = { ...manyFriends }
+  
+      render(
+        <BrowserRouter>
+          <ToastContextProvider value={{ showToast: jest.fn }}>
+            <ProfileFriends profileUser={currentUser}/>
+          </ToastContextProvider>
+        </BrowserRouter>
+      );
+      
+      const friends = screen.queryAllByRole('img');
+      expect(friends.length).toBe(9);
+  });
+});
+
+describe('Error and loading states', () => {
+  it("Hides loaders and error state when friend data is successfully fetched", () => {
+    mockFriends = {
+      "acceptedFriends": []
+    };
+    mockError = null;
+    mockLoading = false;
+  
+    render(
+      <BrowserRouter>
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <ProfileFriends profileUser={currentUser}/>
+        </ToastContextProvider>
       </BrowserRouter>
     );
 
-    const friends = screen.queryAllByRole('img');
-    expect(friends.length).toBe(5);
-});
+    // Loaders hidden
+    const loaders = screen.queryAllByTestId('skeleton');
+    expect(loaders.length).toBe(0);
 
-it("Renders only a maximum of 9 friends if the friends list contains more than 9 friends", () => {
-    // Use friends list with >9 users
-    mockFriends = { ...manyFriends }
+    // Error UI hidden
+    const error = screen.queryByText(/unable to load friends/i);
+    expect(error).not.toBeInTheDocument();
+  });
 
+  it("Renders loaders correctly", () => {
+    mockLoading = true;
+    mockError = null;
+    mockFriends = null;
+  
     render(
       <BrowserRouter>
-        <ProfileFriends profileUser={currentUser}/>
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <ProfileFriends profileUser={currentUser}/>
+        </ToastContextProvider>
       </BrowserRouter>
     );
-    
-    const friends = screen.queryAllByRole('img');
-    expect(friends.length).toBe(9);
-});
+
+    // Loaders shown
+    const loaders = screen.getAllByTestId('skeleton');
+    expect(loaders.length > 0).toBe(true);
+  
+    // Error UI hidden
+    const error = screen.queryByText(/unable to load friends/i);
+    expect(error).not.toBeInTheDocument();
+  });
+  
+  it("Renders error UI appropriately", () => {
+    mockLoading = false;
+    mockError = true;
+    mockFriends = null;
+  
+    render(
+      <BrowserRouter>
+        <ToastContextProvider value={{ showToast: jest.fn }}>
+          <ProfileFriends profileUser={currentUser}/>
+        </ToastContextProvider>
+      </BrowserRouter>
+    );
+
+    // Loaders hidden
+    const loaders = screen.queryAllByTestId('skeleton');
+    expect(loaders.length).toBe(0);
+  
+    // Error UI visible
+    const error = screen.getByText(/unable to load friends/i);
+    expect(error).toBeInTheDocument();
+  });
+})

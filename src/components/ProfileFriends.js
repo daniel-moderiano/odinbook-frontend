@@ -2,6 +2,7 @@ import { useFetchGet } from "../hooks/useFetchGet";
 import { Link } from "react-router-dom";
 import ProfilePic from "./utils/ProfilePic";
 import { useErrorToast } from "../hooks/useErrorToast";
+import SkeletonFriendTile from './skeletons/SkeletonFriendTile';
 
 const ProfileFriends = ({ profileUser }) => {
   const { data: friends, loading, error } = useFetchGet(`http://localhost:3000/api/users/${profileUser._id}/friends`);
@@ -15,7 +16,23 @@ const ProfileFriends = ({ profileUser }) => {
         <h2 className="font-bold text-2xl">Friends</h2>
         <Link to={`/profile/${profileUser._id}/friends`} className="text-gray-600 underline">See all friends</Link>
       </div>
-      {friends ? (
+
+      {error && (
+        <div className='mt-4 text-gray-800 text-sm w-full text-center'>
+          Unable to load friends
+        </div>
+      )}
+
+      {/* Display 6 skeleton friend tiles while loading */}
+      {loading && (
+        <div className="mt-4 flex flex-wrap gap-x-5 gap-y-5 sm:gap-x-4 lg:gap-x-5 lg:gap-y-4 sm:gap-y-4 sm:justify-between friend:justify-center">
+          {[0, 1, 2, 3, 4, 5].map((friend, index) => {
+            return <SkeletonFriendTile key={index}/>
+          })}
+        </div>
+      )}
+
+      {friends && (
         <>
           {/* Friends array may exist but the user may not yet have any accepted friends. Hence this is checked here */}
           {friends.acceptedFriends.length > 0 ? (
@@ -40,11 +57,9 @@ const ProfileFriends = ({ profileUser }) => {
               </div>
             </>  
           ) : (
-            <div>No friends yet</div>
+            <div className="mt-4">No friends yet</div>
           )}
         </>
-      ) : (
-        <div>Friends not loaded</div>
       )}
     </div>
   )
