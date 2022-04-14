@@ -5,7 +5,7 @@ import { useToastContext } from '../context/ToastContext';
 import { useModalEvents } from '../hooks/useModalEvents';
 import CloseIcon from './icons/CloseIcon'
 
-const DeletePostModal = ({ closeModal, postId, updateFeed }) => {
+const DeletePostModal = ({ closeModal, postId, updatePosts }) => {
   const { deletePost, response, loading, error } = useDeletePost();
   const { showToast } = useToastContext();
 
@@ -14,11 +14,11 @@ const DeletePostModal = ({ closeModal, postId, updateFeed }) => {
   // Handle successful post deletion
   useEffect(() => {
     if (response) {
-      updateFeed(Math.random())
+      updatePosts()
       showToast('success', 'Post removed');
       closeModal();
     }
-  }, [response, showToast, closeModal, updateFeed]);
+  }, [response, showToast, closeModal, updatePosts]);
 
   // Handle post deletion error
   useEffect(() => {

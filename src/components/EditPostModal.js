@@ -12,7 +12,7 @@ import { useErrorToast } from '../hooks/useErrorToast';
 import Picker from 'emoji-picker-react';
 import CloseIcon from './icons/CloseIcon';
 
-const EditPostModal = ({ closeModal, post, updateFeed }) => {
+const EditPostModal = ({ closeModal, post, updatePosts }) => {
   const { updatePost, response, loading, error } = useUpdatePost();
   const { showToast } = useToastContext();
   const { user } = useAuthContext();
@@ -46,11 +46,11 @@ const EditPostModal = ({ closeModal, post, updateFeed }) => {
   // 'Handle' a successful edit
   useEffect(() => {
     if (response) {
-      updateFeed(Math.random())
+      updatePosts()
       showToast('success', 'Changes saved');
       closeModal();
     }
-  }, [response, showToast, closeModal, updateFeed]);
+  }, [response, showToast, closeModal, updatePosts]);
 
   // Additional action of closing the modal is required here, which is why showToast is called manually to avoid multiple useEffect hooks watching the same variable
   useEffect(() => {

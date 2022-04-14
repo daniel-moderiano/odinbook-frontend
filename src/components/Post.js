@@ -14,7 +14,7 @@ import EditPostModal from './EditPostModal';
 import EllipsisIcon from './icons/EllipsisIcon';
 import CommentIcon from './icons/CommentIcon'
 
-const Post = ({ post, updateFeed }) => {
+const Post = ({ post, updatePosts }) => {
   const { user } = useAuthContext();
   const [showLikesModal, setShowLikesModal] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
@@ -142,9 +142,9 @@ const Post = ({ post, updateFeed }) => {
 
     {showLikesModal && (<LikesModal postId={post._id} closeModal={() => setShowLikesModal(false)}/>)}
 
-    {showDeleteModal && (<DeletePostModal postId={post._id} closeModal={() => setShowDeleteModal(false)} updateFeed={updateFeed}/>)}
+    {showDeleteModal && (<DeletePostModal postId={post._id} closeModal={() => setShowDeleteModal(false)} updatePosts={updatePosts}/>)}
 
-    {showEditModal && (<EditPostModal post={post} closeModal={() => setShowEditModal(false)} updateFeed={updateFeed}/>)}
+    {showEditModal && (<EditPostModal post={post} closeModal={() => setShowEditModal(false)} updatePosts={updatePosts}/>)}
     </>
   )
 }

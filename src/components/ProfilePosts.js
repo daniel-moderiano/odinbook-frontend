@@ -38,7 +38,9 @@ const ProfilePosts = ({ profileUser }) => {
           <>
             <div>
               {posts.map((post) => (
-                <Post post={post} key={post._id}/>
+                <Post post={post} key={post._id} updatePosts={() => {
+                  navigate(`/profile/${profileUser._id}`, { state: 'update' });
+                }}/>
               ))}
             </div>
             <div className='flex flex-col items-center content-center rounded shadow-sm bg-white px-4 py-8'>
