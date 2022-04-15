@@ -27,7 +27,7 @@ it("Renders header by default", () => {
     </BrowserRouter>
   );
 
-  const header = screen.queryByTestId('dynamic');
+  const header = screen.queryByRole('banner');
   expect(header).toHaveClass('top-0');
 });
 
@@ -46,7 +46,7 @@ it("Hides header on scroll down", () => {
   fireEvent.scroll(window, { target: { scrollY: 200 } });
 
   // Need minimum 300 ms timeout to allow transition to occur on DOM element
-  const header = screen.queryByTestId('dynamic');
+  const header = screen.queryByRole('banner');
   expect(header).toHaveClass('top-[-50px]');
 });
 
@@ -65,6 +65,6 @@ it("Shows header on scroll up", () => {
   fireEvent.scroll(window, { target: { scrollY: 200 } });
   fireEvent.scroll(window, { target: { scrollY: 0 } });
 
-  const header = screen.queryByTestId('dynamic');
+  const header = screen.queryByRole('banner');
   expect(header).toHaveClass('top-0');
 });
