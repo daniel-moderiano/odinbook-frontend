@@ -96,8 +96,8 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
             <fieldset className='mb-3'>
               <legend className='md:text-xl md:pb-1 text-lg border-b mb-4 w-full text-left text-plum-600 flex items-center justify-between'>
                 <span>Personal information</span>
-                <button data-testid="edit" type='button' className='p-1' onClick={() => setEditPersonal(true)}>
-                  <PencilIcon iconStyles="w-4" iconFill="#000"/>
+                <button data-testid="edit" type='button' className='p-1 rounded-full active:scale-95 opacity-90 hover:opacity-100' onClick={() => setEditPersonal(true)}>
+                  <PencilIcon iconStyles="w-4" iconFill="#6b7280"/>
                 </button>
               </legend>
   
@@ -153,8 +153,8 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
             <fieldset>
               <legend className='md:text-xl md:pb-1 text-lg border-b mb-4 w-full text-left text-plum-600 flex items-center justify-between'>
                 <span>About you</span>
-                <button type="button" className='p-1' onClick={() => setEditAbout(true)}>
-                  <PencilIcon iconStyles="w-4" iconFill="#000"/>
+                <button type="button" className='p-1 rounded-full active:scale-95 opacity-90 hover:opacity-100' onClick={() => setEditAbout(true)}>
+                  <PencilIcon iconStyles="w-4" iconFill="#6b7280"/>
                 </button>
               </legend>
             

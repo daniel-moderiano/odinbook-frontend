@@ -5,6 +5,7 @@ import { useState } from 'react';
 import ProfilePicModal from './ProfilePicModal';
 import EditProfileModal from './EditProfileModal';
 import CameraIcon from './icons/CameraIcon';
+import UnfriendRequestButton from './UnfriendRequestBtn';
 
 const ProfileHeader = ({ profileUser, profileType }) => {
   const [showPicModal, setShowPicModal] = useState(false);
@@ -30,10 +31,9 @@ const ProfileHeader = ({ profileUser, profileType }) => {
        </div>
         <div className='lg:-mr-10 lg:mb-4 z-10'>
           {profileType === 'friend' && (
-            <Button design="ghost" customStyles="w-44">Friends</Button>
+            <UnfriendRequestButton userId={profileUser._id}/>
           )}
           {profileType === 'ownProfile' && (
-            // <StyledLink to={`/profile/${profileUser._id}/edit`} design="btn-primary" customStyles="w-44">Edit profile</StyledLink>
             <Button onClick={() => setShowEditModal(true)} design="primary" customStyles="w-44">Edit profile</Button>
           )}
           {profileType === 'nonFriend' && (
