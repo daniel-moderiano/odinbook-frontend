@@ -64,11 +64,11 @@ const FriendsHome = () => {
               )}
 
               {loading && (
-                <>
+                <div className="flex flex-wrap items-center justify-start">
                   <SkeletonFriendCard />
                   <SkeletonFriendCard />
                   <SkeletonFriendCard />
-                </>
+                </div>
               )}
 
               {error && (
