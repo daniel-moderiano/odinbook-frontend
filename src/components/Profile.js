@@ -74,7 +74,7 @@ const Profile = ({ profileView }) => {
               </section>
               </div>
               <section className='mb-6 rounded max-w-2xl w-full'>
-                <ProfilePosts profileUser={profileUser.user}/>
+                <ProfilePosts profileUser={profileUser.user} profileType={profileType}/>
               </section>
             </div>
           )}
