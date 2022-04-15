@@ -73,7 +73,7 @@ const ProfilePicModal = ({ closeModal, profileUser }) => {
 
             <div className='flex justify-between items-center w-full pb-4'>
               <h4 id="modal-title" className='text-xl font-semibold'>Edit profile picture</h4>
-              <button type="button" aria-label="close current window" onClick={closeModal}>
+              <button type="button" className='rounded-full p-1 hover:bg-gray-100 active:scale-0.95' aria-label="close current window" onClick={closeModal}>
                 <CloseIcon iconStyles="w-6" iconFill="#1B1E22"/>
               </button>
             </div>
@@ -95,7 +95,7 @@ const ProfilePicModal = ({ closeModal, profileUser }) => {
                 {imageData ? (
                   <>
                     <img className='object-cover w-52 h-52 rounded-full' src={imageData} alt="" />
-                    <button className='flex absolute top-2 right-2 p-1 rounded-full bg-gray-100 border-gray-300 border items-center justify-center hover:bg-gray-200' onClick={() => {
+                    <button className='flex absolute top-2 right-2 p-1 rounded-full bg-gray-100 border-gray-300 border items-center justify-center hover:bg-gray-200 active:scale-95' onClick={() => {
                       // Clear the file from the input and from the file state
                       setImageValue('');
                       setImageFile(null);

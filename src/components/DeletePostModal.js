@@ -38,7 +38,7 @@ const DeletePostModal = ({ closeModal, postId, updatePosts }) => {
 
             <div className='flex justify-between items-center w-full pb-4'>
               <h4 id="modal-title" className='text-xl font-semibold'>Delete post</h4>
-              <button type="button" aria-label="close current window" onClick={closeModal}>
+              <button type="button" className='rounded-full p-1 hover:bg-gray-100 active:scale-0.95' aria-label="close current window" onClick={closeModal}>
                 <CloseIcon iconStyles="w-6" iconFill="#1B1E22"/>
               </button>
             </div>

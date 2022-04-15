@@ -16,7 +16,7 @@ const ProfileHeader = ({ profileUser, profileType }) => {
       <div className="w-full absolute flex items-center justify-center top-7 md:top-14 lg:top-24 lg:justify-start max-w-4xl">
         <div className="relative">
           <ProfilePic imgUrl={profileUser.profilePic ? profileUser.profilePic.imageUrl : null} styles="w-40 h-40 lg:w-44 lg:h-44 rounded-full border-4 border-white"/>
-          <button data-testid="camera" className="absolute rounded-full bg-gray-200 w-9 h-9 flex items-center justify-center bottom-4 right-0 border-gray-300 border" onClick={() => setShowPicModal(true)}>
+          <button data-testid="camera" className="absolute rounded-full bg-gray-200 w-9 h-9 flex items-center justify-center bottom-4 right-0 border-gray-300 border hover:bg-gray-300 active:scale-95" onClick={() => setShowPicModal(true)}>
           <CameraIcon iconFill="#000" iconStyles="w-5"/>
         </button>
         </div>
