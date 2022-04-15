@@ -8,7 +8,8 @@ const FriendsMenu = () => {
   let page = window.location.pathname;
 
   return (
-    <aside className="mt-3 md:bg-white md:h-full md:m-0 md:fixed md:w-[270px] md:shadow-md lg:w-[320px]">
+    // Margin-top is chosen as height of the header + (mt-3)
+    <div className="mt-[62px] md:bg-white md:h-full md:m-0 md:fixed md:w-[270px] md:shadow-md lg:w-[320px]">
       <h2 className='hidden md:block text-2xl font-bold p-4'>Friends</h2>
       <nav role="navigation" aria-label="Friends menu">
         <ul className='flex items-center justify-start ml-1 md:flex-col md:m-0 md:mx-2'>
@@ -32,7 +33,7 @@ const FriendsMenu = () => {
           </li>
         </ul>
       </nav>
-    </aside>
+    </div>
   )
 }
 

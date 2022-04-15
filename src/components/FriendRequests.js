@@ -15,8 +15,8 @@ const FriendRequests = () => {
   return (
     <div>
       <Header />
-
-      <div className="md:grid md:grid-cols-[270px_1fr] lg:grid-cols-[320px_1fr]">
+      {/* Margin top is chosen to match height of the header */}
+      <div className="md:grid md:grid-cols-[270px_1fr] lg:grid-cols-[320px_1fr] mt-[50px] lg:mt-[58px]">
         {/* A bounding div is necessary to avoid the Friends menu fixed positioning from overflowing the grid */}
         <div>
           <FriendsMenu />

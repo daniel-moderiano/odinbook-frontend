@@ -56,7 +56,8 @@ const Profile = ({ profileView }) => {
       )}
 
       {(profileUser && profileType) && (
-        <div className="w-full flex justify-center items-center flex-col">
+        // Margin top is chosen to match the height of the header
+        <div className="w-full flex justify-center items-center flex-col mt-[50px] lg:mt-[58px]">
           <section className='shadow-sm mb-6 w-full'>
             <ProfileHeader profileUser={profileUser.user} profileType={profileType}/>
           </section>
