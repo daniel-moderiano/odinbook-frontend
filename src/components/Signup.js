@@ -6,6 +6,7 @@ import StyledLink from "./utils/StyledLink";
 import { useErrorToast } from "../hooks/useErrorToast";
 import OdinbookIcon from "./icons/OdinbookIcon";
 import FormErrorIcon from './icons/FormErrorIcon';
+import Footer from "./Footer";
 
 const Signup = () => {
   const { signup, error, formError, loading } = useSignup();
@@ -49,7 +50,7 @@ const Signup = () => {
           <div className="w-full lg:w-full flex items-center lg:justify-center lg:border-l lg:border-plum-500/20">
             <div className="flex flex-col items-center w-full lg:bg-transparent lg:pt-5 lg:pb-6 lg:max-w-lg">
               <div className="w-full text-center lg:max-w-sm lg:text-left">
-                <h2 className="font-semibold text-3xl text-plum-500 pb-6">Sign up</h2>
+                <h2 className="font-semibold text-3xl text-plum-500 pb-7">Sign up</h2>
                 {/* <h2 className="font-semibold text-3xl sm:text-4xl text-plum-500 pb-6">odinbook</h2> */}
               </div>
 
@@ -148,7 +149,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
-      <footer className="h-16 border-t flex items-center">&copy; odinbook</footer>
+      <Footer />
     </div>
   )
 }

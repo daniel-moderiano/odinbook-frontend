@@ -8,6 +8,7 @@ import StyledLink from "./utils/StyledLink";
 import FormErrorIcon from './icons/FormErrorIcon';
 import OdinbookIcon from './icons/OdinbookIcon';
 import FacebookIcon from './icons/FacebookIcon';
+import Footer from "./Footer";
 
 const Login = () => {
   const { login, error, formError, loading } = useLogin();
@@ -54,7 +55,7 @@ const Login = () => {
 
               <div className="w-full text-center">
                 <h2 className="font-semibold text-3xl text-plum-500 pb-6 hidden">Log in</h2>
-                <h2 className="font-semibold text-3xl sm:text-4xl text-plum-500 pb-6 lg:hidden">odinbook</h2>
+                <h2 className="font-semibold text-3xl sm:text-4xl text-plum-500 pb-7 lg:hidden">Log in</h2>
               </div>
 
               <form className="w-full max-w-sm" onSubmit={handleSubmit}>
@@ -118,7 +119,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <footer className="h-16 border-t flex items-center">&copy; odinbook</footer>
+      <Footer />
     </div>
   )
 }
