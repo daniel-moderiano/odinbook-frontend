@@ -30,10 +30,10 @@ const Feed = ({ updatePosts }) => {
               <Post post={post} key={post._id} updatePosts={updatePosts}/>
             ))}
           </div>
-          <div className='flex flex-col items-center content-center rounded shadow-sm bg-white px-4 py-8 mb-6'>
+          <div className='flex flex-col text-center items-center justify-center rounded shadow-sm bg-white px-4 py-8 mb-6'>
             <p className='font-bold text-xl text-gray-600'>No more posts</p>
             <p className='text-md text-gray-600 mb-4'>Add more friends to see more posts in your Feed.</p>
-            <StyledLink to="/" design="btn-primary" customStyles="w-40">Find Friends</StyledLink>
+            <StyledLink to="/friends" design="btn-primary" customStyles="w-40">Find Friends</StyledLink>
           </div>
         </>
       )}
