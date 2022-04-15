@@ -35,7 +35,7 @@ const DynamicHeader = () => {
     const checkScroll = () => {  
       // Only initialise current scroll to window position at the time of calling checkScroll function
       currentScroll = window.scrollY;
-      console.log(previousDirection, direction);
+      console.log(previousScroll, currentScroll);
 
       if (currentScroll > previousScroll) {   // user is scrolling down, set direction accordingly
         direction = 2;
@@ -63,7 +63,7 @@ const DynamicHeader = () => {
 
 
   return (
-    <div className={`fixed flex w-full h-[50px] bg-white shadow-md items-center justify-start ${showHeader ? 'top-0' : 'top-[-50px]'} transition-all duration-300 px-4`}>
+    <div data-testid="dynamic" className={`fixed flex w-full h-[50px] bg-white shadow-md items-center justify-start ${showHeader ? 'top-0' : 'top-[-50px]'} transition-all duration-300 px-4`}>
         <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="w-9 h-9 rounded-full"/>
       <p>{`${user.firstName} ${user.lastName}`}</p>
     </div>
