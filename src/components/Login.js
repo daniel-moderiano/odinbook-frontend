@@ -42,7 +42,7 @@ const Login = () => {
 
   return (
     <div className="flex w-full flex-col h-screen sm:mt-6 md:mt-12">
-      <div className="h-screen m-2 px-4 pt-10 pb-12 flex flex-col items-center lg:justify-center bg-white shadow-sm rounded max-w-md sm:h-auto sm:px-10 sm:mx-auto sm:w-full lg:m-0 lg:flex-row lg:max-w-full lg:bg-transparent lg:h-full lg:shadow-none">
+      <div className="h-screen m-2 px-4 pt-10 pb-12 flex flex-col items-center lg:justify-center bg-white shadow-sm rounded max-w-md sm:h-auto sm:px-10 sm:mx-auto sm:w-full lg:m-0 lg:flex-row lg:max-w-full lg:bg-transparent lg:h-full lg:shadow-none md:mb-6">
 
         <div className="container max-w-7xl w-full flex items-center justify-center">
           <div className="items-center justify-center hidden lg:flex w-full -mr-16">

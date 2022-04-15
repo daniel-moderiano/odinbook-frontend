@@ -73,6 +73,7 @@ const Profile = ({ profileView }) => {
                 <section className='shadow-sm mb-6 rounded max-w-2xl w-full'>
                   <ProfileFriends profileUser={profileUser.user}/>
                 </section>
+                {/* Display footer on left column under friends for large screens only */}
                 <div className='hidden lg:block mb-4'>
                   <Footer />
                 </div>
@@ -88,6 +89,7 @@ const Profile = ({ profileView }) => {
             </section>
           )}
         </div>)}
+        {/* Display centered footer for all smaller screens */}
         <div className='lg:hidden mb-4'>
           <Footer />
         </div>
