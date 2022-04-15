@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "../context/AuthContext";
 import { ToastContextProvider } from "../context/ToastContext";
-import DynamicHeader from '../components/DynamicHeader';
+import Header from "../components/Header";
 
 const currentUser = {
   "_id": "622ffe9baa78d2996267f821",
@@ -21,7 +21,7 @@ it("Renders header by default", () => {
     <BrowserRouter>
       <AuthContextProvider>
         <ToastContextProvider value={{ showToast: jest.fn }}>
-          <DynamicHeader />
+          <Header />
         </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
@@ -36,7 +36,7 @@ it("Hides header on scroll down", () => {
     <BrowserRouter>
       <AuthContextProvider>
         <ToastContextProvider value={{ showToast: jest.fn }}>
-          <DynamicHeader />
+          <Header />
         </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
@@ -55,7 +55,7 @@ it("Shows header on scroll up", () => {
     <BrowserRouter>
       <AuthContextProvider>
         <ToastContextProvider value={{ showToast: jest.fn }}>
-          <DynamicHeader />
+          <Header />
         </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
