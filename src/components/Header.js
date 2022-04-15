@@ -4,12 +4,13 @@ import Button from "./utils/Button";
 import { Link } from "react-router-dom";
 import LogoutIcon from "./icons/LogoutIcon";
 import OdinbookIcon from './icons/OdinbookIcon';
+import DynamicHeader from "./DynamicHeader";
 
 const Header = () => {
   const { logout } = useLogout();
 
   return (
-    <header role="banner" aria-labelledby="odinbook-logo" className="shadow-md sticky top-0 w-full bg-white grid grid-cols-1 lg:grid-cols-3 items-center z-20">
+    <header role="banner" aria-labelledby="odinbook-logo" className="shadow-md fixed bottom-0 w-full bg-white grid grid-cols-1 lg:grid-cols-3 items-center z-20">
       <Link to="/" className="items-center hidden lg:flex justify-self-start">
         <OdinbookIcon iconStyles="w-20"/>
         <h1 className="font-semibold text-3xl text-plum-500 ml-4">odinbook</h1>
@@ -25,6 +26,7 @@ const Header = () => {
           <span className="text-xs">Log out</span>
         </Button>
       </div>
+      <DynamicHeader />
     </header>
   )
 }
