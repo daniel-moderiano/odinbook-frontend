@@ -51,7 +51,6 @@ const Signup = () => {
             <div className="flex flex-col items-center w-full lg:bg-transparent lg:pt-5 lg:pb-6 lg:max-w-lg">
               <div className="w-full text-center lg:max-w-sm lg:text-left">
                 <h2 className="font-semibold text-3xl sm:text-4xl text-plum-500 pb-7 lg:hidden">Sign up</h2>
-                {/* <h2 className="font-semibold text-3xl sm:text-4xl text-plum-500 pb-6">odinbook</h2> */}
               </div>
 
               <form className="w-full max-w-sm" onSubmit={handleSubmit}>
