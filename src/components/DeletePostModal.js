@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 import { useDeletePost } from '../hooks/useDeletePost';
 import { useToastContext } from '../context/ToastContext';
 import { useModalEvents } from '../hooks/useModalEvents';
-import CloseIcon from './icons/CloseIcon'
+import CloseIcon from './icons/CloseIcon';
+import Button from './utils/Button';
 
 const DeletePostModal = ({ closeModal, postId, updatePosts }) => {
   const { deletePost, response, loading, error } = useDeletePost();
@@ -50,9 +51,9 @@ const DeletePostModal = ({ closeModal, postId, updatePosts }) => {
             <p className='mb-6 mt-6'>Delete this post?</p>
             <div className='flex items-center justify-end'>
               <button className='bg-gray-100 text-gray-800 max-w-[100px] w-full px-2 py-1 mr-2 hover:bg-gray-200 shadow-sm  focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-gray-300/30 disabled:bg-gray-100 disabled:text-gray-400 disabled:shadow-none disabled:border-gray-100' onClick={closeModal}>Cancel</button>
-              <button className='bg-red-500 text-white max-w-[100px] w-full px-2 py-1 hover:bg-red-600 shadow-sm focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-red-300/70 disabled:bg-gray-100 disabled:text-gray-400 disabled:shadow-none disabled:border-gray-100' onClick={() => deletePost(postId)}>
+              <Button design="danger" customStyles="max-w-[100px]" onClick={() => deletePost(postId)}>
                 {loading ? 'Deleting...' : 'Delete'}
-              </button>
+              </Button>
             </div>
             
             

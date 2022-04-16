@@ -35,7 +35,7 @@ const Button = ({
         break;
 
       case 'danger':
-        CSS = 'flex items-center justify-center w-full px-2 py-1 bg-red-200 border border-gray-200 text-black shadow-sm hover:bg-gray-200/80 hover:border-gray-200/10 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-gray-300/30 disabled:bg-gray-100 disabled:text-gray-500 disabled:shadow-none'
+        CSS = 'bg-red-500 text-white w-full px-2 py-1 hover:bg-red-600 shadow-sm focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-red-300/70 disabled:bg-gray-100 disabled:text-gray-400 disabled:shadow-none disabled:border-gray-100'
         break;
 
       case 'ghost':

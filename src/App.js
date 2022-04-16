@@ -11,6 +11,7 @@ import { useLocation } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import Toast from './components/utils/Toast';
 import { ToastContext } from "./context/ToastContext";
+import Settings from "./components/Settings";
 
 function App() {
   // Presence of user will allow conditional rendering of routes/route protection on frontend
@@ -83,6 +84,12 @@ function App() {
             <>
             {!user && <Login />}
             {user && <Profile profileView="edit" />}
+            </>
+          }/>
+          <Route path="/settings" element={
+            <>
+            {!user && <Login />}
+            {user && <Settings />}
             </>
           }/>
         </Routes>
