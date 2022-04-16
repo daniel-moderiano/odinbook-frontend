@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "../context/AuthContext";
 import { ToastContextProvider } from "../context/ToastContext";
-import Nav from "../components/Nav";
+import MeButton from "../components/MeButton";
 import userEvent from "@testing-library/user-event";
 
 const currentUser = {
@@ -22,7 +22,7 @@ describe('Dropdown menu display tests', () => {
     <BrowserRouter>
       <AuthContextProvider>
         <ToastContextProvider value={{ showToast: jest.fn }}>
-          <Nav />
+          <MeButton />
         </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
@@ -69,7 +69,7 @@ describe('Dropdown menu display tests', () => {
   
   it('Closes menu when outside click occurs', () => {
     setup();
-    const nav = screen.getByRole('navigation');
+    const nav = screen.getByTestId('outside');
 
     // Open menu
     const btn = screen.getByTestId(/user-menu/i);

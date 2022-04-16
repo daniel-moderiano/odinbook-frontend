@@ -4,7 +4,7 @@ const DropdownMenu = ({ closeMenu }) => {
   const { logout } = useLogout();
 
   return (
-    <div data-testid="dropdown" data-id="dropdown" className="rounded p-1 absolute top-[52px] right-0 shadow-lg w-36 bg-white text-left lg:top-[62px]">
+    <div data-testid="dropdown" data-id="dropdown" className="rounded p-1 absolute top-[53px] right-0 shadow-lg w-36 bg-white text-left lg:top-[60px]">
       <button onClick={() => {
         closeMenu();
       }} className="bg-white py-2 px-3 hover:bg-gray-100 w-full text-left rounded">View profile</button>
