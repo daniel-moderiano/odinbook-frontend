@@ -3,7 +3,6 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import HomeIcon from './icons/HomeIcon';
 import FriendsIcon from "./icons/FriendsIcon";
 import ProfileIcon from "./icons/ProfileIcon";
-import LogoutIcon from './icons/LogoutIcon';
 import { useEffect, useState } from "react";
 import ProfilePic from './utils/ProfilePic';
 import DropdownMenu from "./DropdownMenu";
@@ -11,7 +10,7 @@ import DropdownMenu from "./DropdownMenu";
 const Nav = () => {
 
   const { user } = useAuthContext();
-  const [showMenu, setShowMenu] = useState(true);
+  const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
     setShowMenu((prevState) => !prevState);

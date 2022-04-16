@@ -17,7 +17,7 @@ jest.mock("../hooks/useAuthContext", () => ({
   }),
 }));
 
-describe('Post menu display tests', () => {
+describe('Dropdown menu display tests', () => {
   const setup = () => render(
     <BrowserRouter>
       <AuthContextProvider>
@@ -28,13 +28,13 @@ describe('Post menu display tests', () => {
     </BrowserRouter>
   );
 
-  it('Hides post menu by default', () => {
+  it('Hides menu by default', () => {
     setup();
     const menu = screen.queryByTestId('dropdown');
     expect(menu).not.toBeInTheDocument();
   });
 
-  it('Opens post menu on click of ellipsis btn if menu is currently closed', () => {
+  it('Opens menu on click of profile pic btn if menu is currently closed', () => {
     setup();
     const btn = screen.getByTestId(/user-menu/i);
     userEvent.click(btn);
@@ -43,7 +43,7 @@ describe('Post menu display tests', () => {
     expect(menu).toBeInTheDocument();
   });
 
-  it('Closes post menu on click of ellipsis btn if menu is already open', () => {
+  it('Closes menu on click of profile pic btn if menu is already open', () => {
     setup();
     // Open and close with double btn press
     const btn = screen.getByTestId(/user-menu/i);
@@ -54,13 +54,13 @@ describe('Post menu display tests', () => {
     expect(menu).not.toBeInTheDocument();
   });
 
-  it('Closes menu when either menu btn is pressed', () => {
+  it('Closes menu when any of the menu btns are pressed', () => {
     setup();
     // Open menu
     const btn = screen.getByTestId(/user-menu/i);
     userEvent.click(btn);
     
-    const menuBtn = screen.getByRole('button', { name: /edit/i });
+    const menuBtn = screen.getByRole('button', { name: /log out/i });
     userEvent.click(menuBtn);
   
     const menu = screen.queryByTestId('dropdown');
@@ -69,14 +69,14 @@ describe('Post menu display tests', () => {
   
   it('Closes menu when outside click occurs', () => {
     setup();
-    const post = screen.getByRole('article');
+    const nav = screen.getByRole('navigation');
 
     // Open menu
     const btn = screen.getByTestId(/user-menu/i);
     userEvent.click(btn);
     
     // Outside click by clicking on post body
-    userEvent.click(post);
+    userEvent.click(nav);
   
     const menu = screen.queryByTestId('dropdown');
     expect(menu).not.toBeInTheDocument();
