@@ -224,7 +224,7 @@ describe('Post menu display tests', () => {
 
   it('Hides post menu by default', () => {
     setup();
-    const menu = screen.queryByTestId('post-menu');
+    const menu = screen.queryByTestId('dropdown');
     expect(menu).not.toBeInTheDocument();
   });
 
@@ -233,7 +233,7 @@ describe('Post menu display tests', () => {
     const btn = screen.getByTestId(/menu/i);
     userEvent.click(btn);
 
-    const menu = screen.getByTestId('post-menu');
+    const menu = screen.getByTestId('dropdown');
     expect(menu).toBeInTheDocument();
   });
 
@@ -244,7 +244,7 @@ describe('Post menu display tests', () => {
     userEvent.click(btn);
     userEvent.click(btn);
 
-    const menu = screen.queryByTestId('post-menu');
+    const menu = screen.queryByTestId('dropdown');
     expect(menu).not.toBeInTheDocument();
   });
 
@@ -257,7 +257,7 @@ describe('Post menu display tests', () => {
     const menuBtn = screen.getByRole('button', { name: /edit/i });
     userEvent.click(menuBtn);
   
-    const menu = screen.queryByTestId('post-menu');
+    const menu = screen.queryByTestId('dropdown');
     expect(menu).not.toBeInTheDocument();
   });
   
@@ -272,7 +272,7 @@ describe('Post menu display tests', () => {
     // Outside click by clicking on post body
     userEvent.click(post);
   
-    const menu = screen.queryByTestId('post-menu');
+    const menu = screen.queryByTestId('dropdown');
     expect(menu).not.toBeInTheDocument();
   });
   
@@ -284,7 +284,7 @@ describe('Post menu display tests', () => {
     
     userEvent.keyboard('{esc}')
   
-    const menu = screen.queryByTestId('post-menu');
+    const menu = screen.queryByTestId('dropdown');
     expect(menu).not.toBeInTheDocument();
   });
   
@@ -294,7 +294,7 @@ describe('Post menu display tests', () => {
     const btn = screen.getByTestId(/menu/i);
     userEvent.click(btn);
     
-    const menu = screen.getByTestId('post-menu');
+    const menu = screen.getByTestId('dropdown');
     userEvent.click(menu);
     expect(menu).toBeInTheDocument();
   });

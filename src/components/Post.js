@@ -3,7 +3,7 @@ import like from '../assets/like.png'
 import StyledLink from './utils/StyledLink';
 import ProfilePic from './utils/ProfilePic';
 import LikesModal from './LikesModal';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import LikeBtn from './LikeBtn';
 import Comments from './Comments';
 import CommentForm from './CommentForm';
@@ -12,12 +12,13 @@ import PostMenu from './PostMenu';
 import DeletePostModal from './DeletePostModal';
 import EditPostModal from './EditPostModal';
 import EllipsisIcon from './icons/EllipsisIcon';
-import CommentIcon from './icons/CommentIcon'
+import CommentIcon from './icons/CommentIcon';
+import { useDropdownMenu } from '../hooks/useDropdownMenu';
 
 const Post = ({ post, updatePosts }) => {
   const { user } = useAuthContext();
+  const { showMenu, toggleMenu } = useDropdownMenu();
   const [showLikesModal, setShowLikesModal] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
 
@@ -32,34 +33,6 @@ const Post = ({ post, updatePosts }) => {
 
   // A key that is passed to the comments component. When a user successfully posts a comment with the comment form, the comments component should be re-rendered in full (thereby calling comments fetch to update with new comment). The re-render will be achieved by randomising this key on successful comment post
   const [updateKey, setUpdateKey] = useState(0);
-
-  const toggleMenu = () => {
-    setShowMenu((prevState) => !prevState);
-  };
-
-  // Runs once only on initial mount, and cleans up on dismount
-  useEffect(() => {
-    // Ensure the post menu closes on outside click with a global window event listener
-    const menuOutsideClick = (event) => {
-      if (event.target.dataset.id !== 'post-menu') {
-        setShowMenu(false);
-      }      
-    };
-
-    const closeOnEsc = (event) => {
-      if (event.key === 'Escape') {
-        setShowMenu(false);
-      }
-    };
-
-    window.addEventListener('click', menuOutsideClick);
-    window.addEventListener('keydown', closeOnEsc);
-
-    return () => {
-      window.removeEventListener('click', menuOutsideClick);
-      window.addEventListener('keydown', closeOnEsc);
-    }
-  }, [])
 
   const customiseCommentText = (numComments) => {
     if (numComments === 0) {
@@ -91,7 +64,7 @@ const Post = ({ post, updatePosts }) => {
         </div>
         <div className='relative'>
           {post.user._id === user._id && (
-            <button data-id="post-menu" onClick={toggleMenu} data-testid="menu" className='px-2 py-1 rounded hover:bg-gray-100 active:bg-gray-200'>
+            <button data-id="dropdown" onClick={toggleMenu} data-testid="post-menu" className='px-2 py-1 rounded hover:bg-gray-100 active:bg-gray-200'>
               <EllipsisIcon iconFill="#000" iconStyles='w-4 pointer-events-none' />
             </button>
           )}

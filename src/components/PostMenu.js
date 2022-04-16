@@ -1,7 +1,7 @@
 
 const PostMenu = ({ closeMenu, handleDelete, handleEdit }) => {
   return (
-    <div data-testid="post-menu" data-id="post-menu" className="rounded p-1 absolute top-full right-4 shadow-md w-36 bg-white text-left">
+    <div data-testid="dropdown" data-id="dropdown" className="rounded p-1 absolute top-full right-4 shadow-md w-36 bg-white text-left">
       <button data-id="post-menu" onClick={() => {
         handleEdit();
         closeMenu();

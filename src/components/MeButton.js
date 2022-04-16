@@ -1,40 +1,12 @@
 import ProfilePic from './utils/ProfilePic';
 import DropdownMenu from "./DropdownMenu";
-import { useState, useEffect } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import CaretIcon from './icons/CaretIcon';
+import { useDropdownMenu } from '../hooks/useDropdownMenu';
 
 const MeButton = () => {
   const { user } = useAuthContext();
-  const [showMenu, setShowMenu] = useState(false);
-
-  const toggleMenu = () => {
-    setShowMenu((prevState) => !prevState);
-  };
-
-  // Runs once only on initial mount, and cleans up on dismount
-  useEffect(() => {
-    // Ensure the post menu closes on outside click with a global window event listener
-    const menuOutsideClick = (event) => {
-      if (event.target.dataset.id !== 'dropdown') {
-        setShowMenu(false);
-      }      
-    };
-
-    const closeOnEsc = (event) => {
-      if (event.key === 'Escape') {
-        setShowMenu(false);
-      }
-    };
-
-    window.addEventListener('click', menuOutsideClick);
-    window.addEventListener('keydown', closeOnEsc);
-
-    return () => {
-      window.removeEventListener('click', menuOutsideClick);
-      window.addEventListener('keydown', closeOnEsc);
-    }
-  }, [])
+  const { showMenu, toggleMenu } = useDropdownMenu();
 
   return (
     <div className="relative" data-testid="outside">
