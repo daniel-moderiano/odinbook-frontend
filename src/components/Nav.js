@@ -66,9 +66,9 @@ const Nav = () => {
             </div>
           </Link>
         </li>
-        <li role="menuitem" className="relative">
-          <button data-testid="user-menu" data-id="dropdown" onClick={toggleMenu} className="pb-[2px] pt-[4px] px-4 flex flex-col items-center justify-center hover:bg-gray-100 active:scale-95">
-            <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="mb-0.5 w-6 h-6 lg:w-8 lg:h-8 border border-plum-500 rounded-full pointer-events-none"/>
+        <li role="menuitem" className="relative lg:hidden">
+          <button data-testid="user-menu" data-id="dropdown" onClick={toggleMenu} className="pb-[2px] pt-[4px] px-4 flex flex-col items-center justify-center hover:bg-gray-100">
+            <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="mb-0.5 w-6 h-6 lg:w-8 lg:h-8 rounded-full pointer-events-none"/>
             <div className='flex items-center justify-center pointer-events-none'>
               <span className="text-xs">Me</span>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" className='w-2.5 ml-0.5 -mt-0.5 pointer-events-none'>
