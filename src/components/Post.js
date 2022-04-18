@@ -14,6 +14,7 @@ import EditPostModal from './EditPostModal';
 import EllipsisIcon from './icons/EllipsisIcon';
 import CommentIcon from './icons/CommentIcon';
 import { useDropdownMenu } from '../hooks/useDropdownMenu';
+import { Link } from 'react-router-dom';
 
 const Post = ({ post, updatePosts }) => {
   const { user } = useAuthContext();
@@ -53,18 +54,18 @@ const Post = ({ post, updatePosts }) => {
       <div className='flex items-center justify-between px-4'>
         <div className='flex items-center justify-start'>
           {/* Link to user's profile */}
-          <StyledLink to={`/profile/${post.user._id}`} customStyles="hover:opacity-95 active:opacity-100">
-            <ProfilePic imgUrl={post.user.profilePic ? post.user.profilePic.imageUrl : null} styles="w-10 h-10 mr-2 sm:mr-3 rounded-full"/>
-          </StyledLink>
+          <Link to={`/profile/${post.user._id}`} className="hover:opacity-95 active:opacity-100 mr-2 sm:mr-3 outline-plum-600">
+            <ProfilePic imgUrl={post.user.profilePic ? post.user.profilePic.imageUrl : null} styles="w-10 h-10  rounded-full"/>
+          </Link>
           <div>
             {/* Link to the user's profile page */}
-            <StyledLink to={`/profile/${post.user._id}`} customStyles="block font-bold hover:underline sm:text-base text-sm max-w-[200px]">{post.user.fullName}</StyledLink>
+            <StyledLink to={`/profile/${post.user._id}`} customStyles="font-bold hover:underline sm:text-base text-sm max-w-[200px] outline-plum-600 outline-offset-2">{post.user.fullName}</StyledLink>
             <p className="block text-xs sm:text-sm text-gray-600">{post.datePosted}</p>
-          </div>
+          </div>  
         </div>
         <div className='relative'>
           {post.user._id === user._id && (
-            <button data-id="dropdown" onClick={toggleMenu} data-testid="post-menu" className='px-2 py-1 rounded hover:bg-gray-100 active:bg-gray-200'>
+            <button data-id="dropdown" onClick={toggleMenu} data-testid="post-menu" className='px-2 py-1 rounded hover:bg-gray-100 active:bg-gray-200 outline-plum-600'>
               <EllipsisIcon iconFill="#000" iconStyles='w-4 pointer-events-none' />
             </button>
           )}
@@ -83,13 +84,13 @@ const Post = ({ post, updatePosts }) => {
       </div>
       <div className='flex items-center justify-between px-4 py-2'>
         {/* Show modal listing user's who have liked (name + profile pic) */}
-        <Button customStyles="text-sm text-gray-600 flex items-center justify-center hover:underline hover:decoration-gray-600" onClick={() => setShowLikesModal(true)}>
+        <Button customStyles="text-sm text-gray-600 flex items-center justify-center hover:underline hover:decoration-gray-600 outline-plum-600 outline-offset-2" onClick={() => setShowLikesModal(true)}>
           <img src={like} alt="Love heart" className='w-4 mr-1 mb-px' />
           <span className='mt-px'>{post.numLikes + localLike}</span>
         </Button>
         {/* Fetch comments and append to the DOM below this section */}
 
-        <Button customStyles="text-sm text-gray-600 hover:underline hover:decoration-gray-600" onClick={() => {
+        <Button customStyles="text-sm text-gray-600 hover:underline hover:decoration-gray-600 outline-plum-600 outline-offset-2" onClick={() => {
           if (post.numComments > 0) { setShowComments(true) }
         }}>
           {/* Adjust the displayed number of comments to match the most up-to-date source numComments */}
@@ -99,7 +100,7 @@ const Post = ({ post, updatePosts }) => {
       </div>
       <div className={`flex items-center justify-evenly mx-4 border-t pt-1 ${showComments && 'border-b mb-6 py-1'}`}>
         <LikeBtn post={post} setLocalLike={setLocalLike}/>
-        <Button customStyles="flex items-middle justify-center text-gray-500 font-medium hover:bg-gray-100 py-2 rounded w-full" onClick={() => setShowComments(true)}>
+        <Button customStyles="flex items-middle justify-center text-gray-500 font-medium hover:bg-gray-100 py-2 rounded w-full outline-plum-600" onClick={() => setShowComments(true)}>
           <CommentIcon iconFill='#6b7280' iconStyles='w-6 mr-2'/>
           Comment
         </Button>

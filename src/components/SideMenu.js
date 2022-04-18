@@ -5,6 +5,7 @@ import ProfilePic from './utils/ProfilePic';
 import SkeletonSideMenu from './skeletons/SkeletonSideMenu';
 import FriendsIcon from './icons/FriendsIcon';
 import ProfileIcon from './icons/ProfileIcon';
+import { Link } from 'react-router-dom';
 
 const SideMenu = () => {
   const { user } = useAuthContext();
@@ -19,9 +20,9 @@ const SideMenu = () => {
       {userDetails && (
         <div className='flex flex-col items-center justify-center rounded shadow-sm bg-white'>
           <div className=' bg-plum-600/20 w-full flex items-center rounded-t justify-center py-4'>
-          <StyledLink to={`/profile/${user._id}`} customStyles="hover:opacity-95 active:opacity-100">
+          <Link to={`/profile/${user._id}`} className="hover:opacity-95 active:opacity-100 outline-2 outline-plum-600">
             <ProfilePic imgUrl={userDetails.user.profilePic ? userDetails.user.profilePic.imageUrl : null} styles="w-20 h-20 rounded-full border-2 border-white"/>
-          </StyledLink>
+          </Link>
 
           </div>
           <div className='p-4 flex flex-col items-center justify-center w-full'>
