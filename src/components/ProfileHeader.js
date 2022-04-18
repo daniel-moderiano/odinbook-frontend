@@ -6,6 +6,7 @@ import ProfilePicModal from './ProfilePicModal';
 import EditProfileModal from './EditProfileModal';
 import CameraIcon from './icons/CameraIcon';
 import UnfriendRequestButton from './UnfriendRequestBtn';
+import SendRequestButton from './SendRequestBtn';
 
 const ProfileHeader = ({ profileUser, profileType }) => {
   const [showPicModal, setShowPicModal] = useState(false);
@@ -31,13 +32,13 @@ const ProfileHeader = ({ profileUser, profileType }) => {
        </div>
         <div className='lg:-mr-10 lg:mb-4 z-10'>
           {profileType === 'friend' && (
-            <UnfriendRequestButton userId={profileUser._id}/>
+            <UnfriendRequestButton userId={profileUser._id} customStyles="w-40"/>
           )}
           {profileType === 'ownProfile' && (
-            <Button onClick={() => setShowEditModal(true)} design="primary" customStyles="w-44">Edit profile</Button>
+            <Button onClick={() => setShowEditModal(true)} design="primary" customStyles="w-40">Edit profile</Button>
           )}
           {profileType === 'nonFriend' && (
-            <Button design="primary" customStyles="w-44">Add friend</Button>
+            <SendRequestButton design="primary" customStyles="w-40" userId={profileUser._id}/>
           )}
         </div>
       </div>

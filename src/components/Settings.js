@@ -21,7 +21,7 @@ const Settings = () => {
         <h1 className="text-2xl font-bold lg:pb-2 pb-1">Settings</h1>
         <section className="py-4">
           <h2 className="border-b mb-3 pb-2 text-lg">Delete your account</h2>
-          <p className="text-sm mb-4">Once you delete your account, it cannot be retrieved. All traces of you will be removed from Odinbook, including likes, comments, and posts. Proceed with caution.</p>
+          <p className="text-sm mb-4">Once you delete your account, it cannot be retrieved. All traces of you will be removed from odinbook, including likes, comments, and posts. Proceed with caution.</p>
           <Button customStyles="max-w-[180px]" design="danger" onClick={() => deleteAccount(user._id)} disabled={user._id === '6253eafa7c5f03b0906cc7b5'}>
             {loading ? (
               'Deleting...'

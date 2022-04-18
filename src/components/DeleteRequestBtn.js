@@ -3,7 +3,7 @@ import { useFriendRequests } from '../hooks/useFriendRequests';
 import { useErrorToast } from '../hooks/useErrorToast';
 import { useSuccessToast } from '../hooks/useSuccessToast';
 
-const DeleteRequestBtn = ({ userId }) => {
+const DeleteRequestBtn = ({ userId, customStyles }) => {
   const { request, response, loading, error } = useFriendRequests(userId);
   
   // Set up notifications. Backend error messages are well suited for direct frontend use here
@@ -30,7 +30,7 @@ const DeleteRequestBtn = ({ userId }) => {
   }
 
   return (
-    <Button onClick={() => request('deleteRequest')} design="ghost" disabled={response ? true : false}>
+    <Button customStyles={customStyles} onClick={() => request('deleteRequest')} design="ghost" disabled={response ? true : false}>
       {setBtnText(loading, error, response)}
     </Button>
   )

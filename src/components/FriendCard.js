@@ -20,22 +20,22 @@ const FriendCard = ({ friendData, type }) => {
         <Link to={`/profile/${friendData._id}`} className='font-semibold text-base mb-2 lg:mb-3 lg:text-center whitespace-nowrap overflow-clip lg:max-w-[180px] hover:underline'>{friendData.fullName}</Link>
 
         {type === 'friend' && (
-          <UnfriendRequestBtn userId={friendData._id}/>
+          <UnfriendRequestBtn userId={friendData._id} customStyles="w-32 sm:w-36"/>
         )}
 
         {type === 'incoming' && (<>
           <div className='flex lg:flex-col w-full items-center justify-center sm:max-w-xs lg:px-2'>
-            <AcceptRequestBtn userId={friendData._id}/>
+            <AcceptRequestBtn userId={friendData._id} customStyles="mr-3 lg:mr-0 lg:mb-2"/>
             <DeleteRequestBtn userId={friendData._id}/>
           </div>
         </>)}
 
         {type === 'outgoing' && (
-          <CancelRequestBtn userId={friendData._id}/>
+          <CancelRequestBtn userId={friendData._id} customStyles="w-32 sm:w-36"/>
         )}
 
         {type === 'user' && (
-          <SendRequestBtn userId={friendData._id}/>
+          <SendRequestBtn userId={friendData._id} customStyles="w-32 sm:w-36"/>
         )}
 
       </div>

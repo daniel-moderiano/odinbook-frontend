@@ -3,7 +3,7 @@ import { useFriendRequests } from '../hooks/useFriendRequests';
 import { useErrorToast } from '../hooks/useErrorToast';
 import { useSuccessToast } from '../hooks/useSuccessToast';
 
-const SendRequestBtn = ({ userId }) => {
+const SendRequestBtn = ({ userId, customStyles }) => {
   const { request, response, loading, error } = useFriendRequests(userId);
 
   // Set up notifications. Backend error messages are well suited for direct frontend use here
@@ -30,7 +30,7 @@ const SendRequestBtn = ({ userId }) => {
   }
 
   return (
-    <Button onClick={() => request('sendRequest')} design="primary" customStyles="w-32 sm:w-36" disabled={response ? true : false}>
+    <Button onClick={() => request('sendRequest')} design="primary" customStyles={customStyles} disabled={response ? true : false}>
       {setBtnText(loading, error, response)}
     </Button>
   )
