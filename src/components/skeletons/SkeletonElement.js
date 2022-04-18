@@ -21,7 +21,7 @@ const SkeletonElement = ({ type }) => {
       break;
     
     case 'avatar-square':
-      classStyles += 'w-24 h-24 sm:w-28 sm:h-28 lg:w-24 lg:h-24 shrink-0 rounded';
+      classStyles += 'w-24 h-24 md:w-28 md:h-28 lg:w-24 lg:h-24 shrink-0 rounded';
       break;
 
     case 'avatar-sm':
