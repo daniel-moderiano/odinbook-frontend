@@ -1,12 +1,21 @@
 import { Link } from 'react-router-dom';
-import { useAuthContext } from "../hooks/useAuthContext";
 import HomeIcon from './icons/HomeIcon';
 import FriendsIcon from "./icons/FriendsIcon";
-import ProfileIcon from "./icons/ProfileIcon";
 import MeButton from './MeButton';
+import CreatePost from './CreatePost';
+import { useNavigate } from 'react-router-dom';
 
-const Nav = () => {
-  const { user } = useAuthContext();
+const Nav = ({ updateFeed }) => {
+  let navigate = useNavigate();
+
+  // Preferentially handle submitting a new post using the nav 'Post' button depending on the user's location in the app
+  const handleUpdatePosts = () => {
+    if (window.location.pathname === '/') {   // user on home page currently
+      updateFeed();
+    } else {    // user is somewhere else in the app
+      navigate('/');
+    }
+  }
 
   return (
     <nav aria-label="Main menu" role="navigation" className="w-full lg:max-w-lg lg:justify-self-center lg:flex items-center justify-center">
@@ -28,12 +37,7 @@ const Nav = () => {
           </Link>
         </li>
         <li role="menuitem" className="lg:px-4 xl:px-12">
-          <Link to={`/profile/${user._id}`}>
-            <div className="py-0.5 px-4 hover:bg-gray-100 flex flex-col items-center justify-center lg:rounded">
-              <ProfileIcon iconFill="#51557d" iconStyles="w-6 h-7 lg:w-7 lg:h-8"/>
-              <span className="text-xs">Profile</span>
-            </div>
-          </Link>
+          <CreatePost updatePosts={handleUpdatePosts} nav={true}/>
         </li>
         <li role="menuitem" className="lg:hidden">
           <MeButton />

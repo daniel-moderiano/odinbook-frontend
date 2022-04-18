@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <ErrorBoundary>
-      <Header />
+      <Header updateFeed={() => setFeedKey(Math.random())}/>
         {/* Margin-top is chosen with mt-6 (24px) + height of the header */}
         <div className="w-full flex justify-center mt-[74px] lg:mt-[82px]">
           <div className="grid grid-cols-1 lg:grid-cols-[350px_1fr] md:gap-x-8 2xl:grid-cols-[350px_1fr_350px] lg:mx-8">
