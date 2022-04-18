@@ -14,7 +14,7 @@ const ProfileFriends = ({ profileUser }) => {
     <div className="bg-white p-4 md:p-6 rounded">
       <div className="flex items-center justify-between mb-2">
         <h2 className="font-bold text-2xl">Friends</h2>
-        <Link to={`/profile/${profileUser._id}/friends`} className="text-gray-600 underline">See all friends</Link>
+        <Link to={`/profile/${profileUser._id}/friends`} className="text-gray-600 underline outline-plum-600 outline-offset-1">See all friends</Link>
       </div>
 
       {error && (
@@ -44,16 +44,18 @@ const ProfileFriends = ({ profileUser }) => {
                 {friends.acceptedFriends.slice(0, 9).map((friend, index) => (
                   <div key={friend.user._id} className="w-24 md:w-28 lg:w-24 ">
                     {/* Width adjusts back to smaller size on large screens because the friends section becomes a side column instead of full screen width */}
-                    <Link to={`/profile/${friend.user._id}`} className="block hover:opacity-95 active:opacity-100">
+                    <Link to={`/profile/${friend.user._id}`} className="block hover:opacity-95 active:opacity-100 outline-plum-600 outline-offset-2">
                       <ProfilePic imgUrl={friend.user.profilePic ? friend.user.profilePic.imageUrl : null} styles="w-24 h-24 md:w-28 md:h-28 lg:w-24 lg:h-24 rounded"/>
                     </Link>
 
-                    <Link to={`/profile/${friend.user._id}`} className="block text-xs md:text-sm lg:text-xs font-semibold mt-1.5 w-full text-center max-w-[96px] md:max-w-[112px] lg:max-w-[96px] hover:underline">{friend.user.fullName}</Link>
+                    <Link to={`/profile/${friend.user._id}`} className="block text-xs md:text-sm lg:text-xs font-semibold mt-1.5 w-full text-center max-w-[96px] md:max-w-[112px] lg:max-w-[96px] hover:underline outline-plum-600">{friend.user.fullName}</Link>
                   </div>
                 ))}
                 {/* Ellipsis link to indicate more friends specifically present to even the gap in friends on certain screen sizes */}
                 {friends.acceptedFriends.length > 9 && (
-                  <Link to={`/profile/${profileUser._id}/friends`} className="hidden text-4xl font-semibold w-24 h-24 md:w-28 md:h-28 lg:w-24 lg:h-24 friend:flex items-center justify-center">...</Link>
+                  <Link to={`/profile/${profileUser._id}/friends`} className="hidden text-4xl font-semibold w-24 h-24 md:w-28 md:h-28 lg:w-24 lg:h-24 friend:flex items-center justify-center">
+                    <span className="-mt-4">...</span>
+                  </Link>
                 )}
               </div>
             </>  
