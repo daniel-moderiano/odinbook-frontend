@@ -46,18 +46,19 @@ const Profile = ({ profileView }) => {
       {/* Loading spinner */}
       {loading && (
         <div className="w-full h-screen flex items-center justify-center">
-          <div role="status" className="-mt-32 border-[6px] border-plum-500 w-10 h-10 border-t-white rounded-full w animate-[spinner_1.5s_infinite_linear]">
+          <div role="status" className="-mt-28 border-[6px] border-plum-500 w-10 h-10 border-t-white rounded-full w 28animate-[spinner_1.5s_infinite_linear]">
             <span className="sr-only">Loading...</span>
           </div>
         </div>
       )}
 
       {error && (
-        <p className='mt-12 text-center w-full text-plum-600 text-lg font-semibold'>Unable to load Profile</p>
+        <p className='mt-[98px] lg:mt-[106px] text-center w-full text-plum-600 text-lg font-semibold'>Unable to load Profile</p>
       )}
 
       {(profileUser && profileType) && (
-        // Margin top is chosen to match the height of the header
+        <>
+        {/* Margin top is chosen to match the height of the header */}
         <div className="w-full flex justify-center items-center flex-col mt-[50px] lg:mt-[58px]">
           <section className='shadow-sm mb-6 w-full'>
             <ProfileHeader profileUser={profileUser.user} profileType={profileType}/>
@@ -88,11 +89,15 @@ const Profile = ({ profileView }) => {
               <ProfileFriendsTab profileUser={profileUser.user}/>        
             </section>
           )}
-        </div>)}
+        </div>
         {/* Display centered footer for all smaller screens */}
         <div className='lg:hidden mb-4'>
           <Footer />
         </div>
+        </>
+      )}
+
+ 
     </div>
   )
 }

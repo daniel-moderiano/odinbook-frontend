@@ -5,10 +5,12 @@ import Button from './utils/Button'
 import { useDeleteAccount } from "../hooks/useDeleteAccount";
 import { useErrorToast } from '../hooks/useErrorToast';
 import { useSuccessToast } from '../hooks/useSuccessToast';
+import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
   const { user } = useAuthContext();
   const { deleteAccount, response, loading, error } = useDeleteAccount();
+  const navigate = useNavigate();
 
   // Set up notifications
   useErrorToast(error, (error && error.errorMsg));
@@ -22,7 +24,9 @@ const Settings = () => {
         <section className="py-4">
           <h2 className="border-b mb-3 pb-2 text-lg">Delete your account</h2>
           <p className="text-sm mb-4">Once you delete your account, it cannot be retrieved. All traces of you will be removed from odinbook, including likes, comments, and posts. Proceed with caution.</p>
-          <Button customStyles="max-w-[180px]" design="danger" onClick={() => deleteAccount(user._id)} disabled={user._id === '6253eafa7c5f03b0906cc7b5'}>
+          <Button customStyles="max-w-[180px]" design="danger" onClick={() => {
+            deleteAccount(user._id);
+          }} disabled={user._id === '6253eafa7c5f03b0906cc7b5'}>
             {loading ? (
               'Deleting...'
             ) : (

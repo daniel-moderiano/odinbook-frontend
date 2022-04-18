@@ -29,7 +29,7 @@ export const useLogin = () => {
         // No errors occured. Dispatch appropriate LOGIN action after adjusting state 
         setLoading(false);
         setError(null);
-        setFormError(null)
+        setFormError(null);
         dispatch({ type: 'LOGIN', payload: responseJSON.user });
         return;
       } else {    // error with login request

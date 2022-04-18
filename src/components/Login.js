@@ -10,7 +10,7 @@ import OdinbookIcon from './icons/OdinbookIcon';
 import FacebookIcon from './icons/FacebookIcon';
 import Footer from "./Footer";
 
-const Login = () => {
+const Login = ({ setInitialLogin }) => {
   const { login, error, formError, loading } = useLogin();
 
   // All non-form validation errors
