@@ -9,7 +9,7 @@ const CreatePost = ({ updatePosts, nav }) => {
     <>
       {/* Nav prop indicates whether this create post component is in the nav or not */}
       {nav ? (
-        <button onClick={() => setShowModal(true)}>
+        <button onClick={() => setShowModal(true)} className='outline-plum-600 outline-offset-[-2px]'>
           <div className="py-0.5 px-4 hover:bg-gray-100 flex flex-col items-center justify-center lg:rounded">
             <PlusIcon iconFill="#51557d" iconStyles="w-[22px] h-7 lg:w-[25px] lg:h-8"/>
             <span className="text-xs">Post</span>

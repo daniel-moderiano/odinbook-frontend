@@ -10,9 +10,9 @@ const Header = ({ updateFeed }) => {
 
   return (
     <header role="banner" aria-labelledby="odinbook-logo" className={`shadow-md w-full fixed bg-white grid grid-cols-1 lg:grid-cols-3 content-center justify-items-center z-20 h-[50px] transition-all duration-300 top-0 lg:h-auto ${showHeader ? 'top-0' : 'top-[-50px] md:top-0'}`}>
-      <Link to="/" className="items-center hidden lg:flex justify-self-start">
+      <Link to="/" className="items-center hidden lg:flex justify-self-start outline-plum-600 outline-offset-[-2px]">
         <OdinbookIcon iconStyles='w-auto h-[58px]' />
-        <h1 className="font-semibold text-3xl text-plum-500 ml-4">odinbook</h1>
+        <h1 className="font-semibold text-3xl text-plum-500 ml-4 pr-4">odinbook</h1>
       </Link>
 
       <Nav updateFeed={updateFeed}/>
