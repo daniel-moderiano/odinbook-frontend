@@ -24,6 +24,7 @@ const EmojiPickerBtn = ({ onEmojiClick }) => {
       tabIndex="0"
       onKeyDown={handleKeyPress}
       aria-haspopup="menu"
+      aria-label="Open emoji picker"
     >🙂
       {showPicker && (
         <div role="menu" aria-label="Emoji picker">

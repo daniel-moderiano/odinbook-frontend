@@ -9,8 +9,8 @@ import ImageUploadBtn from './ImageUploadBtn';
 import { useImageThumbnail } from '../hooks/useImageThumbnail';
 import { useModalEvents } from '../hooks/useModalEvents';
 import { useErrorToast } from '../hooks/useErrorToast';
-import Picker from 'emoji-picker-react';
 import CloseIcon from './icons/CloseIcon';
+import EmojiPickerBtn from './EmojiPickerBtn'
 
 const EditPostModal = ({ closeModal, post, updatePosts }) => {
   const { updatePost, response, loading, error } = useUpdatePost();
@@ -29,8 +29,6 @@ const EditPostModal = ({ closeModal, post, updatePosts }) => {
 
   // Set state initially to current post text. 
   const [postText, setPostText] = useState(post.text);
-
-  const [showPicker, setShowPicker] = useState(false);
 
   // Image handling
   // If the user updates the current post image, this should be set to true. This includes replacing the image, or simply removing it. This will be appended to the req.body to inform the server to delete the old image
@@ -83,7 +81,7 @@ const EditPostModal = ({ closeModal, post, updatePosts }) => {
 
             <div className='flex justify-between items-center w-full pb-4'>
               <h4 id="modal-title" className='text-xl font-semibold'>Edit post</h4>
-              <button type="button" className='rounded-full p-1 hover:bg-gray-100 active:scale-0.95' aria-label="close current window" onClick={closeModal}>
+              <button type="button" className='rounded-full p-1 hover:bg-gray-100 active:scale-0.95 outline-plum-600' aria-label="close current window" onClick={closeModal}>
                 <CloseIcon iconStyles="w-6" iconFill="#1B1E22"/>
               </button>
             </div>
@@ -116,14 +114,14 @@ const EditPostModal = ({ closeModal, post, updatePosts }) => {
               {imageData && (
                 <div className='relative p-2 border border-gray-200 rounded mb-4 w-full'>
                   <img className='w-full' src={imageData} alt="" />
-                  <button className='flex absolute top-2 right-2 p-1 rounded-full bg-gray-100 border-gray-300 border items-center justify-center hover:bg-gray-200 active:scale-95' onClick={() => {
+                  <button className='flex absolute top-2 right-2 p-1 rounded-full bg-gray-100 border-gray-300 border items-center justify-center hover:bg-gray-200 active:scale-95 outline-plum-600' onClick={() => {
                     // Clear the file from the input and from the file state
                     setImageValue('');
                     setImageFile(null);
                     setImageUpdated(true);
                     removeThumbnail();
                   }}>
-                    <CloseIcon iconStyles="w-6" iconFill="#1B1E22"/>
+                    <CloseIcon iconStyles="w-5" iconFill="#1B1E22"/>
                   </button>
                 </div>
               )}
@@ -133,26 +131,7 @@ const EditPostModal = ({ closeModal, post, updatePosts }) => {
 
             <div className='flex items-center justify-between'>
               <div className='flex items-center'>
-                <div className='py-1 px-2 rounded hover:bg-gray-100 hover:cursor-pointer' onClick={() => setShowPicker((prevState) => !prevState)}>
-                  🙂
-                  {showPicker && (
-                    <Picker 
-                      onEmojiClick={onEmojiClick}
-                      native={true}
-                      disableSearchBar={true}
-                      groupVisibility={{
-                        recently_used: false,
-                      }}
-                      pickerStyle={{ 
-                        height: '200px', 
-                        position: 'absolute',
-                        left: '100%',
-                        bottom: '100%'
-                      }}
-                    />
-                  )}
-                </div>
-
+                <EmojiPickerBtn onEmojiClick={onEmojiClick}/>
                 <ImageUploadBtn handleChange={(e) => {
                   handleFile(e.target.files[0]);
                   setImageUpdated(true);

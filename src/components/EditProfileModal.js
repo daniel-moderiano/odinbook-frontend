@@ -69,7 +69,7 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
 
             <div className='flex justify-between items-center w-full pb-4'>
               <h4 id="modal-title" className='text-xl font-semibold'>Edit profile</h4>
-              <button type="button" className='rounded-full p-1 hover:bg-gray-100 active:scale-0.95' aria-label="close current window" onClick={closeModal}>
+              <button type="button" className='rounded-full p-1 hover:bg-gray-100 active:scale-0.95 outline-plum-600' aria-label="close current window" onClick={closeModal}>
                 <CloseIcon iconStyles="w-6" iconFill="#1B1E22"/>
               </button>
             </div>
@@ -96,8 +96,8 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
             <fieldset className='mb-3'>
               <legend className='md:text-xl md:pb-1 text-lg border-b mb-4 w-full text-left text-plum-600 flex items-center justify-between'>
                 <span>Personal information</span>
-                <button data-testid="edit" type='button' className='p-1 rounded-full active:scale-95 opacity-90 hover:opacity-100' onClick={() => setEditPersonal(true)}>
-                  <PencilIcon iconStyles="w-4" iconFill="#6b7280"/>
+                <button data-testid="edit" type='button' className='p-1 rounded active:scale-95 opacity-90 hover:opacity-100 mr-1 outline-plum-600' onClick={() => setEditPersonal(true)}>
+                  <PencilIcon iconStyles="w-4 outline-plum-600" iconFill="#6b7280"/>
                 </button>
               </legend>
   
@@ -153,7 +153,7 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
             <fieldset>
               <legend className='md:text-xl md:pb-1 text-lg border-b mb-4 w-full text-left text-plum-600 flex items-center justify-between'>
                 <span>About you</span>
-                <button type="button" className='p-1 rounded-full active:scale-95 opacity-90 hover:opacity-100' onClick={() => setEditAbout(true)}>
+                <button type="button" className='p-1 rounded active:scale-95 opacity-90 hover:opacity-100 outline-plum-600 mr-1' onClick={() => setEditAbout(true)}>
                   <PencilIcon iconStyles="w-4" iconFill="#6b7280"/>
                 </button>
               </legend>
