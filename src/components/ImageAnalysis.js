@@ -14,8 +14,7 @@ const ImageAnalysis = () => {
      * AUTHENTICATE
      * This single client is used for all examples.
      */
-    const key = '9233765709d24948aa6182effedde896';
-    const endpoint = 'https://odinbook.cognitiveservices.azure.com/';
+
 
     const computerVisionClient = new ComputerVisionClient(
       new ApiKeyCredentials({ inHeader: { 'Ocp-Apim-Subscription-Key': key } }), endpoint);
