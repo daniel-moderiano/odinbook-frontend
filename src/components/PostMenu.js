@@ -5,11 +5,11 @@ const PostMenu = ({ closeMenu, handleDelete, handleEdit }) => {
       <button data-id="post-menu" onClick={() => {
         handleEdit();
         closeMenu();
-      }} className="bg-white py-2 px-3 hover:bg-gray-100 w-full text-left rounded">Edit post</button>
+      }} className="bg-white py-2 px-3 hover:bg-gray-100 w-full text-left rounded outline-plum-500 outline-offset-[-1px]">Edit post</button>
       <button data-id="post-menu" onClick={() => {
         handleDelete();
         closeMenu();
-      }} className="bg-white py-2 px-3 hover:bg-gray-100 w-full text-left rounded">Delete post</button>
+      }} className="bg-white py-2 px-3 hover:bg-gray-100 w-full text-left rounded outline-plum-500 outline-offset-[-1px]">Delete post</button>
     </div>
   )
 }
