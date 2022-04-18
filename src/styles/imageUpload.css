@@ -24,6 +24,6 @@
 }
 
 .file-label:focus-within {
-  outline: 0.1rem solid #50547C;
+  outline: 2px solid #50547C;
   outline-offset: 0px;
 }

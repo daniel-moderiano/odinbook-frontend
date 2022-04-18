@@ -23,7 +23,7 @@ const LikesModal = ({ postId, commentId, closeModal }) => {
 
             <div className='flex justify-between items-center w-full pb-4'>
               <h4 id="modal-title" className='text-xl font-semibold'>Likes</h4>
-              <button type="button" className='rounded-full p-1 hover:bg-gray-100 active:scale-0.95' aria-label="close current window" onClick={closeModal}>
+              <button type="button" className='rounded-full p-1 hover:bg-gray-100 active:scale-0.95 outline-plum-600' aria-label="close current window" onClick={closeModal}>
                 <CloseIcon iconStyles="w-6" iconFill="#1B1E22"/>
               </button>
             </div>
@@ -55,10 +55,10 @@ const LikesModal = ({ postId, commentId, closeModal }) => {
               <ul>
                 {likes.map((user) => (
                   <li key={user._id} className='flex items-center justify-start border-b w-full py-2'>
-                    <Link to={`/profile/${user._id}`} className="hover:opacity-95 active:opacity-100">
-                      <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="w-10 h-10 mr-4 rounded-full"/>
+                    <Link to={`/profile/${user._id}`} className="hover:opacity-95 active:opacity-100 mr-4 outline-plum-600">
+                      <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="w-10 h-10 rounded-full"/>
                     </Link>
-                    <Link to={`/profile/${user._id}`} className='text-sm font-semibold hover:underline'>{user.fullName}</Link>
+                    <Link to={`/profile/${user._id}`} className='text-sm font-semibold hover:underline outline-plum-600 outline-offset-2'>{user.fullName}</Link>
                   </li>
                 ))}
               </ul>

@@ -9,8 +9,8 @@ import ImageUploadBtn from './ImageUploadBtn';
 import { useModalEvents } from '../hooks/useModalEvents';
 import { useImageThumbnail } from '../hooks/useImageThumbnail';
 import { useErrorToast } from '../hooks/useErrorToast';
-import Picker from 'emoji-picker-react';
-import CloseIcon from './icons/CloseIcon'
+import CloseIcon from './icons/CloseIcon';
+import EmojiPickerBtn from './EmojiPickerBtn';
 
 const CreatePostModal = ({ closeModal, updatePosts }) => {
   const { createPost, response, loading, error } = useCreatePost();
@@ -25,7 +25,7 @@ const CreatePostModal = ({ closeModal, updatePosts }) => {
   const [imageValue, setImageValue] = useState('');
   const [imageFile, setImageFile] = useState(null);
   
-  const [showPicker, setShowPicker] = useState(false);
+
   const [postText, setPostText] = useState('');
   
   // Custom useEffect-style hook to control modal closing on esc and outside click
@@ -114,26 +114,7 @@ const CreatePostModal = ({ closeModal, updatePosts }) => {
 
             <div className='flex items-center justify-between'>
               <div className='flex items-center'>
-                <div className='relative py-1 px-2 rounded hover:bg-gray-100 hover:cursor-pointer' onClick={() => setShowPicker((prevState) => !prevState)}>
-                  🙂
-                  {showPicker && (
-                    <Picker 
-                      onEmojiClick={onEmojiClick}
-                      native={true}
-                      disableSearchBar={true}
-                      groupVisibility={{
-                        recently_used: false,
-                      }}
-                      pickerStyle={{ 
-                        height: '200px', 
-                        position: 'absolute',
-                        left: '100%',
-                        bottom: '100%'
-                      }}
-                    />
-                  )}
-                </div>
-
+                <EmojiPickerBtn onEmojiClick={onEmojiClick} />
                 <ImageUploadBtn handleChange={(e) => handleFile(e.target.files[0])} imageValue={imageValue} setImageValue={setImageValue} setImageFile={setImageFile}/>
               </div>
               
