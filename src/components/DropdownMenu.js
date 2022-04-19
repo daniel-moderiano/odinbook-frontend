@@ -7,13 +7,7 @@ const DropdownMenu = ({ closeMenu }) => {
   const { logout } = useLogout();
   const { user } = useAuthContext();
 
-  // Focus the first menu item when the menu is rendered
-  // useEffect(() => {
-  //   const firstItem = document.querySelector('#first-item');
-  //   firstItem.focus();
-  // }, []);
-
-  // Trap focus within the menu
+  // Trap focus within the menu and handle arrow navigation (still allow user to tab out of menu)
   useEffect(() => {
     const menu = document.querySelector('#dropdown');
     // Grab all focusable elements within the menu
@@ -22,34 +16,34 @@ const DropdownMenu = ({ closeMenu }) => {
     // Focus the first menu item when the menu is first opened
     menuItems[0].focus();
 
+    // Add accessible up/down arroy key navigation to menu
     const handleKeyPress = (e) => {
       let currentFocus; 
 
-      // Find currently focused menu item
+      // Set currently focused variable to correspond to the index of the currently focused menu item
       for (let i = 0; i < menuItems.length; i++) {
         if (menuItems[i] === document.activeElement) {
           currentFocus = i;
         }
       }
 
-      console.log(currentFocus);
-
+      // Perform unique action based on key pressed
       switch (e.key) {
         case 'ArrowDown':
-          e.preventDefault();
-          if (currentFocus < menuItems.length - 1) {
+          e.preventDefault();   // avoid scrolling the entire browser window
+          if (currentFocus < menuItems.length - 1) {    // user is not at last item, move down menu
             currentFocus++;
-          } else {
+          } else {    // user is at last item, move to top item
             currentFocus = 0;
           }
-          menuItems[currentFocus].focus();
+          menuItems[currentFocus].focus(); 
           break;
 
         case 'ArrowUp':
           e.preventDefault();
-          if (currentFocus === 0) {
+          if (currentFocus === 0) {   // user is at top item, return to bottom item
             currentFocus = menuItems.length - 1;
-          } else {
+          } else {    // user is not at top item, move up list
             currentFocus--;
           }
           menuItems[currentFocus].focus();
