@@ -65,7 +65,7 @@ const Post = ({ post, updatePosts }) => {
         </div>
         <div className='relative'>
           {post.user._id === user._id && (
-            <button data-id="dropdown" onClick={toggleMenu} data-testid="post-menu" className='px-2 py-1 rounded hover:bg-gray-100 active:bg-gray-200 outline-plum-600'>
+            <button aria-controls="dropdown" aria-haspopup="true" aria-expanded={showMenu} aria-label="Open post options menu" data-id="dropdown" onClick={toggleMenu} data-testid="post-menu" className='px-2 py-1 rounded hover:bg-gray-100 active:bg-gray-200 outline-plum-600'>
               <EllipsisIcon iconFill="#000" iconStyles='w-4 pointer-events-none' />
             </button>
           )}

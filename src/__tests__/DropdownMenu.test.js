@@ -113,7 +113,6 @@ describe('Accessible keyboard menu navigation', () => {
       </BrowserRouter>
     );
     
-    const firstItem = screen.getByText(/view profile/i);
     const thirdItem = screen.getByText(/log/i);
 
     // Move up the menu
