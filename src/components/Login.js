@@ -3,12 +3,12 @@ import { useLogin } from "../hooks/useLogin";
 import Input from "./utils/Input";
 import Button from "./utils/Button";
 import { useErrorToast } from '../hooks/useErrorToast';
-import TestLogin from "./TestLogin";
 import StyledLink from "./utils/StyledLink";
 import FormErrorIcon from './icons/FormErrorIcon';
 import OdinbookIcon from './icons/OdinbookIcon';
 import FacebookIcon from './icons/FacebookIcon';
 import Footer from "./Footer";
+import TestLoginBtn from "./buttons/TestLoginBtn";
 
 const Login = ({ setInitialLogin }) => {
   const { login, error, formError, loading } = useLogin();
@@ -114,7 +114,7 @@ const Login = ({ setInitialLogin }) => {
 
               <div>
                 <StyledLink to="/signup" design="btn-secondary" customStyles="w-56 mt-12 font-semibold">Create new account</StyledLink>
-                <TestLogin />
+                <TestLoginBtn />
               </div>
               
             </div>

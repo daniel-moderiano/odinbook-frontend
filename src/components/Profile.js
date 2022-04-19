@@ -59,7 +59,7 @@ const Profile = ({ profileView }) => {
       {(profileUser && profileType) && (
         <>
         {/* Margin top is chosen to match the height of the header */}
-        <div className="w-full flex justify-center items-center flex-col mt-[50px] lg:mt-[58px]">
+        <main className="w-full flex justify-center items-center flex-col mt-[50px] lg:mt-[58px]">
           <section className='shadow-sm mb-6 w-full'>
             <ProfileHeader profileUser={profileUser.user} profileType={profileType}/>
           </section>
@@ -89,7 +89,7 @@ const Profile = ({ profileView }) => {
               <ProfileFriendsTab profileUser={profileUser.user}/>        
             </section>
           )}
-        </div>
+        </main>
         {/* Display centered footer for all smaller screens */}
         <div className='lg:hidden mb-4'>
           <Footer />

@@ -5,7 +5,7 @@ const ProfilePic = ({ image, styles }) => {
   return (
     <>
       {image ? (
-        <img src={image.imageUrl} alt={image.altText ? image.altText : ''} className={`object-cover ${styles}`} />
+        <img src={image.imageUrl} alt={image.altText ? image.altText : ''} className={`object-cover ${styles}`} data-testid="image"/>
       ) : (
         <img src={anonPicLarge} alt="Anonymous user avatar" className={`object-cover ${styles}`}/>
       )}

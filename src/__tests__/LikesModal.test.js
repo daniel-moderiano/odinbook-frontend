@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "../context/AuthContext";
 import { ToastContextProvider } from "../context/ToastContext";
-import LikesModal from "../components/LikesModal";
+import LikesModal from "../components/modals/LikesModal";
 
 // Customise loading/error/data states to properly test UI in different states
 let mockLoading;

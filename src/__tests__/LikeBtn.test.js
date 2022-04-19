@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "../context/AuthContext";
 import { ToastContextProvider } from "../context/ToastContext";
-import LikeBtn from "../components/LikeBtn";
+import LikeBtn from "../components/buttons/LikeBtn";
 
 // Matches the exact format received from backend API
 const post = {

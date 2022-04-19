@@ -26,35 +26,37 @@ const FriendsHome = () => {
 
         <main>
           <section className="bg-white mb-4 mt-3 md:m-4 lg:bg-transparent">
-              <h2 className="text-xl font-bold p-4 pb-4 lg:pb-2">Friend Requests</h2>
-              <div className="flex flex-wrap items-center justify-start">
-                {friends && (
-                  <>
-                    {friends.incomingRequests.length > 0 ? (
-                      <>
-                        {friends.incomingRequests.map((request) => (
-                          <FriendCard friendData={request.user} type="incoming" key={request._id}/>
-                        ))}
-                      </>
-                    ) : (
-                      <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>No requests yet</p>
-                    )} 
-                  </> 
-                )}
+            <h2 className="text-xl font-bold p-4 pb-4 lg:pb-2">Friend Requests</h2>
+            <div>
+              {friends && (
+                <>
+                  {friends.incomingRequests.length > 0 ? (
+                    <ul className="flex flex-wrap items-center justify-start">
+                      {friends.incomingRequests.map((request) => (
+                        <li className="w-full" key={request._id}>
+                          <FriendCard friendData={request.user} type="incoming" />
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>No requests yet</p>
+                  )} 
+                </> 
+              )}
 
-                {loading && (
-                  <>
-                    <SkeletonFriendCard />
-                    <SkeletonFriendCard />
-                    <SkeletonFriendCard />
-                  </>
-                )}
+              {loading && (
+                <div className="flex flex-wrap items-center justify-start">
+                  <SkeletonFriendCard />
+                  <SkeletonFriendCard />
+                  <SkeletonFriendCard />
+                </div>
+              )}
 
-                {error && (
-                  <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>Unable to load requests</p>
-                )}
-              </div>
-            </section>
+              {error && (
+                <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>Unable to load requests</p>
+              )}
+            </div>
+          </section>
 
           <section className="bg-white my-8 md:m-4 lg:bg-transparent">
             <h2 className="text-xl font-bold p-4 lg:pb-2 lg:pt-8 lg:mt-8 lg:border-t lg:border-gray-300">Find new friends</h2>

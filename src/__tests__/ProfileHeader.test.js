@@ -55,44 +55,6 @@ jest.mock("../hooks/useAuthContext", () => ({
   }),
 }));
 
-describe('Profile picture selective rendering', () => {
-  it("Displays only blank profile pic when no image URL is available for profile pic", () => {
-    render(
-      <BrowserRouter>
-        <AuthContextProvider>
-          <ToastContextProvider value={{ showToast: jest.fn }}>
-            <ProfileHeader profileUser={userNoPic} />
-          </ToastContextProvider>
-        </AuthContextProvider>
-      </BrowserRouter>
-    );
-    const blank = screen.getByAltText(/blank profile picture/i)
-    expect(blank).toBeInTheDocument();
-
-    const pic = screen.queryByAltText(/^profile picture/i);
-    expect(pic).not.toBeInTheDocument();
-  });
-
-  it("Displays correct profile picture if an image URL is provided", () => {
-    render(
-      <BrowserRouter>
-        <AuthContextProvider>
-          <ToastContextProvider value={{ showToast: jest.fn }}>
-            <ProfileHeader profileUser={user} />
-          </ToastContextProvider>
-        </AuthContextProvider>
-      </BrowserRouter>
-    );
-    const pic = screen.getByAltText(/^profile picture/i);
-    expect(pic).toBeInTheDocument();
-
-    // Check for blank profile pic that should not be present
-    const blank = screen.queryByAltText(/blank profile picture/i);
-    expect(blank).not.toBeInTheDocument();
-  });
-});
-
-
 describe('Profile header buttons', () => {
   it("Shows add friend button when viewing a profile for a non-friend", () => {
     render(

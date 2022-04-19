@@ -11,19 +11,19 @@ const ProfileBio = ({ profileUser }) => {
       {profileUser.bio.occupation && (
         <div className="flex items-center justify-start mb-2">
           <BriefcaseIcon iconFill="#6A70A0CC" iconStyles="w-5 mr-3"/>
-          <p className="font-semibold">{profileUser.bio.occupation}</p>
+          <p><strong className="font-semibold">{profileUser.bio.occupation}</strong></p>
         </div>
       )}
       {profileUser.bio.education && (
         <div className="flex items-center justify-start mb-2">
           <GraduationCapIcon iconFill="#6A70A0CC" iconStyles="w-5 mr-3"/>
-          <p>Studied at <span className="font-semibold">{profileUser.bio.education}</span></p>
+          <p>Studied at <strong className="font-semibold">{profileUser.bio.education}</strong></p>
         </div>
       )}
       {profileUser.bio.location && (
         <div className="flex items-center justify-start mb-2">
           <MapIcon iconFill="#6A70A0CC" iconStyles="w-5 mr-3"/>
-          <p>Lives in <span className="font-semibold">{profileUser.bio.location}</span></p>
+          <p>Lives in <strong className="font-semibold">{profileUser.bio.location}</strong></p>
         </div>
       )}
 

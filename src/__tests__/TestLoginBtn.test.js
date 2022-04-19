@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "../context/AuthContext";
 import { ToastContextProvider } from "../context/ToastContext";
-import TestLogin from '../components/TestLogin';
+import TestLoginBtn from '../components/buttons/TestLoginBtn';
 
 // Customise loading/error/data states to properly test UI in different states
 let mockLoading;
@@ -36,13 +36,13 @@ it("Renders 'try a test account' text by default", () => {
     <BrowserRouter>
       <AuthContextProvider>
         <ToastContextProvider value={{ showToast: jest.fn }}>
-          <TestLogin />
+          <TestLoginBtn />
         </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
   );
 
-  const btn = screen.getByRole('button', { name: /try a test account/i });
+  const btn = screen.getByRole('button', { name: /try a demo account/i });
   expect(btn).toBeInTheDocument();
 });
 
@@ -54,7 +54,7 @@ it("Renders loading text appropriately", () => {
     <BrowserRouter>
       <AuthContextProvider>
         <ToastContextProvider value={{ showToast: jest.fn }}>
-          <TestLogin />
+          <TestLoginBtn />
         </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
@@ -72,12 +72,12 @@ it("Reverts to default btn text on error", () => {
     <BrowserRouter>
       <AuthContextProvider>
         <ToastContextProvider value={{ showToast: jest.fn }}>
-          <TestLogin />
+          <TestLoginBtn />
         </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
   );
 
-  const btn = screen.getByRole('button', { name: /try a test account/i });
+  const btn = screen.getByRole('button', { name: /try a demo account/i });
   expect(btn).toBeInTheDocument();
 });

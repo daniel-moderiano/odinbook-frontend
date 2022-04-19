@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "../context/AuthContext";
 import { ToastContextProvider } from "../context/ToastContext";
-import CreatePostModal from "../components/CreatePostModal";
+import CreatePostModal from "../components/modals/CreatePostModal";
 import userEvent from "@testing-library/user-event";
 
 const currentUser = {

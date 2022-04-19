@@ -19,23 +19,27 @@ const UserList = ({ userFriends }) => {
   }
 
   return (
-    <div className="flex flex-wrap items-center justify-start">
+    <div>
       {users && (
-        <>
+        <ul className="flex flex-wrap items-center justify-start">
           {users.users.map((userDetails) => {
             if (!isRelatedUser(userDetails._id)) {
-              return (<FriendCard friendData={userDetails} type="user" key={userDetails._id}/>)
+              return (
+              <li className="w-full">
+                <FriendCard friendData={userDetails} type="user" key={userDetails._id}/>
+              </li>
+              )
             }
           })}
-        </>
+        </ul>
       )}
 
       {loading && (
-        <>
+        <div className="flex flex-wrap items-center justify-start">
           <SkeletonFriendCard />
           <SkeletonFriendCard />
           <SkeletonFriendCard />
-        </>
+        </div>
       )}
 
       {error && (

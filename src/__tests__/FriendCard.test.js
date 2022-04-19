@@ -60,12 +60,6 @@ describe("Friend card rendering (i.e. accepts that have been requests)", () => {
     </BrowserRouter>
   );
 
-  it("Renders friend profile image", () => {
-    setup();
-    const pic = screen.getByAltText(/^profile picture/i)
-    expect(pic).toBeInTheDocument();
-  });
-
   it("Renders only the unfriend button", () => {
     setup();
     const unfriend = screen.getByRole('button', { name: /unfriend/i });

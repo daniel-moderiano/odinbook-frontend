@@ -1,8 +1,8 @@
-import { useTestLogin } from "../hooks/useTestLogin";
-import { useErrorToast } from "../hooks/useErrorToast";
-import UserIcon from "./icons/UserIcon";
+import { useTestLogin } from "../../hooks/useTestLogin";
+import { useErrorToast } from "../../hooks/useErrorToast";
+import UserIcon from "../icons/UserIcon";
 
-const TestLogin = () => {
+const TestLoginBtn = () => {
   const { testLogin, testError, testLoading } = useTestLogin();
 
   useErrorToast(testError, 'An unknown error occurred while logging in');
@@ -20,4 +20,4 @@ const TestLogin = () => {
   )
 }
 
-export default TestLogin;
+export default TestLoginBtn;

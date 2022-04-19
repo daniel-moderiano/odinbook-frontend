@@ -24,16 +24,18 @@ const AllFriends = () => {
 
         <main className="bg-white mb-4 mt-3 md:m-4 lg:bg-transparent">
           <h2 className="text-xl font-bold p-4 pb-4 lg:pb-2">Friends</h2>
-          <div className="flex flex-wrap items-center justify-start">
+          <div>
             
             {friends && (
               <>
                 {friends.acceptedFriends.length > 0 ? (
-                  <>
+                  <ul className="flex flex-wrap items-center justify-start">
                     {friends.acceptedFriends.map((friend, index) => (
-                      <FriendCard friendData={friend.user} type="friend" key={friend._id}/>
+                      <li className="w-full" key={friend._id}>
+                        <FriendCard friendData={friend.user} type="friend"/>
+                      </li>
                     ))}
-                  </>
+                  </ul>
                 ) : (
                   <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>No friends yet</p>
                 )} 
@@ -41,11 +43,11 @@ const AllFriends = () => {
             )}
 
             {loading && (
-              <>
+              <div className="flex flex-wrap items-center justify-start">
                 <SkeletonFriendCard />
                 <SkeletonFriendCard />
                 <SkeletonFriendCard />
-              </>
+              </div>
             )}
 
             {error && (

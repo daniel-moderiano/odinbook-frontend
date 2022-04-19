@@ -25,15 +25,17 @@ const FriendRequests = () => {
         <main>
           <section className="bg-white mb-4 mt-3 md:m-4 lg:bg-transparent">
             <h2 className="text-xl font-bold p-4 pb-4 lg:pb-2">Incoming Requests</h2>
-            <div className="flex flex-wrap items-center justify-start">
+            <div>
               {friends && (
                 <>
                   {friends.incomingRequests.length > 0 ? (
-                    <>
+                    <ul className="flex flex-wrap items-center justify-start">
                       {friends.incomingRequests.map((request) => (
-                        <FriendCard friendData={request.user} type="incoming" key={request._id}/>
+                        <li className="w-full" key={request._id}>
+                          <FriendCard friendData={request.user} type="incoming"/>
+                        </li>
                       ))}
-                    </>
+                    </ul>
                   ) : (
                     <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>No requests yet</p>
                   )} 
@@ -41,11 +43,11 @@ const FriendRequests = () => {
               )}
 
               {loading && (
-                <>
+                <div className="flex flex-wrap items-center justify-start">
                   <SkeletonFriendCard />
                   <SkeletonFriendCard />
                   <SkeletonFriendCard />
-                </>
+                </div>
               )}
 
               {error && (
@@ -56,15 +58,17 @@ const FriendRequests = () => {
 
           <section className="bg-white mb-4 mt-3 md:m-4 lg:bg-transparent">
             <h2 className="text-xl font-bold p-4 pb-4 lg:pb-2 lg:pt-8 lg:mt-8 lg:border-t lg:border-gray-300">Sent requests</h2>
-            <div className="flex flex-wrap items-center justify-start">
+            <div>
               {friends && (
                 <>
                   {friends.outgoingRequests.length > 0 ? (
-                    <>
+                    <ul className="flex flex-wrap items-center justify-start">
                       {friends.outgoingRequests.map((request) => (
-                        <FriendCard friendData={request.user} type="outgoing" key={request._id}/>
+                        <li className="w-full" key={request._id}>
+                          <FriendCard friendData={request.user} type="outgoing"/>
+                        </li>
                       ))}
-                    </>
+                    </ul>
                   ) : (
                     <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>No requests sent</p>
                   )} 
@@ -72,11 +76,11 @@ const FriendRequests = () => {
               )}
 
               {loading && (
-                <>
+                <div className="flex flex-wrap items-center justify-start">
                   <SkeletonFriendCard />
                   <SkeletonFriendCard />
                   <SkeletonFriendCard />
-                </>
+                </div>
               )}
 
               {error && (

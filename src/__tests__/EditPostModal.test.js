@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "../context/AuthContext";
 import { ToastContextProvider } from "../context/ToastContext";
-import EditPostModal from "../components/EditPostModal";
+import EditPostModal from "../components/modals/EditPostModal";
 
 const currentUser = {
   "_id": "622ffe9baa78d2996267f821",

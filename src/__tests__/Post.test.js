@@ -98,12 +98,6 @@ describe("Text-only posts", () => {
     </BrowserRouter>
   );
 
-  it("Displays blank profile pic when none are available for the author of the post", () => {
-    setup();
-    const pic = screen.getByAltText(/blank profile picture/i) 
-    expect(pic).toBeInTheDocument();
-  });
-
   it("Does not attempt to display image when no image url exists for the post", () => {
     setup();
     // Image posts will have blank alt text
@@ -156,13 +150,7 @@ describe("Image-containing posts", () => {
     const btn = screen.queryByTestId(/menu/i) 
     expect(btn).not.toBeInTheDocument();
   });
-
-  it("Displays profile pic when one is available for the author of the post", () => {
-    setup();
-    const pic = screen.getByAltText(/profile picture/i) 
-    expect(pic).toBeInTheDocument();
-  });
-
+  
   it("Displays post image when image url exists for the post", () => {
     setup();
     // Image posts will have blank alt text

@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "../context/AuthContext";
 import { ToastContextProvider } from "../context/ToastContext";
-import LikeCommentBtn from "../components/LikeCommentBtn";
+import LikeCommentBtn from "../components/buttons/LikeCommentBtn";
 
 // Matches the exact format received from backend API
 const postId = '623e492cd956308f27ea9c40';

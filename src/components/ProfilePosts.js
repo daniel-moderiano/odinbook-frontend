@@ -4,7 +4,6 @@ import CreatePost from "./CreatePost";
 import { useNavigate } from "react-router-dom";
 import { useErrorToast } from "../hooks/useErrorToast";
 import SkeletonPost from './skeletons/SkeletonPost';
-import Footer from "./Footer";
 
 const ProfilePosts = ({ profileUser, profileType }) => {
   const { data: posts, loading, error } = useFetchGet(`http://localhost:3000/api/users/${profileUser._id}/posts`);
@@ -29,12 +28,12 @@ const ProfilePosts = ({ profileUser, profileType }) => {
       <div className='max-w-3xl lg:min-w-full'>
 
         {loading && (
-          <div data-testid="skeleton">
+          <ul data-testid="skeleton">
             {/* Render 4 skeleton posts */}
             {[1, 2, 3, 4].map((index) => (
-              <SkeletonPost key={index}/>
+              <SkeletonPost/>
             ))}
-          </div>
+          </ul>
         )}
 
         {posts && (

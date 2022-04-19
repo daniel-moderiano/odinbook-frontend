@@ -63,65 +63,6 @@ jest.mock("../hooks/useFetchGet", () => ({
 }));
 
 describe("User profile rendering in sidebar", () => {
-  it("Displays only a blank profile pic when no image URL for profile pic is available", () => {
-    mockUser = {
-      user: {
-        "_id": "622f19ab4212d0e69e8eb0d4",
-        "user": {
-            "_id": "622f19ab4212d0e69e8eb0b9",
-            "firstName": "John",
-            "lastName": "Doe",
-            "fullName": "John Doe",
-            "id": "622f19ab4212d0e69e8eb0b9"
-        },
-        "text": "Test post",
-        "likes": [
-          {
-            "_id": "622f19ac4212d0e69e8eb0ef",
-          },
-          {
-            "_id": "622f19ac4212d0e69e8eb0ef",
-          },
-        ],
-        "numFriends": 2,
-        "comments": [
-            {
-                "_id": "622f19ac4212d0e69e8eb0ef",
-                "user": "622f19ab4212d0e69e8eb0bf",
-                "text": "Et distinctio autem voluptatem voluptatem maiores reiciendis laborum voluptas et.",
-                "likes": [],
-                "createdAt": "2022-03-14T10:32:12.061Z",
-                "updatedAt": "2022-03-14T10:32:12.061Z",
-                "__v": 0,
-                "id": "622f19ac4212d0e69e8eb0ef"
-            }
-        ],
-        "numComments": 1,
-        "numLikes": 2,
-        "createdAt": "2022-03-14T10:32:12.064Z",
-        "updatedAt": "2022-03-14T10:32:12.064Z",
-        "__v": 0,
-        "id": "622f19ab4212d0e69e8eb0d4"
-      }
-    };
-    mockLoading = false;
-    mockError = null;
-
-    render(
-      <BrowserRouter>
-        <AuthContextProvider>
-          <SideMenu />
-        </AuthContextProvider>
-      </BrowserRouter>
-    );
-    const blankPic = screen.getByAltText(/^blank profile picture/i) 
-    expect(blankPic).toBeInTheDocument();
-
-    // Check that no other profile pic is attempting to be rendered (normal profile images have the alt text below)
-    const otherPic = screen.queryAllByAltText(/^profile picture/i) 
-    expect(otherPic.length).toBe(0);
-  });
-
   it("Displays correct number of friends", () => {
     mockUser = {
       user: {
