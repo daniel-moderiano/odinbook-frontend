@@ -6,6 +6,8 @@ const Button = ({
   customStyles, 
   disabled,
   hasPopup,
+  expanded,
+  ariaLabel,
 }) => {
   // Define CSS styles for different types of buttons
   const designClass = (design) => {
@@ -60,6 +62,8 @@ const Button = ({
       className={`${designClass(design)} ${customStyles}`} 
       disabled={disabled ? true : undefined}
       aria-haspopup={hasPopup}
+      aria-expanded={expanded}
+      aria-label={ariaLabel}
     >
       {children}
     </button>

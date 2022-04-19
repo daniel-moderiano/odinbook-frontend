@@ -51,15 +51,15 @@ const Post = ({ post, updatePosts }) => {
   return (
     <>
     <article className="rounded shadow-sm bg-white mb-6 pt-3 pb-1">
-      <div className='flex items-center justify-between px-4'>
+      <section className='flex items-center justify-between px-4'>
         <div className='flex items-center justify-start'>
-          {/* Link to user's profile */}
           <Link to={`/profile/${post.user._id}`} className="hover:opacity-95 active:opacity-100 mr-2 sm:mr-3 outline-plum-600">
             <ProfilePic image={post.user.profilePic && post.user.profilePic} styles="w-10 h-10  rounded-full"/>
           </Link>
           <div>
-            {/* Link to the user's profile page */}
-            <StyledLink to={`/profile/${post.user._id}`} customStyles="font-bold hover:underline sm:text-base text-sm max-w-[200px] outline-plum-600 outline-offset-2">{post.user.fullName}</StyledLink>
+            <h4>
+              <StyledLink to={`/profile/${post.user._id}`} customStyles="font-bold hover:underline sm:text-base text-sm max-w-[200px] outline-plum-600 outline-offset-2">{post.user.fullName}</StyledLink>
+            </h4>
             <p className="block text-xs sm:text-sm text-gray-600">{post.datePosted}</p>
           </div>  
         </div>
@@ -75,36 +75,38 @@ const Post = ({ post, updatePosts }) => {
           )}
         </div>
        
-      </div>
-      <div>
+      </section>
+      <section>
         <h3 className='px-4 py-2'>{post.text}</h3>
         {post.image && (
           <img src={post.image.imageUrl} alt={post.image.altText} className='w-full' />
         )}
-      </div>
-      <div className='flex items-center justify-between px-4 py-2'>
-        {/* Show modal listing user's who have liked (name + profile pic) */}
-        <Button customStyles="text-sm text-gray-600 flex items-center justify-center hover:underline hover:decoration-gray-600 outline-plum-600 outline-offset-2" onClick={() => setShowLikesModal(true)}>
-          <img src={like} alt="Love heart" className='w-4 mr-1 mb-px' />
-          <span className='mt-px'>{post.numLikes + localLike}</span>
-        </Button>
-        {/* Fetch comments and append to the DOM below this section */}
+      </section>
+      <section>
+        <div className='flex items-center justify-between px-4 py-2'>
+          {/* Show modal listing user's who have liked (name + profile pic) */}
+          <Button ariaLabel="Show likes" hasPopup="dialog" customStyles="text-sm text-gray-600 flex items-center justify-center hover:underline hover:decoration-gray-600 outline-plum-600 outline-offset-2" onClick={() => setShowLikesModal(true)}>
+            <img src={like} alt="Love heart" className='w-4 mr-1 mb-px' />
+            <span className='mt-px'>{post.numLikes + localLike}</span>
+          </Button>
+          {/* Fetch comments and append to the DOM below this section */}
 
-        <Button customStyles="text-sm text-gray-600 hover:underline hover:decoration-gray-600 outline-plum-600 outline-offset-2" onClick={() => {
-          if (post.numComments > 0) { setShowComments(true) }
-        }}>
-          {/* Adjust the displayed number of comments to match the most up-to-date source numComments */}
-          {customiseCommentText(newCommentCount)}
-        </Button>
+          <Button ariaLabel="Show comments" expanded={showComments} customStyles="text-sm text-gray-600 hover:underline hover:decoration-gray-600 outline-plum-600 outline-offset-2" onClick={() => {
+            if (post.numComments > 0) { setShowComments(true) }
+          }}>
+            {/* Adjust the displayed number of comments to match the most up-to-date source numComments */}
+            {customiseCommentText(newCommentCount)}
+          </Button>
 
-      </div>
-      <div className={`flex items-center justify-evenly mx-4 border-t pt-1 ${showComments && 'border-b mb-6 py-1'}`}>
-        <LikeBtn post={post} setLocalLike={setLocalLike}/>
-        <Button customStyles="flex items-middle justify-center text-gray-500 font-medium hover:bg-gray-100 py-2 rounded w-full outline-plum-600" onClick={() => setShowComments(true)}>
-          <CommentIcon iconFill='#6b7280' iconStyles='w-6 mr-2'/>
-          Comment
-        </Button>
-      </div>
+        </div>
+        <div className={`flex items-center justify-evenly mx-4 border-t pt-1 ${showComments && 'border-b mb-6 py-1'}`}>
+          <LikeBtn post={post} setLocalLike={setLocalLike}/>
+          <Button expanded={showComments} customStyles="flex items-middle justify-center text-gray-500 font-medium hover:bg-gray-100 py-2 rounded w-full outline-plum-600" onClick={() => setShowComments(true)}>
+            <CommentIcon iconFill='#6b7280' iconStyles='w-6 mr-2'/>
+            Comment
+          </Button>
+        </div>
+      </section>
       
       {showComments && (
         <div>
