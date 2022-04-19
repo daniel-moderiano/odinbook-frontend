@@ -31,7 +31,7 @@ const SideMenu = () => {
             <p className='text-sm mb-5'>
               {userDetails.user.numFriends !== 1 ? `${userDetails.user.numFriends} Friends` : '1 Friend'}
             </p>
-            <nav aria-label="Secondary">
+            <nav aria-label="Secondary" className='w-full'>
               <StyledLink to={`/profile/${user._id}`} design="btn-ghost-lg" customStyles="mb-3">
                 <ProfileIcon iconStyles="w-7 mr-3" />
                 View profile

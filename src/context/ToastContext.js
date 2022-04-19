@@ -26,7 +26,7 @@ export const ToastContextProvider = ({ children }) => {
 
   return (
     // showToast is the main part of the context value that needs to be accessible by all components. The other two values are used by the Toast component in App.js only
-    <ToastContext.Provider value={{ showToast, toastVisible, toastParams }}>
+    <ToastContext.Provider value={{ showToast, toastVisible, setToastVisible, toastParams }}>
       { children }
     </ToastContext.Provider>
   )

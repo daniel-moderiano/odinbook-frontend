@@ -1,8 +1,15 @@
+import { useToastContext } from '../../context/ToastContext';
+import CloseIcon from '../icons/CloseIcon';
+
 const Toast = ({ visible, params }) => {
+  const { setToastVisible } = useToastContext();
 
   // Class is dynamically set according to toast params and visible boolean
   return (
-    <div role="status" aria-hidden={visible ? false : true} className={`flex items-center justify-start z-20 ${params.type === 'error' && 'bg-red-600'} ${params.type === 'success' && 'bg-green-600'} text-white mb-24 py-3 pl-4 w-72 rounded shadow-[0_5px_5px_-3px_rgb(0,0,0,0.16),_0_8px_10px_1px_rgb(0,0,0,0.11),_0_3px_14px_2px_rgb(0,0,0,0.10)] fixed top-20 right-4  transition-opacity duration-300 pointer-events-none ${visible ? 'opacity-100' : 'opacity-0'}`}>
+    <div role="status" aria-hidden={visible ? false : true} className={`flex items-center justify-start z-20 ${params.type === 'error' && 'bg-red-600'} ${params.type === 'success' && 'bg-green-600'} text-white mb-24 py-3 pl-4 w-72 rounded shadow-[0_5px_5px_-3px_rgb(0,0,0,0.16),_0_8px_10px_1px_rgb(0,0,0,0.11),_0_3px_14px_2px_rgb(0,0,0,0.10)] fixed top-20 right-4  transition-opacity duration-300 ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+      <button aria-label='Close notification' onClick={() => setToastVisible(false)}>
+        <CloseIcon iconStyles="w-8 absolute top-0 right-0 p-2" iconFill="#FFF"/>
+      </button>
       <div className="mr-4">
         {params.type === 'error' && (
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-6">

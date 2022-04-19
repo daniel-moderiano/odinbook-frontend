@@ -25,8 +25,8 @@ const UserList = ({ userFriends }) => {
           {users.users.map((userDetails) => {
             if (!isRelatedUser(userDetails._id)) {
               return (
-              <li className="w-full">
-                <FriendCard friendData={userDetails} type="user" key={userDetails._id}/>
+              <li className="w-full"  key={userDetails._id}>
+                <FriendCard friendData={userDetails} type="user"/>
               </li>
               )
             }

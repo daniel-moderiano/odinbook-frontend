@@ -28,12 +28,12 @@ const ProfilePosts = ({ profileUser, profileType }) => {
       <div className='max-w-3xl lg:min-w-full'>
 
         {loading && (
-          <ul data-testid="skeleton">
+          <div data-testid="skeleton">
             {/* Render 4 skeleton posts */}
             {[1, 2, 3, 4].map((index) => (
-              <SkeletonPost/>
+              <SkeletonPost key={index}/>
             ))}
-          </ul>
+          </div>
         )}
 
         {posts && (
