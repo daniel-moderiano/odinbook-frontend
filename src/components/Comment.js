@@ -37,16 +37,16 @@ const Comment = ({ postId, commentData, updateKey }) => {
         <div className={`flex flex-col items-start justify-center ${editMode && 'w-full'}`}>
           <div className={`bg-zinc-200/50 rounded p-2.5 md:p-3 ${editMode && 'w-full'}`}>
             <div className="flex w-full items-center justify-between mb-1">
-              <h3 className="font-semibold text-sm mr-4">{commentData.user.fullName}</h3>
+              <p className="font-semibold text-sm mr-4">{commentData.user.fullName}</p>
               <p className="text-xs text-gray-500">{commentData.dateAdded}</p>
             </div>
             {editMode ? (
               <EditCommentForm currentText={commentData.text} commentId={commentData._id} postId={postId} updateComments={updateKey}/>
             ) : (
-              <p className="text-sm w-full">{commentData.text}</p>
+              <h3 className="text-sm w-full">{commentData.text}</h3>
             )}        
           </div>
-          <div className="flex items-center justify-between py-1 pl-0.5 w-full">
+          <footer className="flex items-center justify-between py-1 pl-0.5 w-full">
             <div className="flex">
               <LikeCommentBtn postId={postId} comment={commentData} setLocalLike={setLocalLike}/>
               <button className="text-xs text-gray-500 flex items-center justify-center hover:underline hover:decoration-gray-600" onClick={() => setShowModal(true)}>
@@ -62,7 +62,7 @@ const Comment = ({ postId, commentData, updateKey }) => {
                 </button>
               </div>
             )}
-          </div>
+          </footer>
         </div>
       </article>
 

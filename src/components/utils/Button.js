@@ -5,6 +5,7 @@ const Button = ({
   onClick, 
   customStyles, 
   disabled,
+  hasPopup,
 }) => {
   // Define CSS styles for different types of buttons
   const designClass = (design) => {
@@ -58,6 +59,7 @@ const Button = ({
       type={type} 
       className={`${designClass(design)} ${customStyles}`} 
       disabled={disabled ? true : undefined}
+      aria-haspopup={hasPopup}
     >
       {children}
     </button>

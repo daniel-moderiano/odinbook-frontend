@@ -11,19 +11,27 @@ const FriendsMenu = () => {
     // Margin-top is chosen as height of the header + (mt-3)
     <div className="mt-[62px] md:bg-white md:h-full md:m-0 md:fixed md:w-[270px] md:shadow-md lg:w-[320px]">
       <h2 className='hidden md:block text-2xl font-bold p-4'>Friends</h2>
-      <nav aria-label="Friends menu" className='flex items-center justify-start ml-1 md:flex-col md:m-0 md:mx-2'>
-        <Link className={`rounded px-3 py-1 m-1 text-sm font-bold flex items-center justify-start ${page === '/friends' ? 'bg-teal-650 md:bg-gray-100 text-white hover:bg-teal-650' : 'bg-white md:bg-white md:text-plum-600 md:shadow-none shadow-sm hover:bg-gray-50'} md:text-black md:m-0 md:h-full md:w-full md:py-3 md:text-lg md:font-semibold md:hover:bg-gray-100 outline-plum-600 md:outline-offset-[-2px]`} to="/friends">
-          <PeopleIcon iconStyles="hidden md:block w-5 mr-3" iconFill="#404164"/>
-          <span className='text-center md:text-left'>Suggested</span>
-        </Link>
-        <Link className={`flex items-center justify-start rounded px-3 py-1 m-1 text-sm font-bold ${page === '/friends/requests' ? 'bg-teal-650 md:bg-gray-100 text-white hover:bg-teal-650' : 'bg-white md:bg-white md:text-plum-600 md:shadow-none shadow-sm hover:bg-gray-50'} md:text-black md:m-0 md:h-full md:w-full md:py-3 md:text-lg md:font-semibold md:hover:bg-gray-100 outline-plum-600 md:outline-offset-[-2px]`} to="/friends/requests">
-          <PlaneIcon iconStyles="hidden md:block w-5 mr-3" iconFill="#404164"/>
-          <span className='text-center md:text-left'>Friend requests</span>
-        </Link>
-        <Link className={`flex items-center justify-start rounded  px-3 py-1 m-1 text-sm font-bold ${page === '/friends/all' ? 'bg-teal-650 md:bg-gray-100 text-white hover:bg-teal-650' : 'bg-white md:bg-white md:text-plum-600 md:shadow-none shadow-sm hover:bg-gray-50'} md:text-black md:m-0 md:h-full md:w-full md:py-3 md:text-lg md:font-semibold md:hover:bg-gray-100 outline-plum-600 md:outline-offset-[-2px]`} to="/friends/all">
-          <FriendsIcon iconStyles="hidden md:block w-5 mr-3" iconFill="#404164"/>
-          <span className='text-center md:text-left'>All friends</span>
-        </Link>
+      <nav aria-label="Friends" className='flex items-center justify-start ml-1 md:flex-col md:m-0 md:mx-2'>
+        <ul role="menubar">
+          <li role="none">
+            <Link role="menuitem" className={`rounded px-3 py-1 m-1 text-sm font-bold flex items-center justify-start ${page === '/friends' ? 'bg-teal-650 md:bg-gray-100 text-white hover:bg-teal-650' : 'bg-white md:bg-white md:text-plum-600 md:shadow-none shadow-sm hover:bg-gray-50'} md:text-black md:m-0 md:h-full md:w-full md:py-3 md:text-lg md:font-semibold md:hover:bg-gray-100 outline-plum-600 md:outline-offset-[-2px]`} to="/friends">
+              <PeopleIcon iconStyles="hidden md:block w-5 mr-3" iconFill="#404164"/>
+              <span className='text-center md:text-left'>Suggested</span>
+            </Link>
+          </li>
+          <li role="none">
+            <Link role="menuitem" className={`flex items-center justify-start rounded px-3 py-1 m-1 text-sm font-bold ${page === '/friends/requests' ? 'bg-teal-650 md:bg-gray-100 text-white hover:bg-teal-650' : 'bg-white md:bg-white md:text-plum-600 md:shadow-none shadow-sm hover:bg-gray-50'} md:text-black md:m-0 md:h-full md:w-full md:py-3 md:text-lg md:font-semibold md:hover:bg-gray-100 outline-plum-600 md:outline-offset-[-2px]`} to="/friends/requests">
+              <PlaneIcon iconStyles="hidden md:block w-5 mr-3" iconFill="#404164"/>
+              <span className='text-center md:text-left'>Friend requests</span>
+            </Link>
+          </li>
+          <li role="none">
+            <Link role="menuitem" className={`flex items-center justify-start rounded  px-3 py-1 m-1 text-sm font-bold ${page === '/friends/all' ? 'bg-teal-650 md:bg-gray-100 text-white hover:bg-teal-650' : 'bg-white md:bg-white md:text-plum-600 md:shadow-none shadow-sm hover:bg-gray-50'} md:text-black md:m-0 md:h-full md:w-full md:py-3 md:text-lg md:font-semibold md:hover:bg-gray-100 outline-plum-600 md:outline-offset-[-2px]`} to="/friends/all">
+              <FriendsIcon iconStyles="hidden md:block w-5 mr-3" iconFill="#404164"/>
+              <span className='text-center md:text-left'>All friends</span>
+            </Link>
+          </li>
+        </ul>
       </nav>
     </div>
   )

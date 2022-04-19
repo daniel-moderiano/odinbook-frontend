@@ -12,13 +12,13 @@ const Header = ({ updateFeed }) => {
     <header aria-labelledby="odinbook-logo" className={`shadow-md w-full fixed bg-white grid grid-cols-1 lg:grid-cols-3 content-center justify-items-center z-20 h-[50px] transition-all duration-300 top-0 lg:h-auto ${showHeader ? 'top-0' : 'top-[-50px] md:top-0'}`}>
       <Link to="/" className="items-center hidden lg:flex justify-self-start outline-plum-600 outline-offset-[-2px]">
         <OdinbookIcon iconStyles='w-auto h-[58px]' />
-        <h1 className="font-semibold text-3xl text-plum-500 ml-4 pr-4">odinbook</h1>
+        <h1 id="odinbook-logo" className="font-semibold text-3xl text-plum-500 ml-4 pr-4">odinbook</h1>
       </Link>
 
       <Nav updateFeed={updateFeed}/>
       
       {/* Separate menu button on the far right for large screens only (ordinarily part of nav menu) */}
-      <div role="menuitem" className="hidden lg:flex justify-self-end mr-4 items-center justify-center w-[70px]">
+      <div className="hidden lg:flex justify-self-end mr-4 items-center justify-center w-[70px]">
         <MeButton />
       </div>
   </header>
