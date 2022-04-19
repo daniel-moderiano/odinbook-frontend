@@ -115,12 +115,12 @@ describe('Profile header buttons', () => {
       <BrowserRouter>
         <ToastContextProvider>
           <AuthContextProvider>
-            <ProfileHeader profileUser={user} profileType="friend" />
+            <ProfileHeader profileUser={user} profileType="ownProfile" />
           </AuthContextProvider>
         </ToastContextProvider>
       </BrowserRouter>
     );
-    const btn = screen.getByTestId('camera');
+    const btn = screen.getByRole('button', { name: /change/i });
     userEvent.click(btn);
 
     const modal = screen.getByRole('dialog');

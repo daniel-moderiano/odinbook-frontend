@@ -9,12 +9,15 @@ import OdinbookIcon from './icons/OdinbookIcon';
 import FacebookIcon from './icons/FacebookIcon';
 import Footer from "./Footer";
 import TestLoginBtn from "./buttons/TestLoginBtn";
+import PasswordContainer from './utils/PasswordContainer';
 
 const Login = ({ setInitialLogin }) => {
   const { login, error, formError, loading } = useLogin();
 
   // All non-form validation errors
   useErrorToast(error, (error && error.errorMsg));
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -77,15 +80,17 @@ const Login = ({ setInitialLogin }) => {
                 <div className="mb-4">
                   <label htmlFor="password" className="flex flex-col text-sm md:text-base">
                     Password
-                    <Input
-                      type="password"
-                      id="password"
-                      name="password"
-                      value={formData.password}
-                      onChange={handleChange}
-                      required
-                      autocomplete="current-password"
-                    />
+                    <PasswordContainer showPassword={showPassword} handleClick={() => setShowPassword((prevState) => (!prevState))}>
+                      <Input
+                        type={showPassword ? 'text' : 'password'}
+                        id="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        required
+                        autocomplete="current-password"
+                      />
+                    </PasswordContainer>
                   </label>
                 </div>
 

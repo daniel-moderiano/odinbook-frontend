@@ -7,12 +7,16 @@ import { useErrorToast } from "../hooks/useErrorToast";
 import OdinbookIcon from "./icons/OdinbookIcon";
 import FormErrorIcon from './icons/FormErrorIcon';
 import Footer from "./Footer";
+import PasswordContainer from "./utils/PasswordContainer";
 
 const Signup = () => {
   const { signup, error, formError, loading } = useSignup();
 
   // All non-form validation errors
   useErrorToast(error, (error && error.errorMsg));
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -100,15 +104,17 @@ const Signup = () => {
                 <div className="mb-4">
                   <label htmlFor="password" className="flex flex-col text-sm md:text-base">
                     Password
-                    <Input
-                      type="password"
-                      id="password"
-                      name="password"
-                      value={formData.password}
-                      onChange={handleChange}
-                      required
-                      autocomplete="new-password"
-                    />
+                    <PasswordContainer showPassword={showPassword} handleClick={() => setShowPassword((prevState) => (!prevState))}>
+                      <Input
+                        type={showPassword ? 'text' : 'password'}
+                        id="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        required
+                        autocomplete="new-password"
+                      />
+                    </PasswordContainer>
                   </label>
                 </div>
 
@@ -117,15 +123,17 @@ const Signup = () => {
                   <div className="mb-4">
                     <label htmlFor="confirmPassword" className="flex flex-col text-sm md:text-base">
                       Confirm password
-                      <Input
-                        type="password"
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        value={formData.confirmPassword}
-                        onChange={handleChange}
-                        required
-                        autocomplete="new-password"
-                      />
+                      <PasswordContainer showPassword={showConfirmPassword} handleClick={() => setShowConfirmPassword((prevState) => (!prevState))}>
+                        <Input
+                          type={showConfirmPassword ? 'text' : 'password'}
+                          id="confirmPassword"
+                          name="confirmPassword"
+                          value={formData.confirmPassword}
+                          onChange={handleChange}
+                          required
+                          autocomplete="new-password"
+                        />
+                      </PasswordContainer>
                     </label>
                   </div>
                 )}

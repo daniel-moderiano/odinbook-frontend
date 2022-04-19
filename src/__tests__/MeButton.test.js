@@ -60,7 +60,7 @@ describe('Dropdown menu display tests', () => {
     const btn = screen.getByTestId(/user-menu/i);
     userEvent.click(btn);
     
-    const menuBtn = screen.getByRole('button', { name: /log out/i });
+    const menuBtn = screen.getByRole('menuitem', { name: /log out/i });
     userEvent.click(menuBtn);
   
     const menu = screen.queryByTestId('dropdown');
