@@ -1,39 +1,39 @@
-import Button from './utils/Button';
-import { useFriendRequests } from '../hooks/useFriendRequests';
-import { useErrorToast } from '../hooks/useErrorToast';
-import { useSuccessToast } from '../hooks/useSuccessToast';
+import Button from '../utils/Button';
+import { useFriendRequests } from '../../hooks/useFriendRequests';
+import { useErrorToast } from '../../hooks/useErrorToast';
+import { useSuccessToast } from '../../hooks/useSuccessToast';
 
-const CancelRequestBtn = ({ userId, customStyles }) => {
+const UnfriendRequestBtn = ({ userId, customStyles }) => {
   const { request, response, loading, error } = useFriendRequests(userId);
 
   // Set up notifications. Backend error messages are well suited for direct frontend use here
   // Must use conditional for error.errorMsg to avoid TypeError of undefined before error is initialised/true
   useErrorToast(error, (error && error.errorMsg));
-  useSuccessToast(response, 'Request cancelled.');
+  useSuccessToast(response, 'Friend removed.');
 
   // Set out the conditionals in order of which they should be evaluated
   const setBtnText = () => {
     if (loading) {
-      return 'Cancelling...';
+      return 'Removing...';
     }
 
     if (error) {
-      return 'Cancel';
+      return 'Unfriend';
     }
 
     if (response) {
-      return 'Cancelled!'
+      return 'Removed!'
     }
 
     // Default state should be returned
-    return 'Cancel';
+    return 'Unfriend';
   }
 
   return (
-    <Button onClick={() => request('cancelRequest')} design="primary" customStyles={customStyles} disabled={response ? true : false}>
+    <Button onClick={() => request('unfriendRequest')} design="primary" customStyles={customStyles} disabled={response ? true : false}>
       {setBtnText(loading, error, response)}
     </Button>
   )
 }
 
-export default CancelRequestBtn
+export default UnfriendRequestBtn;

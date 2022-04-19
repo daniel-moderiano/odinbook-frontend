@@ -2,15 +2,15 @@ import Button from './utils/Button';
 import like from '../assets/like.png'
 import StyledLink from './utils/StyledLink';
 import ProfilePic from './utils/ProfilePic';
-import LikesModal from './LikesModal';
+import LikesModal from './modals/LikesModal';
 import { useState } from 'react';
-import LikeBtn from './LikeBtn';
+import LikeBtn from './buttons/LikeBtn';
 import Comments from './Comments';
 import CommentForm from './CommentForm';
 import { useAuthContext } from '../hooks/useAuthContext';
 import PostMenu from './PostMenu';
-import DeletePostModal from './DeletePostModal';
-import EditPostModal from './EditPostModal';
+import DeletePostModal from './modals//DeletePostModal';
+import EditPostModal from './modals/EditPostModal';
 import EllipsisIcon from './icons/EllipsisIcon';
 import CommentIcon from './icons/CommentIcon';
 import { useDropdownMenu } from '../hooks/useDropdownMenu';
@@ -47,7 +47,7 @@ const Post = ({ post, updatePosts }) => {
     // No adjustment necessary, return typical 'x comments' format
     return `${numComments} comments`
   };
-
+  
   return (
     <>
     <article className="rounded shadow-sm bg-white mb-6 pt-3 pb-1">
@@ -55,7 +55,7 @@ const Post = ({ post, updatePosts }) => {
         <div className='flex items-center justify-start'>
           {/* Link to user's profile */}
           <Link to={`/profile/${post.user._id}`} className="hover:opacity-95 active:opacity-100 mr-2 sm:mr-3 outline-plum-600">
-            <ProfilePic imgUrl={post.user.profilePic ? post.user.profilePic.imageUrl : null} styles="w-10 h-10  rounded-full"/>
+            <ProfilePic image={post.user.profilePic && post.user.profilePic} styles="w-10 h-10  rounded-full"/>
           </Link>
           <div>
             {/* Link to the user's profile page */}
@@ -79,7 +79,7 @@ const Post = ({ post, updatePosts }) => {
       <div>
         <p className='px-4 py-2'>{post.text}</p>
         {post.image && (
-          <img src={post.image.imageUrl} alt="" className='w-full' />
+          <img src={post.image.imageUrl} alt={post.image.altText} className='w-full' />
         )}
       </div>
       <div className='flex items-center justify-between px-4 py-2'>

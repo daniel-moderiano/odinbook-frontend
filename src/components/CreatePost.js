@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CreatePostModal from "./CreatePostModal";
+import CreatePostModal from "./modals/CreatePostModal";
 import PlusIcon from './icons/PlusIcon'
 
 const CreatePost = ({ updatePosts, nav }) => {

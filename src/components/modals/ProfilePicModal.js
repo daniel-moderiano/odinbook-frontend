@@ -1,16 +1,15 @@
 import FocusTrap from 'focus-trap-react';
 import { useEffect, useState } from 'react';
-import { useUpdateProfilePic } from '../hooks/useUpdateProfilePic'
-import { useToastContext } from '../context/ToastContext';
-import Button from './utils/Button';
-import { useAuthContext } from '../hooks/useAuthContext';
-import ImageUploadBtn from './ImageUploadBtn';
-import { useImageThumbnail } from '../hooks/useImageThumbnail';
-import { useModalEvents } from '../hooks/useModalEvents';
+import { useUpdateProfilePic } from '../../hooks/useUpdateProfilePic'
+import { useToastContext } from '../../context/ToastContext';
+import Button from '../utils/Button';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import ImageUploadBtn from '../buttons/ImageUploadBtn';
+import { useImageThumbnail } from '../../hooks/useImageThumbnail';
+import { useModalEvents } from '../../hooks/useModalEvents';
 import { useNavigate } from 'react-router-dom';
-import { useErrorToast } from '../hooks/useErrorToast';
-
-import CloseIcon from './icons/CloseIcon';
+import { useErrorToast } from '../../hooks/useErrorToast';
+import CloseIcon from '../icons/CloseIcon';
 
 const ProfilePicModal = ({ closeModal, profileUser }) => {
   const { updateProfilePic, loading, response, error } = useUpdateProfilePic();

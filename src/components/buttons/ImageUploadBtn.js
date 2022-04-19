@@ -1,6 +1,6 @@
 // Custom stylesheet is required as Tailwind does not support this level of customising file inputs
-import '../styles/imageUpload.css';
-import ImageIcon from './icons/ImageIcon'
+import '../../styles/imageUpload.css';
+import ImageIcon from '../icons/ImageIcon'
 
 const ImageUploadBtn = ({ handleChange, imageValue, setImageValue, setImageFile }) => {
   return (

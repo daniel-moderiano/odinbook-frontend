@@ -1,16 +1,16 @@
 import FocusTrap from 'focus-trap-react';
 import { useEffect, useState } from 'react';
-import { useCreatePost } from '../hooks/useCreatePost';
-import { useToastContext } from '../context/ToastContext';
-import Button from './utils/Button';
-import { useAuthContext } from '../hooks/useAuthContext';
-import ProfilePic from './utils/ProfilePic';
-import ImageUploadBtn from './ImageUploadBtn';
-import { useModalEvents } from '../hooks/useModalEvents';
-import { useImageThumbnail } from '../hooks/useImageThumbnail';
-import { useErrorToast } from '../hooks/useErrorToast';
-import CloseIcon from './icons/CloseIcon';
-import EmojiPickerBtn from './EmojiPickerBtn';
+import { useCreatePost } from '../../hooks/useCreatePost';
+import { useToastContext } from '../../context/ToastContext';
+import Button from '../utils/Button';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import ProfilePic from '../utils/ProfilePic';
+import ImageUploadBtn from '../buttons/ImageUploadBtn';
+import { useModalEvents } from '../../hooks/useModalEvents';
+import { useImageThumbnail } from '../../hooks/useImageThumbnail';
+import { useErrorToast } from '../../hooks/useErrorToast';
+import CloseIcon from '../icons/CloseIcon';
+import EmojiPickerBtn from '../buttons/EmojiPickerBtn';
 
 const CreatePostModal = ({ closeModal, updatePosts }) => {
   const { createPost, response, loading, error } = useCreatePost();
@@ -78,7 +78,7 @@ const CreatePostModal = ({ closeModal, updatePosts }) => {
 
           <div className="w-full">
             <div className='flex items-center justify-start py-3'>
-              <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="w-10 h-10 mr-3 sm:mr-3 rounded-full"/>
+              <ProfilePic image={user.profilePic && user.profilePic} styles="w-10 h-10 mr-3 sm:mr-3 rounded-full"/>
               <p className="block font-semibold hover:underlinemax-w-[200px]">{`${user.firstName} ${user.lastName}`}</p>
             </div>
             <form className="w-full" onSubmit={handleSubmit}>

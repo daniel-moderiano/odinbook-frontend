@@ -1,7 +1,7 @@
-import Button from './utils/Button';
-import { useFriendRequests } from '../hooks/useFriendRequests';
-import { useErrorToast } from '../hooks/useErrorToast';
-import { useSuccessToast } from '../hooks/useSuccessToast';
+import Button from '../utils/Button';
+import { useFriendRequests } from '../../hooks/useFriendRequests';
+import { useErrorToast } from '../../hooks/useErrorToast';
+import { useSuccessToast } from '../../hooks/useSuccessToast';
 
 const AcceptRequestBtn = ({ userId, customStyles }) => {
   const { request, response, loading, error } = useFriendRequests(userId);

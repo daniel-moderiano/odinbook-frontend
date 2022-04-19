@@ -1,11 +1,11 @@
 import FocusTrap from 'focus-trap-react';
 import { Link } from 'react-router-dom';
-import { useFetchGet } from '../hooks/useFetchGet';
-import ProfilePic from './utils/ProfilePic';
-import like from '../assets/like.png';
-import { useModalEvents } from '../hooks/useModalEvents';
-import SkeletonLike from './skeletons/SkeletonLike';
-import CloseIcon from './icons/CloseIcon'
+import { useFetchGet } from '../../hooks/useFetchGet';
+import ProfilePic from '../utils/ProfilePic';
+import like from '../../assets/like.png';
+import { useModalEvents } from '../../hooks/useModalEvents';
+import SkeletonLike from '../skeletons/SkeletonLike';
+import CloseIcon from '../icons/CloseIcon'
 
 const LikesModal = ({ postId, commentId, closeModal }) => {
   // Amend the fetch URL if comment ID is present (i.e. fetching likes for comment instead of post)
@@ -56,7 +56,7 @@ const LikesModal = ({ postId, commentId, closeModal }) => {
                 {likes.map((user) => (
                   <li key={user._id} className='flex items-center justify-start border-b w-full py-2'>
                     <Link to={`/profile/${user._id}`} className="hover:opacity-95 active:opacity-100 mr-4 outline-plum-600">
-                      <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="w-10 h-10 rounded-full"/>
+                      <ProfilePic image={user.profilePic && user.profilePic} styles="w-10 h-10 rounded-full"/>
                     </Link>
                     <Link to={`/profile/${user._id}`} className='text-sm font-semibold hover:underline outline-plum-600 outline-offset-2'>{user.fullName}</Link>
                   </li>

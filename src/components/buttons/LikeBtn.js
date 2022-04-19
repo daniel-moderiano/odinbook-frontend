@@ -1,9 +1,9 @@
-import { useAuthContext } from '../hooks/useAuthContext';
-import Button from './utils/Button';
-import { useLikePost } from '../hooks/useLikePost';
-import { useToastContext } from '../context/ToastContext';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import Button from '../utils/Button';
+import { useLikePost } from '../../hooks/useLikePost';
+import { useToastContext } from '../../context/ToastContext';
 import { useEffect } from 'react';
-import ThumbIcon from './icons/ThumbIcon';
+import ThumbIcon from '../icons/ThumbIcon';
 
 const LikeBtn = ({ post, setLocalLike }) => {
   const { user: currentUser } = useAuthContext();

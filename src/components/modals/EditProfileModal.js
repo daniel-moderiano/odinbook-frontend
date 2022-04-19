@@ -1,16 +1,16 @@
 import FocusTrap from 'focus-trap-react';
-import { useToastContext } from '../context/ToastContext';
-import Button from './utils/Button';
-import { useAuthContext } from '../hooks/useAuthContext';
-import { useModalEvents } from '../hooks/useModalEvents';
+import { useToastContext } from '../../context/ToastContext';
+import Button from '../utils/Button';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { useModalEvents } from '../../hooks/useModalEvents';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUpdateProfile } from '../hooks/useUpdateProfile';
-import Input from './utils/Input';
-import { useErrorToast } from '../hooks/useErrorToast';
-import CloseIcon from './icons/CloseIcon';
-import FormErrorIcon from './icons/FormErrorIcon';
-import PencilIcon from './icons/PencilIcon';
+import { useUpdateProfile } from '../../hooks/useUpdateProfile';
+import Input from '../utils/Input';
+import { useErrorToast } from '../../hooks/useErrorToast';
+import CloseIcon from '../icons/CloseIcon';
+import FormErrorIcon from '../icons/FormErrorIcon';
+import PencilIcon from '../icons/PencilIcon';
 
 const EditProfileModal = ({ closeModal, profileUser }) => {
   const { showToast } = useToastContext();
@@ -112,6 +112,7 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
                         value={formData.firstName}
                         onChange={handleChange}
                         required
+                        autocomplete="given-name"
                       />
                     </label>
                   </div>
@@ -125,6 +126,7 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
                         value={formData.lastName}
                         onChange={handleChange}
                         required
+                        autocomplete="family-name"
                       />
                     </label>
                   </div>
@@ -138,6 +140,7 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
                         value={formData.email}
                         onChange={handleChange}
                         required
+                        autocomplete="email"
                       />
                     </label>
                   </div>
@@ -170,6 +173,7 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
                         name="occupation"
                         value={formData.occupation}
                         onChange={handleChange}
+                        autocomplete="organization-title"
                       />
                     </label>
                   </div>
@@ -194,6 +198,7 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
                         name="location"
                         value={formData.location}
                         onChange={handleChange}
+                        autocomplete="country-name"
                       />
                     </label>
                   </div>

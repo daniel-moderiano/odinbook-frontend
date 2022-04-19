@@ -2,7 +2,7 @@ import { useState } from "react";
 import Picker from 'emoji-picker-react';
 
 // Creating an accessible button that opens the Emoji picker component
-// ! The third party emoji picker itself is hardly accessible which is a pain in the ass. For the purposes of this project it is acceptible, but in a production app this would be removed and generated from scratch
+// The third party emoji picker itself is hardly accessible which is a pain in the ass. For the purposes of this project it is acceptible, but in a production app this would be removed and generated from scratch
 const EmojiPickerBtn = ({ onEmojiClick }) => {
   const [showPicker, setShowPicker] = useState(false);
 

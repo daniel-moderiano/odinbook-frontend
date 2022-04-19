@@ -1,10 +1,10 @@
 import FocusTrap from 'focus-trap-react';
 import { useEffect } from 'react';
-import { useDeletePost } from '../hooks/useDeletePost';
-import { useToastContext } from '../context/ToastContext';
-import { useModalEvents } from '../hooks/useModalEvents';
-import CloseIcon from './icons/CloseIcon';
-import Button from './utils/Button';
+import { useDeletePost } from '../../hooks/useDeletePost';
+import { useToastContext } from '../../context/ToastContext';
+import { useModalEvents } from '../../hooks/useModalEvents';
+import CloseIcon from '../icons/CloseIcon';
+import Button from '../utils/Button';
 
 const DeletePostModal = ({ closeModal, postId, updatePosts }) => {
   const { deletePost, response, loading, error } = useDeletePost();

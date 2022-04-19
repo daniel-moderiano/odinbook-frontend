@@ -5,12 +5,10 @@ import Button from './utils/Button'
 import { useDeleteAccount } from "../hooks/useDeleteAccount";
 import { useErrorToast } from '../hooks/useErrorToast';
 import { useSuccessToast } from '../hooks/useSuccessToast';
-import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
   const { user } = useAuthContext();
   const { deleteAccount, response, loading, error } = useDeleteAccount();
-  const navigate = useNavigate();
 
   // Set up notifications
   useErrorToast(error, (error && error.errorMsg));

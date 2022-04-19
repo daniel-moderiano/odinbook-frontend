@@ -64,6 +64,7 @@ const Signup = () => {
                       value={formData.firstName}
                       onChange={handleChange}
                       required
+                      autocomplete="given-name"
                     />
                   </label>
                 </div>
@@ -77,6 +78,7 @@ const Signup = () => {
                       value={formData.lastName}
                       onChange={handleChange}
                       required
+                      autocomplete="family-name"
                     />
                   </label>
                 </div>
@@ -90,6 +92,7 @@ const Signup = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required={true}
+                      autocomplete="email"
                     />
                   </label>
                 </div>
@@ -104,6 +107,7 @@ const Signup = () => {
                       value={formData.password}
                       onChange={handleChange}
                       required
+                      autocomplete="new-password"
                     />
                   </label>
                 </div>
@@ -120,6 +124,7 @@ const Signup = () => {
                         value={formData.confirmPassword}
                         onChange={handleChange}
                         required
+                        autocomplete="new-password"
                       />
                     </label>
                   </div>

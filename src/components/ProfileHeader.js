@@ -2,11 +2,11 @@ import Button from './utils/Button';
 import ProfileNav from './ProfileNav';
 import ProfilePic from './utils/ProfilePic';
 import { useState } from 'react';
-import ProfilePicModal from './ProfilePicModal';
-import EditProfileModal from './EditProfileModal';
+import ProfilePicModal from './modals/ProfilePicModal';
+import EditProfileModal from './modals/EditProfileModal';
 import CameraIcon from './icons/CameraIcon';
-import UnfriendRequestButton from './UnfriendRequestBtn';
-import SendRequestButton from './SendRequestBtn';
+import UnfriendRequestButton from './buttons/UnfriendRequestBtn';
+import SendRequestButton from './buttons/SendRequestBtn';
 
 const ProfileHeader = ({ profileUser, profileType }) => {
   const [showPicModal, setShowPicModal] = useState(false);
@@ -17,7 +17,7 @@ const ProfileHeader = ({ profileUser, profileType }) => {
       <div className="bg-gradient-to-t from-plum-50 h-28 md:h-36 relative w-full"></div>
       <div className="w-full absolute flex items-center justify-center top-7 md:top-14 lg:top-24 lg:justify-start max-w-4xl">
         <div className="relative">
-          <ProfilePic imgUrl={profileUser.profilePic ? profileUser.profilePic.imageUrl : null} styles="w-40 h-40 lg:w-44 lg:h-44 rounded-full border-4 border-white"/>
+          <ProfilePic image={profileUser.profilePic && profileUser.profilePic} styles="w-40 h-40 lg:w-44 lg:h-44 rounded-full border-4 border-white"/>
           <button data-testid="camera" className="absolute rounded-full bg-gray-200 w-9 h-9 flex items-center justify-center bottom-4 right-0 border-gray-300 border hover:bg-gray-300 active:scale-95" onClick={() => setShowPicModal(true)}>
           <CameraIcon iconFill="#000" iconStyles="w-5"/>
         </button>

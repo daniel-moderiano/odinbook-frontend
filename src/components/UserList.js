@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useFetchGet } from "../hooks/useFetchGet"
 import FriendCard from "./FriendCard";

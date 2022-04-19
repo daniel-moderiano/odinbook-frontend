@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import HomeIcon from './icons/HomeIcon';
 import FriendsIcon from "./icons/FriendsIcon";
-import MeButton from './MeButton';
+import MeButton from './buttons/MeButton';
 import CreatePost from './CreatePost';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ const Nav = ({ updateFeed }) => {
   }
 
   return (
-    <nav aria-label="Main menu" role="navigation" className="w-full lg:max-w-lg lg:justify-self-center lg:flex items-center justify-center">
+    <nav aria-label="Main" className="w-full lg:max-w-lg lg:justify-self-center lg:flex items-center justify-center">
       <ul role="menubar" className="flex items-center justify-evenly">
         <li role="menuitem" className="lg:px-4 xl:px-12">
           <Link to="/" className='outline-plum-600 outline-offset-[-2px] py-0.5 px-4 hover:bg-gray-100 flex flex-col items-center justify-center lg:rounded'>

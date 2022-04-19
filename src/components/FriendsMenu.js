@@ -11,7 +11,7 @@ const FriendsMenu = () => {
     // Margin-top is chosen as height of the header + (mt-3)
     <div className="mt-[62px] md:bg-white md:h-full md:m-0 md:fixed md:w-[270px] md:shadow-md lg:w-[320px]">
       <h2 className='hidden md:block text-2xl font-bold p-4'>Friends</h2>
-      <nav role="navigation" aria-label="Friends menu">
+      <nav aria-label="Friends menu">
         <ul className='flex items-center justify-start ml-1 md:flex-col md:m-0 md:mx-2'>
           <li className='md:w-full mb-1'>
             <Link className={`rounded px-3 py-1 m-1 text-sm font-bold flex items-center justify-start ${page === '/friends' ? 'bg-teal-650 md:bg-gray-100 text-white hover:bg-teal-650' : 'bg-white md:bg-white md:text-plum-600 md:shadow-none shadow-sm hover:bg-gray-50'} md:text-black md:m-0 md:h-full md:w-full md:py-3 md:text-lg md:font-semibold md:hover:bg-gray-100 outline-plum-600`} to="/friends">

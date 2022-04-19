@@ -5,7 +5,6 @@ import SideFooter from "./SideFooter";
 import CreatePost from "./CreatePost";
 import { useState } from "react";
 import ErrorBoundary from "./utils/ErrorBoundary";
-import ImageAnalysis from "./ImageAnalysis";
 
 const Home = () => {
   // A method of updating the Feed when a new post is created, updated, or deleted. Update or change the feedKey state from within a child component to re-render the Feed component
@@ -29,7 +28,6 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <ImageAnalysis />
     </ErrorBoundary>
   )
 }

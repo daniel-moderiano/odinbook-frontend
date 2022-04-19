@@ -69,6 +69,7 @@ const Login = ({ setInitialLogin }) => {
                       value={formData.email}
                       onChange={handleChange}
                       required
+                      autocomplete="email"
                     />
                   </label>
                 </div>
@@ -83,6 +84,7 @@ const Login = ({ setInitialLogin }) => {
                       value={formData.password}
                       onChange={handleChange}
                       required
+                      autocomplete="current-password"
                     />
                   </label>
                 </div>

@@ -1,8 +1,8 @@
 import ProfilePic from "./utils/ProfilePic";
-import LikeCommentBtn from './LikeCommentBtn';
+import LikeCommentBtn from './buttons/LikeCommentBtn';
 import like from '../assets/like.png';
 import { useEffect, useState } from "react";
-import LikesModal from "./LikesModal";
+import LikesModal from "./modals/LikesModal";
 import { useDeleteComment } from "../hooks/useDeleteComment";
 import EditCommentForm from "./EditCommentForm";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -33,7 +33,7 @@ const Comment = ({ postId, commentData, updateKey }) => {
   return (
     <>
       <article className="flex items-start justify-start mb-4 pr-2">
-        <ProfilePic imgUrl={commentData.user.profilePic ? commentData.user.profilePic.imageUrl : null} styles="w-9 h-9 mr-2 mt-1 rounded-full"/>
+        <ProfilePic image={commentData.user.profilePic && commentData.user.profilePic} styles="w-9 h-9 mr-2 mt-1 rounded-full"/>
         <div className={`flex flex-col items-start justify-center ${editMode && 'w-full'}`}>
           <div className={`bg-zinc-200/50 rounded p-2.5 md:p-3 ${editMode && 'w-full'}`}>
             <div className="flex w-full items-center justify-between mb-1">

@@ -1,7 +1,7 @@
-import { useAuthContext } from '../hooks/useAuthContext';
-import Button from './utils/Button';
-import { useLikeComment } from '../hooks/useLikeComment';
-import { useToastContext } from '../context/ToastContext';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import Button from '../utils/Button';
+import { useLikeComment } from '../../hooks/useLikeComment';
+import { useToastContext } from '../../context/ToastContext';
 import { useEffect } from 'react';
 
 const LikeCommentBtn = ({ postId, comment, setLocalLike }) => {

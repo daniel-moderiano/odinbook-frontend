@@ -6,7 +6,6 @@ import FriendCard from "./FriendCard";
 import UserList from "./UserList";
 import SkeletonFriendCard from "./skeletons/SkeletonFriendCard";
 import { useErrorToast } from "../hooks/useErrorToast";
-import Footer from './Footer'
 
 const FriendsHome = () => {
   const { user } = useAuthContext();

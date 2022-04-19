@@ -1,16 +1,16 @@
 import FocusTrap from 'focus-trap-react';
 import { useEffect, useState } from 'react';
-import { useUpdatePost } from '../hooks/useUpdatePost';
-import { useToastContext } from '../context/ToastContext';
-import Button from './utils/Button';
-import ProfilePic from './utils/ProfilePic';
-import { useAuthContext } from '../hooks/useAuthContext';
-import ImageUploadBtn from './ImageUploadBtn';
-import { useImageThumbnail } from '../hooks/useImageThumbnail';
-import { useModalEvents } from '../hooks/useModalEvents';
-import { useErrorToast } from '../hooks/useErrorToast';
-import CloseIcon from './icons/CloseIcon';
-import EmojiPickerBtn from './EmojiPickerBtn'
+import { useUpdatePost } from '../../hooks/useUpdatePost';
+import { useToastContext } from '../../context/ToastContext';
+import Button from '../utils/Button';
+import ProfilePic from '../utils/ProfilePic';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import ImageUploadBtn from '../buttons/ImageUploadBtn';
+import { useImageThumbnail } from '../../hooks/useImageThumbnail';
+import { useModalEvents } from '../../hooks/useModalEvents';
+import { useErrorToast } from '../../hooks/useErrorToast';
+import CloseIcon from '../icons/CloseIcon';
+import EmojiPickerBtn from '../buttons/EmojiPickerBtn'
 
 const EditPostModal = ({ closeModal, post, updatePosts }) => {
   const { updatePost, response, loading, error } = useUpdatePost();
@@ -90,8 +90,8 @@ const EditPostModal = ({ closeModal, post, updatePosts }) => {
 
           <div className="w-full">
             <div className='flex items-center justify-start py-3'>
-              <ProfilePic imgUrl={user.profilePic ? user.profilePic.imageUrl : null} styles="w-10 h-10 mr-3 sm:mr-3 rounded-full"/>
-              <p className="block font-semibold hover:underlinemax-w-[200px]">{user.fullName}</p>
+              <ProfilePic image={user.profilePic && user.profilePic} styles="w-10 h-10 mr-3 sm:mr-3 rounded-full"/>
+              <p className="block font-semibold hover:underlinemax-w-[200px]">{`${user.firstName} ${user.lastName}`}</p>
             </div>
             <form className="w-full" onSubmit={handleSubmit}>
               <label htmlFor="postText" className='sr-only'>Post text</label>
