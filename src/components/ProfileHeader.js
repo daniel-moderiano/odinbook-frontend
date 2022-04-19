@@ -18,9 +18,11 @@ const ProfileHeader = ({ profileUser, profileType }) => {
       <div className="w-full absolute flex items-center justify-center top-7 md:top-14 lg:top-24 lg:justify-start max-w-4xl">
         <div className="relative">
           <ProfilePic image={profileUser.profilePic && profileUser.profilePic} styles="w-40 h-40 lg:w-44 lg:h-44 rounded-full border-4 border-white"/>
-          <button data-testid="camera" className="absolute rounded-full bg-gray-200 w-9 h-9 flex items-center justify-center bottom-4 right-0 border-gray-300 border hover:bg-gray-300 active:scale-95" aria-haspopup="dialog" onClick={() => setShowPicModal(true)}>
-            <CameraIcon iconFill="#000" iconStyles="w-5"/>
-          </button>
+          {profileType === 'ownProfile' && (
+            <button data-testid="camera" className="absolute rounded-full bg-gray-200 w-9 h-9 flex items-center justify-center bottom-4 right-0 border-gray-300 border hover:bg-gray-300 active:scale-95" aria-haspopup="dialog" onClick={() => setShowPicModal(true)}>
+              <CameraIcon iconFill="#000" iconStyles="w-5"/>
+            </button>
+          )}
         </div>
       </div>
       <div className="w-full px-6 mt-20 pt-2 flex flex-col items-center justify-center max-w-2xl lg:mt-10 lg:flex-row lg:justify-between lg:ml-36 lg:px-0 lg:items-end lg:pb-2">
