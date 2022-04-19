@@ -19,7 +19,7 @@ const ProfileHeader = ({ profileUser, profileType }) => {
         <div className="relative">
           <ProfilePic image={profileUser.profilePic && profileUser.profilePic} styles="w-40 h-40 lg:w-44 lg:h-44 rounded-full border-4 border-white"/>
           {profileType === 'ownProfile' && (
-            <button data-testid="camera" className="absolute rounded-full bg-gray-200 w-9 h-9 flex items-center justify-center bottom-4 right-0 border-gray-300 border hover:bg-gray-300 active:scale-95" aria-haspopup="dialog" onClick={() => setShowPicModal(true)}>
+            <button data-testid="camera" aria-label="Change profile picture" className="absolute rounded-full bg-gray-200 w-9 h-9 flex items-center justify-center bottom-4 right-0 border-gray-300 border hover:bg-gray-300 active:scale-95" aria-haspopup="dialog" onClick={() => setShowPicModal(true)}>
               <CameraIcon iconFill="#000" iconStyles="w-5"/>
             </button>
           )}

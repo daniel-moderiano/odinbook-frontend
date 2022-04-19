@@ -146,4 +146,4 @@ describe('Form validation', () => {
     expect(errorOne).toBeInTheDocument();
     expect(errorTwo).toBeInTheDocument();
   });
-})
+});

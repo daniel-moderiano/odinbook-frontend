@@ -126,7 +126,7 @@ describe("Text-only posts", () => {
   it("Shows comments section upon clicking comments button", () => {
     setup();
 
-    const commentsBtn =  screen.getByRole('button', { name: /1 comment/i });
+    const commentsBtn =  screen.getByRole('button', { name: /show comments/i });
     userEvent.click(commentsBtn);
 
     const comments = screen.getByTestId(/comments/i) 
@@ -172,14 +172,13 @@ describe("Image-containing posts", () => {
 
   it('Increases local like count when clicking like button', () => {
     setup();
-    const likeBtn = screen.getByRole('button', { name: /like/i });
+    const likeBtn = screen.getByRole('button', { name: 'Like' });
     userEvent.click(likeBtn);
 
     const likes = screen.getByText(/2/i) 
     expect(likes).toBeInTheDocument();
   })
 });
-
 
 describe("User-only post functions (update/delete)", () => {
   const setup = () => render(
@@ -242,7 +241,7 @@ describe('Post menu display tests', () => {
     const btn = screen.getByTestId(/menu/i);
     userEvent.click(btn);
     
-    const menuBtn = screen.getByRole('button', { name: /edit/i });
+    const menuBtn = screen.getByRole('menuitem', { name: /edit/i });
     userEvent.click(menuBtn);
   
     const menu = screen.queryByTestId('dropdown');
@@ -312,7 +311,7 @@ describe('Modal tests', () => {
     userEvent.click(btn);
 
     // Click delete post btn
-    const deleteBtn = screen.getByRole('button', { name: /delete/i });
+    const deleteBtn = screen.getByRole('menuitem', { name: /delete/i });
     userEvent.click(deleteBtn);
 
     const modal = screen.getByRole('dialog', { name: /delete post/i });
@@ -326,7 +325,7 @@ describe('Modal tests', () => {
     userEvent.click(btn);
 
     // Click delete post btn
-    const editBtn = screen.getByRole('button', { name: /edit/i });
+    const editBtn = screen.getByRole('menuitem', { name: /edit/i });
     userEvent.click(editBtn);
 
     const modal = screen.getByRole('dialog', { name: /edit post/i });
