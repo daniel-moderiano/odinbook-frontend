@@ -40,7 +40,7 @@ const CommentForm = ({ postId, updateComments }) => {
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
           required
-          className="w-full border rounded text-sm border-slate-300 py-2 px-3 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-plum-300/30 focus:border-plum-400"
+          className="w-full border rounded text-sm border-slate-300 py-2 pl-3 pr-7 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-plum-300/30 focus:border-plum-400"
           placeholder="Add a comment"
         />
         <div className='opacity-70 absolute right-0 p-1 rounded-full hover:opacity-90 hover:cursor-pointer active:opacity-100' onClick={() => setShowPicker((prevState) => !prevState)}>

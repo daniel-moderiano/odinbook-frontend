@@ -71,7 +71,7 @@ const ProfilePicModal = ({ closeModal, profileUser }) => {
           <header className='flex flex-col justify-start items-start w-full border-b'>
 
             <div className='flex justify-between items-center w-full pb-4'>
-              <h4 id="modal-title" className='text-xl font-semibold'>Edit profile picture</h4>
+              <h3 id="modal-title" className='text-xl font-semibold'>Edit profile picture</h3>
               <button type="button" className='rounded-full p-1 hover:bg-gray-100 active:scale-0.95 outline-plum-600' aria-label="close current window" onClick={closeModal}>
                 <CloseIcon iconStyles="w-6" iconFill="#1B1E22"/>
               </button>
