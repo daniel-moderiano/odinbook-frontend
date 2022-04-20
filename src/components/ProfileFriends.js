@@ -5,7 +5,7 @@ import { useErrorToast } from "../hooks/useErrorToast";
 import SkeletonFriendTile from './skeletons/SkeletonFriendTile';
 
 const ProfileFriends = ({ profileUser }) => {
-  const { data: friends, loading, error } = useFetchGet(`http://localhost:3000/api/users/${profileUser._id}/friends`);
+  const { data: friends, loading, error } = useFetchGet(`${process.env.REACT_APP_API_ROUTE}/users/${profileUser._id}/friends`);
 
   // Set up notifications
   useErrorToast(error, 'An error occurred while loading friends.');

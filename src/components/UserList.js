@@ -4,7 +4,7 @@ import FriendCard from "./FriendCard";
 import SkeletonFriendCard from "./skeletons/SkeletonFriendCard";
                            
 const UserList = ({ userFriends }) => {
-  const { data: users, loading, error } = useFetchGet(`http://localhost:3000/api/users`);
+  const { data: users, loading, error } = useFetchGet(`${process.env.REACT_APP_API_ROUTE}/users`);
   const { user: currentUser } = useAuthContext();
 
   // Returns false if a user is either involved in the current user's friends array (request or friend), or is the current user themselves. Should only be called once users data is available

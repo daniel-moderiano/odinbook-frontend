@@ -6,7 +6,7 @@ import { useErrorToast } from "../hooks/useErrorToast";
 import SkeletonPost from './skeletons/SkeletonPost';
 
 const ProfilePosts = ({ profileUser, profileType }) => {
-  const { data: posts, loading, error } = useFetchGet(`http://localhost:3000/api/users/${profileUser._id}/posts`);
+  const { data: posts, loading, error } = useFetchGet(`${process.env.REACT_APP_API_ROUTE}/users/${profileUser._id}/posts`);
   let navigate = useNavigate();
 
   // Set up notifications

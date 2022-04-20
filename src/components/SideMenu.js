@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 // Home page mini-menu of sorts that displays the user's image, and a link to their friends and profile pages
 const SideMenu = () => {
   const { user } = useAuthContext();
-  const { data: userDetails, loading, error } = useFetchGet(`http://localhost:3000/api/users/${user._id}`);
+  const { data: userDetails, loading, error } = useFetchGet(`${process.env.REACT_APP_API_ROUTE}/users/${user._id}`);
 
   return (
     <aside className='flex flex-col w-[350px] fixed'>
