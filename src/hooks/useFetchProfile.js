@@ -12,7 +12,7 @@ export const useFetchProfile = () => {
     setProfileUser(null);
 
     try {
-      const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_ROUTE}/users/${userId}`, {
         method: 'GET', 
         mode: 'cors', 
         headers: {

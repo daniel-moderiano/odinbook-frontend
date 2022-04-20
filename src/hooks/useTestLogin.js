@@ -11,7 +11,7 @@ export const useTestLogin = () => {
     setTestLoading(true);
     setTestError(null);
     try {
-      const response = await fetch('http://localhost:3000/api/users/login/test', {
+      const response = await fetch(`${process.env.REACT_APP_API_ROUTE}/users/login/test`, {
         method: 'POST', 
         mode: 'cors', 
         headers: {

@@ -12,7 +12,7 @@ export const useLikeComment = () => {
     setResponse(null);
 
     try {
-      const response = await fetch(`http://localhost:3000/api/posts/${postId}/comments/${commentId}/likes`, {
+      const response = await fetch(`${process.env.REACT_APP_API_ROUTE}/posts/${postId}/comments/${commentId}/likes`, {
         method: 'PUT', 
         mode: 'cors',
         credentials: 'include',

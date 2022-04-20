@@ -14,7 +14,7 @@ export const useDeleteAccount = () => {
     setResponse(null);
 
     try {
-      const response = await fetch(`http://localhost:3000/api/users/${userId}/account`, {
+      const response = await fetch(`${process.env.REACT_APP_API_ROUTE}/users/${userId}/account`, {
         method: 'DELETE', 
         mode: 'cors',
         credentials: 'include',

@@ -12,7 +12,7 @@ export const useUpdateProfilePic = () => {
     setResponse(null);
 
     try {
-      const response = await fetch(`http://localhost:3000/api/users/${userId}/profile-pic`, {
+      const response = await fetch(`${process.env.REACT_APP_API_ROUTE}/users/${userId}/profile-pic`, {
         method: 'PUT', 
         mode: 'cors', 
         credentials: 'include',

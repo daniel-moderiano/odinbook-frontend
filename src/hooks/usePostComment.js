@@ -12,7 +12,7 @@ export const usePostComment = () => {
     setResponse(null);
 
     try {
-      const response = await fetch(`http://localhost:3000/api/posts/${postId}/comments`, {
+      const response = await fetch(`${process.env.REACT_APP_API_ROUTE}/posts/${postId}/comments`, {
         method: 'POST', 
         mode: 'cors', 
         headers: {

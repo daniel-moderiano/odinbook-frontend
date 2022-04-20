@@ -8,7 +8,7 @@ export const useCurrentUser = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('http://localhost:3000/api/users/current', {
+      const response = await fetch(`${process.env.REACT_APP_API_ROUTE}/users/current`, {
         method: 'GET',
         mode: 'cors',
         credentials: 'include'

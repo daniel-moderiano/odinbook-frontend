@@ -12,7 +12,7 @@ export const useLikePost = () => {
     setResponse(null);
 
     try {
-      const response = await fetch(`http://localhost:3000/api/posts/${postId}/likes`, {
+      const response = await fetch(`${process.env.REACT_APP_API_ROUTE}/posts/${postId}/likes`, {
         method: 'PUT', 
         mode: 'cors',
         credentials: 'include',

@@ -12,7 +12,7 @@ export const useUpdatePost = () => {
     setResponse(null);
 
     try {
-      const response = await fetch(`http://localhost:3000/api/posts/${postId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_ROUTE}/posts/${postId}`, {
         method: 'PUT', 
         mode: 'cors', 
         credentials: 'include',

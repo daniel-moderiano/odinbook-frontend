@@ -12,7 +12,7 @@ export const useSignup = () => {
     setError(null);
     setFormError(null);
     try {
-      const response = await fetch('http://localhost:3000/api/users/register', {
+      const response = await fetch(`${process.env.REACT_APP_API_ROUTE}/users/register`, {
         method: 'POST', 
         mode: 'cors', 
         headers: {
