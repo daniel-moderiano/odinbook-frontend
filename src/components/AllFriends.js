@@ -31,7 +31,7 @@ const AllFriends = () => {
                 {friends.acceptedFriends.length > 0 ? (
                   <ul className="flex flex-wrap items-center justify-start">
                     {friends.acceptedFriends.map((friend, index) => (
-                      <li className="w-full" key={friend._id}>
+                      <li className="w-full lg:w-auto" key={friend._id}>
                         <FriendCard friendData={friend.user} type="friend"/>
                       </li>
                     ))}

@@ -5,7 +5,6 @@ import SideFooter from "./SideFooter";
 import CreatePost from "./CreatePost";
 import { useState } from "react";
 import ErrorBoundary from "./utils/ErrorBoundary";
-import Toast from "./utils/Toast";
 
 const Home = () => {
   // A method of updating the Feed when a new post is created, updated, or deleted. Update or change the feedKey state from within a child component to re-render the Feed component

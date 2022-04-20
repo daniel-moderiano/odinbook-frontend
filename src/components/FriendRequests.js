@@ -31,7 +31,7 @@ const FriendRequests = () => {
                   {friends.incomingRequests.length > 0 ? (
                     <ul className="flex flex-wrap items-center justify-start">
                       {friends.incomingRequests.map((request) => (
-                        <li className="w-full" key={request._id}>
+                        <li className="w-full lg:w-auto" key={request._id}>
                           <FriendCard friendData={request.user} type="incoming"/>
                         </li>
                       ))}
@@ -64,7 +64,7 @@ const FriendRequests = () => {
                   {friends.outgoingRequests.length > 0 ? (
                     <ul className="flex flex-wrap items-center justify-start">
                       {friends.outgoingRequests.map((request) => (
-                        <li className="w-full" key={request._id}>
+                        <li className="w-full lg:w-auto" key={request._id}>
                           <FriendCard friendData={request.user} type="outgoing"/>
                         </li>
                       ))}

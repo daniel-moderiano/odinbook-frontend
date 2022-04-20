@@ -23,13 +23,14 @@ const UserList = ({ userFriends }) => {
       {users && (
         <ul className="flex flex-wrap items-center justify-start">
           {users.users.map((userDetails) => {
-            if (!isRelatedUser(userDetails._id)) {
+            if (!isRelatedUser(userDetails._id)) {    // only render those unrelated users
               return (
-              <li className="w-full"  key={userDetails._id}>
+              <li className="w-full lg:w-auto" key={userDetails._id}>
                 <FriendCard friendData={userDetails} type="user"/>
               </li>
               )
             }
+            return null;    // .map() expects a return value in every case, hence null here
           })}
         </ul>
       )}
