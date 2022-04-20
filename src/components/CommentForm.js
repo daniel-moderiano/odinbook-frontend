@@ -3,14 +3,12 @@ import { useState, useEffect } from 'react';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { usePostComment } from '../hooks/usePostComment';
 import { useErrorToast } from '../hooks/useErrorToast';
-import Picker from 'emoji-picker-react';
 import EmojiPickerBtn from './buttons/EmojiPickerBtn';
 
 const CommentForm = ({ postId, updateComments }) => {
   const { user } = useAuthContext();
   const { postComment, response, loading, error } = usePostComment();
   const [commentText, setCommentText] = useState('');
-  const [showPicker, setShowPicker] = useState(false);
 
   // Set up notifications.
   useErrorToast(error, 'An error occurred while posting the comment.');
