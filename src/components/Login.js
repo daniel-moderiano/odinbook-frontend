@@ -40,7 +40,7 @@ const Login = ({ setInitialLogin }) => {
 
   // Open the facebook auth page by a direct URL request to the backend API url
   const FacebookLogin = () => {
-    window.open('https://odinbook-dm.herokuapp.com/auth/facebook', "_self");
+    window.open('http://localhost:3000/auth/facebook', "_self");
   };
 
   return (
