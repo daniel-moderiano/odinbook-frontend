@@ -49,15 +49,15 @@ const Comment = ({ postId, commentData, updateKey }) => {
           <footer className="flex items-center justify-between py-1 pl-0.5 w-full">
             <div className="flex">
               <LikeCommentBtn postId={postId} comment={commentData} setLocalLike={setLocalLike}/>
-              <button className="text-xs text-gray-500 flex items-center justify-center hover:underline hover:decoration-gray-600" onClick={() => setShowModal(true)}>
+              <button className="text-xs text-gray-500 flex items-center justify-center hover:underline hover:decoration-gray-600 outline-plum-600 outline-offset-2 w-full" onClick={() => setShowModal(true)}>
                 <img src={like} alt="Love heart" className='w-3 mr-1 mb-px' />
                 <span className='mt-px'>{commentData.numLikes + localLike}</span>
               </button>
             </div>
             {commentData.user._id === user._id && (
               <div className="flex items-center justify-center">
-                <button className="text-xs text-gray-500 mr-3 font-medium hover:text-gray-700  disabled:hover:bg-transparent" onClick={() => setEditMode(true)}>Edit</button>
-                <button className="text-xs text-gray-500 font-medium hover:text-red-700 disabled:hover:bg-transparent" onClick={() => deleteComment(postId, commentData._id)}>
+                <button className="text-xs text-gray-500 mr-3 font-medium hover:text-gray-700  disabled:hover:bg-transparent outline-plum-600 outline-offset-2" onClick={() => setEditMode(true)}>Edit</button>
+                <button className="text-xs text-gray-500 font-medium hover:text-red-700 disabled:hover:bg-transparent outline-plum-600 outline-offset-2" onClick={() => deleteComment(postId, commentData._id)}>
                   {loading ? 'Deleting...' : 'Delete'}
                 </button>
               </div>

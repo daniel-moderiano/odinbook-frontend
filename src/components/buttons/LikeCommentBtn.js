@@ -48,7 +48,7 @@ const LikeCommentBtn = ({ postId, comment, setLocalLike }) => {
   }
 
   return (
-    <Button customStyles="text-xs text-gray-500 mr-3 font-medium hover:bg-gray-100 rounded w-full disabled:hover:bg-transparent" disabled={disableButton()} onClick={() => {
+    <Button customStyles="text-xs text-gray-500 mr-3 font-medium hover:bg-gray-100 rounded w-full disabled:hover:bg-transparent outline-plum-600" disabled={disableButton()} onClick={() => {
       likeComment(postId, comment._id);
       setLocalLike(1);    // Ensures a local state change and re-render of likes. Reverted if error occurs
     }}>
