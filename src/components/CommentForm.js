@@ -41,29 +41,11 @@ const CommentForm = ({ postId, updateComments }) => {
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
           required
-          className="w-full border rounded text-sm border-slate-300 py-2 pl-3 pr-7 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-plum-300/30 focus:border-plum-400"
+          className="w-full border rounded text-sm border-slate-300 py-2 pl-3 pr-12 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-plum-300/30 focus:border-plum-400"
           placeholder="Add a comment"
         />
-        <EmojiPickerBtn onEmojiClick={onEmojiClick}/>
-        <div className='opacity-70 absolute right-0 p-1 rounded-full hover:opacity-90 hover:cursor-pointer active:opacity-100' onClick={() => setShowPicker((prevState) => !prevState)}>
-          🙂
-          {showPicker && (
-            <div className="relative">
-              <Picker 
-                onEmojiClick={onEmojiClick}
-                native={true}
-                disableSearchBar={true}
-                groupVisibility={{
-                  recently_used: false,
-                }}
-                pickerStyle={{ 
-                  height: '300px', 
-                  position: 'absolute',
-                  right: '0'
-                }}
-              />
-            </div>
-          )}
+        <div className='absolute right-0 top-1'>
+          <EmojiPickerBtn onEmojiClick={onEmojiClick} modal={false}/>
         </div>
         {commentText.length > 0 && (
           <button className='text-sm font-medium px-2 py-0.5 mt-3 ml-0.5 bg-plum-400 border border-plum-400 text-white shadow-md hover:bg-plum-300 hover:border-plum-300 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-plum-300/30 disabled:bg-gray-100 disabled:text-gray-400 disabled:shadow-none disabled:border-gray-100'>

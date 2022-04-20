@@ -3,12 +3,11 @@ import Picker from 'emoji-picker-react';
 
 // Creating an accessible button that opens the Emoji picker component
 // The third party emoji picker itself is hardly accessible which is a pain in the ass. For the purposes of this project it is acceptible, but in a production app this would be removed and generated from scratch
-const EmojiPickerBtn = ({ onEmojiClick }) => {
+const EmojiPickerBtn = ({ onEmojiClick, modal }) => {
   const [showPicker, setShowPicker] = useState(false);
 
   // Add accessible handlers for enter and space key press
   const handleKeyPress = (e) => {
-    console.log(e.key);
     const openBtn = document.querySelector('#openPicker');
     if (e.key === 'Enter' || e.key === ' ') {
       openBtn.click();
@@ -36,10 +35,11 @@ const EmojiPickerBtn = ({ onEmojiClick }) => {
               recently_used: false,
             }}
             pickerStyle={{ 
-              height: '200px', 
+              height: modal ? '200px' : '300px', 
               position: 'absolute',
-              left: '100%',
-              bottom: '100%'
+              left: modal && '50%',
+              bottom: modal ? '100%' : '38px',
+              right: !modal && '0',
             }}
           />
         </div>

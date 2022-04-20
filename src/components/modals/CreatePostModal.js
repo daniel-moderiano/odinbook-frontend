@@ -114,7 +114,7 @@ const CreatePostModal = ({ closeModal, updatePosts }) => {
 
             <div className='flex items-center justify-between'>
               <div className='flex items-center'>
-                <EmojiPickerBtn onEmojiClick={onEmojiClick} />
+                <EmojiPickerBtn onEmojiClick={onEmojiClick} modal={true}/>
                 <ImageUploadBtn handleChange={(e) => handleFile(e.target.files[0])} imageValue={imageValue} setImageValue={setImageValue} setImageFile={setImageFile}/>
               </div>
               
