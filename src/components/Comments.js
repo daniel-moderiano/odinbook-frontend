@@ -5,7 +5,7 @@ import SkeletonComment from './skeletons/SkeletonComment';
 import { useErrorToast } from '../hooks/useErrorToast';
 
 const Comments = ({ postId, updateCommentCount, updateKey }) => {
-  const { data: comments, loading, error } = useFetchGet(`http://localhost:3000/api/posts/${postId}/comments`);
+  const { data: comments, loading, error } = useFetchGet(`${process.env.REACT_APP_API_ROUTE}/posts/${postId}/comments`);
 
   // Set up notifications. 
   useErrorToast(error, 'An error occurred while loading comments.');

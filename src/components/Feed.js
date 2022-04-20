@@ -7,7 +7,7 @@ import { useErrorToast } from '../hooks/useErrorToast';
 
 const Feed = ({ updatePosts }) => {
   const { user } = useAuthContext();
-  const { data: posts, loading, error } = useFetchGet(`http://localhost:3000/api/users/${user._id}/feed`);
+  const { data: posts, loading, error } = useFetchGet(`${process.env.REACT_APP_API_ROUTE}/users/${user._id}/feed`);
 
   // Set up notifications 
   useErrorToast(error, 'An error occurred while loading feed.');

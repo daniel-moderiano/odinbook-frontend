@@ -8,7 +8,7 @@ import { useErrorToast } from "../hooks/useErrorToast";
 
 const FriendRequests = () => {
   const { user } = useAuthContext();
-  const { data: friends, loading, error } = useFetchGet(`http://localhost:3000/api/users/${user._id}/friends`);
+  const { data: friends, loading, error } = useFetchGet(`${process.env.REACT_APP_API_ROUTE}/users/${user._id}/friends`);
 
   useErrorToast(error, 'An error occurred while loading requests');
 

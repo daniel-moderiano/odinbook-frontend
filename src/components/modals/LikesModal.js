@@ -9,7 +9,7 @@ import CloseIcon from '../icons/CloseIcon'
 
 const LikesModal = ({ postId, commentId, closeModal }) => {
   // Amend the fetch URL if comment ID is present (i.e. fetching likes for comment instead of post)
-  const { data: likes, loading, error } = useFetchGet(`http://localhost:3000/api/posts/${postId}/${commentId ? `comments/${commentId}/likes` : 'likes'}`);
+  const { data: likes, loading, error } = useFetchGet(`${process.env.REACT_APP_API_ROUTE}/posts/${postId}/${commentId ? `comments/${commentId}/likes` : 'likes'}`);
 
   useModalEvents(closeModal);
 
