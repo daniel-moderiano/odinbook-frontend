@@ -35,14 +35,14 @@ const Comment = ({ postId, commentData, updateKey }) => {
     <>
       <article className="flex items-start justify-start mb-4 pr-2">
 
-        <Link to={`/profile/${commentData.user._id}`} className="hover:opacity-95 active:opacity-100 mr-2 mt-1 outline-plum-600">
+        <Link to={`/profile/${commentData.user._id}`} className="hover:opacity-95 active:opacity-100 mr-2 mt-1 outline-plum-600 shrink-0">
           <ProfilePic image={commentData.user.profilePic && commentData.user.profilePic} styles="w-9 h-9 mt-1 rounded-full"/>
         </Link>
 
         <div className={`flex flex-col items-start justify-center ${editMode && 'w-full'} max-w-full overflow-hidden`}>
           <div className={`bg-zinc-200/50 rounded p-2.5 md:p-3 ${editMode && 'w-full'} max-w-full`}>
             <div className="flex w-full items-center justify-between mb-1">
-              <Link to={`/profile/${commentData.user._id}`} className="font-semibold text-sm mr-4">{commentData.user.fullName}</Link>
+              <Link to={`/profile/${commentData.user._id}`} className="font-semibold text-sm mr-4 hover:underline">{commentData.user.fullName}</Link>
               <p className="text-xs text-gray-500">{commentData.dateAdded}</p>
             </div>
             {editMode ? (
