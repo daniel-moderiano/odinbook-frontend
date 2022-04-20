@@ -2,10 +2,12 @@ import { useLogout } from "../hooks/useLogout";
 import { Link } from 'react-router-dom'
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useKeyboardNavigation } from '../hooks/useKeyboardNavigation';
+import { useToastContext } from '../context/ToastContext';
 
 const DropdownMenu = ({ closeMenu }) => {
   const { logout } = useLogout();
   const { user } = useAuthContext();
+  const { showToast } = useToastContext();
 
   useKeyboardNavigation();
 
@@ -25,6 +27,7 @@ const DropdownMenu = ({ closeMenu }) => {
         <button role="menuitem" onClick={() => {
           closeMenu();
           logout();
+          showToast('success', 'Logged out successfully')
           }} className="bg-white py-2 px-3 hover:bg-gray-100 w-full text-left rounded outline-plum-500 outline-offset-[-1px]">
           Log out
         </button>
