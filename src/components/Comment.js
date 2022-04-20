@@ -7,6 +7,7 @@ import { useDeleteComment } from "../hooks/useDeleteComment";
 import EditCommentForm from "./EditCommentForm";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useErrorToast } from '../hooks/useErrorToast';
+import { Link } from "react-router-dom";
 
 const Comment = ({ postId, commentData, updateKey }) => {
   const { deleteComment, response, loading, error } = useDeleteComment();
@@ -33,12 +34,15 @@ const Comment = ({ postId, commentData, updateKey }) => {
   return (
     <>
       <article className="flex items-start justify-start mb-4 pr-2">
-        <ProfilePic image={commentData.user.profilePic && commentData.user.profilePic} styles="w-9 h-9 mr-2 mt-1 rounded-full"/>
+
+        <Link to={`/profile/${commentData.user._id}`} className="hover:opacity-95 active:opacity-100 mr-2 mt-1 outline-plum-600">
+          <ProfilePic image={commentData.user.profilePic && commentData.user.profilePic} styles="w-9 h-9 mt-1 rounded-full"/>
+        </Link>
 
         <div className={`flex flex-col items-start justify-center ${editMode && 'w-full'} max-w-full overflow-hidden`}>
           <div className={`bg-zinc-200/50 rounded p-2.5 md:p-3 ${editMode && 'w-full'} max-w-full`}>
             <div className="flex w-full items-center justify-between mb-1">
-              <p className="font-semibold text-sm mr-4">{commentData.user.fullName}</p>
+              <Link to={`/profile/${commentData.user._id}`} className="font-semibold text-sm mr-4">{commentData.user.fullName}</Link>
               <p className="text-xs text-gray-500">{commentData.dateAdded}</p>
             </div>
             {editMode ? (
