@@ -77,7 +77,7 @@ const Post = ({ post, updatePosts }) => {
        
       </section>
       <section>
-        <h3 className='px-4 py-2'>{post.text}</h3>
+        <h3 className='px-4 py-2 break-words'>{post.text}</h3>
         {post.image && (
           <img src={post.image.imageUrl} alt={post.image.altText} className='w-full' />
         )}
