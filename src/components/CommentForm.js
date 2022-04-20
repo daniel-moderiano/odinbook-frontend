@@ -4,6 +4,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { usePostComment } from '../hooks/usePostComment';
 import { useErrorToast } from '../hooks/useErrorToast';
 import Picker from 'emoji-picker-react';
+import EmojiPickerBtn from './buttons/EmojiPickerBtn';
 
 const CommentForm = ({ postId, updateComments }) => {
   const { user } = useAuthContext();
@@ -43,6 +44,7 @@ const CommentForm = ({ postId, updateComments }) => {
           className="w-full border rounded text-sm border-slate-300 py-2 pl-3 pr-7 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-plum-300/30 focus:border-plum-400"
           placeholder="Add a comment"
         />
+        <EmojiPickerBtn onEmojiClick={onEmojiClick}/>
         <div className='opacity-70 absolute right-0 p-1 rounded-full hover:opacity-90 hover:cursor-pointer active:opacity-100' onClick={() => setShowPicker((prevState) => !prevState)}>
           🙂
           {showPicker && (
