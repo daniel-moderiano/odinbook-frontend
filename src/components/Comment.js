@@ -53,7 +53,7 @@ const Comment = ({ postId, commentData, updateKey }) => {
               <LikeCommentBtn postId={postId} comment={commentData} setLocalLike={setLocalLike}/>
               <button className="text-xs text-gray-500 flex items-center justify-center hover:underline hover:decoration-gray-600 outline-plum-600 outline-offset-2 w-full" onClick={() => setShowModal(true)}>
                 <img src={like} alt="Love heart" className='w-3 mr-1 mb-px' />
-                <span className='mt-px'>{commentData.numLikes + localLike}</span>
+                <span>{commentData.numLikes + localLike}</span>
               </button>
             </div>
             {commentData.user._id === user._id && (
