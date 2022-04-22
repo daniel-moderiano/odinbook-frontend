@@ -59,7 +59,7 @@ const SideMenu = () => {
               <ProfileIcon iconStyles="w-7 mr-3" />
               View profile
             </StyledLink>
-            <StyledLink to={`/friends`} design="btn-ghost-lg">
+            <StyledLink to={`/friends`} design="btn-ghost">
               <FriendsIcon iconStyles="w-7 mr-3" />
               Friends
             </StyledLink>

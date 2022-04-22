@@ -118,7 +118,7 @@ const Login = ({ setInitialLogin }) => {
               </Button>
 
               <div>
-                <StyledLink to="/signup" design="btn-secondary" customStyles="w-56 mt-12 font-semibold">Create new account</StyledLink>
+                <StyledLink to="/signup" design="btn-teal" customStyles="w-56 mt-12 font-semibold">Create new account</StyledLink>
                 <TestLoginBtn />
               </div>
               

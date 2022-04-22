@@ -155,7 +155,7 @@ const Signup = () => {
                 </Button>
               </form>
 
-              <StyledLink to="/login" design="btn-secondary" customStyles="w-60 mt-12 font-semibold">Already have an account?</StyledLink>
+              <StyledLink to="/login" design="btn-teal" customStyles="w-60 mt-12 font-semibold">Already have an account?</StyledLink>
 
             </div>
           </div>

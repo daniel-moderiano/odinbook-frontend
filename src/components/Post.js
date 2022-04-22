@@ -1,6 +1,5 @@
 import Button from './utils/Button';
 import like from '../assets/like.png'
-import StyledLink from './utils/StyledLink';
 import ProfilePic from './utils/ProfilePic';
 import LikesModal from './modals/LikesModal';
 import { useState } from 'react';
@@ -57,7 +56,7 @@ const Post = ({ post, updatePosts }) => {
           </Link>
           <div>
             <h4>
-              <StyledLink to={`/profile/${post.user._id}`} customStyles="font-bold hover:underline sm:text-base text-sm max-w-[200px] outline-plum-600 outline-offset-2">{post.user.fullName}</StyledLink>
+              <Link to={`/profile/${post.user._id}`} className="font-bold hover:underline sm:text-base text-sm max-w-[200px] outline-plum-600 outline-offset-2">{post.user.fullName}</Link>
             </h4>
             <p className="block text-xs sm:text-sm text-gray-600">{post.datePosted}</p>
           </div>  
