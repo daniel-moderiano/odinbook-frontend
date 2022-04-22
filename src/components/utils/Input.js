@@ -1,4 +1,4 @@
-// Basic text input component with default yellow ring styling
+// Multi-type input with most basic input props.Comes with standard purple focus ring styling for app-wide consistency
 const Input = (props) => {
   const { id, name, value, onChange, customStyles, required, type, placeholder, autocomplete } = props;
   return (

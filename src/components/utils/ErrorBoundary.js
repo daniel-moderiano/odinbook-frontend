@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './Button';
 
-// Code taken from the React Error Boundary docs with small adjustments
+// Code taken from the React Error Boundary docs with small adjustments. Used to catch component wide errors (errors of any children components that are not handled at the time of throwing)
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
