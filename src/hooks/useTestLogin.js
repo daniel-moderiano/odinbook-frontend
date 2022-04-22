@@ -6,8 +6,8 @@ export const useTestLogin = () => {
   const [testLoading, setTestLoading] = useState(false);
   const { dispatch } = useAuthContext();
 
-  // Submits request to test-specific login route. All login details are kept securely on backend
-  const testLogin = async (formData) => {
+  // Submits request to test-specific login route. All login details are kept securely on backend so no data is POSTed
+  const testLogin = async () => {
     setTestLoading(true);
     setTestError(null);
     try {
@@ -28,7 +28,7 @@ export const useTestLogin = () => {
         setTestError(null);
         dispatch({ type: 'LOGIN', payload: responseJSON.user });
         return;
-      } else {    // error with login request. Can only be server error
+      } else {    // error with login request. Can only be server error (as opposed to wrong username/password)
         setTestError({ errorMsg: 'An unknown error occurred while logging in.' })
         setTestLoading(false);
       }

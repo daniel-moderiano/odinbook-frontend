@@ -36,8 +36,8 @@ const ProfileHeader = ({ profileUser, profileType }) => {
           {profileType === 'friend' && (
             <UnfriendRequestButton userId={profileUser._id} customStyles="w-40"/>
           )}
-          {profileType === 'ownProfile' && (
-            <Button onClick={() => setShowEditModal(true)} design="primary" customStyles="w-40">Edit profile</Button>
+          {profileType === 'ownProfile' && (    // disable edit features for test account
+            <Button onClick={() => setShowEditModal(true)} design="primary" customStyles="w-40" disabled={profileUser._id === '6253eafa7c5f03b0906cc7b5'}>Edit profile</Button>
           )}
           {profileType === 'nonFriend' && (
             <SendRequestButton design="primary" customStyles="w-40" userId={profileUser._id}/>

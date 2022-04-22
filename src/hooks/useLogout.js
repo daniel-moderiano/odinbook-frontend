@@ -6,6 +6,7 @@ export const useLogout = () => {
   const [loading, setLoading] = useState(false);
   const { dispatch } = useAuthContext();
 
+  // Export logout function to allow an easy-to-access function that can be called on button click or similar
   const logout = async () => {
     setError(null);
     setLoading(true);

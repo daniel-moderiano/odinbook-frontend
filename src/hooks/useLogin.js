@@ -7,7 +7,7 @@ export const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const { dispatch } = useAuthContext();
 
-  // Accepts formData param - an object containing the relevant fields/values for login request
+  // Call this function with the FormData object created using relevant user login data
   const login = async (formData) => {
     setLoading(true);
     setError(null);
