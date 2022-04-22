@@ -5,7 +5,7 @@ import Signup from "./components/Signup";
 import FriendsHome from "./components/FriendsHome";
 import AllFriends from "./components/AllFriends";
 import FriendRequests from "./components/FriendRequests";
-import { useAuthContext } from "./context/AuthContext";
+import { useAuthContext } from "./hooks/useAuthContext";
 import Profile from "./components/Profile";
 import { useLocation } from "react-router-dom";
 import { useContext, useEffect } from "react";

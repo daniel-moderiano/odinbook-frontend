@@ -1,6 +1,6 @@
 import ProfilePic from '../utils/ProfilePic';
 import DropdownMenu from "../DropdownMenu";
-import { useAuthContext } from '../../context/AuthContext';
+import { useAuthContext } from "../../hooks/useAuthContext";
 import CaretIcon from '../icons/CaretIcon';
 import { useDropdownMenu } from '../../hooks/useDropdownMenu';
 

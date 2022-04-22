@@ -1,6 +1,6 @@
 import ProfilePic from './utils/ProfilePic';
 import { useState, useEffect } from 'react';
-import { useAuthContext } from '../context/AuthContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 import { usePostComment } from '../hooks/usePostComment';
 import { useErrorToast } from '../hooks/useErrorToast';
 import EmojiPickerBtn from './buttons/EmojiPickerBtn';

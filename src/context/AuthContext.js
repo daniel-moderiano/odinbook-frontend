@@ -58,15 +58,3 @@ export const AuthContextProvider = ({ children }) => {
     </AuthContext.Provider>
   )
 };
-
-// Custom hook to allow components to access the context
-export const useAuthContext = () => {
-  const context = useContext(AuthContext);
-
-  // Check the component calling this hook is wrapped in context provider
-  if (!context) {
-    throw Error('useAuthContext must be inside an AuthContextProvider');
-  }
-
-  return context;
-}

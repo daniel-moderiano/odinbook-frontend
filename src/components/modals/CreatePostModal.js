@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useCreatePost } from '../../hooks/useCreatePost';
 import { useToastContext } from '../../context/ToastContext';
 import Button from '../utils/Button';
-import { useAuthContext } from '../../context/AuthContext';
+import { useAuthContext } from '../../hooks/useAuthContext';
 import ProfilePic from '../utils/ProfilePic';
 import ImageUploadBtn from '../buttons/ImageUploadBtn';
 import { useModalEvents } from '../../hooks/useModalEvents';

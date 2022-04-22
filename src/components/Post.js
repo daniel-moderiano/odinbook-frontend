@@ -7,7 +7,7 @@ import { useState } from 'react';
 import LikeBtn from './buttons/LikeBtn';
 import Comments from './Comments';
 import CommentForm from './CommentForm';
-import { useAuthContext } from '../context/AuthContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 import PostMenu from './PostMenu';
 import DeletePostModal from './modals//DeletePostModal';
 import EditPostModal from './modals/EditPostModal';

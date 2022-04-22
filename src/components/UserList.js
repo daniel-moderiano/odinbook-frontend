@@ -1,4 +1,4 @@
-import { useAuthContext } from "../context/AuthContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 import { useFetchGet } from "../hooks/useFetchGet"
 import FriendCard from "./FriendCard";
 import SkeletonFriendCard from "./skeletons/SkeletonFriendCard";
