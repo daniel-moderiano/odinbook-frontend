@@ -19,7 +19,7 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
   let navigate = useNavigate();
 
   // Custom useEffect-style hook to control modal closing on esc and outside click
-  useModalEvents(closeModal);
+  useModalEvents('EditProfileModal', closeModal)
 
   // Set up notifications
   useErrorToast(error, 'An error occurred while saving changes.');
@@ -61,7 +61,7 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
 
   return (
     <FocusTrap>
-      <div id='Modal' aria-modal="true" role="dialog" aria-labelledby="modal-title" className='flex fixed z-[1000] left-0 top-0 h-full w-full overflow-auto bg-gray-700/70 justify-center items-center'>
+      <div id='EditProfileModal' aria-modal="true" role="dialog" aria-labelledby="modal-title" className='flex fixed z-[1000] left-0 top-0 h-full w-full overflow-auto bg-gray-700/70 justify-center items-center'>
 
         <div className='bg-white w-full max-w-md px-6 py-6 flex flex-col items-start rounded shadow-md max-h-full overflow-auto'>
 

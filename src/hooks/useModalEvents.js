@@ -10,6 +10,7 @@ export const useModalEvents = (closeModal) => {
       }
     }
 
+    // Close modal on escape
     const escClose = (event) => {
       if (event.key === 'Escape') {
         closeModal();

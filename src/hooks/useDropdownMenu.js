@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 export const useDropdownMenu = () => {
   const [showMenu, setShowMenu] = useState(null);
 
-  const toggleMenu = async () => {
+  const toggleMenu = () => {
     setShowMenu((prevState) => !prevState);
   };
 

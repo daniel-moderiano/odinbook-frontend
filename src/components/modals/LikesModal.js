@@ -3,19 +3,19 @@ import { Link } from 'react-router-dom';
 import { useFetchGet } from '../../hooks/useFetchGet';
 import ProfilePic from '../utils/ProfilePic';
 import like from '../../assets/like.png';
-import { useModalEvents } from '../../hooks/useModalEvents';
 import SkeletonLike from '../skeletons/SkeletonLike';
 import CloseIcon from '../icons/CloseIcon'
+import { useCloseEvents } from '../../hooks/useCloseEvents';
 
 const LikesModal = ({ postId, commentId, closeModal }) => {
   // Amend the fetch URL if comment ID is present (i.e. fetching likes for comment instead of post)
   const { data: likes, loading, error } = useFetchGet(`${process.env.REACT_APP_API_ROUTE}/posts/${postId}/${commentId ? `comments/${commentId}/likes` : 'likes'}`);
 
-  useModalEvents(closeModal);
+  useCloseEvents('LikesModal', closeModal);
 
   return (
     <FocusTrap>
-      <div id='Modal' aria-modal="true" role="dialog" aria-labelledby="modal-title" className='flex fixed z-[1000] left-0 top-0 h-full w-full overflow-auto bg-gray-700/70 justify-center items-center'>
+      <div id='LikesModal' aria-modal="true" role="dialog" aria-labelledby="modal-title" className='flex fixed z-[1000] left-0 top-0 h-full w-full overflow-auto bg-gray-700/70 justify-center items-center'>
 
         <div className='bg-white w-full max-w-md p-5 flex flex-col items-start rounded shadow-md max-h-full overflow-auto'>
 

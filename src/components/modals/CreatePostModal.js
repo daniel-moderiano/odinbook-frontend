@@ -11,6 +11,7 @@ import { useImageThumbnail } from '../../hooks/useImageThumbnail';
 import { useErrorToast } from '../../hooks/useErrorToast';
 import CloseIcon from '../icons/CloseIcon';
 import EmojiPickerBtn from '../buttons/EmojiPickerBtn';
+import { useCloseEvents } from '../../hooks/useCloseEvents';
 
 const CreatePostModal = ({ closeModal, updatePosts }) => {
   const { createPost, response, loading, error } = useCreatePost();
@@ -28,8 +29,7 @@ const CreatePostModal = ({ closeModal, updatePosts }) => {
 
   const [postText, setPostText] = useState('');
   
-  // Custom useEffect-style hook to control modal closing on esc and outside click
-  useModalEvents(closeModal);
+  useCloseEvents('CreatePostModal', closeModal);
 
   // Convert to FormData object to allow backend processing with Express Multer middleware
   const handleSubmit = (e)  => {
@@ -61,7 +61,7 @@ const CreatePostModal = ({ closeModal, updatePosts }) => {
 
   return (
     <FocusTrap>
-      <div id='Modal' aria-modal="true" role="dialog" aria-labelledby="modal-title" className='flex fixed z-[1000] left-0 top-0 h-full w-full overflow-auto bg-gray-700/70 justify-center items-center'>
+      <div id='CreatePostModal' aria-modal="true" role="dialog" aria-labelledby="modal-title" className='flex fixed z-[1000] left-0 top-0 h-full w-full overflow-auto bg-gray-700/70 justify-center items-center'>
 
         <div className='bg-white w-full  max-w-md px-5 py-4 flex flex-col items-start rounded shadow-md max-h-full overflow-auto'>
 

@@ -7,10 +7,10 @@ import ProfilePic from '../utils/ProfilePic';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import ImageUploadBtn from '../buttons/ImageUploadBtn';
 import { useImageThumbnail } from '../../hooks/useImageThumbnail';
-import { useModalEvents } from '../../hooks/useModalEvents';
 import { useErrorToast } from '../../hooks/useErrorToast';
 import CloseIcon from '../icons/CloseIcon';
 import EmojiPickerBtn from '../buttons/EmojiPickerBtn'
+import { useCloseEvents } from '../../hooks/useCloseEvents';
 
 const EditPostModal = ({ closeModal, post, updatePosts }) => {
   const { updatePost, response, loading, error } = useUpdatePost();
@@ -18,7 +18,7 @@ const EditPostModal = ({ closeModal, post, updatePosts }) => {
   const { user } = useAuthContext();
   const { handleFile, removeThumbnail, imageData, imageError, imageLoading, setImageData } = useImageThumbnail();
   
-  useModalEvents(closeModal);
+  useCloseEvents('EditPostModal', closeModal);
 
   // Set up notifications
   useErrorToast(imageError, 'An error occurred while uploading the image.');
@@ -73,7 +73,7 @@ const EditPostModal = ({ closeModal, post, updatePosts }) => {
 
   return (
     <FocusTrap>
-      <div id='Modal' aria-modal="true" role="dialog" aria-labelledby="modal-title" className='flex fixed z-[1000] left-0 top-0 h-full w-full overflow-auto bg-gray-700/70 justify-center items-center'>
+      <div id='EditPostModal' aria-modal="true" role="dialog" aria-labelledby="modal-title" className='flex fixed z-[1000] left-0 top-0 h-full w-full overflow-auto bg-gray-700/70 justify-center items-center'>
 
         <div className='bg-white w-full max-w-md px-5 py-4 flex flex-col items-start rounded shadow-md max-h-full overflow-y-auto'>
 

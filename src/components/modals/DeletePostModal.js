@@ -2,7 +2,7 @@ import FocusTrap from 'focus-trap-react';
 import { useEffect } from 'react';
 import { useDeletePost } from '../../hooks/useDeletePost';
 import { useToastContext } from '../../context/ToastContext';
-import { useModalEvents } from '../../hooks/useModalEvents';
+import { useCloseEvents } from '../../hooks/useCloseEvents';
 import CloseIcon from '../icons/CloseIcon';
 import Button from '../utils/Button';
 
@@ -10,7 +10,7 @@ const DeletePostModal = ({ closeModal, postId, updatePosts }) => {
   const { deletePost, response, loading, error } = useDeletePost();
   const { showToast } = useToastContext();
 
-  useModalEvents(closeModal);
+  useCloseEvents('DeletePostModal', closeModal);
 
   // Handle successful post deletion
   useEffect(() => {
@@ -31,7 +31,7 @@ const DeletePostModal = ({ closeModal, postId, updatePosts }) => {
 
   return (
     <FocusTrap>
-      <div id='Modal' aria-modal="true" role="dialog" aria-labelledby="modal-title" className='flex fixed z-[1000] left-0 top-0 h-full w-full overflow-auto bg-gray-700/70 justify-center items-center'>
+      <div id='DeletePostModal' aria-modal="true" role="dialog" aria-labelledby="modal-title" className='flex fixed z-[1000] left-0 top-0 h-full w-full overflow-auto bg-gray-700/70 justify-center items-center'>
 
         <div className='bg-white w-full max-w-md px-5 py-4 flex flex-col items-start rounded shadow-md max-h-full overflow-auto'>
 

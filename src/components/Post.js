@@ -13,12 +13,11 @@ import DeletePostModal from './modals//DeletePostModal';
 import EditPostModal from './modals/EditPostModal';
 import EllipsisIcon from './icons/EllipsisIcon';
 import CommentIcon from './icons/CommentIcon';
-import { useDropdownMenu } from '../hooks/useDropdownMenu';
 import { Link } from 'react-router-dom';
 
 const Post = ({ post, updatePosts }) => {
   const { user } = useAuthContext();
-  const { showMenu, toggleMenu } = useDropdownMenu();
+  const [showMenu, setShowMenu] = useState(false);
   const [showLikesModal, setShowLikesModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -65,13 +64,13 @@ const Post = ({ post, updatePosts }) => {
         </div>
         <div className='relative'>
           {post.user._id === user._id && (
-            <button aria-controls="dropdown" aria-haspopup="true" aria-expanded={showMenu} aria-label="Open post options menu" data-id="dropdown" onClick={toggleMenu} data-testid="post-menu" className='px-2 py-1 rounded hover:bg-gray-100 active:bg-gray-200 outline-plum-600'>
+            <button aria-controls="dropdown" aria-haspopup="true" aria-expanded={showMenu} aria-label="Open post options menu" data-id="dropdown" onClick={() => {setShowMenu((prevState) => !prevState)}} data-testid="post-menu" className='px-2 py-1 rounded hover:bg-gray-100 active:bg-gray-200 outline-plum-600'>
               <EllipsisIcon iconFill="#000" iconStyles='w-4 pointer-events-none' />
             </button>
           )}
           
           {showMenu && (
-            <PostMenu closeMenu={toggleMenu} handleDelete={() => setShowDeleteModal(true)} handleEdit={() => setShowEditModal(true)}/>
+            <PostMenu closeMenu={() => setShowMenu(false)} handleDelete={() => setShowDeleteModal(true)} handleEdit={() => setShowEditModal(true)}/>
           )}
         </div>
        

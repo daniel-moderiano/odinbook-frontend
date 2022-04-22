@@ -1,8 +1,10 @@
+import { useCloseEvents } from '../hooks/useCloseEvents';
 import { useKeyboardNavigation } from '../hooks/useKeyboardNavigation';
 
 const PostMenu = ({ closeMenu, handleDelete, handleEdit }) => {
 
   useKeyboardNavigation();
+  useCloseEvents('dropdown', closeMenu);
 
   return (
     <ul id="dropdown" role="menu" aria-label="Post options"  data-testid="dropdown" data-id="dropdown" className="rounded p-1 absolute top-full right-4 shadow-lg w-36 bg-white text-left">
