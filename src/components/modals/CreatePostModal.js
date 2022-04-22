@@ -6,7 +6,6 @@ import Button from '../utils/Button';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import ProfilePic from '../utils/ProfilePic';
 import ImageUploadBtn from '../buttons/ImageUploadBtn';
-import { useModalEvents } from '../../hooks/useModalEvents';
 import { useImageThumbnail } from '../../hooks/useImageThumbnail';
 import { useErrorToast } from '../../hooks/useErrorToast';
 import CloseIcon from '../icons/CloseIcon';

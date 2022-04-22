@@ -2,7 +2,7 @@ import FocusTrap from 'focus-trap-react';
 import { useToastContext } from '../../context/ToastContext';
 import Button from '../utils/Button';
 import { useAuthContext } from '../../hooks/useAuthContext';
-import { useModalEvents } from '../../hooks/useModalEvents';
+import { useCloseEvents } from '../../hooks/useCloseEvents';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUpdateProfile } from '../../hooks/useUpdateProfile';
@@ -19,7 +19,7 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
   let navigate = useNavigate();
 
   // Custom useEffect-style hook to control modal closing on esc and outside click
-  useModalEvents('EditProfileModal', closeModal)
+  useCloseEvents('EditProfileModal', closeModal)
 
   // Set up notifications
   useErrorToast(error, 'An error occurred while saving changes.');
