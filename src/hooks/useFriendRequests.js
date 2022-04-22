@@ -1,11 +1,12 @@
 import { useState } from "react"
 
+// The userID of the request target (i.e. user you are sending the requesr to) is passed into the hook at top level
 export const useFriendRequests = (userId) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
 
-  // Accepts the user ID of the request target (i.e. user you are sending request to)
+  // Define the request type when calling this request function specifically. This will be added to the req.body to enable the correct backend action to take place
   const request = async (requestType) => {
     setError(null);
     setLoading(true);

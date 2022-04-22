@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 
+// Exports an easily-callable function that completely removes a user's trace from the application. Call with caution!
 export const useDeleteAccount = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
   const { dispatch } = useAuthContext();
 
-  // Accepts the comment ID of the comment to be liked
   const deleteAccount = async (userId) => {
     setError(null);
     setLoading(true);

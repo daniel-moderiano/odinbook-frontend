@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect } from "react";
 
 // Trap focus within a dropdown menu and handle arrow navigation (still allow user to tab out of menu)
 // ! The menu must have ID of 'dropdown' and accessible menuitem roles

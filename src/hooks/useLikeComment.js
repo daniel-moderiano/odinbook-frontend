@@ -5,7 +5,7 @@ export const useLikeComment = () => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
 
-  // Accepts the comment ID of the comment to be liked
+  // Requires both the post and comment IDs simply due to the REST API arrangement
   const likeComment = async (postId, commentId) => {
     setError(null);
     setLoading(true);

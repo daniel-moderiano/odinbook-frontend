@@ -5,7 +5,7 @@ export const useDeleteComment = () => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
 
-  // Accepts the comment ID of the comment to be liked
+  // Requires both post and comment ID to ensure the API route is satisfied adn that the comment is removed from the post's comments array.
   const deleteComment = async (postId, commentId) => {
     setError(null);
     setLoading(true);
@@ -19,14 +19,14 @@ export const useDeleteComment = () => {
       });
       const responseJSON = await response.json();
 
-      if (response.status !== 200) {   // error with friend request
+      if (response.status !== 200) {   // error with delete operation
         setError(responseJSON);
         setLoading(false);
         // Return out of the function here to avoid setting the response below with error JSON
         return;
       }
 
-      // No error, request successful
+      // No error, operation successful
       setLoading(false);
       setError(null);
       setResponse(responseJSON);

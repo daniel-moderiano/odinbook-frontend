@@ -5,7 +5,7 @@ export const useEditComment = () => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
 
-  // Accepts the comment ID of the comment to be liked
+  // Requires both post and comment ID to satisfy the API route
   const editComment = async (postId, commentId, commentText) => {
     setError(null);
     setLoading(true);

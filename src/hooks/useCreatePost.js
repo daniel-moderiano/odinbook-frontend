@@ -5,7 +5,7 @@ export const useCreatePost = () => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
 
-  // Accepts the comment ID of the comment to be liked
+  // Accepts FormData object that may contain both text and images
   const createPost = async (formData) => {
     setError(null);
     setLoading(true);
@@ -20,7 +20,7 @@ export const useCreatePost = () => {
       });
       const responseJSON = await response.json();
 
-      if (response.status !== 200) {   // error with posting comment
+      if (response.status !== 200) {   // error with creating post
         setError(responseJSON);
         setLoading(false);
         // Return out of the function here to avoid setting the 'completed' response below with error JSON data

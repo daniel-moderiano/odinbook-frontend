@@ -1,12 +1,13 @@
 import { useState } from "react"
 
+// Used to update textual profile information only; no image updates. 
 export const useUpdateProfile = () => {
   const [error, setError] = useState(null);
   const [formError, setFormError] = useState(null)
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
 
-  // Accepts the comment ID of the comment to be liked
+  // Pass in a FormData object constructed using any relevant profile information to be updated
   const updateProfile = async (userId, formData) => {
     setError(null);
     setLoading(true);
@@ -21,7 +22,7 @@ export const useUpdateProfile = () => {
           'Content-Type': 'application/json'
         },
         credentials: 'include',
-        body: JSON.stringify(formData),    // Takes in profileData object (essentially an object containing form data)
+        body: JSON.stringify(formData),
       });
       const responseJSON = await response.json();
 

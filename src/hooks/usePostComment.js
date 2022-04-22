@@ -5,7 +5,7 @@ export const usePostComment = () => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
 
-  // Accepts the comment ID of the comment to be liked
+  // Requires the post ID to attach the comment to that post, as well as the comment text
   const postComment = async (postId, commentText) => {
     setError(null);
     setLoading(true);

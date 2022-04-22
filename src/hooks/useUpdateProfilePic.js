@@ -1,11 +1,12 @@
 import { useState } from "react"
 
+// Specific profile update route for handling profile picture updates
 export const useUpdateProfilePic = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
 
-  // Accepts the comment ID of the comment to be liked
+  // Requires FormData object as API route parses multipart/form data.
   const updateProfilePic = async (userId, formData) => {
     setError(null);
     setLoading(true);

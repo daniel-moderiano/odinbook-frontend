@@ -1,11 +1,12 @@
 import { useState } from "react";
 
+// Used to update both text and images in posts.
 export const useUpdatePost = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
 
-  // Accepts the comment ID of the comment to be liked
+  // Accepts FormData object that can include image data
   const updatePost = async (postId, formData) => {
     setError(null);
     setLoading(true);

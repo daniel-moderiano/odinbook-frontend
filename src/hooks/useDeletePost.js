@@ -1,11 +1,12 @@
 import { useState } from "react";
 
+// Export easily callable function that can delete posts by ID
 export const useDeletePost = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
 
-  // Accepts the comment ID of the comment to be liked
+  // Accepts the post ID of the post to be deleted
   const deletePost = async (postId) => {
     setError(null);
     setLoading(true);
@@ -19,7 +20,7 @@ export const useDeletePost = () => {
       });
       const responseJSON = await response.json();
 
-      if (response.status !== 200) {   // error with friend request
+      if (response.status !== 200) {   // error with delete operation
         setError(responseJSON);
         setLoading(false);
         // Return out of the function here to avoid setting the response below with error JSON
@@ -33,7 +34,7 @@ export const useDeletePost = () => {
     } catch (err) {   // for all unexpected errors not handled on backend error handling
       setError(err);
       setLoading(false);
-      setResponse(null)
+      setResponse(null);
     } 
   };
 

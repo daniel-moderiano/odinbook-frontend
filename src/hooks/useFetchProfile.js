@@ -1,11 +1,11 @@
 import { useState, useCallback } from "react"
 
+// This hook has been created because the profile information must be re-fetched on command, which requires a separate exported function, rather than a single user top level fetch hook like 'useFetchGet'
 export const useFetchProfile = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [profileUser, setProfileUser] = useState(null);
 
-  // Accepts the comment ID of the comment to be liked
   const fetchProfile = useCallback(async (userId) => {
     setError(null);
     setLoading(true);

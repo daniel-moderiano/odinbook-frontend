@@ -1,12 +1,13 @@
 // Generalised fetch function for API calls (GET method only)
 import { useState, useEffect } from 'react';
 
+// This is intended for once-per-mount fetch calls in components. If your component will need to re-fetch data multiple times in its lifetime, or fetch on comman (e.g. button click), this is not appropriate.
 export const useFetchGet = (url) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // UseEffect hook set to re-evaluate only if the URL changes
+  // UseEffect hook will re-evaluate only if the fetch URL changes
   useEffect(() => {
     async function fetchData() {
       try {
