@@ -5,7 +5,7 @@ import { useModalEvents } from '../../hooks/useModalEvents';
 import CloseIcon from '../icons/CloseIcon';
 import Button from '../utils/Button';
 import { useDeleteAccount } from '../../hooks/useDeleteAccount';
-import { useAuthContext } from '../../hooks/useAuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 
 const DeleteAccountModal = ({ closeModal }) => {
   const { user } = useAuthContext();

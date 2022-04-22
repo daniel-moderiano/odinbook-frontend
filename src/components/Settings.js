@@ -1,4 +1,4 @@
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useAuthContext } from '../context/AuthContext';
 import Header from './Header';
 import Footer from './Footer';
 import Button from './utils/Button'

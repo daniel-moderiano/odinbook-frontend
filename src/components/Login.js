@@ -40,7 +40,7 @@ const Login = ({ setInitialLogin }) => {
 
   // Open the facebook auth page by a direct URL request to the backend API url
   const FacebookLogin = () => {
-    window.open('http://localhost:3000/auth/facebook', "_self");
+    window.open(process.env.REACT_APP_FB_AUTH_ROUTE, "_self");
   };
 
   return (

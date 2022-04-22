@@ -1,7 +1,7 @@
 import FocusTrap from 'focus-trap-react';
 import { useToastContext } from '../../context/ToastContext';
 import Button from '../utils/Button';
-import { useAuthContext } from '../../hooks/useAuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 import { useModalEvents } from '../../hooks/useModalEvents';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';

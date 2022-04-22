@@ -1,4 +1,4 @@
-import { useAuthContext } from '../../hooks/useAuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 import Button from '../utils/Button';
 import { useLikePost } from '../../hooks/useLikePost';
 import { useToastContext } from '../../context/ToastContext';

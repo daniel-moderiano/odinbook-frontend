@@ -1,5 +1,5 @@
 import { useFetchGet } from '../hooks/useFetchGet';
-import { useAuthContext } from '../hooks/useAuthContext';
+import { useAuthContext } from '../context/AuthContext';
 import Post from './Post';
 import StyledLink from './utils/StyledLink';
 import SkeletonPost from './skeletons/SkeletonPost';

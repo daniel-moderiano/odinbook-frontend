@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import LikesModal from "./modals/LikesModal";
 import { useDeleteComment } from "../hooks/useDeleteComment";
 import EditCommentForm from "./EditCommentForm";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useAuthContext } from '../context/AuthContext';
 import { useErrorToast } from '../hooks/useErrorToast';
 import { Link } from "react-router-dom";
 

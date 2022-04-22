@@ -17,7 +17,7 @@ const EmojiPickerBtn = ({ onEmojiClick, modal }) => {
   return (
     <div 
       id="openPicker"
-      className='relative py-1 px-2 rounded hover:bg-gray-100 hover:cursor-pointer mr-1 outline-plum-600' 
+      className='hidden lg:block relative py-1 px-2 rounded hover:bg-gray-100 hover:cursor-pointer mr-1 outline-plum-600' 
       onClick={() => setShowPicker((prevState) => !prevState)}
       role="button"
       tabIndex="0"

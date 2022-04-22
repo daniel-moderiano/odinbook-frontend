@@ -1,7 +1,9 @@
 import { createContext, useState, useCallback, useContext } from 'react';
 
+// Create an instance of React Context
 export const ToastContext = createContext();
 
+// Provide ability to spawn Toast notifications globally within the application
 export const ToastContextProvider = ({ children }) => {
   const [toastVisible, setToastVisible] = useState(false);
   const [toastParams, setToastParams] = useState({});
@@ -32,10 +34,11 @@ export const ToastContextProvider = ({ children }) => {
   )
 }
 
+// Custom hook to allow components to access the context
 export const useToastContext = () => {
   const context = useContext(ToastContext);
 
-  // Can add conditional here to ensure toast context is used only by those components wrapped in a toast context provider
+  // Can optionally add conditional here to ensure toast context is used only by those components wrapped in a toast context provider
 
   return context;
 }

@@ -1,4 +1,4 @@
-import { useAuthContext } from '../hooks/useAuthContext';
+import { useAuthContext } from '../context/AuthContext';
 import StyledLink from './utils/StyledLink';
 import { useFetchGet } from '../hooks/useFetchGet';
 import ProfilePic from './utils/ProfilePic';

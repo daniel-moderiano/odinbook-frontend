@@ -1,6 +1,6 @@
 import { useLogout } from "../hooks/useLogout";
 import { Link } from 'react-router-dom'
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useAuthContext } from '../context/AuthContext';
 import { useKeyboardNavigation } from '../hooks/useKeyboardNavigation';
 
 const DropdownMenu = ({ closeMenu }) => {

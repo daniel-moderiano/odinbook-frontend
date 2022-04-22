@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import Header from './Header';
 import ProfileHeader from './ProfileHeader';
 import ProfileBio from './ProfileBio';
-import { useAuthContext } from '../hooks/useAuthContext';
+import { useAuthContext } from '../context/AuthContext';
 import { useProfileType } from '../hooks/useProfileType';
 import ProfileFriends from './ProfileFriends';
 import ProfilePosts from './ProfilePosts';

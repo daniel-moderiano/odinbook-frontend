@@ -1,6 +1,7 @@
-import { createContext, useEffect, useReducer } from 'react';
+import { createContext, useEffect, useReducer, useContext } from 'react';
 import { useCurrentUser } from '../hooks/useCurrentUser';
 
+// Create an instance of React Context
 export const AuthContext = createContext();
 
 // Reducer function to handle different auth-related actions. Typically the payload in each case will be a user object
@@ -46,7 +47,9 @@ export const AuthContextProvider = ({ children }) => {
           payload: user,
         })
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {   // user is not authorised - do not react to this error in UI, console diplay only
+        console.error(err)
+      });
   }, [getCurrentUser]);
 
   return (
@@ -54,4 +57,16 @@ export const AuthContextProvider = ({ children }) => {
       { children }
     </AuthContext.Provider>
   )
+};
+
+// Custom hook to allow components to access the context
+export const useAuthContext = () => {
+  const context = useContext(AuthContext);
+
+  // Check the component calling this hook is wrapped in context provider
+  if (!context) {
+    throw Error('useAuthContext must be inside an AuthContextProvider');
+  }
+
+  return context;
 }

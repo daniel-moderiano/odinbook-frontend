@@ -5,7 +5,7 @@ import Signup from "./components/Signup";
 import FriendsHome from "./components/FriendsHome";
 import AllFriends from "./components/AllFriends";
 import FriendRequests from "./components/FriendRequests";
-import { useAuthContext } from "./hooks/useAuthContext";
+import { useAuthContext } from "./context/AuthContext";
 import Profile from "./components/Profile";
 import { useLocation } from "react-router-dom";
 import { useContext, useEffect } from "react";
@@ -28,7 +28,7 @@ function App() {
   }, [pathname]);
 
   return (
-    <>
+
     <div className="bg-plum-50 w-full m-0 p-0 h-screen flex flex-col">
       {authIsReady && (<>
         <Routes>
@@ -96,7 +96,6 @@ function App() {
       </>)}
       <Toast visible={toastVisible} params={toastParams}/>
     </div>
-    </>
   );
 }
 
