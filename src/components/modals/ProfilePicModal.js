@@ -9,7 +9,7 @@ import { useImageThumbnail } from '../../hooks/useImageThumbnail';
 import { useNavigate } from 'react-router-dom';
 import { useErrorToast } from '../../hooks/useErrorToast';
 import CloseIcon from '../icons/CloseIcon';
-import { useCloseEvents } from '../../hooks/useCloseEvents';
+import { useModalCloseEvents } from '../../hooks/useModalCloseEvents';
 
 const ProfilePicModal = ({ closeModal, profileUser }) => {
   const { updateProfilePic, loading, response, error } = useUpdateProfilePic();
@@ -18,7 +18,7 @@ const ProfilePicModal = ({ closeModal, profileUser }) => {
   let navigate = useNavigate();
   const { handleFile, removeThumbnail, imageData, imageError, imageLoading, setImageData } = useImageThumbnail();
 
-  useCloseEvents('ProfilePicModal', closeModal);
+  useModalCloseEvents('ProfilePicModal', closeModal);
 
   // Set up notifications
   useErrorToast(imageError, 'An error occurred while uploading the image.');

@@ -1,12 +1,12 @@
 import { useEffect } from "react"
 
-// Use this hook for any modal/menu/dialog to apply common 'expected' UX features such as closing on outside click or escape key press. Takes ID of the element to apply these events too, and the function that closes/dismissed the element
-export const useCloseEvents = (elementId, closeElement) => {
+// Use this hook for any modals common 'expected' UX features such as closing on outside click or escape key press. Takes ID of the element to apply these events too, and the function that closes/dismissed the element
+export const useModalCloseEvents = (elementId, closeElement) => {
   // Effect to apply event listeners once on initial component mount
   useEffect(() => {
-    // Ensure the element closes when the user clicks outside the element
+    // Ensure the element closes when the user clicks on the opaque modal 'background'
     const handleOutsideClick = (event) => {
-      if (event.target.dataset.id !== elementId) {
+      if (event.target.dataset.id === elementId) {
         closeElement(false);
       }      
     };

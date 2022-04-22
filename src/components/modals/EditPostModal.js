@@ -10,7 +10,7 @@ import { useImageThumbnail } from '../../hooks/useImageThumbnail';
 import { useErrorToast } from '../../hooks/useErrorToast';
 import CloseIcon from '../icons/CloseIcon';
 import EmojiPickerBtn from '../buttons/EmojiPickerBtn'
-import { useCloseEvents } from '../../hooks/useCloseEvents';
+import { useModalCloseEvents } from '../../hooks/useModalCloseEvents';
 
 const EditPostModal = ({ closeModal, post, updatePosts }) => {
   const { updatePost, response, loading, error } = useUpdatePost();
@@ -18,7 +18,7 @@ const EditPostModal = ({ closeModal, post, updatePosts }) => {
   const { user } = useAuthContext();
   const { handleFile, removeThumbnail, imageData, imageError, imageLoading, setImageData } = useImageThumbnail();
   
-  useCloseEvents('EditPostModal', closeModal);
+  useModalCloseEvents('EditPostModal', closeModal);
 
   // Set up notifications
   useErrorToast(imageError, 'An error occurred while uploading the image.');

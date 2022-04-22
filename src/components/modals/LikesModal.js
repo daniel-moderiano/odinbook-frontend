@@ -5,13 +5,13 @@ import ProfilePic from '../utils/ProfilePic';
 import like from '../../assets/like.png';
 import SkeletonLike from '../skeletons/SkeletonLike';
 import CloseIcon from '../icons/CloseIcon'
-import { useCloseEvents } from '../../hooks/useCloseEvents';
+import { useModalCloseEvents } from '../../hooks/useModalCloseEvents';
 
 const LikesModal = ({ postId, commentId, closeModal }) => {
   // Amend the fetch URL if comment ID is present (i.e. fetching likes for comment instead of post)
   const { data: likes, loading, error } = useFetchGet(`${process.env.REACT_APP_API_ROUTE}/posts/${postId}/${commentId ? `comments/${commentId}/likes` : 'likes'}`);
 
-  useCloseEvents('LikesModal', closeModal);
+  useModalCloseEvents('LikesModal', closeModal);
 
   return (
     <FocusTrap>

@@ -10,7 +10,7 @@ import { useImageThumbnail } from '../../hooks/useImageThumbnail';
 import { useErrorToast } from '../../hooks/useErrorToast';
 import CloseIcon from '../icons/CloseIcon';
 import EmojiPickerBtn from '../buttons/EmojiPickerBtn';
-import { useCloseEvents } from '../../hooks/useCloseEvents';
+import { useModalCloseEvents } from '../../hooks/useModalCloseEvents';
 
 const CreatePostModal = ({ closeModal, updatePosts }) => {
   const { createPost, response, loading, error } = useCreatePost();
@@ -24,11 +24,10 @@ const CreatePostModal = ({ closeModal, updatePosts }) => {
   // Note: image value is in the context of an HTML file input value (e.target.value) and represents a pseudo string path to an image (e.g. 'C:/fakepath/image.png')
   const [imageValue, setImageValue] = useState('');
   const [imageFile, setImageFile] = useState(null);
-  
 
   const [postText, setPostText] = useState('');
   
-  useCloseEvents('CreatePostModal', closeModal);
+  useModalCloseEvents('CreatePostModal', closeModal);
 
   // Convert to FormData object to allow backend processing with Express Multer middleware
   const handleSubmit = (e)  => {

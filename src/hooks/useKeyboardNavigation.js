@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 
 // Trap focus within a dropdown menu and handle arrow navigation (still allow user to tab out of menu)
-// ! The menu must have ID of 'dropdown' and accessible menuitem roles
-export const useKeyboardNavigation = () => {
+// ! The menu must have accessible menuitem roles
+export const useKeyboardNavigation = (elementId) => {
 
   useEffect(() => {
-    const menu = document.querySelector('#dropdown');
+    const menu = document.querySelector(`#${elementId}`);
     // Grab all focusable elements within the menu
     const menuItems = menu.querySelectorAll('[role="menuitem"]');
 
@@ -55,6 +55,6 @@ export const useKeyboardNavigation = () => {
     return () => {
       menu.removeEventListener('keydown', handleKeyPress);
     }
-  }, []);
+  }, [elementId]);
 };
 

@@ -5,14 +5,14 @@ import CloseIcon from '../icons/CloseIcon';
 import Button from '../utils/Button';
 import { useDeleteAccount } from '../../hooks/useDeleteAccount';
 import { useAuthContext } from '../../hooks/useAuthContext';
-import { useCloseEvents } from '../../hooks/useCloseEvents';
+import { useModalCloseEvents } from '../../hooks/useModalCloseEvents';
 
 const DeleteAccountModal = ({ closeModal }) => {
   const { user } = useAuthContext();
   const { deleteAccount, response, loading, error } = useDeleteAccount();
   const { showToast } = useToastContext();
 
-  useCloseEvents('DeleteAccountModal', closeModal);
+  useModalCloseEvents('DeleteAccountModal', closeModal);
 
   // Handle successful post deletion
   useEffect(() => {

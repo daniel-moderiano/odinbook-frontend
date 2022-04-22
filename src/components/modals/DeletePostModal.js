@@ -2,7 +2,7 @@ import FocusTrap from 'focus-trap-react';
 import { useEffect } from 'react';
 import { useDeletePost } from '../../hooks/useDeletePost';
 import { useToastContext } from '../../context/ToastContext';
-import { useCloseEvents } from '../../hooks/useCloseEvents';
+import { useModalCloseEvents } from '../../hooks/useModalCloseEvents';
 import CloseIcon from '../icons/CloseIcon';
 import Button from '../utils/Button';
 
@@ -10,7 +10,7 @@ const DeletePostModal = ({ closeModal, postId, updatePosts }) => {
   const { deletePost, response, loading, error } = useDeletePost();
   const { showToast } = useToastContext();
 
-  useCloseEvents('DeletePostModal', closeModal);
+  useModalCloseEvents('DeletePostModal', closeModal);
 
   // Handle successful post deletion
   useEffect(() => {
