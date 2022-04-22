@@ -1,5 +1,4 @@
 import { useAuthContext } from '../../hooks/useAuthContext';
-import Button from '../utils/Button';
 import { useLikeComment } from '../../hooks/useLikeComment';
 import { useToastContext } from '../../context/ToastContext';
 import { useEffect } from 'react';
@@ -48,12 +47,12 @@ const LikeCommentBtn = ({ postId, comment, setLocalLike }) => {
   }
 
   return (
-    <Button customStyles="text-xs text-gray-500 mr-3 font-medium hover:bg-gray-100 rounded w-full disabled:hover:bg-transparent outline-plum-600 outline-offset-2" disabled={disableButton()} onClick={() => {
+    <button className="text-xs text-gray-500 mr-3 font-medium hover:bg-gray-100 rounded w-full disabled:hover:bg-transparent outline-plum-600 outline-offset-2" disabled={disableButton()} onClick={() => {
       likeComment(postId, comment._id);
       setLocalLike(1);    // Ensures a local state change and re-render of likes. Reverted if error occurs
     }}>
       {setBtnText()}
-    </Button>
+    </button>
   )
 }
 

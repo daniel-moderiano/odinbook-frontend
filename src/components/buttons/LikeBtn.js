@@ -1,5 +1,4 @@
 import { useAuthContext } from '../../hooks/useAuthContext';
-import Button from '../utils/Button';
 import { useLikePost } from '../../hooks/useLikePost';
 import { useToastContext } from '../../context/ToastContext';
 import { useEffect } from 'react';
@@ -49,13 +48,13 @@ const LikeBtn = ({ post, setLocalLike }) => {
   }
 
   return (
-    <Button customStyles="flex items-middle justify-center text-gray-500 font-medium hover:bg-gray-100 py-2 rounded w-full disabled:hover:bg-transparent outline-plum-600" disabled={disableButton()} onClick={() => {
+    <button className="flex items-middle justify-center text-gray-500 font-medium hover:bg-gray-100 py-2 rounded w-full disabled:hover:bg-transparent outline-plum-600" disabled={disableButton()} onClick={() => {
       likePost(post._id);
       setLocalLike(1);    // Ensures a local state change and re-render of likes. Reverted if error occurs
     }}>
       <ThumbIcon iconFill='#6b7280' iconStyles='w-5 mr-2'/>
       {setBtnText()}
-    </Button>
+    </button>
   )
 }
 

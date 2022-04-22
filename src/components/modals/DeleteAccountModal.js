@@ -38,9 +38,9 @@ const DeleteAccountModal = ({ closeModal }) => {
           <header className='flex flex-col justify-start items-start w-full border-b'>
             <div className='flex justify-between items-center w-full pb-4'>
               <h3 id="modal-title" className='text-xl font-semibold'>Delete account</h3>
-              <button type="button" className='rounded-full p-1 hover:bg-gray-100 active:scale-0.95 outline-plum-600' aria-label="close current window" onClick={closeModal}>
+              <Button design="modal-close" ariaLabel="close current window" onClick={closeModal}>
                 <CloseIcon iconStyles="w-6" iconFill="#1B1E22"/>
-              </button>
+              </Button>
             </div>
 
           </header>
@@ -49,8 +49,14 @@ const DeleteAccountModal = ({ closeModal }) => {
             <p className='p-4 text-sm font-semibold text-red-700 bg-red-100 w-full my-4'>Once your account is deleted, it cannot be recovered.</p>
             <p className='mb-6 mt-6'>Delete your account?</p>
             <div className='flex items-center justify-end'>
-              <button className='bg-gray-100 text-gray-800 max-w-[100px] w-full px-2 py-1 mr-2 hover:bg-gray-200 shadow-sm  focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-gray-400/30 disabled:bg-gray-100 disabled:text-gray-400 disabled:shadow-none disabled:border-gray-100' onClick={closeModal}>Cancel</button>
-              <Button customStyles="max-w-[100px]" design="danger" hasPopup="dialog" onClick={() => deleteAccount(user._id)} disabled={user._id === '6253eafa7c5f03b0906cc7b5'}>
+              <Button onClick={closeModal} design="secondary">Cancel</Button>
+              <Button 
+                customStyles="max-w-[100px]" 
+                design="danger" 
+                hasPopup="dialog" 
+                onClick={() => deleteAccount(user._id)} 
+                disabled={user._id === '6253eafa7c5f03b0906cc7b5'}
+              >
                 {loading ? (
                   'Deleting...'
                 ) : (

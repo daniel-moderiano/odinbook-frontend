@@ -32,11 +32,11 @@ const SideMenu = () => {
               {userDetails.user.numFriends !== 1 ? `${userDetails.user.numFriends} Friends` : '1 Friend'}
             </p>
             <nav aria-label="Secondary" className='w-full'>
-              <StyledLink to={`/profile/${user._id}`} design="btn-ghost-lg" customStyles="mb-3">
+              <StyledLink to={`/profile/${user._id}`} design="btn-ghost" customStyles="mb-3">
                 <ProfileIcon iconStyles="w-7 mr-3" />
                 View profile
               </StyledLink>
-              <StyledLink to={`/friends`} design="btn-ghost-lg">
+              <StyledLink to={`/friends`} design="btn-ghost">
                 <FriendsIcon iconStyles="w-7 mr-3" />
                 Friends
               </StyledLink>
@@ -55,7 +55,7 @@ const SideMenu = () => {
         </div>
           <div className='p-4 flex flex-col items-center justify-center w-full'>
             <p className='font-bold text-xl mb-4'>{user.fullName}</p>
-            <StyledLink to={`/profile/${user._id}`} design="btn-ghost-lg" customStyles="mb-3">
+            <StyledLink to={`/profile/${user._id}`} design="btn-ghost" customStyles="mb-3">
               <ProfileIcon iconStyles="w-7 mr-3" />
               View profile
             </StyledLink>

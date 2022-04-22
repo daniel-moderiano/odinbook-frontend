@@ -67,9 +67,9 @@ const CreatePostModal = ({ closeModal, updatePosts }) => {
 
             <div className='flex justify-between items-center w-full pb-4'>
               <h3 id="modal-title" className='text-xl font-semibold'>Create a post</h3>
-              <button type="button" className='rounded-full p-1 hover:bg-gray-100 active:scale-0.95' aria-label="close current window" onClick={closeModal}>
+              <Button design="modal-close" ariaLabel="close current window" onClick={closeModal}>
                 <CloseIcon iconStyles="w-6" iconFill="#1B1E22"/>
-              </button>
+              </Button>
             </div>
 
           </header>
