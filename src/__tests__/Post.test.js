@@ -158,9 +158,9 @@ describe("Image-containing posts", () => {
     expect(pic).toBeInTheDocument();
   });
 
-  it("Displays 'no comments' when there are no comments for the post", () => {
+  it("Displays '0 comments' when there are no comments for the post", () => {
     setup();
-    const comments = screen.getByText(/no comments/i) 
+    const comments = screen.getByText(/0 comments/i) 
     expect(comments).toBeInTheDocument();
   });
 
