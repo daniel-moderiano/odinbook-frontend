@@ -4,6 +4,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { usePostComment } from '../hooks/usePostComment';
 import { useErrorToast } from '../hooks/useErrorToast';
 import EmojiPickerBtn from './buttons/EmojiPickerBtn';
+import Button from './utils/Button';
 
 const CommentForm = ({ postId, updateComments }) => {
   const { user } = useAuthContext();
@@ -46,9 +47,9 @@ const CommentForm = ({ postId, updateComments }) => {
           <EmojiPickerBtn onEmojiClick={onEmojiClick} modal={false}/>
         </div>
         {commentText.length > 0 && (
-          <button className='text-sm font-medium px-2 py-0.5 mt-3 ml-0.5 bg-plum-400 border border-plum-400 text-white shadow-md hover:bg-plum-300 hover:border-plum-300 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-plum-300/30 disabled:bg-gray-100 disabled:text-gray-400 disabled:shadow-none disabled:border-gray-100'>
+          <Button type="submit" design="primary-sm">
             {loading ? 'Posting...' : 'Post'}
-          </button>
+          </Button>
         )}
       </form>
     </div>

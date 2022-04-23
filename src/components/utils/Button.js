@@ -25,6 +25,10 @@ const Button = ({
         CSS = 'flex items-center justify-center w-full px-2 py-1 bg-plum-400 border border-plum-400 text-white shadow-sm hover:bg-plum-300 hover:border-plum-300 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-plum-300/30 disabled:bg-gray-100 disabled:text-gray-400 disabled:shadow-none disabled:border-gray-100'
         break;
 
+      case 'primary-sm':
+        CSS = 'text-sm font-medium px-2 py-0.5 mt-3 ml-0.5 bg-plum-400 border border-plum-400 text-white shadow-md hover:bg-plum-300 hover:border-plum-300 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-plum-300/30 disabled:bg-gray-100 disabled:text-gray-400 disabled:shadow-none disabled:border-gray-100';
+        break;
+
       case 'danger':
         CSS = 'bg-red-500 text-white w-full px-2 py-1 hover:bg-red-600 shadow-sm focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-red-300/70 disabled:bg-gray-100 disabled:text-gray-400 disabled:shadow-none disabled:border-gray-100'
         break;

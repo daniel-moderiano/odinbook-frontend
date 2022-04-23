@@ -8,7 +8,7 @@ const Footer = () => {
       <a href="https://github.com" className="outline-gray-500" target="_blank" rel="noreferrer" aria-label="View source code on Github">
         <GithubIcon iconFill="#1f2937" iconStyles="w-8 p-1 opacity-60 hover:opacity-100" />
       </a>
-  </footer>
+    </footer>
   )
 }
 

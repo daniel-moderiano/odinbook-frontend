@@ -2,12 +2,12 @@ import { useState } from "react";
 import CreatePostModal from "./modals/CreatePostModal";
 import PlusIcon from './icons/PlusIcon'
 
+// updatePosts is called once a new post is created, so must be passed to trigger unique actions depending on where the user is when creating a post. Nav prop indicates if this component is in the Nav menu or not
 const CreatePost = ({ updatePosts, nav }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      {/* Nav prop indicates whether this create post component is in the nav or not */}
       {nav ? (
         <button role="menuitem" onClick={() => setShowModal(true)} className='outline-plum-600 outline-offset-[-2px]' aria-haspopup="dialog">
           <div className="py-0.5 px-4 hover:bg-gray-100 flex flex-col items-center justify-center lg:rounded">

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useErrorToast } from '../hooks/useErrorToast';
 import { useEditComment } from '../hooks/useEditComment';
 import EmojiPickerBtn from './buttons/EmojiPickerBtn';
+import Button from './utils/Button';
 
 const EditCommentForm = ({ postId, commentId, currentText, updateComments }) => {
   const { editComment, response, loading, error } = useEditComment()
@@ -28,7 +29,7 @@ const EditCommentForm = ({ postId, commentId, currentText, updateComments }) => 
 
   return (
     <form onSubmit={handleSubmit} className="relative w-full mr-2 flex flex-col items-start">
-      <textarea 
+      <textarea
         name="commentText"
         value={commentText}
         onChange={(e) => setCommentText(e.target.value)}
@@ -36,12 +37,12 @@ const EditCommentForm = ({ postId, commentId, currentText, updateComments }) => 
         className="w-full bg-gray-50 border rounded text-sm border-slate-300 py-2 px-3 pr-8 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-plum-300/30 focus:border-plum-400"
       />
       <div className='absolute right-0 top-1'>
-        <EmojiPickerBtn onEmojiClick={onEmojiClick} modal={false}/>
+        <EmojiPickerBtn onEmojiClick={onEmojiClick} modal={false} />
       </div>
       {commentText.length > 0 && (
-        <button className='text-sm font-medium px-2 py-0.5 mt-3 ml-0.5 bg-plum-400 border border-plum-400 text-white shadow-md hover:bg-plum-300 hover:border-plum-300 focus:outline-none focus:ring ring-transparent ring-offset-2 ring-offset-plum-300/30 disabled:bg-gray-100 disabled:text-gray-400 disabled:shadow-none disabled:border-gray-100'>
+        <Button type="submit" design="primary-sm">
           {loading ? 'Saving...' : 'Save'}
-        </button>
+        </Button>
       )}
     </form>
   )
