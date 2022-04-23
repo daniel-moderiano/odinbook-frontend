@@ -4,7 +4,7 @@ import Comment from "./Comment";
 import SkeletonComment from './skeletons/SkeletonComment';
 import { useErrorToast } from '../hooks/useErrorToast';
 
-const Comments = ({ postId, updateCommentCount, updateKey }) => {
+const Comments = ({ postId, updateCommentCount, updateComments }) => {
   const { data: comments, loading, error } = useFetchGet(`${process.env.REACT_APP_API_ROUTE}/posts/${postId}/comments`);
 
   // Set up notifications. 
@@ -26,15 +26,14 @@ const Comments = ({ postId, updateCommentCount, updateKey }) => {
           )}
           <div className="w-full px-4 pt-5">
             {comments.map((comment) => (
-              <Comment key={comment._id} commentData={comment} postId={postId} updateKey={updateKey}/>
+              <Comment key={comment._id} commentData={comment} postId={postId} updateComments={updateComments}/>
             ))}
           </div>
         </div>
       )}
 
-      {loading && (
+      {loading && (   // render 4 skeleton comments
         <div data-testid="skeleton">
-          {/* Customise length of array to replicate current number of comments?? */}
           {[0, 1, 2, 3].map((index) => (
             <SkeletonComment key={index}/>
           ))}

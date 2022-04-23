@@ -30,7 +30,7 @@ class ErrorBoundary extends React.Component {
         <div className='w-full h-full bg-gray-100 flex items-center justify-center'>
           <div className="flex flex-col items-center justify-center">
             <h1 className='text-3xl font-semibold text-plum-500 mb-4'>An error occurred</h1>
-            <Button design="secondary" customStyles="w-36" onClick={() => window.location.reload()}>Reload page</Button>
+            <Button design="primary" customStyles="w-36" onClick={() => window.location.reload()}>Reload</Button>
           </div>
         </div>
       )

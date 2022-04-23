@@ -2,8 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "../context/AuthContext";
 import { ToastContextProvider } from "../context/ToastContext";
-import userEvent from "@testing-library/user-event";
-import CommentForm from "../components/CommentForm";
+import PostCommentForm from "../components/PostCommentForm";
 
 const currentUser = {
   "_id": "622ffe9baa78d2996267f821",
@@ -34,7 +33,7 @@ it("Hides the post button by default", () => {
     <BrowserRouter>
       <AuthContextProvider>
         <ToastContextProvider value={{ showToast: jest.fn }}>
-          <CommentForm postId={postId} updateComments={updateComments}/>
+          <PostCommentForm postId={postId} updateComments={updateComments}/>
         </ToastContextProvider>
       </AuthContextProvider>
     </BrowserRouter>

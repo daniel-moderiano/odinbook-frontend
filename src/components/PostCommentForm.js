@@ -6,7 +6,8 @@ import { useErrorToast } from '../hooks/useErrorToast';
 import EmojiPickerBtn from './buttons/EmojiPickerBtn';
 import Button from './utils/Button';
 
-const CommentForm = ({ postId, updateComments }) => {
+// Used when posting a comment for the first time (i.e. not editing)
+const PostCommentForm = ({ postId, updateComments }) => {
   const { user } = useAuthContext();
   const { postComment, response, loading, error } = usePostComment();
   const [commentText, setCommentText] = useState('');
@@ -18,7 +19,7 @@ const CommentForm = ({ postId, updateComments }) => {
   useEffect(() => {
     if (response) {
       setCommentText('');
-      updateComments(Math.random());
+      updateComments();
     }
   }, [response, updateComments])
 
@@ -56,4 +57,4 @@ const CommentForm = ({ postId, updateComments }) => {
   )
 }
 
-export default CommentForm
+export default PostCommentForm;

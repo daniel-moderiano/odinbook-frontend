@@ -2,10 +2,10 @@ import Button from './utils/Button';
 import like from '../assets/like.png'
 import ProfilePic from './utils/ProfilePic';
 import LikesModal from './modals/LikesModal';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import LikeBtn from './buttons/LikeBtn';
 import Comments from './Comments';
-import CommentForm from './CommentForm';
+import PostCommentForm from './PostCommentForm';
 import { useAuthContext } from '../hooks/useAuthContext';
 import PostMenu from './PostMenu';
 import DeletePostModal from './modals//DeletePostModal';
@@ -32,6 +32,11 @@ const Post = ({ post, updatePosts }) => {
 
   // A key that is passed to the comments component. When a user successfully posts a comment with the comment form, the comments component should be re-rendered in full (thereby calling comments fetch to update with new comment). The re-render will be achieved by randomising this key on successful comment post
   const [updateKey, setUpdateKey] = useState(0);
+
+  // Function to update the key to a random value, hence triggering re-rendering of the comments component. In essence, updating comments.
+  const updateComments = useCallback(() => {
+    setUpdateKey(Math.random());
+  }, [])
 
   const customiseCommentText = (numComments) => {
     if (numComments === 0) {
@@ -108,8 +113,8 @@ const Post = ({ post, updatePosts }) => {
       
       {showComments && (
         <div>
-          <CommentForm postId={post._id} updateComments={setUpdateKey}/>
-          <Comments postId={post._id} updateCommentCount={setNewCommentCount} updateKey={setUpdateKey} key={updateKey}/>
+          <PostCommentForm postId={post._id} updateComments={updateComments}/>
+          <Comments postId={post._id} updateCommentCount={setNewCommentCount} updateComments={updateComments} key={updateKey}/>
         </div>
       )}
     </article>

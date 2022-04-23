@@ -23,6 +23,7 @@ const EditCommentForm = ({ postId, commentId, currentText, updateComments }) => 
     editComment(postId, commentId, commentText);
   };
 
+  // Function required to ensure emojis are added to the comment text when one is selected
   const onEmojiClick = (event, emojiObject) => {
     setCommentText((prevState) => (prevState + emojiObject.emoji))
   };
