@@ -12,7 +12,6 @@ const UserList = ({ userFriends }) => {
     // Perform array operations to manipulate the userFriends object into a single depth array of user IDs
     const flatFriends = [userFriends.acceptedFriends, userFriends.incomingRequests, userFriends.outgoingRequests].flat();
     const userFriendIds = flatFriends.map((friend) => friend.user._id);
-
     userFriendIds.push(currentUser._id);
 
     return userFriendIds.some((id) => id === userId);
@@ -20,7 +19,7 @@ const UserList = ({ userFriends }) => {
 
   return (
     <div>
-      {users && (
+      {users && (   // render only unrelated users
         <ul className="flex flex-wrap items-center justify-start">
           {users.users.map((userDetails) => {
             if (!isRelatedUser(userDetails._id)) {    // only render those unrelated users
@@ -35,7 +34,7 @@ const UserList = ({ userFriends }) => {
         </ul>
       )}
 
-      {loading && (
+      {loading && (   // Render 3 skeleton loader friend cards
         <div className="flex flex-wrap items-center justify-start">
           <SkeletonFriendCard />
           <SkeletonFriendCard />
