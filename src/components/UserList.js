@@ -1,8 +1,8 @@
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useFetchGet } from "../hooks/useFetchGet"
 import FriendCard from "./FriendCard";
-import SkeletonFriendCard from "./skeletons/SkeletonFriendCard";
-                           
+import FriendsErrorLoading from "./FriendsErrorLoading";
+
 const UserList = ({ userFriends }) => {
   const { data: users, loading, error } = useFetchGet(`${process.env.REACT_APP_API_ROUTE}/users`);
   const { user: currentUser } = useAuthContext();
@@ -24,9 +24,9 @@ const UserList = ({ userFriends }) => {
           {users.users.map((userDetails) => {
             if (!isRelatedUser(userDetails._id)) {    // only render those unrelated users
               return (
-              <li className="w-full lg:w-auto" key={userDetails._id}>
-                <FriendCard friendData={userDetails} type="user"/>
-              </li>
+                <li className="w-full lg:w-auto" key={userDetails._id}>
+                  <FriendCard friendData={userDetails} type="user" />
+                </li>
               )
             }
             return null;    // .map() expects a return value in every case, hence null here
@@ -34,17 +34,8 @@ const UserList = ({ userFriends }) => {
         </ul>
       )}
 
-      {loading && (   // Render 3 skeleton loader friend cards
-        <div className="flex flex-wrap items-center justify-start">
-          <SkeletonFriendCard />
-          <SkeletonFriendCard />
-          <SkeletonFriendCard />
-        </div>
-      )}
-
-      {error && (
-        <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>Unable to load users</p>
-      )}
+      {/* Loading + error UI */}
+      <FriendsErrorLoading message="Unable to load users" loading={loading} error={error} />
     </div>
   )
 }

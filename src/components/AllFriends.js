@@ -1,9 +1,9 @@
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useFetchGet } from "../hooks/useFetchGet";
 import FriendCard from "./FriendCard";
-import SkeletonFriendCard from './skeletons/SkeletonFriendCard';
 import { useErrorToast } from '../hooks/useErrorToast';
 import FriendPage from "./FriendPage";
+import FriendsErrorLoading from './FriendsErrorLoading';
 
 const AllFriends = () => {
   const { user } = useAuthContext();
@@ -27,17 +27,8 @@ const AllFriends = () => {
           <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>No friends yet</p>
         )}
 
-        {loading && (   // render 3 skeleton friend card loaders
-          <div className="flex flex-wrap items-center justify-start">
-            <SkeletonFriendCard />
-            <SkeletonFriendCard />
-            <SkeletonFriendCard />
-          </div>
-        )}
-
-        {error && (
-          <p className='px-4 pb-4 w-full lg:mt-2 text-gray-800 text'>Unable to load Friends</p>
-        )}
+        {/* Loading + error UI */}
+        <FriendsErrorLoading message="Unable to load friends" loading={loading} error={error} />
       </div>
     </FriendPage>
   )
