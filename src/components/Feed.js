@@ -14,28 +14,26 @@ const Feed = ({ updatePosts }) => {
 
   return (
     <div className='md:w-auto lg:min-w-full w-screen max-w-full'>      
-      {loading && (
-        <div data-testid="skeleton">
-          {/* Render 10 skeleton posts */}
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => (
-            <SkeletonPost key={index}/>
+      {loading && (   // render 10 skeleton 'posts'
+        <div>
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((loader) => (
+            <SkeletonPost key={loader}/>
           ))}
         </div>
       )}
 
       {posts && (
-        <>
-          <div>
-            {posts.map((post) => (
-              <Post post={post} key={post._id} updatePosts={updatePosts}/>
-            ))}
-          </div>
+        <div>
+          {posts.map((post) => (
+            <Post post={post} key={post._id} updatePosts={updatePosts}/>
+          ))}
+
           <div className='flex flex-col text-center items-center justify-center rounded shadow-sm bg-white px-4 py-8 mb-6'>
             <p className='font-bold text-xl text-gray-600'>No more posts</p>
             <p className='text-md text-gray-600 mb-4'>Add more friends to see more posts in your Feed.</p>
             <StyledLink to="/friends" design="btn-primary" customStyles="w-40">Find Friends</StyledLink>
           </div>
-        </>
+        </div>
       )}
 
       {error && (

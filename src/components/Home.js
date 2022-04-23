@@ -6,6 +6,7 @@ import CreatePost from "./CreatePost";
 import { useState } from "react";
 import ErrorBoundary from "./utils/ErrorBoundary";
 
+// User hits this page on first login/signup
 const Home = () => {
   // A method of updating the Feed when a new post is created, updated, or deleted. Update or change the feedKey state from within a child component to re-render the Feed component
   const [feedKey, setFeedKey] = useState(0);
