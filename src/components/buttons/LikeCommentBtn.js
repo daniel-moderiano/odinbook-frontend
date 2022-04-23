@@ -28,8 +28,9 @@ const LikeCommentBtn = ({ postId, comment, setLocalLike }) => {
     return alreadyLiked;
   }
 
-  // Set out the conditionals in order of which they should be evaluated
+  // Dynamically set button text to indicate loading taking place
   const setBtnText = () => {
+    // Set out the conditionals in order of which they should be evaluated
     if (loading) {
       return 'Liking...';
     }

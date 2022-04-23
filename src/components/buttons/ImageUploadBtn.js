@@ -2,6 +2,7 @@
 import '../../styles/imageUpload.css';
 import ImageIcon from '../icons/ImageIcon'
 
+// Carefully designed custom image file input. Due to being an input, no button role or features need to be added. 
 const ImageUploadBtn = ({ handleChange, imageValue, setImageValue, setImageFile }) => {
   return (
     // Accepts only the formats specified

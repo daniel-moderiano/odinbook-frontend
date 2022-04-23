@@ -3,6 +3,7 @@ import { useFriendRequests } from '../../hooks/useFriendRequests';
 import { useErrorToast } from '../../hooks/useErrorToast';
 import { useSuccessToast } from '../../hooks/useSuccessToast';
 
+// Used to accept an incoming friend request
 const AcceptRequestBtn = ({ userId, customStyles }) => {
   const { request, response, loading, error } = useFriendRequests(userId);
 
@@ -11,8 +12,9 @@ const AcceptRequestBtn = ({ userId, customStyles }) => {
   useErrorToast(error, (error && error.errorMsg));
   useSuccessToast(response, 'Request accepted.');
 
-  // Set out the conditionals in order of which they should be evaluated
+  // Dynamically set button text to indicate loading state
   const setBtnText = () => {
+    // Set out the conditionals in order of which they should be evaluated
     if (loading) {
       return 'Accepting...';
     }

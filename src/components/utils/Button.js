@@ -9,7 +9,7 @@ const Button = ({
   expanded,
   ariaLabel,
 }) => {
-  // Define CSS styles for different types of buttons
+  // Define CSS styles for different types of buttons to avoid bloating other components with endless class names
   const designClass = (design) => {
     let CSS = '';
     switch (design) {
@@ -66,6 +66,7 @@ const Button = ({
   )
 };
 
+// The most common type of button throughout the app
 Button.defaultProps = {
   type: 'button',
   customStyles: '',

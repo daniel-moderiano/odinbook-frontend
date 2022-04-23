@@ -4,9 +4,10 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import CaretIcon from '../icons/CaretIcon';
 import { useState } from 'react';
 
+// Custom button that belongs in the main navigation and opens a dropdown menu with further options
 const MeButton = () => {
   const { user } = useAuthContext();
-  const [showMenu, setShowMenu] = useState(false)
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <div className="relative" data-testid="outside">

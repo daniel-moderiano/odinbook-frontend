@@ -3,6 +3,7 @@ import { useErrorToast } from "../../hooks/useErrorToast";
 import UserIcon from "../icons/UserIcon";
 import Button from "../utils/Button";
 
+// Simple contained btn component that logs in test account
 const TestLoginBtn = () => {
   const { testLogin, testError, testLoading } = useTestLogin();
 

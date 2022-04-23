@@ -3,6 +3,7 @@ import { useFriendRequests } from '../../hooks/useFriendRequests';
 import { useErrorToast } from '../../hooks/useErrorToast';
 import { useSuccessToast } from '../../hooks/useSuccessToast';
 
+// Used to unfriend a user
 const UnfriendRequestBtn = ({ userId, customStyles }) => {
   const { request, response, loading, error } = useFriendRequests(userId);
 
@@ -11,8 +12,9 @@ const UnfriendRequestBtn = ({ userId, customStyles }) => {
   useErrorToast(error, (error && error.errorMsg));
   useSuccessToast(response, 'Friend removed.');
 
-  // Set out the conditionals in order of which they should be evaluated
+  // Dynaically change the button text to communicate loading taking place
   const setBtnText = () => {
+    // Set out the conditionals in order of which they should be evaluated
     if (loading) {
       return 'Removing...';
     }
