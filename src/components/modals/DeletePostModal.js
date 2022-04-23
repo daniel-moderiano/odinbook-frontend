@@ -17,7 +17,7 @@ const DeletePostModal = ({ closeModal, postId, updatePosts }) => {
     }
   }, [response, showToast, closeModal, updatePosts]);
 
-  // Handle post deletion error
+  // Handle errors in post deletion
   useEffect(() => {
     if (error) {
       showToast('error', 'An error occurred while removing the post.');

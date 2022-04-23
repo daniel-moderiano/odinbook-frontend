@@ -10,7 +10,7 @@ const DeleteAccountModal = ({ closeModal }) => {
   const { deleteAccount, response, loading, error } = useDeleteAccount();
   const { showToast } = useToastContext();
 
-  // Handle successful post deletion
+  // Handle successful account deletion (deleteAccount function dispatched LOGOUT event, not needed here)
   useEffect(() => {
     if (response) {
       showToast('success', 'Account deleted successfully');
@@ -18,7 +18,7 @@ const DeleteAccountModal = ({ closeModal }) => {
     }
   }, [response, showToast, closeModal]);
 
-  // Handle post deletion error
+  // Handle account deletion error
   useEffect(() => {
     if (error) {
       showToast('error', (error && error.errorMsg));
@@ -38,13 +38,9 @@ const DeleteAccountModal = ({ closeModal }) => {
             design="danger"
             hasPopup="dialog"
             onClick={() => deleteAccount(user._id)}
-            disabled={user._id === '6253eafa7c5f03b0906cc7b5'}
+            disabled={user._id === '6253eafa7c5f03b0906cc7b5'}    // test account should not have delete access
           >
-            {loading ? (
-              'Deleting...'
-            ) : (
-              'Delete'
-            )}
+            {loading ? 'Deleting...' : 'Delete'}
           </Button>
         </div>
       </div>
