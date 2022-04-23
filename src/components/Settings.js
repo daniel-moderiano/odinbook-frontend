@@ -5,6 +5,7 @@ import Button from './utils/Button'
 import { useState } from "react";
 import DeleteAccountModal from "./modals/DeleteAccountModal";
 
+// Able to handle additional settings added, but at this stage only supports account deletion
 const Settings = () => {
   const { user } = useAuthContext();
   const [showModal, setShowModal] = useState(false);
@@ -22,8 +23,9 @@ const Settings = () => {
             Delete account
           </Button>
         </section>
+
         {showModal && (
-          <DeleteAccountModal closeModal={() => setShowModal(false)}/>
+          <DeleteAccountModal closeModal={() => setShowModal(false)} />
         )}
       </main>
       <Footer />

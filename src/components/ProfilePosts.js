@@ -25,11 +25,10 @@ const ProfilePosts = ({ profileUser, profileType }) => {
         }}/>
       )}
 
+      {/* Main posts 'feed' */}
       <div className='max-w-3xl lg:min-w-full'>
-
-        {loading && (
+        {loading && (   // Render 4 skeleton posts
           <div data-testid="skeleton">
-            {/* Render 4 skeleton posts */}
             {[1, 2, 3, 4].map((index) => (
               <SkeletonPost key={index}/>
             ))}
