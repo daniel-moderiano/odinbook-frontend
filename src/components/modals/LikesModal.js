@@ -12,6 +12,7 @@ const LikesModal = ({ postId, commentId, closeModal }) => {
 
   return (
     <ModalContainer closeModal={closeModal} title="Likes" modalId="LikesModal">
+      {/* Display the number of likes above the list of users */}
       {likes && (
         <div className="text-sm text-gray-600 flex items-center justify-start w-full border-b pb-2">
           <img src={like} alt="Love heart" className='w-4 mr-1 mb-px' />
@@ -19,6 +20,7 @@ const LikesModal = ({ postId, commentId, closeModal }) => {
         </div>
       )}
 
+      {/* Main body of modal */}
       <div className='w-full'>
         {loading && (
           <>

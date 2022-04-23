@@ -1,4 +1,3 @@
-import FocusTrap from 'focus-trap-react';
 import { useEffect, useState } from 'react';
 import { useUpdatePost } from '../../hooks/useUpdatePost';
 import { useToastContext } from '../../context/ToastContext';
