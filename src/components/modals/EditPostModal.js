@@ -10,15 +10,13 @@ import { useImageThumbnail } from '../../hooks/useImageThumbnail';
 import { useErrorToast } from '../../hooks/useErrorToast';
 import CloseIcon from '../icons/CloseIcon';
 import EmojiPickerBtn from '../buttons/EmojiPickerBtn'
-import { useModalCloseEvents } from '../../hooks/useModalCloseEvents';
+import ModalContainer from './ModalContainer';
 
 const EditPostModal = ({ closeModal, post, updatePosts }) => {
   const { updatePost, response, loading, error } = useUpdatePost();
   const { showToast } = useToastContext();
   const { user } = useAuthContext();
   const { handleFile, removeThumbnail, imageData, imageError, imageLoading, setImageData } = useImageThumbnail();
-  
-  useModalCloseEvents('EditPostModal', closeModal);
 
   // Set up notifications
   useErrorToast(imageError, 'An error occurred while uploading the image.');
@@ -52,7 +50,7 @@ const EditPostModal = ({ closeModal, post, updatePosts }) => {
 
   // Additional action of closing the modal is required here, which is why showToast is called manually to avoid multiple useEffect hooks watching the same variable
   useEffect(() => {
-    if (error) {  
+    if (error) {
       showToast(error, 'An error occurred while saving your changes.');
       closeModal();
     }
@@ -66,88 +64,68 @@ const EditPostModal = ({ closeModal, post, updatePosts }) => {
     formData.append('imageUpdated', imageUpdated);
     updatePost(post._id, formData);
   };
-  
+
   const onEmojiClick = (event, emojiObject) => {
     setPostText((prevState) => (prevState + emojiObject.emoji))
   };
 
   return (
-    <FocusTrap>
-      <div id='EditPostModal' aria-modal="true" role="dialog" aria-labelledby="modal-title" className='flex fixed z-[1000] left-0 top-0 h-full w-full overflow-auto bg-gray-700/70 justify-center items-center'>
+    <ModalContainer closeModal={closeModal} title="Edit post" modalId="EditPostModal">
+      <div className="w-full border-t">
+        <div className='flex items-center justify-start py-3'>
+          <ProfilePic image={user.profilePic && user.profilePic} styles="w-10 h-10 mr-3 sm:mr-3 rounded-full" />
+          <p className="block font-semibold hover:underlinemax-w-[200px]">{`${user.firstName} ${user.lastName}`}</p>
+        </div>
+        <form className="w-full" onSubmit={handleSubmit}>
+          <label htmlFor="postText" className='sr-only'>Post text</label>
+          <textarea required autoFocus onFocus={(e) => {
+            // Set the cursor at the end of the current post text
+            e.target.setSelectionRange(postText.length, postText.length);
+          }}
+            className="w-full resize-none rounded py-2 text-sm sm:text-base outline-none" name="postText" id="postText" rows="4" onChange={(e) => setPostText(e.target.value)} value={postText} placeholder="What's on your mind?"></textarea>
+        </form>
 
-        <div className='bg-white w-full max-w-md px-5 py-4 flex flex-col items-start rounded shadow-md max-h-full overflow-y-auto'>
-
-          <header className='flex flex-col justify-start items-start w-full border-b'>
-
-            <div className='flex justify-between items-center w-full pb-4'>
-              <h3 id="modal-title" className='text-xl font-semibold'>Edit post</h3>
-              <Button design="modal-close" ariaLabel="close current window" onClick={closeModal}>
-                <CloseIcon iconStyles="w-6" iconFill="#1B1E22"/>
-              </Button>
-            </div>
-
-          </header>
-
-          <div className="w-full">
-            <div className='flex items-center justify-start py-3'>
-              <ProfilePic image={user.profilePic && user.profilePic} styles="w-10 h-10 mr-3 sm:mr-3 rounded-full"/>
-              <p className="block font-semibold hover:underlinemax-w-[200px]">{`${user.firstName} ${user.lastName}`}</p>
-            </div>
-            <form className="w-full" onSubmit={handleSubmit}>
-              <label htmlFor="postText" className='sr-only'>Post text</label>
-              <textarea  required autoFocus onFocus={(e) => {
-                // Set the cursor at the end of the current post text
-                e.target.setSelectionRange(postText.length, postText.length);
-              }}
-          className="w-full resize-none rounded py-2 text-sm sm:text-base outline-none" name="postText" id="postText" rows="4" onChange={(e) => setPostText(e.target.value)} value={postText} placeholder="What's on your mind?"></textarea>
-            </form>
-
-            {/* Image preview div */}
-            <div id='preview' className='flex items-center justify-center w-full'>
-              {imageLoading && (
-                <div className='h-36'>
-                  <div role="status" className="border-[6px] border-gray-200 w-10 h-10 border-t-plum-500 rounded-full w animate-[spinner_1.5s_infinite_linear]">
-                    <span className="sr-only">Loading...</span>
-                  </div>
-                </div>
-              )}
-              {imageData && (
-                <div className='relative p-2 border border-gray-200 rounded mb-4 w-full'>
-                  <img className='w-full' src={imageData} alt="" />
-                  <button className='flex absolute top-2 right-2 p-1 rounded-full bg-gray-100 border-gray-300 border items-center justify-center hover:bg-gray-200 active:scale-95 outline-plum-600' onClick={() => {
-                    // Clear the file from the input and from the file state
-                    setImageValue('');
-                    setImageFile(null);
-                    setImageUpdated(true);
-                    removeThumbnail();
-                  }}>
-                    <CloseIcon iconStyles="w-5" iconFill="#1B1E22"/>
-                  </button>
-                </div>
-              )}
-
-            </div>
-           
-
-            <div className='flex items-center justify-between'>
-              <div className='flex items-center'>
-                <EmojiPickerBtn onEmojiClick={onEmojiClick} modal={true}/>
-                <ImageUploadBtn handleChange={(e) => {
-                  handleFile(e.target.files[0]);
-                  setImageUpdated(true);
-                }} imageValue={imageValue} setImageValue={setImageValue} setImageFile={setImageFile}/>
+        {/* Image preview div */}
+        <div id='preview' className='flex items-center justify-center w-full'>
+          {imageLoading && (
+            <div className='h-36'>
+              <div role="status" className="border-[6px] border-gray-200 w-10 h-10 border-t-plum-500 rounded-full w animate-[spinner_1.5s_infinite_linear]">
+                <span className="sr-only">Loading...</span>
               </div>
-
-              <Button design="primary" customStyles="max-w-[100px]" disabled={!(postText.length > 0)} onClick={handleSubmit}>
-                {loading ? 'Saving...' : 'Save'}
-              </Button>
             </div>
-      
+          )}
+          {imageData && (
+            <div className='relative p-2 border border-gray-200 rounded mb-4 w-full'>
+              <img className='w-full' src={imageData} alt="" />
+              <button className='flex absolute top-2 right-2 p-1 rounded-full bg-gray-100 border-gray-300 border items-center justify-center hover:bg-gray-200 active:scale-95 outline-plum-600' onClick={() => {
+                // Clear the file from the input and from the file state
+                setImageValue('');
+                setImageFile(null);
+                setImageUpdated(true);
+                removeThumbnail();
+              }}>
+                <CloseIcon iconStyles="w-5" iconFill="#1B1E22" />
+              </button>
+            </div>
+          )}
+        </div>
+
+        <div className='flex items-center justify-between'>
+          <div className='flex items-center'>
+            <EmojiPickerBtn onEmojiClick={onEmojiClick} modal={true} />
+            <ImageUploadBtn handleChange={(e) => {
+              handleFile(e.target.files[0]);
+              setImageUpdated(true);
+            }} imageValue={imageValue} setImageValue={setImageValue} setImageFile={setImageFile} />
           </div>
 
+          <Button design="primary" customStyles="max-w-[100px]" disabled={!(postText.length > 0)} onClick={handleSubmit}>
+            {loading ? 'Saving...' : 'Save'}
+          </Button>
         </div>
+
       </div>
-    </FocusTrap>
+    </ModalContainer>
   )
 }
 

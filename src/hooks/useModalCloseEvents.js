@@ -6,15 +6,15 @@ export const useModalCloseEvents = (elementId, closeElement) => {
   useEffect(() => {
     // Ensure the element closes when the user clicks on the opaque modal 'background'
     const handleOutsideClick = (event) => {
-      if (event.target.dataset.id === elementId) {
-        closeElement(false);
+      if (event.target.id === elementId) {
+        closeElement();
       }      
     };
 
     // Ensure the element closes when the user presses the Escape key
     const handleEscPress = (event) => {
       if (event.key === 'Escape') {
-        closeElement(false);
+        closeElement();
       }
     };
 

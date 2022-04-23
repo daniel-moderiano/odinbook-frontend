@@ -6,15 +6,15 @@ export const useMenuCloseEvents = (elementId, closeElement) => {
   useEffect(() => {
     // Ensure the element closes when the user clicks any element outside the target element
     const handleOutsideClick = (event) => {
-      if (event.target.dataset.id !== elementId) {
-        closeElement(false);
+      if (event.target.id !== elementId) {
+        closeElement();
       }      
     };
 
     // Ensure the element closes when the user presses the Escape key
     const handleEscPress = (event) => {
       if (event.key === 'Escape') {
-        closeElement(false);
+        closeElement();
       }
     };
 

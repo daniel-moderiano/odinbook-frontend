@@ -1,25 +1,20 @@
-import FocusTrap from 'focus-trap-react';
 import { useToastContext } from '../../context/ToastContext';
 import Button from '../utils/Button';
 import { useAuthContext } from '../../hooks/useAuthContext';
-import { useModalCloseEvents } from '../../hooks/useModalCloseEvents';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUpdateProfile } from '../../hooks/useUpdateProfile';
 import Input from '../utils/Input';
 import { useErrorToast } from '../../hooks/useErrorToast';
-import CloseIcon from '../icons/CloseIcon';
 import FormErrorIcon from '../icons/FormErrorIcon';
 import PencilIcon from '../icons/PencilIcon';
+import ModalContainer from './ModalContainer';
 
 const EditProfileModal = ({ closeModal, profileUser }) => {
   const { showToast } = useToastContext();
   const { dispatch } = useAuthContext();
   const { updateProfile, response, loading, error, formError } = useUpdateProfile();
   let navigate = useNavigate();
-
-  // Custom useEffect-style hook to control modal closing on esc and outside click
-  useModalCloseEvents('EditProfileModal', closeModal)
 
   // Set up notifications
   useErrorToast(error, 'An error occurred while saving changes.');
@@ -60,24 +55,10 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
   }
 
   return (
-    <FocusTrap>
-      <div id='EditProfileModal' aria-modal="true" role="dialog" aria-labelledby="modal-title" className='flex fixed z-[1000] left-0 top-0 h-full w-full overflow-auto bg-gray-700/70 justify-center items-center'>
-
-        <div className='bg-white w-full max-w-md px-6 py-6 flex flex-col items-start rounded shadow-md max-h-full overflow-auto'>
-
-          <header className='flex flex-col justify-start items-start w-full border-b'>
-
-            <div className='flex justify-between items-center w-full pb-4'>
-              <h3 id="modal-title" className='text-xl font-semibold'>Edit profile</h3>
-              <Button design="modal-close" ariaLabel="close current window" onClick={closeModal}>
-                <CloseIcon iconStyles="w-6" iconFill="#1B1E22"/>
-              </Button>
-            </div>
-
-          </header>
-
-          {/* Display form validation errors in single location here */}
-          {formError && (
+    <ModalContainer modalId="EditProfileModal" title="Edit profile" closeModal={closeModal}>
+       <div className='w-full border-t'>
+         {/* Display form validation errors in single location here */}
+       {formError && (
             <div className="-mb-4 mt-3">
               {formError.map((error, index) => (
                 <div key={index} className="text-sm text-red-700 flex items-center justify-start my-1">
@@ -224,10 +205,8 @@ const EditProfileModal = ({ closeModal, profileUser }) => {
           </form>
       
           </div>
-
-        </div>
-      </div>
-    </FocusTrap>
+       </div>
+    </ModalContainer>
   )
 }
 
