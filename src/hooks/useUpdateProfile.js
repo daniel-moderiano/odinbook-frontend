@@ -7,7 +7,7 @@ export const useUpdateProfile = () => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
 
-  // Pass in a FormData object constructed using any relevant profile information to be updated
+  // Pass in a basic object constructed using any relevant profile information to be updated
   const updateProfile = async (userId, formData) => {
     setError(null);
     setLoading(true);
@@ -26,9 +26,17 @@ export const useUpdateProfile = () => {
       });
       const responseJSON = await response.json();
 
+      console.log(responseJSON);
+
       if (response.status !== 200) {   // error with posting comment
         if (responseJSON.length) {    // form validation error
           setFormError(responseJSON)
+          setLoading(false);
+        } else if (responseJSON.errorMsg === 'This email is already in use') {
+          // Create a custom form validation error for this specfic case
+          setFormError([{
+            msg: 'This email is already in use. Choose another.'
+          }])
           setLoading(false);
         }
         setError(responseJSON);

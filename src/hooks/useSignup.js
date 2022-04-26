@@ -7,7 +7,7 @@ export const useSignup = () => {
   const [loading, setLoading] = useState(false);
   const { dispatch } = useAuthContext();
 
-  // Call this function with the FormData object created using relevant user sign up data
+  // Call this function with the object created using relevant user sign up data
   const signup = async (formData) => {
     setLoading(true);
     setError(null);
