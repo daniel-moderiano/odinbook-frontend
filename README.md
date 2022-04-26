@@ -10,7 +10,7 @@ Visit the [parent repository »](https://github.com/daniel-moderiano/odinbook)
 
 The odinbook frontend is an ReactJS single page application that interfaces with odinbook backend API to provide a polished social media website. This frontend application is served by the odinbook backend, hosted on [Heroku](https://www.heroku.com/). The entire frontend design has been done with Tailwind CSS, and is inspired by the likes of Facebook and LinkedIn. 
 
-<img src="assets/screenshot.png" alt="Odinbook profile page for Peter Parker" width="100%">
+<img src="src/assets/screenshot.png" alt="Odinbook profile page for Peter Parker" width="100%">
 
 ### Features
 
