@@ -26,7 +26,6 @@ At it's core, the odinbook backend is a NodeJS/Express application with MongoDB 
 * [Tailwind CSS](https://tailwindcss.com/) - CSS framework
 * [Jest](https://jestjs.io/) - JavaScript testing framework
 
-
 ## Acknowledgments
 
 The following resources were a great help throughout the development of the odinbook frontend.
