@@ -1,7 +1,7 @@
-⚠️ NOTE: Odinbook is currently hosted on [render](https://odinbook-dzwi.onrender.com/) to avoid costs associated with AWS hosting. Deactivated AWS infrastructure remains in place. 
+⚠️ NOTE: Odinbook is now hosted on [render](https://odinbook-dzwi.onrender.com/) to avoid ongoing costs associated with the prior AWS hosting setup. 
 
 # Odinbook frontend
-This is the frontend repository for [odinbook](https://odinbook.com/) - a social media website created as part of [The Odin Project](https://www.theodinproject.com/) NodeJS course. This repository contains all the client-side code for odinbook, with information on the features and technologies used. For a general overview of odinbook, or detailed information on the backend, please visit the following links:
+This is the frontend repository for [odinbook](https://odinbook-dzwi.onrender.com/) - a social media website created as part of [The Odin Project](https://www.theodinproject.com/) NodeJS course. This repository contains all the client-side code for odinbook, with information on the features and technologies used. For a general overview of odinbook, or detailed information on the backend, please visit the following links:
 
 Visit the [backend repository »](https://github.com/daniel-moderiano/odinbook-backend)
 
